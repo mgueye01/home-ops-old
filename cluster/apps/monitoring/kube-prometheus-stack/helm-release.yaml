@@ -90,18 +90,13 @@ spec:
                 alertname: UPSOnBattery
               receiver: nodered
       ingress:
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        enabled: true
-        hosts:
-          - "alert-manager.${SECRET_DOMAIN}"
-        ingressClassName: traefik
-        pathType: Prefix
-        tls:
-          -
-            hosts:
-              - "alert-manager.${SECRET_DOMAIN}"
+      enabled: true
+      ingressClassName: "nginx"
+      hosts:
+        - "alert-manager.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - "alert-manager.${SECRET_DOMAIN}"
     fullnameOverride: prometheus
     grafana:
       enabled: false
@@ -164,17 +159,13 @@ spec:
             targetLabel: kubernetes_node
     prometheus:
       ingress:
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
         enabled: true
+        pathType: Prefix
+        ingressClassName: "nginx"
         hosts:
           - "prometheus.${SECRET_DOMAIN}"
-        ingressClassName: traefik
-        pathType: Prefix
         tls:
-          -
-            hosts:
+          - hosts:
               - "prometheus.${SECRET_DOMAIN}"
       prometheusSpec:
         additionalScrapeConfigs:
