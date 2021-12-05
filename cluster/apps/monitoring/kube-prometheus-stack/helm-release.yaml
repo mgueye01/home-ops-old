@@ -29,7 +29,7 @@ spec:
       config:
         global:
           resolve_timeout: 5m
-          slack_api_url: "${SECRET_ALERT_MANAGER_DISCORD_WEBHOOK}"
+          slack_api_url: "${SECRET_ALERT_MANAGER_SLACK_WEBHOOK}"
         inhibit_rules:
           -
             equal:
@@ -43,10 +43,10 @@ spec:
           -
             name: "null"
           -
-            name: discord
+            name: slack
             slack_configs:
               -
-                channel: "#prometheus"
+                channel: "#k8s-events"
                 icon_url: "https://avatars3.githubusercontent.com/u/3380462"
                 send_resolved: true
                 text: |-
@@ -119,10 +119,14 @@ spec:
       enabled: true
       endpoints:
         - "192.168.0.55"
+        - "192.168.0.54"
+        - "192.168.0.53"
     kubeEtcd:
       enabled: true
       endpoints:
         - "192.168.0.55"
+        - "192.168.0.54"
+        - "192.168.0.53"
       service:
         enabled: true
         port: 2381
@@ -131,10 +135,14 @@ spec:
       enabled: true
       endpoints:
         - "192.168.0.55"
+        - "192.168.0.54"
+        - "192.168.0.53"
     kubeScheduler:
       enabled: true
       endpoints:
         - "192.168.0.55"
+        - "192.168.0.54"
+        - "192.168.0.53"
     kubelet:
       enabled: true
       serviceMonitor:

@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.rook.io/release
       chart: rook-ceph-cluster
-      version: v1.7.8
+      version: v1.7.9
       sourceRef:
         kind: HelmRepository
         name: rook-ceph-charts
@@ -40,19 +40,26 @@ spec:
               - "rook.${SECRET_DOMAIN}"
             secretName: "rook-dashboard-tls"
       storage:
-        useAllNodes: true
-        useAllDevices: true
+        useAllNodes: false
+        useAllDevices: false
         config:
           osdsPerDevice: "1"
         nodes:
           - name: "k8s-3"
             devices:
               - name: "sdb"
+              - name: "sda"
           - name: "k8s-2"
             devices:
               - name: "sdb"
+              - name: "sda"
           - name: "k8s-1"
             devices:
               - name: "sdb"
+              - name: "sda"
+          - name: "k8s-0"
+            devices:
+              - name: "sdb"
+              - name: "sda"
     cephFileSystems: []
     cephObjectStores: []

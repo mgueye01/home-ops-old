@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: grafana
-      version: 6.17.7
+      version: 6.17.10
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
@@ -124,6 +124,9 @@ spec:
           datasource: Prometheus
         blocky:
           url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.16/docs/blocky-grafana.json
+          datasource: Prometheus
+        k8s-dashboard:
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/k8s-for-prometheus-dashboard.json
           datasource: Prometheus
     sidecar:
       dashboards:
