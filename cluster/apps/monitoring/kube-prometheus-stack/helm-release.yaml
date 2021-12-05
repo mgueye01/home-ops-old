@@ -90,13 +90,14 @@ spec:
                 alertname: UPSOnBattery
               receiver: nodered
       ingress:
-      enabled: true
-      ingressClassName: "nginx"
-      hosts:
-        - "alert-manager.${SECRET_DOMAIN}"
-      tls:
-        - hosts:
-            - "alert-manager.${SECRET_DOMAIN}"
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "nginx"
+        hosts:
+          - "alert-manager.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - "alert-manager.${SECRET_DOMAIN}"
     fullnameOverride: prometheus
     grafana:
       enabled: false
