@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 #  - traefik
   - blocky
-  - error-pages
+#  - error-pages
   - wildcard-certificate
   - external-dns
   - ingress-nginx
