@@ -36,6 +36,7 @@ spec:
         tls:
           - hosts:
               - "rook.${SECRET_DOMAIN}"
+            secretName: "rook-dashboard-tls"
       storage:
         useAllNodes: false
         useAllDevices: false
