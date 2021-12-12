@@ -37,7 +37,7 @@ spec:
           - hosts:
               - "rook.${SECRET_DOMAIN}"
       storage:
-        useAllNodes: false
+        useAllNodes: true
         useAllDevices: true
         config:
           osdsPerDevice: "1"
