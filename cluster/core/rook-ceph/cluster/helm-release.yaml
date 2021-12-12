@@ -39,7 +39,7 @@ spec:
             secretName: "rook-dashboard-tls"
       storage:
         useAllNodes: false
-        useAllDevices: false
+        useAllDevices: true
         config:
           osdsPerDevice: "1"
         nodes:
