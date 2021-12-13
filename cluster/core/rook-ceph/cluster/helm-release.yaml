@@ -21,7 +21,7 @@ spec:
     toolbox:
       enabled: false
     monitoring:
-      enabled: true
+      enabled: false
     cephClusterSpec:
       dashboard:
         enabled: true
