@@ -38,7 +38,7 @@ spec:
               - "rook.${SECRET_DOMAIN}"
       storage:
         useAllNodes: true
-        useAllDevices: true
+        useAllDevices: false
         config:
           osdsPerDevice: "1"
         nodes:
