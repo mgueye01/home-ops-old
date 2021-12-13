@@ -22,17 +22,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
-        annotations:
-          # TODO: Add hajimari annotations to minio ingress
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        ingressClassName: "nginx"
         hosts:
           - host: "minio.${SECRET_DOMAIN}"
         tls:
           - hosts:
               - "minio.${SECRET_DOMAIN}"
-            secretName: minio-tls
     resources:
       requests:
         memory: 1Gi
@@ -44,5 +39,8 @@ spec:
         policy: none
         purge: false
       - name: velero
+        policy: none
+        purge: false
+      - name: loki
         policy: none
         purge: false
