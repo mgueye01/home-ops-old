@@ -13,12 +13,12 @@ spec:
         name: kured
       # renovate: registryUrl=https://weaveworks.github.io/kured
       chart: kured
-      version: 2.10.1
+      version: 2.10.2
   interval: 1h
   values:
     image:
       repository: raspbernetes/kured
-      tag: 1.8.0
+      tag: 1.8.2
     updateStrategy: RollingUpdate
     configuration:
       timeZone: "Europe/Paris"
