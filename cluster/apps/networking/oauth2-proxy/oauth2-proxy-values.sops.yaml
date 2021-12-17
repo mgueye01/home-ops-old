@@ -1,36 +1,36 @@
 apiVersion: bitnami.com/v1alpha1
 kind: Secret
 metadata:
-  name: oauth2-proxy-values
-  namespace: networking
+    name: oauth2-proxy-values
+    namespace: networking
 spec:
-  encryptedData:
-    values.yaml: |
-      config:
-        clientID: "$AUTH0_CLIENT_ID"
-        clientSecret: "$AUTH0_CLIENT_SECRET"
-        cookieSecret: "$OAUTH2_PROXY_COOKIE_SECRET"
-  template:
-    metadata:
-      name: oauth2-proxy-values
-      namespace: networking
+    encryptedData:
+        values.yaml: |-
+            config:
+              clientID: "$AUTH0_CLIENT_ID"
+              clientSecret: "$AUTH0_CLIENT_SECRET"
+              cookieSecret: "$OAUTH2_PROXY_COOKIE_SECRET"
+    template:
+        metadata:
+            name: oauth2-proxy-values
+            namespace: networking
 sops:
-  kms: []
-  gcp_kms: []
-  azure_kv: []
-  hc_vault: []
-  age:
-    - recipient: age15semdv8gcjnwk8krt0zkhua9k0aa3054drh66dxhz0gs637vmpks0hzgl8
-      enc: |
-        -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYVSsxOEVwNmhXTFRiK0gz
-        MmlFTDlLcUxVa0NySkJkS2JGWGxWT0RXbjJRCm5ud213VWdqcGdab2hhd01iR28v
-        aU1HZ3kyZDZ5TFpUR29hL2ZhVzN5eVkKLS0tIG8vZkJHOWxKU1RlSzQ2YWNzWnVh
-        c3k0K3dwR1VuUUNaYnBSSkpYdXByL1kKV2hj9JAiuOsTkkekTCscpMqWAou7Xk6p
-        jiQUe9ID9ygxDCpYnioiSQtoqXNGD/veAFaoili7f8BApQtve7j9FQ==
-        -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2021-12-17T14:08:24Z"
-  mac: ENC[AES256_GCM,data:FSLZbOUQOj2NeUixbEwPjsRYGNpEs3/pM94o+SgmYnAfyYY3qZqA1380EQFyihnr3TJYpXAj2YzbxnIVOsghe25/HusNV4xUPLZ/71g07w/eHLobDjNsPFfQo6gHOvNh+vqU3kr8imMb6Qq50YFGk8OBKb79+7qWbZKJoAsHbqE=,iv:ohEao9ZWybcp2SAdBOfq/y+YM9mzCjOkhCrcY7JaJDM=,tag:6ZiFqFzwGiVitd7t4CkePQ==,type:str]
-  pgp: []
-  encrypted_regex: ^(data|stringData)$
-  version: 3.7.1
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age15semdv8gcjnwk8krt0zkhua9k0aa3054drh66dxhz0gs637vmpks0hzgl8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYVSsxOEVwNmhXTFRiK0gz
+            MmlFTDlLcUxVa0NySkJkS2JGWGxWT0RXbjJRCm5ud213VWdqcGdab2hhd01iR28v
+            aU1HZ3kyZDZ5TFpUR29hL2ZhVzN5eVkKLS0tIG8vZkJHOWxKU1RlSzQ2YWNzWnVh
+            c3k0K3dwR1VuUUNaYnBSSkpYdXByL1kKV2hj9JAiuOsTkkekTCscpMqWAou7Xk6p
+            jiQUe9ID9ygxDCpYnioiSQtoqXNGD/veAFaoili7f8BApQtve7j9FQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2021-12-17T14:18:08Z"
+    mac: ENC[AES256_GCM,data:Vjpoe13DKybxA6eg0lPkxuOgJ/fkrMXXFDhs83qt08ZYf6zv3vqTecUF0yC2Od6Sc0ob0t0pcSDiA0jV2fr6CtXNG+QPD3/e3wccVXsNSIFES6PwKbvMZhpgAHua4f1UB5ek76swSeRB6qAOSRWRPdHYnfoIhicKqdWyQl9hSLU=,iv:7pt3OgEdmQnXTVjxt52zY7/pvil8Qp3dOlGClIr0ZwA=,tag:RDD1XOz0tLnwu600/kapKQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
