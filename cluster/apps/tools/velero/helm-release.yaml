@@ -41,13 +41,11 @@ spec:
       repository: velero/velero
       tag: v1.7.1
     initContainers:
-      -
-        image: "velero/velero-plugin-for-aws:v1.3.0"
+      - image: "velero/velero-plugin-for-aws:v1.3.0"
         imagePullPolicy: IfNotPresent
         name: velero-plugin-for-aws
         volumeMounts:
-          -
-            mountPath: /target
+          - mountPath: /target
             name: plugins
     metrics:
       enabled: true
@@ -69,11 +67,9 @@ spec:
           cpu: 15m
           memory: 200Mi
       tolerations:
-        -
-          key: arm
+        - key: arm
           operator: Exists
-        -
-          key: node-role.kubernetes.io/master
+        - key: node-role.kubernetes.io/master
           operator: Exists
     schedules:
       daily-backup:
@@ -83,7 +79,6 @@ spec:
     snapshotsEnabled: true
     upgradeCRDs: false
   valuesFrom:
-    -
-      kind: Secret
+    - kind: Secret
       name: velero-helm-values
       optional: false

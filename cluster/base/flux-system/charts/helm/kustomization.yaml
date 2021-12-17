@@ -20,8 +20,9 @@ resources:
   - prometheus-community-charts.yaml
   - rook-ceph-charts.yaml
   - stakater-charts.yaml
-#  - traefik-charts.yaml
+  #  - traefik-charts.yaml
   - weaveworks-kured-charts.yaml
   - vmware-tanzu-charts.yaml
   - emqx-charts.yaml
   - ingress-nginx-charts.yaml
+  - oauth2-proxy-charts.yaml
