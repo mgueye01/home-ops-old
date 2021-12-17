@@ -7,9 +7,9 @@ metadata:
 spec:
   dependsOn:
     - name: ingress-nginx
-      namespace: kube-system
+      namespace: networking
     - name: cert-manager
-      namespace: kube-system
+      namespace: cert-manager
   interval: 5m
   install:
     timeout: 15m
