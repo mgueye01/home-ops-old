@@ -61,20 +61,6 @@ spec:
         enable_api: true
     alerting_groups:
       #
-      # SMART Failures
-      #
-      - name: smart-failure
-        rules:
-          - alert: SmartFailures
-            expr: |
-              sum by (hostname) (count_over_time({hostname=~".+"} |~ "(?i).*smartd.*(error|fail).*"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "SMART has reported failures a drive on {{$hostname}}"
-      #
       # zigbee2mqtt
       #
       - name: zigbee2mqtt
@@ -117,20 +103,6 @@ spec:
             annotations:
               summary: "Frigate is unable to reach MQTT"
       #
-      # *arr applications
-      #
-      - name: arr
-        rules:
-          - alert: ArrDatabaseIsLocked
-            expr: |
-              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "{{$app}} is experiencing locked database issues"
-      #
       # home-assistant
       #
       - name: home-assistant
@@ -158,20 +130,6 @@ spec:
               category: logs
             annotations:
               summary: "Vaultwarden is unable to connect to postgresql"
-      #
-      # valetudo
-      #
-      - name: valetudo
-        rules:
-          - alert: ValetudoUnableToReachMQTT
-            expr: |
-              sum by (hostname) (count_over_time({hostname=~"valetudo"} |~ "(?i).*error.*mqtt.*"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "Valetudo is unable to connect to mqtt"
       #
       # node-red
       #
