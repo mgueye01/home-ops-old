@@ -27,11 +27,10 @@ spec:
     extraArgs:
       whitelist-domain: .${SECRET_DOMAIN}
       cookie-domain: .${SECRET_DOMAIN}
-      provider: oidc
-      oidc-issuer-url: https://${SECRET_DOMAIN}.eu.auth0.com/
-      skip-provider-button:
-      pass-authorization-header:
-      email-domain: "*"
+      provider: github
+    authenticatedEmailsFile:
+      enabled: true
+      restricted_access: ${SECRET_EMAIL}
     ingress:
       enabled: true
       annotations:
