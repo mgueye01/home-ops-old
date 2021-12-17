@@ -38,7 +38,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "ingress"
+        ingressClassName: "nginx"
         annotations:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
@@ -60,7 +60,7 @@ spec:
               - vaultwarden.${SECRET_DOMAIN}
       admin:
         enabled: true
-        ingressClassName: "ingress"
+        ingressClassName: "nginx"
         hosts:
           - host: "vaultwarden.${SECRET_DOMAIN}"
             paths:
