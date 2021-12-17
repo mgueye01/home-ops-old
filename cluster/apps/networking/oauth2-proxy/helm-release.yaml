@@ -3,27 +3,46 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: oauth2-proxy
-  namespace: networking
+  namespace: kube-system
 spec:
+  dependsOn:
+    - name: ingress-nginx
+      namespace: kube-system
+    - name: cert-manager
+      namespace: kube-system
   interval: 5m
+  install:
+    timeout: 15m
+    remediation:
+      retries: 5
+  upgrade:
+    timeout: 15m
+    remediation:
+      retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
   chart:
     spec:
       # renovate: registryUrl=https://oauth2-proxy.github.io/manifests
       chart: oauth2-proxy
-      version: 5.0.5
+      version: 4.2.2
       sourceRef:
         kind: HelmRepository
-        name: oauth2-proxy-charts
+        name: oauth2-proxy
         namespace: flux-system
-      interval: 5m
   values:
-    image:
-      repository: "quay.io/oauth2-proxy/oauth2-proxy"
-      tag: "v7.2.0"
-    replicaCount: 2
-    # tolerations:
-    #   - key: "arm"
-    #     operator: "Exists"
+    config:
+      clientID: ${SECRET_OAUTH2_PROXY_CLIENTID}
+      clientSecret: ${SECRET_OAUTH2_PROXY_CLIENTSECRET}
+      cookieSecret: ${SECRET_OAUTH2_PROXY_COOKIESECRET}
+    extraArgs:
+      whitelist-domain: .${SECRET_DOMAIN}
+      cookie-domain: .${SECRET_DOMAIN}
+      provider: oidc
+      oidc-issuer-url: https://${SECRET_DOMAIN}.eu.auth0.com/
+      skip-provider-button:
+      pass-authorization-header:
+      email-domain: "*"
     ingress:
       enabled: true
       annotations:
@@ -34,15 +53,5 @@ spec:
       tls:
         - hosts:
             - auth.${SECRET_DOMAIN}
-    extraArgs:
-      provider: oidc
-      oidc-issuer-url: https://${SECRET_DOMAIN}.eu.auth0.com/
-      skip-provider-button:
-      pass-authorization-header:
-      email-domain: "*"
-      cookie-domain: .${SECRET_DOMAIN}
-      whitelist-domain: .${SECRET_DOMAIN}
-  valuesFrom:
-    - kind: Secret
-      name: "oauth2-proxy-values"
-      optional: false
+    image:
+      tag: latest-arm64
