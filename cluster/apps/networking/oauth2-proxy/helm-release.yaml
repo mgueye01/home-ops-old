@@ -30,7 +30,7 @@ spec:
       provider: github
     authenticatedEmailsFile:
       enabled: true
-      restricted_access: mgueye01@mirantis.com
+      restricted_access: mgueye@mirantis.com
     ingress:
       enabled: true
       annotations:
