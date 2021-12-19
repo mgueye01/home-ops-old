@@ -30,14 +30,14 @@ spec:
       provider: github
     authenticatedEmailsFile:
       enabled: true
-      restricted_access: mgueye@mirantis.com
+      restricted_access: ${SECRET_EMAIL}
     ingress:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: nginx
         external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}"
       path: /oauth2
-      hosts: [auth.mgueye01.com]
+      hosts: auth.${SECRET_DOMAIN}
       tls:
         - hosts:
             - auth.${SECRET_DOMAIN}
