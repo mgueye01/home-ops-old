@@ -37,7 +37,8 @@ spec:
         kubernetes.io/ingress.class: nginx
         external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}"
       path: /oauth2
-      hosts: auth.${SECRET_DOMAIN}
+      hosts:
+        - auth.${SECRET_DOMAIN}
       tls:
         - hosts:
             - auth.${SECRET_DOMAIN}
