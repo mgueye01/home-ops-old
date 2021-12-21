@@ -24,7 +24,7 @@ spec:
     config:
       recommendations: false
       settings:
-        clustername: home-cluster
+        clustername: homelab
         kubectl:
           enabled: true
           restrictAccess: true
@@ -61,8 +61,8 @@ spec:
               - monitoring
               - networking
           events:
-            - create
-            - delete
+#            - create
+#            - delete
             - error
         - name: v1/services
           namespaces:
