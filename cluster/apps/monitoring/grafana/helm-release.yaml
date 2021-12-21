@@ -132,9 +132,9 @@ spec:
         k8s-node-exporter-dashboard:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/node-exporter-for-prometheus.json
           datasource: Prometheus
-        k8s-loki-stack-monitoring-dashboard:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/loki-stack-monitoring.json
-          datasource: loki
+        # k8s-loki-stack-monitoring-dashboard:
+        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/loki-stack-monitoring.json
+        #   datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
