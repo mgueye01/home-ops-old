@@ -26,3 +26,4 @@ resources:
   - emqx-charts.yaml
   - ingress-nginx-charts.yaml
   - oauth2-proxy-charts.yaml
+  - authelia-charts.yaml

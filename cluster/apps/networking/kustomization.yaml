@@ -8,4 +8,4 @@ resources:
   - external-dns
   - ingress-nginx
 #  - oauth2-proxy
-  - authentik
+  - authelia
