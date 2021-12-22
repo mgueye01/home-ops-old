@@ -7,4 +7,3 @@ resources:
   # - filestash
   - minio
   - velero
-  - database
