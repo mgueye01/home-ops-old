@@ -7,4 +7,5 @@ resources:
   - wildcard-certificate
   - external-dns
   - ingress-nginx
-  - oauth2-proxy
+#  - oauth2-proxy
+  - authentik
