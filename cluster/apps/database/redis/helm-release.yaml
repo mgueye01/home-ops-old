@@ -34,7 +34,7 @@ spec:
       enabled: true
       masterSet: redis-master
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
         enabled: true
       image:
