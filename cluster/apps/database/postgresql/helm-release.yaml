@@ -27,6 +27,9 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
+      image:
+        registry: docker.io
+        repository: prometheuscommunity/postgres-exporter
     persistence:
       size: 5Gi
       existingClaim: postgresql-config-v1
