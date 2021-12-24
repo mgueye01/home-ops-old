@@ -9,3 +9,4 @@ resources:
   - tools.yaml
   - velero.yaml
   - home.yaml
+  - security

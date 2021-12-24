@@ -61,8 +61,8 @@ spec:
               - monitoring
               - networking
           events:
-#            - create
-#            - delete
+            #            - create
+            #            - delete
             - error
         - name: v1/services
           namespaces:
