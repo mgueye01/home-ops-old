@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
 #  - mongodb
   - postgresql
-#  - redis
+  - redis

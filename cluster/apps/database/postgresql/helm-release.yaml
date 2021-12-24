@@ -30,6 +30,7 @@ spec:
       image:
         registry: docker.io
         repository: prometheuscommunity/postgres-exporter
+        tag: v0.10.0
     persistence:
       size: 5Gi
       existingClaim: postgresql-config-v1
