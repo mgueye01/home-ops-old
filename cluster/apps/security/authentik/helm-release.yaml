@@ -32,8 +32,8 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        hosts:
-          - "id.${SECRET_DOMAIN}"
+        - hosts:
+            - "id.${SECRET_DOMAIN}"
     authentik:
       email:
         host: smtp.mailgun.org
