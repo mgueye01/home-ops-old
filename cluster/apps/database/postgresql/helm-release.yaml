@@ -18,9 +18,9 @@ spec:
       interval: 5m
   values:
     image:
-      registry: quay.io
-      repository: bitnami/postgresql
-      tag: 14.1.0
+      registry: docker.io
+      repository: postgresql
+      tag: 14.
     postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
     postgresqlDatabase: authentik
     metrics:
