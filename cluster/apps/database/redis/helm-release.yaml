@@ -35,9 +35,9 @@ spec:
       masterSet: redis-master
     metrics:
       enabled: true
-      image:
-      registry: docker.io
-      repository: oliver006/redis_exporter
-      tag: alpine
       serviceMonitor:
         enabled: true
+      image:
+        registry: docker.io
+        repository: oliver006/redis_exporter
+        tag: alpine
