@@ -17,6 +17,10 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      registry: docker.io
+      repository: redis
+      tag: 6.2.6-alpine3.15
     architecture: standalone
     auth:
       enabled: true
@@ -31,5 +35,9 @@ spec:
       masterSet: redis-master
     metrics:
       enabled: true
+      image:
+      registry: docker.io
+      repository: oliver006/redis_exporter
+      tag: alpine
       serviceMonitor:
         enabled: true
