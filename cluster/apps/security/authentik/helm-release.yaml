@@ -42,7 +42,7 @@ spec:
       email:
         host: smtp.mailgun.com
         port: 465
-        username: ${SECRET_MAILGUN_USERNAME}
+        username: ${SECRET_EMAIL}
         password: ${SECRET_MAILGUN_PASSWORD}
         use_ssl: true
         from: id@${SECRET_DOMAIN}
