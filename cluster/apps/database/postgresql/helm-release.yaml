@@ -20,7 +20,7 @@ spec:
     image:
       registry: docker.io
       repository: postgres
-      tag: 14
+      tag: 11.14
     postgresqlPassword: "${POSTGRES_PASSWORD}"
     postgresqlDatabase: authentik
     metrics:
