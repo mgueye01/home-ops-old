@@ -25,7 +25,7 @@ spec:
     auth:
       enabled: true
       sentinal: true
-      password: "${SECRET_REDIS_PASSWORD}"
+      password: "${SECRET_AUTHENTIK_REDIS_PASSWORD}"
     master:
       persistence:
         size: 5Gi
