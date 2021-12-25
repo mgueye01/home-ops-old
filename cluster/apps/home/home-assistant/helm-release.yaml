@@ -89,7 +89,7 @@ spec:
           - --extensions-dir
           - "/config/.vscode"
         ingress:
-          enabled: true
+          enabled: false
           ingressClassName: "nginx"
           hosts:
             - host: "hass-config.${SECRET_DOMAIN}"
