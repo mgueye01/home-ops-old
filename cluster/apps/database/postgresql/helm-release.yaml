@@ -23,6 +23,7 @@ spec:
       tag: 11.14
     postgresqlPassword: "${SECRET_AUTHENTIK_POSTGRES_PASSWORD}"
     postgresqlDatabase: authentik
+    postgresqlUsername: authentik
     metrics:
       enabled: true
       serviceMonitor:
