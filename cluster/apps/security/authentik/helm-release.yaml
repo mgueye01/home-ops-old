@@ -10,61 +10,69 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.goauthentik.io
       chart: authentik
-      version: 5.1.0
+      version: 4.0.3
       sourceRef:
         kind: HelmRepository
         name: authentik-charts
         namespace: flux-system
       interval: 5m
   values:
-    replicas: 1
-    worker:
-      replicas: 1
     image:
       repository: ghcr.io/goauthentik/server
-      tag: 2021.12.4
+      tag: 2021.10.4
+
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: "nginx"
+      annotations:
+        external-dns/is-public: "true"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
       hosts:
-        - host: "id.${SECRET_DOMAIN}"
+        - host: id.${SECRET_DOMAIN}
           paths:
             - path: /
-              pathType: Prefix
+
       tls:
         - hosts:
-            - "id.${SECRET_DOMAIN}"
+            - id.${SECRET_DOMAIN}
+
+    geoip:
+      enabled: false
     authentik:
       email:
-        host: smtp.mailgun.org
-        port: 587
-        use_tls: true
-        username: "${SECRET_EMAIL}"
-        password: "${MAILGUN_PASSWORD}"
-        from: "authentik <${SECRET_EMAIL}>"
-      secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
+        host: smtp.mailgun.com
+        port: 465
+        username: ${SECRET_MAILGUN_USERNAME}
+        password: ${SECRET_MAILGUN_PASSWORD}
+        use_ssl: true
+        from: id@${SECRET_DOMAIN}
+      secret_key: ${SECRET_AUTHENTIK_SECRET_KEY}
       log_level: debug
+
       outposts:
-        container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
-      error_reporting:
-        enabled: false
+        docker_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+
       postgresql:
-        host: postgresql.database
+        host: "{{ .Release.Name }}-postgresql"
         name: authentik
         user: authentik
-        password: "${POSTGRES_PASSWORD}"
-        s3_backup:
-          access_key: "${SECRET_MINIO_ACCESS_KEY}"
-          secret_key: "${SECRET_MINIO_SECRET_KEY}"
-          bucket: authentik
-          host: http://minio.tools:9000
+        password: ${SECRET_AUTHENTIK_POSTGRES_PASSWORD}
       redis:
-        host: redis-master.database
-        password: "${SECRET_REDIS_PASSWORD}"
-    prometheus:
-      serviceMonitor:
-        create: true
-        interval: 30s
-        scrapeTimeout: 3s
-      rules:
-        create: true
+        host: "{{ .Release.Name }}-redis-master"
+        password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
+
+    postgresql:
+      enabled: true
+      persistence:
+        enabled: true
+        existingClaim: authentik-postgresql
+
+      postgresqlUsername: authentik
+      postgresqlDatabase: authentik
+      postgresqlPassword: ${SECRET_AUTHENTIK_POSTGRES_PASSWORD}
+
+    redis:
+      enabled: true
+      auth:
+        enabled: true
+        password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
