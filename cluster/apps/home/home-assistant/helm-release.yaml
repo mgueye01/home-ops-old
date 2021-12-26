@@ -91,6 +91,11 @@ spec:
         ingress:
           enabled: false
           ingressClassName: "nginx"
+          annotations:
+            external-dns/is-public: "true"
+            external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+            hajimari.io/enable: "true"
+            hajimari.io/icon: "home-assistant"
           hosts:
             - host: "hass-config.${SECRET_DOMAIN}"
               paths:
