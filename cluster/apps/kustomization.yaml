@@ -11,4 +11,3 @@ resources:
   - calico-system
   - home
   - database
-#  - security
