@@ -7,8 +7,8 @@ metadata:
 data:
   users_database.yml: |
     users:
-      Admin:
-        displayname: "Admin"
+      "${SECRET_AUTHELIA_ADMIN_USER}":
+        displayname: "${SECRET_AUTHELIA_ADMIN_USER}"
         password: "${SECRET_AUTHELIA_USER_ADMIN_PASSWORD}"
         email: ${SECRET_AUTHELIA_USER_ADMIN_EMAIL}
         groups:
