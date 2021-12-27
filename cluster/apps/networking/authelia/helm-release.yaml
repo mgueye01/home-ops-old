@@ -122,12 +122,12 @@ spec:
         redis:
           enabled: true
           enabledSecret: true
-          host: redis-master.data.svc.cluster.local
+          host: redis-master.database
 
       storage:
         postgres:
           enabled: true
-          host: postgresql-kube.data.svc.cluster.local
+          host: postgresql.database
 
       notifier:
         smtp:
@@ -150,7 +150,7 @@ spec:
         filename: JWT_TOKEN
       redis:
         key: REDIS_PASSWORD
-        value: "${SECRET_REDIS_PASSWORD}"
+        value: "${SECRET_AUTHELIA_REDIS_PASSWORD}"
         filename: REDIS_PASSWORD
       smtp:
         key: SMTP_PASSWORD
