@@ -20,7 +20,7 @@ spec:
     image:
       registry: docker.io
       repository: postgres
-      tag: 14.1
+      tag: 11.14
     postgresqlPassword: "${SECRET_AUTHELIA_POSTGRES_PASSWORD}"
     postgresqlDatabase: authelia
     postgresqlUsername: authelia
