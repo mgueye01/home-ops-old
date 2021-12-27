@@ -41,7 +41,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_CLUSTER_DOMAIN}"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
           hajimari.io/enable: "true"
           hajimari.io/icon: "resistor-nodes"
         hosts:
