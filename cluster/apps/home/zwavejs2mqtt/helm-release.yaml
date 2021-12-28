@@ -35,13 +35,13 @@ spec:
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
         ingressClassName: "nginx"
         hosts:
-          - host: "zwavejs2mqtt.${SECRET_DOMAIN}"
+          - host: "zwave.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "zwavejs2mqtt.${SECRET_DOMAIN}"
+              - "zwave.${SECRET_DOMAIN}"
     persistence:
       config:
         enabled: true
