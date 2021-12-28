@@ -65,7 +65,7 @@ spec:
       server:
         read_buffer_size: 8192
         write_buffer_size: 8192
-      theme: light
+      theme: dark
       authentication_backend:
         disable_reset_password: true
         ldap:
