@@ -30,6 +30,9 @@ spec:
     ingress:
       main:
         enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
         ingressClassName: "nginx"
         hosts:
           - host: "zwavejs2mqtt.${SECRET_DOMAIN}"
