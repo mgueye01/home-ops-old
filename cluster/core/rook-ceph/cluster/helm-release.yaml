@@ -18,6 +18,11 @@ spec:
   dependsOn:
     - name: rook-ceph
   values:
+    placement:
+      osd:
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
     monitoring:
       enabled: true
     cephClusterSpec:
