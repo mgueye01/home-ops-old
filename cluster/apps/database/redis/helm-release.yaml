@@ -34,9 +34,9 @@ spec:
       enabled: true
       masterSet: redis-master
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
-        enabled: true
+        enabled: false
       image:
         registry: docker.io
         repository: oliver006/redis_exporter
