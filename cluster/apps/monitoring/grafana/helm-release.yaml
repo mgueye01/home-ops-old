@@ -128,9 +128,9 @@ spec:
         flux-control-plane:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
           datasource: Prometheus
-        blocky:
-          url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.16/docs/blocky-grafana.json
-          datasource: Prometheus
+#        blocky:
+#          url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.16/docs/blocky-grafana.json
+#          datasource: Prometheus
         k8s-dashboard:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/k8s-for-prometheus-dashboard.json
           datasource: Prometheus
