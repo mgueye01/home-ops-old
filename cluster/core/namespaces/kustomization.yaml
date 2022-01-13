@@ -10,3 +10,4 @@ resources:
   - velero.yaml
   - home.yaml
   - longhorn-system.yaml
+  - database.yaml
