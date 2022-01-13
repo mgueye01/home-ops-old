@@ -9,5 +9,5 @@ resources:
 #  - monitoring
   - flux-system
   - calico-system
-#  - home
+  - home
   - database
