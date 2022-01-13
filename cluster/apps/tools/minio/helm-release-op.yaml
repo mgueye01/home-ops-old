@@ -8,7 +8,9 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: minio-operator
+      # renovate: registryUrl=https://helm.min.io/
+      chart: minio
+      version: 3.3.4
       sourceRef:
         kind: HelmRepository
         name: minio-charts
@@ -17,51 +19,16 @@ spec:
   values:
     image:
       repository: quay.io/minio/minio
-      tag: RELEASE.2021-10-23T03-28-24Z
-    nameOverride: minio
-    env:
-      MINIO_PROMETHEUS_AUTH_TYPE: "public"
-      MINIO_UPDATE: "off"
-      TZ: "Europe/Paris"
-    envFrom:
-      - secretRef:
-          name: minio
-    args:
-      - server
-      - /data
-      - --console-address
-      - :9001
-    service:
-      main:
-        enabled: true
-        ports:
-          http:
-            enabled: true
-            port: 9001
-          api:
-            enabled: true
-            port: 9000
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: "nginx"
-        hosts:
-          - host: "minio.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  port: 9001
-          - host: "s3.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  port: 9000
-        tls:
-          - hosts:
-              - "minio.${SECRET_DOMAIN}"
-              - "s3.${SECRET_DOMAIN}"
+      tag: RELEASE.2021-10-08T23-58-24Z
+      pullPolicy: IfNotPresent
+    mcImage:
+      repository: quay.io/minio/mc
+      tag: RELEASE.2021-09-23T05-44-03Z
+      pullPolicy: IfNotPresent
+    helmKubectlJqImage:
+      repository: bskim45/helm-kubectl-jq
+      tag: 3.1.0
+      pullPolicy: IfNotPresent
     persistence:
       config:
         enabled: true
@@ -73,19 +40,60 @@ spec:
         mountPath: /data
     podAnnotations:
       secret.reloader.stakater.com/reload: "minio"
+    # service:
+    #   type: ClusterIP
+    #   clusterIP: ~
+    #   port: 9000
+    service:
+      main:
+        enabled: true
+        ports:
+          http:
+            enabled: true
+            port: 9001
+          api:
+            enabled: true
+            port: 9000
+    existingSecret: minio-helm-values
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      hosts:
+        - "minio.${SECRET_DOMAIN}"
+      paths:
+        - path: /
+          pathType: Prefix
+          service:
+            port: 9001
+      tls:
+        - hosts:
+            - "minio.${SECRET_DOMAIN}"
     resources:
       requests:
-        memory: 100Mi
-        cpu: 100m
+        memory: 350Mi
+        cpu: 25m
       limits:
-        memory: 750Mi
+        memory: 1000Mi
+    securityContext:
+      enabled: false
+    metrics:
+      serviceMonitor:
+        enabled: true
+    nasgateway:
+      enabled: false
+      # Number of parallel instances
+      replicas: 3
     buckets:
+      - name: loki
+        policy: none
+        purge: false
       - name: thanos
         policy: none
         purge: false
       - name: velero
         policy: none
         purge: false
-      - name: loki
-        policy: none
-        purge: false
+        #valuesFrom:
+        #- kind: Secret
+        #name: "minio-helm-values"
+        #optional: false

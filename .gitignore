@@ -15,3 +15,4 @@ xanmanning.k3s*
 .terraform.tfstate*
 terraform.tfstate*
 linkerd-ingress.yaml
+rook-wipe.sh
