@@ -10,4 +10,4 @@ resources:
   - flux-system
   - calico-system
 #  - home
-#  - database
+  - database
