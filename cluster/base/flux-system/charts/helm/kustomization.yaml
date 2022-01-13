@@ -28,3 +28,4 @@ resources:
   - oauth2-proxy-charts.yaml
   - authelia-charts.yaml
   - longhorn-charts.yaml
+  - runix-charts.yaml
