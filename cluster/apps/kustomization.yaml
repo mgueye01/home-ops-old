@@ -6,8 +6,8 @@ resources:
   - networking
   - system-upgrade
   - tools
-  - monitoring
+#  - monitoring
   - flux-system
   - calico-system
-  - home
-  - database
+#  - home
+#  - database

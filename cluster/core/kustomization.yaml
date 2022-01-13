@@ -6,5 +6,5 @@ resources:
   - kube-system
   - metallb-system
   - system-upgrade
- # - rook-ceph
-  - longhorn-system
+  - rook-ceph
+ # - longhorn-system
