@@ -162,7 +162,7 @@ spec:
             metrics_path: /minio/v2/metrics/cluster
             static_configs:
               - targets:
-                  - "minio.tools:9000"
+                  - "192.168.0.18:9000"
         enableAdminAPI: true
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
