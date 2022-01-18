@@ -24,16 +24,16 @@ spec:
     ingress:
       enabled: true
       hosts:
-        - host: podinfo.pub.${CLUSTER_DOMAIN}
+        - host: podinfo.pub.${SECRET_DOMAIN}
           paths:
             - path: /
               pathType: ImplementationSpecific
-        - host: podinfo.home.${CLUSTER_DOMAIN}
+        - host: podinfo.home.${SECRET_DOMAIN}
           paths:
             - path: /
               pathType: ImplementationSpecific
       tls:
         - hosts:
-            - podinfo.pub.${CLUSTER_DOMAIN}
+            - podinfo.pub.${SECRET_DOMAIN}
         - hosts:
-            - podinfo.home.${CLUSTER_DOMAIN}
+            - podinfo.home.${SECRET_DOMAIN}
