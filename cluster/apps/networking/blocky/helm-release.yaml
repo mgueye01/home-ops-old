@@ -70,7 +70,6 @@ spec:
             - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
             - http://sysctl.org/cameleon/hosts
             - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
-            - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts
             - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
             - |
               /^ad([sxv]?[0-9]*|system)[_.-]([^.[:space:]]+\.){1,}|[_.-]ad([sxv]?[0-9]*|system)[_.-]/
