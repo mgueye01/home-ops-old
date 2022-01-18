@@ -5,5 +5,5 @@ resources:
   # - changedetection-io
   # - filebrowser
   # - filestash
-#  - minio
+  #  - minio
   - velero

@@ -7,4 +7,4 @@ resources:
   - metallb-system
   - system-upgrade
   - rook-ceph
- # - longhorn-system
+  # - longhorn-system
