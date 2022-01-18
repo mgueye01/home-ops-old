@@ -11,3 +11,4 @@ resources:
   - home.yaml
   #  - longhorn-system.yaml
   - database.yaml
+  - redis.yaml

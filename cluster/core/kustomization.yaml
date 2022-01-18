@@ -7,4 +7,5 @@ resources:
   - metallb-system
   - system-upgrade
   - rook-ceph
+  - redis
   # - longhorn-system
