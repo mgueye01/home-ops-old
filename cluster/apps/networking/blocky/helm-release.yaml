@@ -66,6 +66,11 @@ spec:
       blocking:
         blackLists:
           ads:
+            - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+            - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+            - http://sysctl.org/cameleon/hosts
+            - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
+            - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts
             - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
             - |
               /^ad([sxv]?[0-9]*|system)[_.-]([^.[:space:]]+\.){1,}|[_.-]ad([sxv]?[0-9]*|system)[_.-]/
@@ -85,6 +90,7 @@ spec:
         whiteLists:
           ads:
             - https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt
+            - https://raw.githubusercontent.com/chadmayfield/my-pihole-blocklists/master/white.list
         clientGroupsBlock:
           default:
             - ads
