@@ -29,3 +29,4 @@ resources:
   - authelia-charts.yaml
   - longhorn-charts.yaml
   - runix-charts.yaml
+  - podinfo.yaml
