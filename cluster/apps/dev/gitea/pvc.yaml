@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: gitea-pvc
+  name: gitea-pvc-v2
   namespace: dev
 spec:
   storageClassName: ceph-block
@@ -11,16 +11,3 @@ spec:
   resources:
     requests:
       storage: 3Gi
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: gitea-db
-  namespace: dev
-spec:
-  storageClassName: ceph-block
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
