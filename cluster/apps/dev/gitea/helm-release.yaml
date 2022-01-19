@@ -68,7 +68,7 @@ spec:
           SECRET_KEY: "${SECRET_GITEA_SECRET_KEY}"
         database:
           DB_TYPE: postgresql
-          HOST: postgresql.database
+          HOST: postgresql.database:5432
           NAME: gitea
           USER: root
           PASSWD: "${SECRET_GITEA_PG_PASSWORD}"
