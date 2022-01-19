@@ -73,8 +73,6 @@ spec:
           USER: root
           PASSWD: "${SECRET_GITEA_PG_PASSWORD}"
           SCHEMA: gitea
-        podAnnotations:
-          backup.velero.io/backup-volumes: data
     postgresql:
       enabled: false
       primary:
