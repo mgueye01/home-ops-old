@@ -27,24 +27,24 @@ metadata:
   name: gitea
   namespace: dev
   labels:
-    app: git
+    app: gitea
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: git
-  serviceName: "git"
+      app: gitea
+  serviceName: "gitea"
   template:
     metadata:
       labels:
-        app: git
+        app: gitea
     spec:
       containers:
-        - name: git
+        - name: gitea
           image: gitea/gitea:1.15.10
           env:
             - name: APP_NAME
-              value: "Git"
+              value: "Gitea"
             - name: RUN_MODE
               value: prod
             - name: ROOT_URL
