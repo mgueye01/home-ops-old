@@ -25,10 +25,10 @@ spec:
       backupStorageLocation:
         bucket: velero
         config:
-          publicUrl: "https://minio.${SECRET_DOMAIN}"
+          publicUrl: "192.168.0.18:9000"
           region: eu-west-3
           s3ForcePathStyle: true
-          s3Url: "http://minio.tools.svc:9000"
+          s3Url: "192.168.0.18:9000"
         name: tools
       provider: aws
       resticTimeout: 6h

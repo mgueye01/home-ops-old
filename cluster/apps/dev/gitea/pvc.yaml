@@ -15,7 +15,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: gitea-postgresql-pvc
+  name: gitea-db
   namespace: dev
 spec:
   storageClassName: ceph-block

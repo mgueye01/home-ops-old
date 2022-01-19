@@ -5,13 +5,12 @@ metadata:
   name: gitea
   namespace: dev
 spec:
-  releaseName: gitea
   interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://dl.gitea.io/charts/
       chart: gitea
-      version: 4.1.1
+      version: 5.0.0
       sourceRef:
         kind: HelmRepository
         name: gitea-charts
@@ -20,11 +19,7 @@ spec:
   values:
     image:
       repository: gitea/gitea
-      tag: 1.15.7
-      pullPolicy: IfNotPresent
-    persistence:
-      enabled: true
-      existingClaim: gitea-pvc
+      tag: 1.15.10
     ingress:
       enabled: true
       annotations:
@@ -53,54 +48,49 @@ spec:
         externalTrafficPolicy: Local
         externalIPs:
           - "${SVC_GITEA_ADDRESS}"
+    persistence:
+      enabled: true
+      existingClaim: gitea-pvc
     gitea:
-      admin:
-        email: ${SECRET_EMAIL}
-        username: "${SECRET_GITEA_USERNAME}"
-        password: ${SECRET_GITEA_ADMIN_PASSWORD}
-      security:
-        SECRET_KEY: "${SECRET_GITEA_SECRET_KEY}"
       config:
         APP_NAME: "Home Gitea"
         server:
-          SSH_PORT: 22
-          SSH_LISTEN_PORT: 22
-          SSH_DOMAIN: git.${SECRET_DOMAIN}
-          root_url: "https://git.${SECRET_DOMAIN}"
-        respository:
-          DEFAULT_PRIVATE: true
-        admin:
-          DISABLE_REGULAR_ORG_CREATION: true
-        security:
-          PASSWORD_COMPLEXITY: "lower,upper"
-          MIN_PASSWORD_LENGTH: 12
+          PROTOCOL: http
+          DOMAIN: "git.${SECRET_DOMAIN}"
+          ROOT_URL: "https://git.${SECRET_DOMAIN}"
         service:
-          DISABLE_REGISTRATION: true
-          REQUIRE_SIGNIN_VIEW: true
-        mailer:
-          enabled: true
-          host: "smtp.${SECRET_DOMAIN}:25"
-          from: "git@${SECRET_DOMAIN}"
-          mailer_type: smtp
-      database:
-        DB_TYPE: postgresql
-        HOST: postgresql.database
-        NAME: gitea
-        USER: root
-        PASSWD: gitea
-        SCHEMA: gitea
-        builtIn:
-          postgresql:
-            enabled: false
-      cache:
-        ENABLED: true
-        ADAPTER: memory
-        INTERVAL: 60
-        HOST: 127.0.0.1:9090
-      metrics:
+          DISABLE_REGISTRATION: "true"
+        admin:
+          email: ${SECRET_EMAIL}
+          username: "${SECRET_GITEA_USERNAME}"
+          password: ${SECRET_GITEA_ADMIN_PASSWORD}
+        security:
+          SECRET_KEY: "${SECRET_GITEA_SECRET_KEY}"
+        database:
+          DB_TYPE: postgresql
+          HOST: postgresql.database
+          NAME: gitea
+          USER: root
+          PASSWD: "${SECRET_GITEA_PG_PASSWORD}"
+          SCHEMA: gitea
+        podAnnotations:
+          backup.velero.io/backup-volumes: data
+    postgresql:
+      enabled: false
+      primary:
+        podAnnotations:
+          backup.velero.io/backup-volumes: data
+      global:
+        postgresql:
+          postgresqlDatabase: gitea
+          postgresqlUsername: gitea
+          postgresqlPassword: "${SECRET_GITEA_PG_PASSWORD}"
+          servicePort: 5432
+      image:
+        registry: docker.io
+        repository: bitnami/postgresql
+        tag: 9.6.24-debian-10-r44
+      persistence:
         enabled: true
-        serviceMonitor:
-          enabled: true
-          namespace: dev
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
+        existingClaim: gitea-db
+        subPath: data
