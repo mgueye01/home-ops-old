@@ -50,7 +50,7 @@ spec:
             - name: ROOT_URL
               value: https://git.${SECRET_DOMAIN}
             - name: DISABLE_REGISTRATION
-              value: "true"
+              value: "false"
             - name: DEFAULT_PRIVATE
               value: private
             - name: ENABLE_PUSH_CREATE_USER
