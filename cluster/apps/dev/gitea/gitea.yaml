@@ -42,27 +42,27 @@ spec:
       containers:
         - name: gitea
           image: gitea/gitea:1.15.10
-          env:
-            - name: APP_NAME
-              value: "Gitea"
-            - name: RUN_MODE
-              value: prod
-            - name: ROOT_URL
-              value: https://git.${SECRET_DOMAIN}
-            - name: DISABLE_REGISTRATION
-              value: "false"
-            - name: DEFAULT_PRIVATE
-              value: private
-            - name: ENABLE_PUSH_CREATE_USER
-              value: "true"
-            - name: ENABLE_PUSH_CREATE_ORG
-              value: "true"
-            - name: ISSUE_PAGING_NUM
-              value: "20"
-            - name: DEFAULT_THEME
-              value: arc-green
-            - name: SECRET_KEY
-              value: "${SECRET_KEY_GITEA}"
+          # env:
+          #   - name: APP_NAME
+          #     value: "Gitea"
+          #   - name: RUN_MODE
+          #     value: prod
+          #   - name: ROOT_URL
+          #     value: https://git.${SECRET_DOMAIN}
+          #   - name: DISABLE_REGISTRATION
+          #     value: "false"
+          #   - name: DEFAULT_PRIVATE
+          #     value: private
+          #   - name: ENABLE_PUSH_CREATE_USER
+          #     value: "true"
+          #   - name: ENABLE_PUSH_CREATE_ORG
+          #     value: "true"
+          #   - name: ISSUE_PAGING_NUM
+          #     value: "20"
+          #   - name: DEFAULT_THEME
+          #     value: arc-green
+          #   - name: SECRET_KEY
+          #     value: "${SECRET_KEY_GITEA}"
           ports:
             - containerPort: 3000
               name: http
