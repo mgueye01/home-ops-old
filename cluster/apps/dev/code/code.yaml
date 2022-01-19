@@ -1,0 +1,74 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: code-server
+  namespace: dev
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
+    nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+spec:
+  rules:
+    - host: "code.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              serviceName: code-server
+              servicePort: 8080
+            path: /
+  tls:
+    - hosts:
+        - "code.${SECRET_DOMAIN}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-server
+  namespace: dev
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: code-server
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-server
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: code-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: code-server
+    spec:
+      containers:
+        - image: codercom/code-server:4.0.1
+          name: code-server
+          args:
+            - --auth
+            - none
+          env:
+          ports:
+            - containerPort: 8080
+              name: code-server
+          volumeMounts:
+            - name: pv-code-server
+              mountPath: /home/coder
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      volumes:
+        - name: pv-code-server
+          persistentVolumeClaim:
+            claimName: code-server-data-v2
