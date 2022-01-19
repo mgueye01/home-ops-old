@@ -2,12 +2,25 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: gitea-pvc-v2
+  name: gitea-pvc
   namespace: dev
 spec:
-  storageClassName: nfs-client
+  storageClassName: ceph-block
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 3Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: gitea-postgresql-pvc
+  namespace: dev
+spec:
+  storageClassName: ceph-block
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

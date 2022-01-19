@@ -30,3 +30,4 @@ resources:
   - longhorn-charts.yaml
   - runix-charts.yaml
   - podinfo.yaml
+  - gitea-charts.yaml
