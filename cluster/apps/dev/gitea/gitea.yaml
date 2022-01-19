@@ -42,6 +42,8 @@ spec:
         - image: gitea/gitea:1.15.10
           name: gitea
           env:
+            - name: DEFAULT_THEME
+              value: arc-green
           ports:
             - containerPort: 3000
               name: http
