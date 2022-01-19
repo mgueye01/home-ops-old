@@ -83,12 +83,20 @@ spec:
           from: "git@${SECRET_DOMAIN}"
           mailer_type: smtp
       database:
+        DB_TYPE: postgresql
+        HOST: postgresql.database
+        NAME: gitea
+        USER: root
+        PASSWD: gitea
+        SCHEMA: gitea
         builtIn:
           postgresql:
-            enabled: true
-    postgresql:
-      persistence:
-        existingClaim: gitea-postgresql-pvc
+            enabled: false
+      cache:
+        ENABLED: true
+        ADAPTER: memory
+        INTERVAL: 60
+        HOST: 127.0.0.1:9090
       metrics:
         enabled: true
         serviceMonitor:
