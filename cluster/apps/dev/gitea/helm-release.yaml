@@ -79,9 +79,15 @@ spec:
           servicePort: 5432
       image:
         registry: docker.io
-        repository: postgresql
+        repository: postgres
         tag: 11.14
       persistence:
         enabled: true
         existingClaim: gitea-db
         subPath: data
+    memcached:
+      enabled: true
+      image:
+        registry: docker.io
+        repository: memcached
+        tag: 1.6.12
