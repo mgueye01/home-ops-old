@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: gitea
-          image: gitea/gitea:1.12.3
+          image: gitea/gitea:1.15.10
           env:
             - name: APP_NAME
               value: "Gitea"
@@ -50,7 +50,7 @@ spec:
             - name: ROOT_URL
               value: https://git.${SECRET_DOMAIN}
             - name: DISABLE_REGISTRATION
-              value: "false"
+              value: "true"
             - name: DEFAULT_PRIVATE
               value: private
             - name: ENABLE_PUSH_CREATE_USER
@@ -98,83 +98,3 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: gitea-pvc-v2
-
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: gitea
-#   namespace: dev
-# spec:
-#   ports:
-#     - protocol: TCP
-#       port: 3000
-#       targetPort: 3000
-#       name: http
-#     - protocol: TCP
-#       port: 22
-#       targetPort: 22
-#       name: ssh
-#   selector:
-#     app: gitea
-#   type: LoadBalancer
-#   externalTrafficPolicy: Local
-#   externalIPs:
-#     - ${SVC_GITEA_ADDRESS}
-# ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: gitea
-#   namespace: dev
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: gitea
-#   strategy:
-#     type: Recreate
-#   template:
-#     metadata:
-#       labels:
-#         app: gitea
-#     spec:
-#       containers:
-#         - image: gitea/gitea:1.15.10
-#           name: gitea
-#           env:
-#           ports:
-#             - containerPort: 3000
-#               name: http
-#             - containerPort: 22
-#               name: ssh
-#           livenessProbe:
-#             tcpSocket:
-#               port: http
-#             initialDelaySeconds: 200
-#             timeoutSeconds: 3
-#             periodSeconds: 30
-#             successThreshold: 1
-#             failureThreshold: 10
-#           readinessProbe:
-#             tcpSocket:
-#               port: http
-#             initialDelaySeconds: 20
-#             timeoutSeconds: 3
-#             periodSeconds: 30
-#             successThreshold: 1
-#             failureThreshold: 10
-#           resources:
-#             limits:
-#               cpu: 2000m
-#               memory: 1Gi
-#             requests:
-#               cpu: 500m
-#               memory: 215Mi
-#           volumeMounts:
-#             - name: data
-#               mountPath: /data
-#       volumes:
-#         - name: data
-#           persistentVolumeClaim:
-#             claimName: gitea-pvc-v2
