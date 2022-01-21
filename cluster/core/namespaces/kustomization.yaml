@@ -12,3 +12,4 @@ resources:
   #  - longhorn-system.yaml
   - database.yaml
   - dev.yaml
+  - kasten-io.yaml

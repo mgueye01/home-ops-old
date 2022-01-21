@@ -31,3 +31,4 @@ resources:
   - runix-charts.yaml
   - podinfo.yaml
   - gitea-charts.yaml
+  - kasten-charts.yaml
