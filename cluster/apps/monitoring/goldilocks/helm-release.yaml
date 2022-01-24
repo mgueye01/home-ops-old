@@ -28,9 +28,9 @@ spec:
           nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
         hosts:
-          - host: goldilocks.${SECRET_DOMAIN}.com
+          - host: "goldilocks.${SECRET_DOMAIN}"
             paths:
               - path: /
         tls:
           - hosts:
-              - goldilocks.${SECRET_DOMAIN}.com
+              - "goldilocks.${SECRET_DOMAIN}"
