@@ -32,3 +32,4 @@ resources:
   - podinfo.yaml
   - gitea-charts.yaml
   - kasten-charts.yaml
+  - fairwinds-charts.yaml
