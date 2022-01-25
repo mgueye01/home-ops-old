@@ -48,7 +48,7 @@ spec:
         memory: 164M
       limits:
         cpu: 20m
-        Òmemory: 306M
+        memory: 306M
   postRenderers:
     - kustomize:
         patchesJson6902:
