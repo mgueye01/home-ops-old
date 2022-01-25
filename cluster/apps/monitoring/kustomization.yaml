@@ -9,4 +9,4 @@ resources:
   - loki
   - kube-prometheus-stack
   - uptime-kuma
-  - goldilocks
+#  - goldilocks
