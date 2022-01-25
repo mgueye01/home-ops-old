@@ -42,13 +42,6 @@ spec:
       tls:
         - hosts:
             - "pgadmin.${SECRET_DOMAIN}"
-    resources:
-      requests:
-        cpu: 15m
-        memory: 164M
-      limits:
-        cpu: 200m
-        memory: 306M
   postRenderers:
     - kustomize:
         patchesJson6902:
