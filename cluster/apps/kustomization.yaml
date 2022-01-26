@@ -12,4 +12,5 @@ resources:
   - home
   - database
   - dev
+  - drone
 #  - kasten-io
