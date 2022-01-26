@@ -1,0 +1,48 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: drone
+  namespace: drone
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: drone
+      version: 0.1.7
+      sourceRef:
+        kind: HelmRepository
+        name: drone-charts
+      interval: 1h
+  values:
+    image:
+      repository: drone/drone
+      tag: 2.8.0
+    updateStrategy:
+      type: Recreate
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+      hosts:
+        - host: dr.${SECRET_DOMAIN}
+          paths:
+            - /
+      tls:
+        - hosts:
+            - dr.${SECRET_DOMAIN}
+    env:
+      DRONE_SERVER_HOST: dr.${SECRET_DOMAIN}
+      DRONE_SERVER_PROTO: https
+      DRONE_GIT_ALWAYS_AUTH: true
+      DRONE_GITEA_SERVER: https://git.${SECRET_DOMAIN}
+      DRONE_USER_CREATE: username:admin,admin:true
+      DRONE_LOGS_TEXT: true
+      DRONE_LOGS_PRETTY: true
+      DRONE_LOGS_COLOR: true
+      DRONE_RPC_SECRET:
+      DRONE_GITEA_CLIENT_ID: 6fe0f448-61c0-4de4-9aa2-a51711214c0e
+      DRONE_GITEA_CLIENT_SECRET: ${SECRET_DRONE_GITEA_CLIENT_SECRET}
+    persistentVolume:
+      enabled: true
+      storageClass: ceph-block

@@ -33,3 +33,4 @@ resources:
   - gitea-charts.yaml
   - kasten-charts.yaml
   - fairwinds-charts.yaml
+  - drone-charts.yaml

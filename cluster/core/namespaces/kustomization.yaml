@@ -13,3 +13,4 @@ resources:
   - database.yaml
   - dev.yaml
   - kasten-io.yaml
+  - drone.yaml
