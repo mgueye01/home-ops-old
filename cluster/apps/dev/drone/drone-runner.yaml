@@ -5,7 +5,7 @@ metadata:
   name: drone-runner-kube
   namespace: drone
 spec:
-  interval: 1h
+  interval: 5m
   chart:
     spec:
       chart: drone-runner-kube
@@ -13,7 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: drone-charts
-      interval: 1h
+      interval: 5m
   values:
     rbac:
       buildNamespaces:
