@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: drone-charts
-  namespace: drone
+  namespace: flux-system
 spec:
   interval: 1h
   url: https://charts.drone.io
