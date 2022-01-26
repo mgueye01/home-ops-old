@@ -37,7 +37,7 @@ spec:
       DRONE_SERVER_PROTO: https
       DRONE_GIT_ALWAYS_AUTH: true
       DRONE_GITEA_SERVER: https://git.${SECRET_DOMAIN}
-      DRONE_USER_CREATE: username:admin,admin:true
+      DRONE_USER_CREATE: username:tapha,admin:true
       DRONE_LOGS_TEXT: true
       DRONE_LOGS_PRETTY: true
       DRONE_LOGS_COLOR: true
