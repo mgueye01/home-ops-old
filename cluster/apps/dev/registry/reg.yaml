@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reg
+  namespace: dev
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: reg
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reg
+  namespace: dev
+  labels:
+    app: reg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reg
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: reg
+    spec:
+      terminationGracePeriodSeconds: 3
+      containers:
+        - name: reg
+          image: r.${SECRET_DOMAIN}/genuinetools/reg:v0.16.1
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            limits:
+              cpu: 500m
+              memory: 100Mi
+          args:
+            - server
+            - --registry=r.${SECRET_DOMAIN}
+            - --interval=5m0s
