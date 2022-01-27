@@ -6,11 +6,11 @@ metadata:
   namespace: dev
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/proxy-body-size: '0'
-    nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
-    nginx.ingress.kubernetes.io/proxy-send-timeout: '600'
-    nginx.ingress.kubernetes.io/enable-global-auth: 'false'
-    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/enable-global-auth: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       allow 192.168.0.0/24;
       allow 10.0.0.0/8;
@@ -88,7 +88,7 @@ spec:
           name: registry
           env:
             - name: REGISTRY_STORAGE_DELETE_ENABLED
-              value: 'true'
+              value: "true"
             - name: REGISTRY_HTTP_ADDR
               value: 0.0.0.0:5000
           ports:
