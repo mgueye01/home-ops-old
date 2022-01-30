@@ -1,8 +1,6 @@
+---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - code
-  - gitea
-  - drone
-  - registry
-  - buildkit
+  - secret.sops.yaml
+  - deployment+service.privileged.yaml
