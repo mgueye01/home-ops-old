@@ -41,6 +41,13 @@ spec:
               value: "false"
             - name: vip_address
               value: "192.168.0.250"
+          resources:
+            limits:
+              memory: 100Mi
+              cpu: 100m
+            requests:
+              cpu: 100m
+              memory: 100Mi
           securityContext:
             capabilities:
               add:
