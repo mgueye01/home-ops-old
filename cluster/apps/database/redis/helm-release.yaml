@@ -40,4 +40,4 @@ spec:
       image:
         registry: docker.io
         repository: oliver006/redis_exporter
-        tag: v1.34.1
+        tag: v1.35.0
