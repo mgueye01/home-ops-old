@@ -55,6 +55,7 @@ spec:
           - name: "k8s-2"
             devices:
               - name: "sdb"
+              - name: "sda"
           - name: "k8s-1"
             devices:
               - name: "sdb"
