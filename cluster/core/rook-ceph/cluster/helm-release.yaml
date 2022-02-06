@@ -48,21 +48,14 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "k8s-3"
+          - name: "k3s-3"
             devices:
-              - name: "sdb"
               - name: "sda"
-          - name: "k8s-2"
+          - name: "k3s-2"
             devices:
-              - name: "sdb"
               - name: "sda"
-          - name: "k8s-1"
+          - name: "k3s-1"
             devices:
-              - name: "sdb"
-              - name: "sda"
-          - name: "k8s-0"
-            devices:
-              - name: "sdb"
               - name: "sda"
     cephBlockPools:
       - name: ceph-blockpool
