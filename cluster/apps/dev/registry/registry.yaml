@@ -23,19 +23,22 @@ spec:
           - backend:
               service:
                 name: registry
-                port: 5000
+                port:
+                  number: 5000
             path: /.+
             pathType: Prefix
           - backend:
               service:
                 name: reg
-                port: 8080
+                port:
+                  number: 8080
             path: /
             pathType: Prefix
           - backend:
               service:
                 name: reg
-                port: 8080
+                port:
+                  number: 8080
             path: /(repo|static)
             pathType: Prefix
   tls:
