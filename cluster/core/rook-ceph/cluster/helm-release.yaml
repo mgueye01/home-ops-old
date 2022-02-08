@@ -32,16 +32,26 @@ spec:
         enabled: true
         urlPrefix: /
         ssl: false
+    # ingress:
+    #   dashboard:
+    #     annotations:
+    #       kubernetes.io/ingress.class: "nginx"
+    #     host:
+    #       name: "rook.${SECRET_DOMAIN}"
+    #       path: "/"
+    #     tls:
+    #       - hosts:
+    #           - "rook.${SECRET_DOMAIN}"
     ingress:
       dashboard:
         annotations:
           kubernetes.io/ingress.class: "nginx"
         host:
-          name: "rook.${SECRET_DOMAIN}"
+          name: &host "rook.${SECRET_DOMAIN}"
           path: "/"
         tls:
           - hosts:
-              - "rook.${SECRET_DOMAIN}"
+              - *host
       storage:
         useAllNodes: false
         useAllDevices: false
