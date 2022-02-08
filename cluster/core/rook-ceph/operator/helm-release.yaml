@@ -21,6 +21,7 @@ spec:
     csi:
       enableCephfsDriver: false
       enableCephfsSnapshotter: false
+      kubeletDirPath: "/var/lib/k0s/kubelet"
     resources:
       requests:
         cpu: 100m
