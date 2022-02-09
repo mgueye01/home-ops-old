@@ -35,7 +35,7 @@ spec:
       terminationGracePeriodSeconds: 3
       containers:
         - name: reg
-          image: r.${SECRET_DOMAIN}/genuinetools/reg:v0.16.1
+          image: bessenyeicsilla/genuinetools_reg:latest
           ports:
             - name: http
               containerPort: 8080
