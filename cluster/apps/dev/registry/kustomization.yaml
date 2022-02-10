@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - registry.yaml
   - pvc.yaml
-  - reg.yaml
+#  - reg.yaml
