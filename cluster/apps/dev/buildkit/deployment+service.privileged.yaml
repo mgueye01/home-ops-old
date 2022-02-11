@@ -80,5 +80,6 @@ spec:
     - port: 1234
       protocol: TCP
   type: LoadBalancer
+  loadBalancerIP: "${SVC_BUILDKIT_ADDR}"
   selector:
     app: buildkitd

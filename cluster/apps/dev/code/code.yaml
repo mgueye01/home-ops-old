@@ -39,6 +39,7 @@ spec:
   selector:
     app: code-server
   type: LoadBalancer
+  loadBalancerIP: "${SVC_CODE_ADDR}"
 ---
 apiVersion: apps/v1
 kind: Deployment
