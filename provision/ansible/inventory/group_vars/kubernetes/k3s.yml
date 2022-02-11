@@ -5,7 +5,7 @@
 #
 
 # (string) Use a specific version of k3s
-k3s_release_version: "v1.23.3+k3s1"
+k3s_release_version: "v1.21.8+k3s1"
 
 # (bool) Install using hard links rather than symbolic links.
 k3s_install_hard_links: true
@@ -24,7 +24,7 @@ k3s_use_unsupported_config: true
 
 # (string) Control Plane registration address
 #k3s_registration_address: "{{ kubevip_address }}"
-k3s_registration_address: 192.168.10.2
+k3s_registration_address: 192.168.10.250
 
 # (list) A list of URLs to deploy on the primary control plane. Read notes below.
 k3s_server_manifests_urls:
