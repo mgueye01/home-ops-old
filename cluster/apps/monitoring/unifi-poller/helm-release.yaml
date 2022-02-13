@@ -24,7 +24,7 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       UP_UNIFI_DEFAULT_ROLE: "homelab-controller"
-      UP_UNIFI_DEFAULT_URL: "192.168.0.1"
+      UP_UNIFI_DEFAULT_URL: "https://192.168.0.1"
       UP_UNIFI_DEFAULT_VERIFY_SSL: false
       UP_UNIFI_DEFAULT_USER: "unifipoller"
       UP_UNIFI_DEFAULT_PASS: "Unif1poller"
