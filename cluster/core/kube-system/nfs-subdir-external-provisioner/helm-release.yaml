@@ -19,7 +19,7 @@ spec:
   interval: 1h
   values:
     nfs:
-      server: "${NAS_ADDR}"
+      server: "192.168.0.18"
       path: /volume1/CLOUDNATIVE1
     storageClass:
       name: nfs-client
