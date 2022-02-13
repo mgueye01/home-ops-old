@@ -12,7 +12,7 @@ metadata:
     nginx.ingress.kubernetes.io/enable-global-auth: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      allow 192.168.0.0/24;
+      allow 192.168.10.0/24;
       allow 10.0.0.0/8;
       deny all;
 spec:
