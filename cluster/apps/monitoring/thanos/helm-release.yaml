@@ -18,8 +18,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: raspbernetes/thanos
-      tag: v0.23.1
+      registry: public.ecr.aws
+      repository: bitnami/thanos
     query:
       enabled: true
       replicaLabels:
