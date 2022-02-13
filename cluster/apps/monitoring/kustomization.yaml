@@ -3,10 +3,10 @@ kind: Kustomization
 resources:
   - botkube
   - uptimerobot-heartbeat
-#  - thanos
-#  - promtail
-#  - grafana
-#  - loki
-#  - kube-prometheus-stack
+  - thanos
+  - promtail
+  - grafana
+  - loki
+  - kube-prometheus-stack
   - uptime-kuma
 #  - goldilocks
