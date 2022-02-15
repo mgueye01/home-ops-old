@@ -41,41 +41,41 @@ spec:
       serviceMonitor:
         enabled: true
 
-    portal:
-      image:
-        repository: liupeng0518/harbor-portal
-        tag: v2.3.4
-    core:
-      image:
-        repository: liupeng0518/harbor-core
-        tag: v2.3.4
-    jobservice:
-      image:
-        repository: liupeng0518/harbor-jobservice
-        tag: v2.3.4
-    registry:
-      registry:
-        image:
-          repository: liupeng0518/registry-photon
-          tag: v2.3.4
-      controller:
-        image:
-          repository: liupeng0518/harbor-registryctl
-          tag: v2.3.4
-    database:
-      internal:
-        image:
-          repository: cocl666/harbor-db
-          tag: v2.2.2
-    redis:
-      internal:
-        image:
-          repository: liupeng0518/redis-photon
-          tag: v2.3.4
-    exporter:
-      image:
-        repository: liupeng0518/harbor-exporter
-        tag: v2.3.4
+    # portal:
+    #   image:
+    #     repository: liupeng0518/harbor-portal
+    #     tag: v2.3.4
+    # core:
+    #   image:
+    #     repository: liupeng0518/harbor-core
+    #     tag: v2.3.4
+    # jobservice:
+    #   image:
+    #     repository: liupeng0518/harbor-jobservice
+    #     tag: v2.3.4
+    # registry:
+    #   registry:
+    #     image:
+    #       repository: liupeng0518/registry-photon
+    #       tag: v2.3.4
+    #   controller:
+    #     image:
+    #       repository: liupeng0518/harbor-registryctl
+    #       tag: v2.3.4
+    # database:
+    #   internal:
+    #     image:
+    #       repository: cocl666/harbor-db
+    #       tag: v2.2.2
+    # redis:
+    #   internal:
+    #     image:
+    #       repository: liupeng0518/redis-photon
+    #       tag: v2.3.4
+    # exporter:
+    #   image:
+    #     repository: liupeng0518/harbor-exporter
+    #     tag: v2.3.4
 
     persistence:
       enabled: true
