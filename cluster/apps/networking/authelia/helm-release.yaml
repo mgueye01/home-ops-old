@@ -86,6 +86,7 @@ spec:
               - 10.0.0.0/8
               - 172.16.0.0/12
               - 192.168.0.0/16
+              - 192.168.10.0/16
           - name: vpn
             networks:
               - 10.10.0.0/16
@@ -98,7 +99,7 @@ spec:
 
           # Deny admin services to users
           - domain:
-              - alert-manager.${SECRET_DOMAIN}
+#              - alert-manager.${SECRET_DOMAIN}
               - prometheus.${SECRET_DOMAIN}
               - thanos.${SECRET_DOMAIN}
             subject: ["group:users"]
