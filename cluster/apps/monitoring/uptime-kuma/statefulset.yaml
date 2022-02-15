@@ -77,6 +77,9 @@ metadata:
   namespace: monitoring
 spec:
   ingressClassName: "nginx"
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    external-dns/is-public: "true"
   rules:
     - host: "uptime-kuma.${SECRET_DOMAIN}"
       http:

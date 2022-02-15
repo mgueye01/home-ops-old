@@ -47,6 +47,8 @@ spec:
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
           hajimari.io/enable: "true"
           hajimari.io/icon: "resistor-nodes"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
         hosts:
           - host: "zwavejs2mqtt.${SECRET_DOMAIN}"
             paths:
