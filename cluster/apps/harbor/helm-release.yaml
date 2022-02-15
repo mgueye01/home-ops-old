@@ -1,0 +1,90 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: harbor
+  namespace: harbor
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: harbor
+      version: 1.8.1
+      sourceRef:
+        kind: HelmRepository
+        name: harbor-charts
+        namespace: flux-system
+      interval: 1h
+  values:
+    expose:
+      tls:
+        # The ingress controller has a default certificate so we don't need to configure it
+        certSource: none
+      ingress:
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          nginx.ingress.kubernetes.io/enable-global-auth: "false"
+        hosts:
+          core: harbor.${SECRET_DOMAIN}
+    externalURL: https://harbor.${SECRET_DOMAIN}
+
+    trivy:
+      enabled: true
+    chartmuseum:
+      enabled: false
+    notary:
+      enabled: false
+
+    # # Enable When you have found good graphs
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+    portal:
+      image:
+        repository: liupeng0518/harbor-portal
+        tag: v2.3.4
+    core:
+      image:
+        repository: liupeng0518/harbor-core
+        tag: v2.3.4
+    jobservice:
+      image:
+        repository: liupeng0518/harbor-jobservice
+        tag: v2.3.4
+    registry:
+      registry:
+        image:
+          repository: liupeng0518/registry-photon
+          tag: v2.3.4
+      controller:
+        image:
+          repository: liupeng0518/harbor-registryctl
+          tag: v2.3.4
+    database:
+      internal:
+        image:
+          repository: cocl666/harbor-db
+          tag: v2.2.2
+    redis:
+      internal:
+        image:
+          repository: liupeng0518/redis-photon
+          tag: v2.3.4
+    exporter:
+      image:
+        repository: liupeng0518/harbor-exporter
+        tag: v2.3.4
+
+    persistence:
+      enabled: true
+      persistentVolumeClaim:
+        registry:
+          existingClaim: registry
+        jobservice:
+          existingClaim: jobservice
+        database:
+          existingClaim: database
+        redis:
+          existingClaim: redis

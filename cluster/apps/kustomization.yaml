@@ -13,3 +13,4 @@ resources:
   - database
   - dev
   - kasten-io
+  - harbor
