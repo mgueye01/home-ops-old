@@ -26,17 +26,8 @@ spec:
           nginx.ingress.kubernetes.io/enable-global-auth: "false"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
-          nginx.ingress.kubernetes.io/use-regex: "true"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-             allow 192.168.10.0/24;
-             allow 192.168.0.0/24;
-             allow 10.0.0.0/8;
-             deny all;
-               hosts:
-                 core: harbor.${SECRET_DOMAIN}
+        hosts:
+          core: harbor.${SECRET_DOMAIN}
     externalURL: https://harbor.${SECRET_DOMAIN}
 
     trivy:
