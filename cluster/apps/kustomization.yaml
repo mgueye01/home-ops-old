@@ -5,7 +5,7 @@ resources:
   - kube-system
   - networking
   - system-upgrade
- # - tools
+  # - tools
   - monitoring
   - flux-system
   - calico-system
