@@ -4,5 +4,5 @@ resources:
   - code
   - gitea
   - drone
-#  - registry
+  #  - registry
   - buildkit
