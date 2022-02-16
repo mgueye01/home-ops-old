@@ -15,6 +15,12 @@ spec:
         name: deliveryhero-charts
         namespace: flux-system
       interval: 5m
+      nodeSelector:
+        matchExpressions:
+          - key: node-role.kubernetes.io/worker
+            operator: NotIn
+            values:
+              - "true"
   install:
     createNamespace: true
   values:
