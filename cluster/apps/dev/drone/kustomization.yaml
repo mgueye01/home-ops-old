@@ -5,4 +5,4 @@ resources:
   - drone-runner.yaml
   - drone-secrets.yaml
   - drone.yaml
-  - limit-range.yaml
+#  - limit-range.yaml
