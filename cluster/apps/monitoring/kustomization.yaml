@@ -12,4 +12,5 @@ resources:
   - unifi-poller
   - gotify
   - node-problem-detector
+  - karma
 #  - goldilocks
