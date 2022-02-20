@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog-svc
+  namespace: default
+spec:
+  selector:
+    role: app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 32001
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog
+  namespace: default
+  labels:
+    role: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      role: app
+  template:
+    metadata:
+      labels:
+        role: app
+    spec:
+      containers:
+        - name: app
+          image: "harbor.mgueye01.com/mgueye01/blog"
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 10m
