@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: "harbor.mgueye01.com/mgueye01/blog"
+          image: "harbor.mgueye01.com/mgueye01/blog:16"
           imagePullPolicy: Always
           resources:
             requests:
