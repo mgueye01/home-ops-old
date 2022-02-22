@@ -36,3 +36,4 @@ resources:
   - drone-charts.yaml
   - harbor-charts.yaml
   - vector-charts.yaml
+  - crowdsec-charts.yaml
