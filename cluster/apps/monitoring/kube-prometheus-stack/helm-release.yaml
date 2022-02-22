@@ -97,6 +97,9 @@ spec:
               enabled: true
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
+      namespaceOverride: ""
+      rbac:
+        create: true
       collectors:
         verticalpodautoscalers: true
     kubeApiServer:
