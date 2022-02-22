@@ -35,3 +35,4 @@ resources:
   - fairwinds-charts.yaml
   - drone-charts.yaml
   - harbor-charts.yaml
+  - vector-charts.yaml
