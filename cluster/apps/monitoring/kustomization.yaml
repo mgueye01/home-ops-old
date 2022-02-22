@@ -13,4 +13,5 @@ resources:
   - gotify
   - node-problem-detector
   - karma
+  - vector
 #  - goldilocks
