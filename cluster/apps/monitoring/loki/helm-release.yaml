@@ -37,6 +37,8 @@ spec:
       enabled: true
     config:
       server:
+        http_listen_port: 3100
+        grpc_listen_port: 9096
       query_range:
         split_queries_by_interval: 24h
       frontend:
