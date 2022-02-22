@@ -97,6 +97,8 @@ spec:
               enabled: true
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
+      collectors:
+        verticalpodautoscalers: true
     kubeApiServer:
       enabled: true
     kubeControllerManager:
