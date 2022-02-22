@@ -142,6 +142,9 @@ spec:
           datasource: Prometheus
         loki-logging-dashboard:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/loki-logging-dashboard.json
+        kubernete events dashboard:
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/kubernetes-events-dashboard.json
+          datasource: loki
         # Ref: https://grafana.com/grafana/dashboards/11315
         unifi-client-insights:
           gnetId: 11315

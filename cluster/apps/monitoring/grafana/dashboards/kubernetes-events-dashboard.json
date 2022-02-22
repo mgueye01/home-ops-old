@@ -1,0 +1,1525 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "Kubernetes Events Dashboard  by CloudXiaobai",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "gnetId": 14003,
+    "graphTooltip": 0,
+    "id": 46,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "bars",
+              "fillOpacity": 100,
+              "gradientMode": "none",
+              "hideFrom": {
+                "graph": false,
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "interval": "1m",
+        "options": {
+          "graph": {},
+          "legend": {
+            "calcs": [
+              "mean",
+              "sum"
+            ],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "pluginVersion": "7.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum by (type) (count_over_time({job=\"monitoring/event-exporter\"}| json |  __error__=\"\" [$__interval]))",
+            "instant": false,
+            "legendFormat": "{{type}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Kubernetes event",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 29,
+              "gradientMode": "hue",
+              "hideFrom": {
+                "graph": false,
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Warning"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "dark-red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 3,
+        "interval": "1m",
+        "options": {
+          "graph": {},
+          "legend": {
+            "calcs": [
+              "sum"
+            ],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "pluginVersion": "7.4.0-beta1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json | type = \"Warning\" | __error__=\"\" [$__interval]))",
+            "instant": false,
+            "legendFormat": "Warning",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Warnning",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "id": 18,
+        "panels": [],
+        "title": "Kubernetes Events Latest 24h",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "Mirror pulse failure 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 0,
+          "y": 9
+        },
+        "hideTimeOverride": true,
+        "id": 10,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}|= \"Error: ImagePullBackOff\" | json | reason = \"Failed\"  | line_format \"{{ .message }}\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "Mirror pulse failure",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "30h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "Failure 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 4,
+          "y": 9
+        },
+        "hideTimeOverride": true,
+        "id": 12,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json | reason = \"FailedScheduling\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "Failure",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "30h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "Resource successfully delete 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 8,
+          "y": 9
+        },
+        "hideTimeOverride": true,
+        "id": 6,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json | reason = \"SuccessfulDelete\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "Resource successfully delete",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "24h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "Probe failure 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#eab839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 12,
+          "y": 9
+        },
+        "hideTimeOverride": true,
+        "id": 5,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"} |= \"failed liveness probe\"| json | reason = \"Killing\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "Probe failure",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "24h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "Null ConntrackFull",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 16,
+          "y": 9
+        },
+        "hideTimeOverride": true,
+        "id": 23,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "/^SuccessfulDelete$/",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}|= \"Marking for deletion Pod\"| json | reason = \"ConntrackFull\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "ConntrackFull",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "24h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "Node restart 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 20,
+          "y": 9
+        },
+        "hideTimeOverride": true,
+        "id": 8,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json | reason = \"Rebooted\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "Node restart",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "30h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "Container OOM 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 0,
+          "y": 13
+        },
+        "hideTimeOverride": true,
+        "id": 11,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "/^Killing Pods$/",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"} | json | reason = \"OOMKilling\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "Container OOM",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "24h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "": {
+                    "text": ""
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "noValue": "DockerHung 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 4,
+          "y": 13
+        },
+        "hideTimeOverride": true,
+        "id": 4,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "/^Probe Unhealthy$/",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json | reason = \"DockerHung\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "DockerHung",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "24h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "containerCrash 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 8,
+          "y": 13
+        },
+        "hideTimeOverride": true,
+        "id": 14,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "/^SuccessfulDelete$/",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json | reason = \"BackOff\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": " Container Crash",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "24h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "Volume mount failed 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 12,
+          "y": 13
+        },
+        "hideTimeOverride": true,
+        "id": 9,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json | reason = \"FailedMount\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "Volume mount failed",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "30h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": " Node OOM  0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 16,
+          "y": 13
+        },
+        "hideTimeOverride": true,
+        "id": 7,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json | reason = \"SystemOOM\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "Node OOM",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "30h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "noValue": "Container 0",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#eab839",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 20,
+          "y": 13
+        },
+        "hideTimeOverride": true,
+        "id": 13,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "/^SuccessfulDelete$/",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}|= \"Marking for deletion Pod\"| json | reason = \"TaintManagerEviction\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": " Container  Eviction",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "timeFrom": "24h",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "collapsed": false,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 17
+        },
+        "id": 21,
+        "panels": [],
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "filterable": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Field"
+              },
+              "properties": [
+                {
+                  "id": "custom.align",
+                  "value": "center"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 300
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "thresholds"
+                  }
+                },
+                {
+                  "id": "displayName",
+                  "value": "Reason"
+                },
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "#eab839",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Total"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "gradient-gauge"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-BlYlRd"
+                  }
+                },
+                {
+                  "id": "custom.align",
+                  "value": "center"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 12,
+          "x": 0,
+          "y": 18
+        },
+        "id": 19,
+        "interval": "1m",
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "frameIndex": 1,
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Total"
+            }
+          ]
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "topk(10,sum by (reason) (count_over_time({job=\"monitoring/event-exporter\"}| json | __error__=\"\"[$__interval])))",
+            "instant": false,
+            "legendFormat": "{{reason}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "TOP 10  Kubernetes Events",
+        "transformations": [
+          {
+            "id": "reduce",
+            "options": {
+              "reducers": [
+                "sum"
+              ]
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "table"
+      },
+      {
+        "aliasColors": {},
+        "breakPoint": "50%",
+        "combine": {
+          "label": "Others",
+          "threshold": 0
+        },
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fontSize": "80%",
+        "format": "short",
+        "gridPos": {
+          "h": 7,
+          "w": 6,
+          "x": 12,
+          "y": 18
+        },
+        "id": 24,
+        "interval": "1m",
+        "legend": {
+          "percentage": false,
+          "show": true,
+          "values": false
+        },
+        "legendType": "Right side",
+        "links": [],
+        "nullPointMode": "connected",
+        "pieType": "donut",
+        "pluginVersion": "7.4.0-beta1",
+        "strokeWidth": 1,
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json| __error__=\"\"[$__interval])) by (source_component)",
+            "instant": false,
+            "legendFormat": "{{source_component}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Event source",
+        "transparent": true,
+        "type": "grafana-piechart-panel",
+        "valueName": "total"
+      },
+      {
+        "aliasColors": {},
+        "breakPoint": "50%",
+        "combine": {
+          "label": "Others",
+          "threshold": 0
+        },
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fontSize": "80%",
+        "format": "short",
+        "gridPos": {
+          "h": 7,
+          "w": 6,
+          "x": 18,
+          "y": 18
+        },
+        "id": 25,
+        "interval": "1m",
+        "legend": {
+          "percentage": false,
+          "show": true,
+          "values": false
+        },
+        "legendType": "Right side",
+        "links": [],
+        "nullPointMode": "connected",
+        "pieType": "donut",
+        "pluginVersion": "7.4.0-beta1",
+        "strokeWidth": 1,
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum(count_over_time({job=\"monitoring/event-exporter\"}| json| __error__=\"\"[$__interval])) by (involvedObject_kind)",
+            "instant": false,
+            "legendFormat": "{{involvedObject_kind}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Event type",
+        "transparent": true,
+        "type": "grafana-piechart-panel",
+        "valueName": "total"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "filterable": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Metric"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "驱逐事件"
+                },
+                {
+                  "id": "custom.align"
+                },
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "#eab839",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 24,
+          "x": 0,
+          "y": 25
+        },
+        "id": 22,
+        "interval": "1m",
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "frameIndex": 1,
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Total"
+            }
+          ]
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "P8E80F9AEF21F6940"
+            },
+            "expr": "sum by (firstTimestamp,message) (count_over_time({job=\"monitoring/event-exporter\"}|= \"Marking for deletion Pod\"| json | reason = \"TaintManagerEviction\"| __error__=\"\"[$__interval]))",
+            "instant": false,
+            "legendFormat": "{{firstTimestamp}}    发生事件 {{message}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Container evicted list",
+        "transformations": [
+          {
+            "id": "seriesToRows",
+            "options": {}
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "Metric"
+                ]
+              }
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "table"
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [
+      "loki",
+      "kubernetes",
+      "events"
+    ],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-30m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Loki v2 Events Dashboard for Kubernetes",
+    "uid": "kU9VjusMk",
+    "version": 6,
+    "weekStart": ""
+  }

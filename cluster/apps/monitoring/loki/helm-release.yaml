@@ -36,8 +36,10 @@ spec:
     serviceMonitor:
       enabled: true
     config:
+      retention_deletes_enabled: true
+      retention_period: 7d
       query_range:
-        split_queries_by_interval: 24h
+        split_queries_by_interval: 0
       frontend:
         max_outstanding_per_tenant: 4096
       limits_config:
