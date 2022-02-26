@@ -37,6 +37,7 @@ spec:
       LINKED_IN: https://linkedin.com/in/moustapha-gueye-39a3a77a
       TWITTER: https://twitter.com/tapha
       EMAIL: mgueye01@gmail.com
+      EMAIL_TEXT: Email Me!
       INSTAGRAM: https://www.instagram.com/tapha_g
     ingress:
       main:
