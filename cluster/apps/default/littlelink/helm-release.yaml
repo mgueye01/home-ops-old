@@ -52,4 +52,3 @@ spec:
         tls:
           - hosts:
               - "me.${SECRET_DOMAIN}"
-            secretName: littlelink-cert
