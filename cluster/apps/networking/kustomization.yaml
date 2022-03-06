@@ -6,4 +6,3 @@ resources:
   - external-dns
   - ingress-nginx
   - authelia
-  - crowdsec
