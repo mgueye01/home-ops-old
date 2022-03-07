@@ -1,0 +1,62 @@
+{
+  "apiVersion": "v1",
+  "kind": "Namespace",
+  "metadata": {
+    "annotations": {
+      "k10.kasten.io/ignorebackuppolicy": "true"
+    },
+    "creationTimestamp": "2022-02-11T21:11:31Z",
+    "deletionTimestamp": "2022-03-07T00:25:42Z",
+    "labels": {
+      "kubernetes.io/metadata.name": "rook-ceph",
+      "kustomize.toolkit.fluxcd.io/name": "core",
+      "kustomize.toolkit.fluxcd.io/namespace": "flux-system"
+    },
+    "name": "rook-ceph",
+    "resourceVersion": "14382198",
+    "uid": "4afd1a88-9b8b-4893-a214-a360c92882f8"
+  },
+  "spec": {
+    "finalizers": []
+  },
+  "status": {
+    "conditions": [
+      {
+        "lastTransitionTime": "2022-03-07T01:44:55Z",
+        "message": "All resources successfully discovered",
+        "reason": "ResourcesDiscovered",
+        "status": "False",
+        "type": "NamespaceDeletionDiscoveryFailure"
+      },
+      {
+        "lastTransitionTime": "2022-03-07T00:26:00Z",
+        "message": "All legacy kube types successfully parsed",
+        "reason": "ParsedGroupVersions",
+        "status": "False",
+        "type": "NamespaceDeletionGroupVersionParsingFailure"
+      },
+      {
+        "lastTransitionTime": "2022-03-07T00:26:23Z",
+        "message": "Failed to delete all resource types, 7 remaining: Internal error occurred: {\"message\":\"Could not retrieve artifacts for prefix search\",\"function\":\"kasten.io/k10/kio/rest/clients.FetchArtifactsForSearchPrefix\",\"linenumber\":52,\"file\":\"kasten.io/k10/kio/rest/clients/catalogclient.go:52\",\"fields\":[{\"name\":\"key\",\"value\":\"api-list-prefix-key-backupactions.actions.kio.kasten.io\"},{\"name\":\"value\",\"value\":\"rook-ceph@\"}],\"cause\":{\"Op\":\"Get\",\"URL\":\"http://10.43.157.54:8000/v0/artifacts/prefixSearch?key=api-list-prefix-key-backupactions.actions.kio.kasten.io\\u0026limit=0\\u0026reverseOrder=true\\u0026value=rook-ceph%40\",\"Err\":{\"Op\":\"dial\",\"Net\":\"tcp\",\"Source\":null,\"Addr\":{\"IP\":\"10.43.157.54\",\"Port\":8000,\"Zone\":\"\"},\"Err\":{\"Syscall\":\"connect\",\"Err\":111}}}}, Internal error occurred: {\"message\":\"Could not retrieve artifacts for prefix search\",\"function\":\"kasten.io/k10/kio/rest/clients.FetchArtifactsForSearchPrefix\",\"linenumber\":52,\"file\":\"kasten.io/k10/kio/rest/clients/catalogclient.go:52\",\"fields\":[{\"name\":\"key\",\"value\":\"api-list-prefix-key-exportactions.actions.kio.kasten.io\"},{\"name\":\"value\",\"value\":\"rook-ceph@\"}],\"cause\":{\"Op\":\"Get\",\"URL\":\"http://10.43.157.54:8000/v0/artifacts/prefixSearch?key=api-list-prefix-key-exportactions.actions.kio.kasten.io\\u0026limit=0\\u0026reverseOrder=true\\u0026value=rook-ceph%40\",\"Err\":{\"Op\":\"dial\",\"Net\":\"tcp\",\"Source\":null,\"Addr\":{\"IP\":\"10.43.157.54\",\"Port\":8000,\"Zone\":\"\"},\"Err\":{\"Syscall\":\"connect\",\"Err\":111}}}}, Internal error occurred: {\"message\":\"Could not retrieve artifacts for prefix search\",\"function\":\"kasten.io/k10/kio/rest/clients.FetchArtifactsForSearchPrefix\",\"linenumber\":52,\"file\":\"kasten.io/k10/kio/rest/clients/catalogclient.go:52\",\"fields\":[{\"name\":\"key\",\"value\":\"api-list-prefix-key-importactions.actions.kio.kasten.io\"},{\"name\":\"value\",\"value\":\"rook-ceph@\"}],\"cause\":{\"Op\":\"Get\",\"URL\":\"http://10.43.157.54:8000/v0/artifacts/prefixSearch?key=api-list-prefix-key-importactions.actions.kio.kasten.io\\u0026limit=0\\u0026reverseOrder=true\\u0026value=rook-ceph%40\",\"Err\":{\"Op\":\"dial\",\"Net\":\"tcp\",\"Source\":null,\"Addr\":{\"IP\":\"10.43.157.54\",\"Port\":8000,\"Zone\":\"\"},\"Err\":{\"Syscall\":\"connect\",\"Err\":111}}}}, Internal error occurred: {\"message\":\"Could not retrieve artifacts for prefix search\",\"function\":\"kasten.io/k10/kio/rest/clients.FetchArtifactsForSearchPrefix\",\"linenumber\":52,\"file\":\"kasten.io/k10/kio/rest/clients/catalogclient.go:52\",\"fields\":[{\"name\":\"key\",\"value\":\"api-list-prefix-key-reportactions.actions.kio.kasten.io\"},{\"name\":\"value\",\"value\":\"rook-ceph@\"}],\"cause\":{\"Op\":\"Get\",\"URL\":\"http://10.43.157.54:8000/v0/artifacts/prefixSearch?key=api-list-prefix-key-reportactions.actions.kio.kasten.io\\u0026limit=0\\u0026reverseOrder=true\\u0026value=rook-ceph%40\",\"Err\":{\"Op\":\"dial\",\"Net\":\"tcp\",\"Source\":null,\"Addr\":{\"IP\":\"10.43.157.54\",\"Port\":8000,\"Zone\":\"\"},\"Err\":{\"Syscall\":\"connect\",\"Err\":111}}}}, Internal error occurred: {\"message\":\"Could not retrieve artifacts for prefix search\",\"function\":\"kasten.io/k10/kio/rest/clients.FetchArtifactsForSearchPrefix\",\"linenumber\":52,\"file\":\"kasten.io/k10/kio/rest/clients/catalogclient.go:52\",\"fields\":[{\"name\":\"key\",\"value\":\"api-list-prefix-key-restoreactions.actions.kio.kasten.io\"},{\"name\":\"value\",\"value\":\"rook-ceph@\"}],\"cause\":{\"Op\":\"Get\",\"URL\":\"http://10.43.157.54:8000/v0/artifacts/prefixSearch?key=api-list-prefix-key-restoreactions.actions.kio.kasten.io\\u0026limit=0\\u0026reverseOrder=true\\u0026value=rook-ceph%40\",\"Err\":{\"Op\":\"dial\",\"Net\":\"tcp\",\"Source\":null,\"Addr\":{\"IP\":\"10.43.157.54\",\"Port\":8000,\"Zone\":\"\"},\"Err\":{\"Syscall\":\"connect\",\"Err\":111}}}}, Internal error occurred: {\"message\":\"Could not retrieve artifacts for prefix search\",\"function\":\"kasten.io/k10/kio/rest/clients.FetchArtifactsForSearchPrefix\",\"linenumber\":52,\"file\":\"kasten.io/k10/kio/rest/clients/catalogclient.go:52\",\"fields\":[{\"name\":\"key\",\"value\":\"api-list-prefix-key-restorepoints.apps.kio.kasten.io\"},{\"name\":\"value\",\"value\":\"rook-ceph@\"}],\"cause\":{\"Op\":\"Get\",\"URL\":\"http://10.43.157.54:8000/v0/artifacts/prefixSearch?key=api-list-prefix-key-restorepoints.apps.kio.kasten.io\\u0026limit=0\\u0026reverseOrder=true\\u0026value=rook-ceph%40\",\"Err\":{\"Op\":\"dial\",\"Net\":\"tcp\",\"Source\":null,\"Addr\":{\"IP\":\"10.43.157.54\",\"Port\":8000,\"Zone\":\"\"},\"Err\":{\"Syscall\":\"connect\",\"Err\":111}}}}, unexpected items still remain in namespace: rook-ceph for gvr: /v1, Resource=pods",
+        "reason": "ContentDeletionFailed",
+        "status": "True",
+        "type": "NamespaceDeletionContentFailure"
+      },
+      {
+        "lastTransitionTime": "2022-03-07T00:26:00Z",
+        "message": "Some resources are remaining: cephblockpools.ceph.rook.io has 1 resource instances, cephclusters.ceph.rook.io has 1 resource instances, configmaps. has 1 resource instances, pods. has 4 resource instances",
+        "reason": "SomeResourcesRemain",
+        "status": "True",
+        "type": "NamespaceContentRemaining"
+      },
+      {
+        "lastTransitionTime": "2022-03-07T00:26:00Z",
+        "message": "Some content in the namespace has finalizers remaining: ceph.rook.io/disaster-protection in 1 resource instances, cephblockpool.ceph.rook.io in 1 resource instances, cephcluster.ceph.rook.io in 1 resource instances",
+        "reason": "SomeFinalizersRemain",
+        "status": "True",
+        "type": "NamespaceFinalizersRemaining"
+      }
+    ],
+    "phase": "Terminating"
+  }
+}
