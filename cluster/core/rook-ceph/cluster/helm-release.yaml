@@ -26,22 +26,19 @@ spec:
     monitoring:
       enabled: true
     cephClusterSpec:
+      placement:
+        all:
+          tolerations:
+            - effect: NoSchedule
+              operator: Exists
+            - effect: NoExecute
+              operator: Exists
       mgr:
         count: 1
       dashboard:
         enabled: true
         urlPrefix: /
         ssl: false
-    # ingress:
-    #   dashboard:
-    #     annotations:
-    #       kubernetes.io/ingress.class: "nginx"
-    #     host:
-    #       name: "rook.${SECRET_DOMAIN}"
-    #       path: "/"
-    #     tls:
-    #       - hosts:
-    #           - "rook.${SECRET_DOMAIN}"
     ingress:
       dashboard:
         annotations:
