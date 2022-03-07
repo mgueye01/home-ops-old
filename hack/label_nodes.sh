@@ -1,0 +1,10 @@
+kubectl label node k8s-3 node-role.kubernetes.io/worker=true --overwrite
+kubectl label node k8s-1 node-role.kubernetes.io/worker=true --overwrite
+kubectl label node k8s-2 node-role.kubernetes.io/worker=true --overwrite
+kubectl taint node master1 node-role.kubernetes.io/master="":NoSchedule
+kubectl taint node master2 node-role.kubernetes.io/master="":NoSchedule
+kubectl taint node master3 node-role.kubernetes.io/master="":NoSchedule
+kubectl label node k8s-1 feature.node.kubernetes.io/custom-zwave=true
+kubectl label node k8s-3 feature.node.kubernetes.io/custom-intel-gpu=true
+kubectl label node k8s-2 feature.node.kubernetes.io/custom-intel-gpu=true
+kubectl label node k8s-1 feature.node.kubernetes.io/custom-intel-gpu=true
