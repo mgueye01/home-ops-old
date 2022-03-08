@@ -5,4 +5,4 @@ resources:
   #  - drone
   - buildkit
   - tekton
-  - knative
+ # - knative
