@@ -25,18 +25,18 @@ spec:
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: nginx
+#        kubernetes.io/ingress.class: nginx
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         external-dns/is-public: "true"
       hosts:
-        - host: dr.${SECRET_DOMAIN}
+        - host: drone.${SECRET_DOMAIN}
           paths:
             - /
       tls:
         - hosts:
-            - dr.${SECRET_DOMAIN}
+            - drone.${SECRET_DOMAIN}
     env:
-      DRONE_SERVER_HOST: dr.${SECRET_DOMAIN}
+      DRONE_SERVER_HOST: drone.${SECRET_DOMAIN}
       DRONE_SERVER_PROTO: https
       DRONE_GIT_ALWAYS_AUTH: true
       DRONE_GITEA_SERVER: https://git.${SECRET_DOMAIN}
