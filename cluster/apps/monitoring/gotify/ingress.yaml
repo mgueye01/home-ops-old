@@ -5,7 +5,7 @@ metadata:
   name: &app gotify
   namespace: monitoring
   annotations:
-    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
     external-dns/is-public: "true"
   labels:
     app.kubernetes.io/name: *app
@@ -13,7 +13,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: &host "gotify.${SECRET_PUBLIC_DOMAIN}"
+    - host: &host "gotify.${SECRET_DOMAIN}"
       http:
         paths:
           - backend:
