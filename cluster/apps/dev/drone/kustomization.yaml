@@ -6,4 +6,3 @@ resources:
   - drone-secrets.yaml
   - drone.yaml
   - limit-range.yaml
-  - ingress.yaml
