@@ -45,7 +45,7 @@ spec:
       DRONE_LOGS_PRETTY: true
       DRONE_LOGS_COLOR: true
       DRONE_RPC_SECRET: ${SECRET_DRONE_RPC_SECRET}
-      DRONE_GITEA_CLIENT_ID: 6b0f8e72-4bca-4c6a-a0eb-464ac000cf17
+      DRONE_GITEA_CLIENT_ID: 75f627d0-f0ef-46c2-8d26-b7b3c97fafb9
       DRONE_GITEA_CLIENT_SECRET: ${SECRET_DRONE_GITEA_CLIENT_SECRET}
     persistentVolume:
       enabled: true
