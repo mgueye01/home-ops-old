@@ -36,10 +36,10 @@ spec:
     serviceMonitor:
       enabled: true
     config:
-      query_range:
-        split_queries_by_interval: 0
-      frontend:
-        max_outstanding_per_tenant: 4096
+      # query_range:
+      #   split_queries_by_interval: 0
+      # frontend:
+      #   max_outstanding_per_tenant: 4096
       limits_config:
         enforce_metric_name: false
         reject_old_samples: true
