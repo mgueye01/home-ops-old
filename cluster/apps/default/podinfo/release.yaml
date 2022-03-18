@@ -23,6 +23,11 @@ spec:
     cache: redis-master.database:6379
     ingress:
       enabled: true
+      ingressClassName: "nginx"
+      external-dns/is-public: "true"
+      external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+      nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
+      nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
       hosts:
         - host: podinfo.pub.${SECRET_DOMAIN}
           paths:
