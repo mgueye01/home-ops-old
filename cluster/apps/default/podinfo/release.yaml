@@ -7,8 +7,9 @@ spec:
   releaseName: podinfo
   chart:
     spec:
+      # renovate: registryUrl=https://stefanprodan.github.io/podinfo
       chart: podinfo
-      version: 6.0.0
+      version: 6.1.0
       sourceRef:
         kind: HelmRepository
         name: podinfo
