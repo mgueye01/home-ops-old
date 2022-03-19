@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: blog
+  namespace: flux-system
+spec:
+  image: harbor.mgueye01.com/mgueye01/blog
+  interval: 1m0s
