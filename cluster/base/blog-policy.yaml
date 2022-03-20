@@ -9,4 +9,4 @@ spec:
     name: blog
   policy:
     semver:
-      range: 1.0.x
+      range: '>= 1.0.0 <2.0.0'
