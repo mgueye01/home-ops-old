@@ -185,7 +185,7 @@ spec:
                   storage: 10Gi
               storageClassName: ceph-block
         thanos:
-          image: "quay.io/thanos/thanos:v0.25.1"
+          image: "quay.io/thanos/thanos:v0.25.2"
           objectStorageConfig:
             key: objstore.yml
             name: thanos-objstore
