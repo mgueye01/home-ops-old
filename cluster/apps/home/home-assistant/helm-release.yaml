@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: home-assistant
-      version: 12.1.0
+      version: 12.2.0
 
       sourceRef:
         kind: HelmRepository
@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2022.3.7
+      tag: 2022.3.8
     env:
       TZ: "Europe/Paris"
     envFrom:
