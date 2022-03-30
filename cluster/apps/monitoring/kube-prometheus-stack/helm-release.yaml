@@ -182,7 +182,7 @@ spec:
             spec:
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 20Gi
               storageClassName: ceph-block
         thanos:
           image: "quay.io/thanos/thanos:v0.25.2"
