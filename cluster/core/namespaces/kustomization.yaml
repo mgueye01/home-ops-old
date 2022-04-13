@@ -16,3 +16,4 @@ resources:
   - drone.yaml
   - synology-csi.yaml
   - harbor.yaml
+  - media
