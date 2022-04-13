@@ -45,6 +45,6 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          #          - secretName: tautulli-tls
-          hosts:
-            - *host
+          - secretName: tautulli-tls
+            hosts:
+              - *host
