@@ -41,6 +41,7 @@ spec:
     txtOwnerId: "default"
     domainFilters:
       - "${SECRET_DOMAIN}"
+      - "${SECRET_PUBLIC_DOMAIN}"
     resources:
       requests:
         memory: 100Mi
