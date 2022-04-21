@@ -9,123 +9,150 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
-      chart: loki-stack
-      version: 2.6.4
+      chart: loki
+      version: 2.11.0
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
         namespace: flux-system
       interval: 5m
   values:
-    loki:
-      image:
-        repository: grafana/loki
-        tag: 2.5.0
-        pullPolicy: IfNotPresent
-      replicas: 3
-      persistence:
-        enabled: false
-      config:
-        auth_enabled: false
-        server:
-          http_listen_port: 3100
-        distributor:
-          ring:
-            kvstore:
-              store: memberlist
-        ingester:
-          lifecycler:
-            ring:
-              kvstore:
-                store: memberlist
-              replication_factor: 1
-            final_sleep: 0s
-          chunk_idle_period: 5m
-          chunk_retain_period: 30s
-        memberlist:
-          abort_if_cluster_join_fails: false
-          # Expose this port on all distributor, ingester
-          # and querier replicas.
-          bind_port: 7946
-          # You can use a headless k8s service for all distributor,
-          # ingester and querier components.
-          join_members:
-            - loki-stack-headless.monitoring.svc.cluster.local:7946
-              # max_join_backoff: 1m
-              # max_join_retries: 10
-              # min_join_backoff: 1s
-        schema_config:
-          configs:
-            - from: "2020-10-24"
-              store: boltdb-shipper
-              object_store: s3
-              schema: v11
-              index:
-                prefix: index_
-                period: 24h
-        storage_config:
-          aws:
-            insecure: false
-            s3: https://${SECRET_MINIO_ACCESS_KEY}:${SECRET_MINIO_SECRET_KEY}@${SECRET_MINIO_ENDPOINT}/loki
-            s3forcepathstyle: true
-          boltdb_shipper:
-            active_index_directory: /data/loki/index
-            cache_location: /data/loki/index_cache
-            resync_interval: 5s
-            shared_store: s3
-        limits_config:
-          enforce_metric_name: false
-          reject_old_samples: true
-          reject_old_samples_max_age: 168h
-      extraPorts:
-        - port: 7956
-          protocol: TCP
-          name: loki-gossip-ring
-          targetPort: 7946
-      serviceMonitor:
-        enabled: true
-      podAnnotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "http-metrics"
-    promtail:
-      image:
-        registry: docker.io
-        repository: grafana/promtail
-        tag: latest
-        pullPolicy: Always
-      serviceMonitor:
-        enabled: true
-      extraScrapeConfigs:
-        - job_name: syslog
-          syslog:
-            listen_address: 0.0.0.0:1514
-            label_structured_data: true
+    image:
+      repository: ghcr.io/k8s-at-home/loki
+    ingress:
+      enabled: false
+      # ingressClassName: "nginx"
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
+      hosts:
+        - host: "loki.${SECRET_DOMAIN}"
+          paths:
+            - /
+      tls:
+        - hosts:
+            - "loki.${SECRET_DOMAIN}"
+    serviceMonitor:
+      enabled: true
+    config:
+      query_range:
+        split_queries_by_interval: 0
+      frontend:
+        max_outstanding_per_tenant: 4096
+      limits_config:
+        enforce_metric_name: false
+        reject_old_samples: true
+        reject_old_samples_max_age: 168h
+        ingestion_rate_mb: 16
+        ingestion_burst_size_mb: 24
+      storage_config:
+        aws:
+          bucketnames: loki
+          endpoint: 192.168.0.18:9000
+          access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
+          secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
+          s3forcepathstyle: true
+          region: eu-west-3
+          insecure: true
+        boltdb_shipper:
+          active_index_directory: /data/loki/index
+          cache_location: /data/loki/index_cache
+          resync_interval: 5s
+          shared_store: s3
+      ruler:
+        storage:
+          type: local
+          local:
+            directory: /rules
+        rule_path: /tmp/scratch
+        alertmanager_url: http://prometheus-alertmanager:9093
+        ring:
+          kvstore:
+            store: inmemory
+        enable_api: true
+    alerting_groups:
+      #
+      # zigbee2mqtt
+      #
+      - name: zigbee2mqtt
+        rules:
+          - alert: ZigbeeUnableToReachMQTT
+            expr: |
+              sum(count_over_time({app="zigbee2mqtt"} |~ "(?i)not connected to mqtt server"[2m])) > 0
+            for: 10s
             labels:
-              job: "syslog"
-          relabel_configs:
-            - source_labels: ['__syslog_connection_ip_address']
-              target_label: 'ip_address'
-            - source_labels: ['__syslog_message_severity']
-              target_label: 'severity'
-            - source_labels: ['__syslog_message_facility']
-              target_label: 'facility'
-            - source_labels: ['__syslog_message_hostname']
-              target_label: 'host'
-            - source_labels: ['__syslog_message_app_name']
-              target_label: 'app'
-            - source_labels: ['__syslog_message_SRC']
-              target_label: 'source_ip'
-            - source_labels: ['__syslog_message_SPT']
-              target_label: 'source_port'
-            - source_labels: ['__syslog_message_DPT']
-              target_label: 'destination_port'
-            - source_labels: ['__syslog_message_DST']
-              target_label: 'destination_ip'
-      # pipeline_stages:
-      syslogService:
-        enabled: true
-        type: LoadBalancer
-        port: 1514
-        externalIPs:
-          - ${CLUSTER_LB_LOKI_SYSLOG}
-        externalTrafficPolicy: Local
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Zigbee2mqtt is unable to reach MQTT"
+      #
+      # zwavejs2mqtt
+      #
+      - name: zwavejs2mqtt
+        rules:
+          - alert: ZwaveUnableToReachMQTT
+            expr: |
+              sum(count_over_time({app="zwavejs2mqtt"} |~ "(?i)error while connecting mqtt"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Zwavejs2mqtt is unable to reach MQTT"
+      #
+      # frigate
+      #
+      - name: frigate
+        rules:
+          - alert: FrigateUnableToReachMQTT
+            expr: |
+              sum(count_over_time({app="frigate"} |~ "(?i)unable to connect to mqtt server"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Frigate is unable to reach MQTT"
+      #
+      # home-assistant
+      #
+      - name: home-assistant
+        rules:
+          - alert: HomeAssistantUnableToReachPostgresql
+            expr: |
+              sum by (app) (count_over_time({app=~"home-assistant"} |~ "(?i)error in database connectivity during commit"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Home Assistant is unable to connect to postgresql"
+      #
+      # vaultwarden
+      #
+      - name: vaultwarden
+        rules:
+          - alert: VaultwardenUnableToReachPostgresql
+            expr: |
+              sum by (app) (count_over_time({app=~"vaultwarden"} |~ "(?i)could not connect to server"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Vaultwarden is unable to connect to postgresql"
+      #
+      # node-red
+      #
+      - name: node-red
+        rules:
+          - alert: NodeRedUnableToReachHomeAssistant
+            expr: |
+              sum by (app) (count_over_time({app=~"node-red"} |~ "(?i)home assistant.*connecting to undefined"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Node-Red is unable to connect to Home Assistant"
