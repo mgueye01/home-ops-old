@@ -1,47 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    },
-    {
-      "name": "VAR_NASDEVICES",
-      "type": "constant",
-      "label": "NASDevices",
-      "value": "1",
-      "description": ""
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "8.0.3"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -51,16 +8,23 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "description": "The Synology NAS Overview dashboard gives an overall glance at multiple Synology NAS systems and their operational status.",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": 14364,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1625079103625,
+  "id": 4,
+  "iteration": 1650891350874,
   "links": [
     {
       "asDropdown": true,
@@ -77,13 +41,13 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -97,7 +61,10 @@
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "Update the NASDevices variable with the total number of Synology systems you have in Prometheus regardless of the Job they are assigned to.  This is to help identify a Synology NAS across the entire fleet of Synology's.  It is meant to give you an idea that there is a problem regardless of which NAS device it is or the Prometheus Job it is in. Total Synology's is the number of NAS devices you are reporting in Prometheus.  This is a number that you must manually enter in the NASDevices variable.  Count every Synology you have in Prometheus regardless of the Job it is in.\n\nSynology's Down indicates that a NAS is either down or not being scrapped in either this Job or any other Job.\n\n Update Variable indicates that you are scrapping more NAS devices than you have entered in the NASDevices variable indicating a new device has come online.  Update the NASDevices variable to properly reflect the number of NAS devices you expect to be reporting on.\n",
       "fieldConfig": {
         "defaults": {
@@ -200,7 +167,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -229,13 +196,14 @@
           "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Synology Systems",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -350,7 +318,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -382,14 +350,15 @@
           "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network Interface Status",
       "transformations": [],
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -500,7 +469,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -529,14 +498,15 @@
           "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Storage Volumes",
       "transformations": [],
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -639,7 +609,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -671,14 +641,15 @@
           "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Hard Drives",
       "transformations": [],
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -781,7 +752,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -810,13 +781,14 @@
           "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cache Drives",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -899,7 +871,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -921,17 +893,14 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "S.M.A.R.T Status",
       "transformations": [],
       "type": "stat"
     },
     {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -944,7 +913,6 @@
       "type": "row"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1127,7 +1095,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "celcius"
+                "value": "celsius"
               },
               {
                 "id": "custom.displayMode",
@@ -1271,13 +1239,24 @@
       },
       "id": 8,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "ssCpuUser{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "instant": true,
@@ -1286,7 +1265,11 @@
           "refId": "A"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "modelName{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -1296,7 +1279,11 @@
           "refId": "B"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "version{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -1306,7 +1293,11 @@
           "refId": "C"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "serialNumber{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -1316,7 +1307,11 @@
           "refId": "D"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "sysUpTime{job=~'$JobName',instance=~'$Device'}/100",
           "format": "table",
           "hide": false,
@@ -1326,7 +1321,11 @@
           "refId": "E"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "systemFanStatus{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -1336,7 +1335,11 @@
           "refId": "F"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "upgradeAvailable{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -1346,7 +1349,11 @@
           "refId": "G"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "systemFanStatus{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -1356,7 +1363,11 @@
           "refId": "H"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "systemFanStatus{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -1366,7 +1377,11 @@
           "refId": "I"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "cpuFanStatus{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -1376,7 +1391,11 @@
           "refId": "J"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "(temperature{job=~'$JobName',instance=~'$Device'})",
           "format": "table",
           "hide": false,
@@ -1386,7 +1405,11 @@
           "refId": "K"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "memTotalReal{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -1396,7 +1419,11 @@
           "refId": "L"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskIndex{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'}+1",
           "format": "table",
           "hide": false,
@@ -1406,8 +1433,6 @@
           "refId": "M"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "System Information",
       "transformations": [
         {
@@ -1479,10 +1504,9 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -1496,7 +1520,10 @@
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1505,7 +1532,6 @@
             "mode": "fixed"
           },
           "custom": {
-            "align": null,
             "displayMode": "color-background",
             "filterable": false
           },
@@ -1534,6 +1560,13 @@
       },
       "id": 32,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -1542,7 +1575,7 @@
           }
         ]
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -1605,8 +1638,6 @@
           "refId": "E"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "S.M.A.R.T Disk Failures",
       "transformations": [
         {
@@ -1690,10 +1721,9 @@
       "type": "table"
     },
     {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -1706,7 +1736,10 @@
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1838,8 +1871,7 @@
                 ]
               },
               {
-                "id": "custom.width",
-                "value": null
+                "id": "custom.width"
               },
               {
                 "id": "custom.displayMode",
@@ -1905,8 +1937,7 @@
                 }
               },
               {
-                "id": "custom.width",
-                "value": null
+                "id": "custom.width"
               },
               {
                 "id": "custom.align",
@@ -1921,8 +1952,7 @@
             },
             "properties": [
               {
-                "id": "custom.align",
-                "value": null
+                "id": "custom.align"
               }
             ]
           },
@@ -1992,6 +2022,13 @@
       },
       "id": 14,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -2000,7 +2037,7 @@
           }
         ]
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -2123,10 +2160,9 @@
       "type": "table"
     },
     {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -2139,14 +2175,16 @@
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "custom": {
-            "align": null,
             "displayMode": "auto",
             "filterable": false
           },
@@ -2304,8 +2342,7 @@
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": null
+                "id": "custom.width"
               }
             ]
           },
@@ -2342,6 +2379,13 @@
       },
       "id": 10,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "frameIndex": 5,
         "showHeader": true,
         "sortBy": [
@@ -2351,8 +2395,7 @@
           }
         ]
       },
-      "pluginVersion": "8.0.3",
-      "repeat": null,
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -2414,8 +2457,6 @@
           "refId": "E"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Hard Drive and SSD Information",
       "transformations": [
         {
@@ -2486,10 +2527,9 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -2503,7 +2543,10 @@
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2725,6 +2768,13 @@
       },
       "id": 12,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -2733,7 +2783,7 @@
           }
         ]
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -2795,8 +2845,6 @@
           "refId": "F"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Physical Network Interface Information",
       "transformations": [
         {
@@ -2871,7 +2919,10 @@
       "type": "table"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3105,6 +3156,13 @@
       },
       "id": 15,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -3113,7 +3171,7 @@
           }
         ]
       },
-      "pluginVersion": "8.0.3",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -3175,8 +3233,6 @@
           "refId": "F"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Bond/Virtual Network Interface Information",
       "transformations": [
         {
@@ -3251,8 +3307,8 @@
       "type": "table"
     }
   ],
-  "refresh": "30s",
-  "schemaVersion": 30,
+  "refresh": "",
+  "schemaVersion": 35,
   "style": "dark",
   "tags": [
     "synology",
@@ -3262,36 +3318,25 @@
     "list": [
       {
         "description": "Total Number of NAS Systems manually entered.",
-        "error": null,
         "hide": 2,
-        "label": null,
         "name": "NASDevices",
-        "query": "${VAR_NASDEVICES}",
+        "query": "1",
         "skipUrlSync": false,
-        "type": "constant",
-        "current": {
-          "value": "${VAR_NASDEVICES}",
-          "text": "${VAR_NASDEVICES}",
-          "selected": false
-        },
-        "options": [
-          {
-            "value": "${VAR_NASDEVICES}",
-            "text": "${VAR_NASDEVICES}",
-            "selected": false
-          }
-        ]
+        "type": "constant"
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(ssCpuUser, job)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "JobName",
         "options": [],
@@ -3309,15 +3354,18 @@
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "query_result(ssCpuUser{job=~'$JobName'})",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "Device",
         "options": [],
@@ -3335,12 +3383,17 @@
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(ifName{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Physical Network Interfaces",
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Network Interface",
@@ -3361,12 +3414,17 @@
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(ifType_info{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Bonds an VLans",
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Virtual Interfaces",
@@ -3387,12 +3445,16 @@
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(raidName{job=~'$JobName',instance=~'$Device'},raidName)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Storage",
@@ -3413,12 +3475,16 @@
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(diskID{job=~'$JobName',instance=~'$Device'},diskID)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Disk",
@@ -3439,12 +3505,16 @@
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(diskID{job=~'$JobName',instance=~'$Device'},diskID)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Cache",
@@ -3474,5 +3544,6 @@
   "timezone": "",
   "title": "Synology NAS Overview",
   "uid": "ZDXCZYrMk",
-  "version": 50
+  "version": 1,
+  "weekStart": ""
 }
