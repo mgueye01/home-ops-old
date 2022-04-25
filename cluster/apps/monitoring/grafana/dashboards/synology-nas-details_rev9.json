@@ -23,8 +23,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 14284,
   "graphTooltip": 0,
-  "id": 18,
-  "iteration": 1650890709027,
+  "id": 1,
+  "iteration": 1650891974333,
   "links": [
     {
       "asDropdown": true,
@@ -65,6 +65,7 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
+            "align": "auto",
             "displayMode": "auto",
             "filterable": false
           },
@@ -197,7 +198,7 @@
               },
               {
                 "id": "max",
-                "value": 140
+                "value": 100
               },
               {
                 "id": "color",
@@ -216,11 +217,11 @@
                     },
                     {
                       "color": "yellow",
-                      "value": 100
+                      "value": 60
                     },
                     {
                       "color": "dark-red",
-                      "value": 135
+                      "value": 79.9912
                     }
                   ]
                 }
@@ -2551,6 +2552,7 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
+            "align": "auto",
             "displayMode": "auto",
             "filterable": false
           },
@@ -2911,7 +2913,7 @@
           },
           "decimals": 0,
           "mappings": [],
-          "max": 140,
+          "max": 25,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2921,11 +2923,11 @@
               },
               {
                 "color": "dark-yellow",
-                "value": 100
+                "value": 60
               },
               {
                 "color": "dark-red",
-                "value": 138
+                "value": 80
               }
             ]
           },
@@ -2967,7 +2969,7 @@
               },
               {
                 "id": "max",
-                "value": 140
+                "value": 100
               },
               {
                 "id": "unit",
@@ -3658,7 +3660,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 50
       },
       "id": 374,
       "panels": [
@@ -3963,7 +3965,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 63
+        "y": 54
       },
       "id": 28,
       "panels": [
@@ -4329,7 +4331,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 60
       },
       "id": 876,
       "panels": [
@@ -4941,7 +4943,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 70
+        "y": 61
       },
       "id": 654,
       "panels": [
@@ -5246,7 +5248,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 75
+        "y": 66
       },
       "id": 17,
       "panels": [
@@ -5965,7 +5967,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 81
+        "y": 67
       },
       "id": 39,
       "panels": [
@@ -6193,7 +6195,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 82
+        "y": 68
       },
       "id": 814,
       "panels": [
@@ -6734,9 +6736,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "eth4"
+          ],
+          "value": [
+            "eth4"
+          ]
         },
         "datasource": {
           "type": "prometheus",
@@ -6793,9 +6799,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "prometheus",
@@ -6884,9 +6894,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "Volume 1"
+          ],
+          "value": [
+            "Volume 1"
+          ]
         },
         "datasource": {
           "type": "prometheus",
@@ -6912,9 +6926,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "prometheus",
@@ -6940,9 +6958,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "prometheus",

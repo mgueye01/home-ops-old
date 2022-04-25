@@ -23,8 +23,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 14364,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1650891350874,
+  "id": 2,
+  "iteration": 1650894025399,
   "links": [
     {
       "asDropdown": true,
@@ -1112,18 +1112,18 @@
                     },
                     {
                       "color": "yellow",
-                      "value": 100
+                      "value": 30
                     },
                     {
                       "color": "dark-red",
-                      "value": 135
+                      "value": 60
                     }
                   ]
                 }
               },
               {
                 "id": "max",
-                "value": 141
+                "value": 100
               },
               {
                 "id": "custom.width"
@@ -1532,6 +1532,7 @@
             "mode": "fixed"
           },
           "custom": {
+            "align": "auto",
             "displayMode": "color-background",
             "filterable": false
           },
@@ -2175,16 +2176,13 @@
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "custom": {
+            "align": "auto",
             "displayMode": "auto",
             "filterable": false
           },
@@ -2235,18 +2233,18 @@
                     },
                     {
                       "color": "#EAB839",
-                      "value": 100
+                      "value": 35
                     },
                     {
                       "color": "red",
-                      "value": 138
+                      "value": 60
                     }
                   ]
                 }
               },
               {
                 "id": "max",
-                "value": 140
+                "value": 100
               },
               {
                 "id": "custom.width",
@@ -2398,7 +2396,11 @@
       "pluginVersion": "8.4.6",
       "targets": [
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskIndex{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskIndex{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'}",
           "format": "table",
           "hide": false,
@@ -2408,7 +2410,11 @@
           "refId": "F"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskID{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskID{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'} ",
           "format": "table",
           "instant": true,
@@ -2417,7 +2423,11 @@
           "refId": "A"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskType{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskType{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'}",
           "format": "table",
           "hide": false,
@@ -2427,7 +2437,11 @@
           "refId": "B"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskStatus{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskStatus{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'}",
           "format": "table",
           "hide": false,
@@ -2437,7 +2451,11 @@
           "refId": "C"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskModel{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskModel{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'}",
           "format": "table",
           "hide": false,
@@ -2447,7 +2465,11 @@
           "refId": "D"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "(diskTemperature{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'}) or (diskTemperature{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'})",
           "format": "table",
           "hide": false,
