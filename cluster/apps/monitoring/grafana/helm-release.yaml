@@ -165,6 +165,11 @@ spec:
           gnetId: 11312
           revision: 8
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/14284
+        Synology-nas-details:
+          gnetId: 14284
+          revision: 9
+          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
