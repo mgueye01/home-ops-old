@@ -167,8 +167,7 @@ spec:
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/14284
         Synology-nas-details:
-          gnetId: 14284
-          revision: 9
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/synology-nas-overview_rev8.json
           datasource: Prometheus
     sidecar:
       dashboards:
