@@ -1,52 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "7.5.6"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -56,16 +8,23 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "description": "The Synology NAS Details dashboard provides detailed information as to the operational status of the system(s).",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": 14284,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1621091991398,
+  "id": 18,
+  "iteration": 1650890709027,
   "links": [
     {
       "asDropdown": true,
@@ -82,10 +41,14 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -94,17 +57,15 @@
       },
       "id": 14,
       "panels": [],
-      "repeat": null,
       "title": "System State - ($Device)",
       "type": "row"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
       "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "decimals": 0,
@@ -162,44 +123,24 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "from": "",
-                    "id": 1,
-                    "text": "Update Available",
-                    "to": "",
-                    "type": 1,
-                    "value": "1"
-                  },
-                  {
-                    "from": "",
-                    "id": 2,
-                    "text": "Up to Date",
-                    "to": "",
-                    "type": 1,
-                    "value": "2"
-                  },
-                  {
-                    "from": "",
-                    "id": 3,
-                    "text": "Connecting",
-                    "to": "",
-                    "type": 1,
-                    "value": "3"
-                  },
-                  {
-                    "from": "",
-                    "id": 4,
-                    "text": "Disconnected",
-                    "to": "",
-                    "type": 1,
-                    "value": "4"
-                  },
-                  {
-                    "from": "",
-                    "id": 5,
-                    "text": "Others",
-                    "to": "",
-                    "type": 1,
-                    "value": "5"
+                    "options": {
+                      "1": {
+                        "text": "Update Available"
+                      },
+                      "2": {
+                        "text": "Up to Date"
+                      },
+                      "3": {
+                        "text": "Connecting"
+                      },
+                      "4": {
+                        "text": "Disconnected"
+                      },
+                      "5": {
+                        "text": "Others"
+                      }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -248,7 +189,7 @@
               },
               {
                 "id": "unit",
-                "value": "celcius"
+                "value": "celsius"
               },
               {
                 "id": "custom.displayMode",
@@ -304,20 +245,15 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "from": "",
-                    "id": 1,
-                    "text": "NORMAL",
-                    "to": "",
-                    "type": 1,
-                    "value": "1"
-                  },
-                  {
-                    "from": "",
-                    "id": 2,
-                    "text": "FAILED",
-                    "to": "",
-                    "type": 1,
-                    "value": "2"
+                    "options": {
+                      "1": {
+                        "text": "NORMAL"
+                      },
+                      "2": {
+                        "text": "FAILED"
+                      }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -421,13 +357,24 @@
       },
       "id": 184,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "sysUpTime{job=~'$JobName',instance=~'$Device'}/100",
           "format": "table",
           "instant": true,
@@ -436,7 +383,11 @@
           "refId": "A"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "upgradeAvailable{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "instant": true,
@@ -445,7 +396,11 @@
           "refId": "B"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "(temperature{job=~'$JobName',instance=~'$Device'})",
           "format": "table",
           "instant": true,
@@ -454,7 +409,11 @@
           "refId": "C"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "cpuFanStatus{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "instant": true,
@@ -463,7 +422,11 @@
           "refId": "D"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "systemFanStatus{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "instant": true,
@@ -472,7 +435,11 @@
           "refId": "E"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "systemStatus{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "instant": true,
@@ -481,7 +448,11 @@
           "refId": "F"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "powerStatus{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "instant": true,
@@ -490,7 +461,11 @@
           "refId": "G"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "modelName{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -500,7 +475,11 @@
           "refId": "H"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "version{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -510,7 +489,11 @@
           "refId": "I"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "serialNumber{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -520,7 +503,11 @@
           "refId": "J"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "memTotalReal{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "hide": false,
@@ -530,7 +517,11 @@
           "refId": "K"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskIndex{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'}+1",
           "format": "table",
           "hide": false,
@@ -540,8 +531,6 @@
           "refId": "L"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "System Information - $Device",
       "transformations": [
         {
@@ -613,7 +602,10 @@
       "type": "table"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "Enter the number of Synology's you are monitoring in the NASDevices variable. A positive Number here means there is a NAS down or not being scraped for data. A negative Number means you are collecting data from more Synology's than the system expects in the NASDevices variable.",
       "fieldConfig": {
         "defaults": {
@@ -746,7 +738,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -779,7 +771,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -899,7 +894,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -932,7 +927,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1033,7 +1031,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -1066,7 +1064,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1164,7 +1165,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -1197,7 +1198,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1296,7 +1300,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -1329,7 +1333,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1404,7 +1411,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -1429,7 +1436,10 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1444,10 +1454,12 @@
     {
       "aliasColors": {},
       "bars": false,
-      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "percent"
@@ -1464,7 +1476,6 @@
       },
       "hiddenSeries": false,
       "id": 33,
-      "interval": null,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1485,7 +1496,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1544,9 +1555,7 @@
           "yaxis": "left"
         }
       ],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "CPU Usage - ($Device)",
       "tooltip": {
         "shared": true,
@@ -1555,9 +1564,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -1574,10 +1581,7 @@
         {
           "$$hashKey": "object:82",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
@@ -1589,10 +1593,12 @@
     {
       "aliasColors": {},
       "bars": false,
-      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "percentunit"
@@ -1609,7 +1615,6 @@
       },
       "hiddenSeries": false,
       "id": 117,
-      "interval": null,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1630,7 +1635,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1687,9 +1692,7 @@
           "yaxis": "left"
         }
       ],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Memory Usage - ($Device)",
       "tooltip": {
         "shared": true,
@@ -1698,9 +1701,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -1717,16 +1718,12 @@
         {
           "$$hashKey": "object:167",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1738,7 +1735,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "percent"
@@ -1773,7 +1773,7 @@
         "alertThreshold": true
       },
       "percentage": true,
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1851,9 +1851,7 @@
           "yaxis": "left"
         }
       ],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "CPU Utilization - ($Device)",
       "tooltip": {
         "shared": true,
@@ -1862,9 +1860,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -1881,16 +1877,12 @@
         {
           "$$hashKey": "object:1277",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1904,7 +1896,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "deckbytes"
@@ -1939,7 +1934,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2027,9 +2022,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Physical Memory - ($Device)",
       "tooltip": {
         "shared": true,
@@ -2038,9 +2031,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -2050,23 +2041,17 @@
           "format": "deckbytes",
           "label": "Physical Memory",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:2908",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2074,7 +2059,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "decimals": 2,
       "description": "",
       "fieldConfig": {
@@ -2128,7 +2116,6 @@
       },
       "hiddenSeries": false,
       "id": 11,
-      "interval": null,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -2137,7 +2124,6 @@
         "min": true,
         "rightSide": true,
         "show": true,
-        "sideWidth": null,
         "total": false,
         "values": true
       },
@@ -2149,7 +2135,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2185,9 +2171,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "CPU Load - ($Device)",
       "tooltip": {
         "shared": true,
@@ -2196,36 +2180,28 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "$$hashKey": "object:1102",
-          "decimals": null,
           "format": "short",
           "label": "CPU Load",
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": true
         },
         {
           "$$hashKey": "object:1103",
           "format": "none",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2237,10 +2213,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 10,
       "fillGradient": 0,
@@ -2270,7 +2245,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2331,9 +2306,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Virtual Memory - ($Device)",
       "tooltip": {
         "shared": true,
@@ -2342,9 +2315,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -2354,23 +2325,19 @@
           "format": "deckbytes",
           "label": "Virtual Memory",
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": true
         },
         {
           "$$hashKey": "object:2908",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2378,13 +2345,11 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": null,
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
+      "description": "",
       "fill": 1,
       "fillGradient": 1,
       "gridPos": {
@@ -2395,7 +2360,6 @@
       },
       "hiddenSeries": false,
       "id": 1116,
-      "interval": null,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -2404,7 +2368,6 @@
         "min": true,
         "rightSide": true,
         "show": true,
-        "sideWidth": null,
         "total": false,
         "values": true
       },
@@ -2416,7 +2379,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2437,9 +2400,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Processes - ($Device)",
       "tooltip": {
         "shared": true,
@@ -2448,36 +2409,27 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "$$hashKey": "object:1102",
-          "decimals": null,
           "format": "short",
           "label": "Running Processes",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:1103",
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2485,13 +2437,11 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": null,
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
+      "description": "",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2502,7 +2452,6 @@
       },
       "hiddenSeries": false,
       "id": 1057,
-      "interval": null,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -2513,7 +2462,6 @@
         "min": true,
         "rightSide": true,
         "show": true,
-        "sideWidth": null,
         "total": false,
         "values": true
       },
@@ -2525,7 +2473,7 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2545,9 +2493,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Users / Service - ($Device)",
       "tooltip": {
         "shared": true,
@@ -2556,9 +2502,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -2569,28 +2513,25 @@
           "format": "short",
           "label": "Connected Users",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:1103",
           "format": "none",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
       "collapsed": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2599,16 +2540,18 @@
       },
       "id": 76,
       "panels": [],
-      "repeat": null,
       "title": "System Internals - ($Device)",
       "type": "row"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "links": [],
@@ -2638,28 +2581,18 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "from": "",
-                    "id": 1,
-                    "text": "UP",
-                    "to": "",
-                    "type": 1,
-                    "value": "1"
-                  },
-                  {
-                    "from": "",
-                    "id": 2,
-                    "text": "DOWN",
-                    "to": "",
-                    "type": 1,
-                    "value": "2"
-                  },
-                  {
-                    "from": "",
-                    "id": 3,
-                    "text": "TESTING",
-                    "to": "",
-                    "type": 1,
-                    "value": "3"
+                    "options": {
+                      "1": {
+                        "text": "UP"
+                      },
+                      "2": {
+                        "text": "DOWN"
+                      },
+                      "3": {
+                        "text": "TESTING"
+                      }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -2731,60 +2664,30 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "from": "",
-                    "id": 1,
-                    "text": "UP",
-                    "to": "",
-                    "type": 1,
-                    "value": "1"
-                  },
-                  {
-                    "from": "",
-                    "id": 2,
-                    "text": "DOWN",
-                    "to": "",
-                    "type": 1,
-                    "value": "2"
-                  },
-                  {
-                    "from": "",
-                    "id": 3,
-                    "text": "TESTING",
-                    "to": "",
-                    "type": 1,
-                    "value": "3"
-                  },
-                  {
-                    "from": "",
-                    "id": 4,
-                    "text": "UNKNOWN",
-                    "to": "",
-                    "type": 1,
-                    "value": "4"
-                  },
-                  {
-                    "from": "",
-                    "id": 5,
-                    "text": "DORMANT",
-                    "to": "",
-                    "type": 1,
-                    "value": "5"
-                  },
-                  {
-                    "from": "",
-                    "id": 6,
-                    "text": "NOT PRESENT",
-                    "to": "",
-                    "type": 1,
-                    "value": "6"
-                  },
-                  {
-                    "from": "",
-                    "id": 7,
-                    "text": "LOWER LAYER DOWN",
-                    "to": "",
-                    "type": 1,
-                    "value": "7"
+                    "options": {
+                      "1": {
+                        "text": "UP"
+                      },
+                      "2": {
+                        "text": "DOWN"
+                      },
+                      "3": {
+                        "text": "TESTING"
+                      },
+                      "4": {
+                        "text": "UNKNOWN"
+                      },
+                      "5": {
+                        "text": "DORMANT"
+                      },
+                      "6": {
+                        "text": "NOT PRESENT"
+                      },
+                      "7": {
+                        "text": "LOWER LAYER DOWN"
+                      }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -2876,10 +2779,17 @@
       },
       "id": 210,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
           "exemplar": true,
@@ -2941,8 +2851,6 @@
           "refId": "G"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network Interfaces - ($Device)",
       "transformations": [
         {
@@ -2994,11 +2902,11 @@
       "type": "table"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {
             "align": "center",
+            "displayMode": "auto",
             "filterable": false
           },
           "decimals": 0,
@@ -3063,7 +2971,7 @@
               },
               {
                 "id": "unit",
-                "value": "celcius"
+                "value": "celsius"
               }
             ]
           },
@@ -3093,44 +3001,24 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "from": "",
-                    "id": 1,
-                    "text": "Normal",
-                    "to": "",
-                    "type": 1,
-                    "value": "1"
-                  },
-                  {
-                    "from": "",
-                    "id": 2,
-                    "text": "Initialized",
-                    "to": "",
-                    "type": 1,
-                    "value": "2"
-                  },
-                  {
-                    "from": "",
-                    "id": 3,
-                    "text": "Not Initialized",
-                    "to": "",
-                    "type": 1,
-                    "value": "3"
-                  },
-                  {
-                    "from": "",
-                    "id": 4,
-                    "text": "System Partition Failed",
-                    "to": "",
-                    "type": 1,
-                    "value": "4"
-                  },
-                  {
-                    "from": "",
-                    "id": 5,
-                    "text": "Crashed",
-                    "to": "",
-                    "type": 1,
-                    "value": "5"
+                    "options": {
+                      "1": {
+                        "text": "Normal"
+                      },
+                      "2": {
+                        "text": "Initialized"
+                      },
+                      "3": {
+                        "text": "Not Initialized"
+                      },
+                      "4": {
+                        "text": "System Partition Failed"
+                      },
+                      "5": {
+                        "text": "Crashed"
+                      }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -3193,13 +3081,24 @@
       },
       "id": 132,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "targets": [
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "(diskTemperature{job=~'$JobName',instance=~'$Device'})",
           "format": "table",
           "instant": true,
@@ -3208,7 +3107,11 @@
           "refId": "A"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskType{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "instant": true,
@@ -3217,7 +3120,11 @@
           "refId": "B"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskStatus{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "instant": true,
@@ -3226,7 +3133,11 @@
           "refId": "C"
         },
         {
-          "exemplar": true,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "diskModel{job=~'$JobName',instance=~'$Device'}",
           "format": "table",
           "instant": true,
@@ -3235,8 +3146,6 @@
           "refId": "D"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Hard Drives  - ($Device)",
       "transformations": [
         {
@@ -3284,7 +3193,10 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3298,179 +3210,81 @@
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "mappings": [
             {
-              "$$hashKey": "object:1815",
-              "id": 0,
-              "op": "=",
-              "text": "Raid Normal",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "$$hashKey": "object:1816",
-              "id": 1,
-              "op": "=",
-              "text": "Raid Repairing",
-              "type": 1,
-              "value": "2"
-            },
-            {
-              "$$hashKey": "object:1817",
-              "id": 2,
-              "op": "=",
-              "text": "Raid Migrating",
-              "type": 1,
-              "value": "3"
-            },
-            {
-              "$$hashKey": "object:1818",
-              "id": 3,
-              "op": "=",
-              "text": "Raid Expanding",
-              "type": 1,
-              "value": "4"
-            },
-            {
-              "$$hashKey": "object:1819",
-              "id": 4,
-              "op": "=",
-              "text": "Raid Deleting",
-              "type": 1,
-              "value": "5"
-            },
-            {
-              "$$hashKey": "object:1820",
-              "id": 5,
-              "op": "=",
-              "text": "Raid Creating",
-              "type": 1,
-              "value": "6"
-            },
-            {
-              "$$hashKey": "object:1821",
-              "id": 6,
-              "op": "=",
-              "text": "Raid Syncing",
-              "type": 1,
-              "value": "7"
-            },
-            {
-              "$$hashKey": "object:1822",
-              "id": 7,
-              "op": "=",
-              "text": "Raid Parity Checking",
-              "type": 1,
-              "value": "8"
-            },
-            {
-              "$$hashKey": "object:1823",
-              "id": 8,
-              "op": "=",
-              "text": "Raid Assembling",
-              "type": 1,
-              "value": "9"
-            },
-            {
-              "$$hashKey": "object:1824",
-              "id": 9,
-              "op": "=",
-              "text": "Raid Canceling",
-              "type": 1,
-              "value": "10"
-            },
-            {
-              "$$hashKey": "object:1825",
-              "id": 10,
-              "op": "=",
-              "text": "Raid Degraded",
-              "type": 1,
-              "value": "11"
-            },
-            {
-              "$$hashKey": "object:1826",
-              "id": 11,
-              "op": "=",
-              "text": "Raid Crashed",
-              "type": 1,
-              "value": "12"
-            },
-            {
-              "from": "",
-              "id": 12,
-              "text": "Raid Data Scrubbing",
-              "to": "",
-              "type": 1,
-              "value": "13"
-            },
-            {
-              "from": "",
-              "id": 13,
-              "text": "Raid Deploying",
-              "to": "",
-              "type": 1,
-              "value": "14"
-            },
-            {
-              "from": "",
-              "id": 14,
-              "text": "Raid UnDeploying",
-              "to": "",
-              "type": 1,
-              "value": "15"
-            },
-            {
-              "from": "",
-              "id": 15,
-              "text": "Raid Mount Cache",
-              "to": "",
-              "type": 1,
-              "value": "16"
-            },
-            {
-              "from": "",
-              "id": 16,
-              "text": "Raid Unmount Cache",
-              "to": "",
-              "type": 1,
-              "value": "17"
-            },
-            {
-              "from": "",
-              "id": 17,
-              "text": "Raid Expanding Unfinished SHR",
-              "to": "",
-              "type": 1,
-              "value": "18"
-            },
-            {
-              "from": "",
-              "id": 18,
-              "text": "Raid Convert SHR To Pool",
-              "to": "",
-              "type": 1,
-              "value": "19"
-            },
-            {
-              "from": "",
-              "id": 19,
-              "text": "Raid Migrate SHR1 To SHR2",
-              "to": "",
-              "type": 1,
-              "value": "20 "
-            },
-            {
-              "from": "",
-              "id": 20,
-              "text": "Raid Unknown Status",
-              "to": "",
-              "type": 1,
-              "value": "21"
+              "options": {
+                "1": {
+                  "text": "Raid Normal"
+                },
+                "2": {
+                  "text": "Raid Repairing"
+                },
+                "3": {
+                  "text": "Raid Migrating"
+                },
+                "4": {
+                  "text": "Raid Expanding"
+                },
+                "5": {
+                  "text": "Raid Deleting"
+                },
+                "6": {
+                  "text": "Raid Creating"
+                },
+                "7": {
+                  "text": "Raid Syncing"
+                },
+                "8": {
+                  "text": "Raid Parity Checking"
+                },
+                "9": {
+                  "text": "Raid Assembling"
+                },
+                "10": {
+                  "text": "Raid Canceling"
+                },
+                "11": {
+                  "text": "Raid Degraded"
+                },
+                "12": {
+                  "text": "Raid Crashed"
+                },
+                "13": {
+                  "text": "Raid Data Scrubbing"
+                },
+                "14": {
+                  "text": "Raid Deploying"
+                },
+                "15": {
+                  "text": "Raid UnDeploying"
+                },
+                "16": {
+                  "text": "Raid Mount Cache"
+                },
+                "17": {
+                  "text": "Raid Unmount Cache"
+                },
+                "18": {
+                  "text": "Raid Expanding Unfinished SHR"
+                },
+                "19": {
+                  "text": "Raid Convert SHR To Pool"
+                },
+                "21": {
+                  "text": "Raid Unknown Status"
+                },
+                "20 ": {
+                  "text": "Raid Migrate SHR1 To SHR2"
+                }
+              },
+              "type": "value"
             }
           ],
           "thresholds": {
@@ -3509,7 +3323,6 @@
         "y": 42
       },
       "id": 9,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -3527,8 +3340,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.5.6",
-      "repeat": null,
+      "pluginVersion": "8.4.6",
       "repeatDirection": "h",
       "targets": [
         {
@@ -3555,7 +3367,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -3593,11 +3408,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeat": null,
       "repeatDirection": "h",
       "seriesOverrides": [
         {
@@ -3656,9 +3470,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Storage Usage - $raidName ($Device)",
       "tooltip": {
         "shared": true,
@@ -3667,9 +3479,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -3677,30 +3487,27 @@
         {
           "$$hashKey": "object:1861",
           "format": "bytes",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": true
         },
         {
           "$$hashKey": "object:1862",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -3728,7 +3535,6 @@
         "y": 44
       },
       "id": 295,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -3746,7 +3552,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "repeatDirection": "h",
       "targets": [
         {
@@ -3764,8 +3570,10 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -3774,6 +3582,8 @@
           },
           "decimals": 2,
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3806,7 +3616,6 @@
         "y": 46
       },
       "id": 557,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -3822,7 +3631,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.5.6",
+      "pluginVersion": "8.4.6",
       "repeatDirection": "h",
       "targets": [
         {
@@ -3841,18 +3650,23 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 59
       },
       "id": 374,
       "panels": [
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -3864,8 +3678,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-blue",
-                    "value": null
+                    "color": "dark-blue"
                   }
                 ]
               },
@@ -3880,7 +3693,6 @@
             "y": 43
           },
           "id": 453,
-          "interval": null,
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -3900,13 +3712,6 @@
           },
           "pluginVersion": "7.5.6",
           "repeatDirection": "h",
-          "scopedVars": {
-            "hrStorageDescr": {
-              "selected": false,
-              "text": "/",
-              "value": "/"
-            }
-          },
           "targets": [
             {
               "exemplar": true,
@@ -3932,7 +3737,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -3975,13 +3783,6 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "scopedVars": {
-            "hrStorageDescr": {
-              "selected": false,
-              "text": "/",
-              "value": "/"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:411",
@@ -4038,9 +3839,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "File System Usage: $hrStorageDescr ($Device)",
           "tooltip": {
             "shared": true,
@@ -4049,9 +3848,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -4059,30 +3856,27 @@
             {
               "$$hashKey": "object:1861",
               "format": "bytes",
-              "label": null,
               "logBase": 1,
-              "max": null,
               "min": "0",
               "show": true
             },
             {
               "$$hashKey": "object:1862",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
               "min": "0",
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -4095,8 +3889,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-green",
-                    "value": null
+                    "color": "dark-green"
                   },
                   {
                     "color": "light-yellow",
@@ -4123,7 +3916,6 @@
             "y": 45
           },
           "id": 610,
-          "interval": null,
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -4141,13 +3933,6 @@
           },
           "pluginVersion": "7.5.6",
           "repeatDirection": "h",
-          "scopedVars": {
-            "hrStorageDescr": {
-              "selected": false,
-              "text": "/",
-              "value": "/"
-            }
-          },
           "targets": [
             {
               "exemplar": true,
@@ -4170,12 +3955,15 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 54
+        "y": 63
       },
       "id": 28,
       "panels": [
@@ -4184,7 +3972,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {},
@@ -4223,13 +4014,6 @@
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "storageIODevice": {
-              "selected": false,
-              "text": "nvme0n1",
-              "value": "nvme0n1"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:2925",
@@ -4257,9 +4041,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Bits Read/Write: $storageIODevice - ($Device)",
           "tooltip": {
             "shared": true,
@@ -4268,9 +4050,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -4280,23 +4060,17 @@
               "format": "bps",
               "label": "Read/Writ b/s",
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:2898",
               "format": "bps",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -4304,7 +4078,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -4345,13 +4122,6 @@
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "storageIODevice": {
-              "selected": false,
-              "text": "nvme0n1",
-              "value": "nvme0n1"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:1432",
@@ -4405,9 +4175,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "I/O: $storageIODevice - ($Device)",
           "tooltip": {
             "shared": true,
@@ -4416,9 +4184,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -4428,23 +4194,17 @@
               "format": "bps",
               "label": "I/O b/s",
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:2898",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -4452,7 +4212,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {},
@@ -4491,13 +4254,6 @@
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "storageIODevice": {
-              "selected": false,
-              "text": "nvme0n1",
-              "value": "nvme0n1"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:3018",
@@ -4526,9 +4282,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Load: $storageIODevice - ($Device)",
           "tooltip": {
             "shared": true,
@@ -4537,9 +4291,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -4549,23 +4301,17 @@
               "format": "bps",
               "label": "Load b/s",
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:2898",
               "format": "bps",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         }
       ],
@@ -4575,12 +4321,15 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 69
       },
       "id": 876,
       "panels": [
@@ -4589,19 +4338,18 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": []
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
           },
+          "description": "",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 54
+            "y": 70
           },
           "hiddenSeries": false,
           "id": 504,
@@ -4624,17 +4372,10 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "7.5.5",
+          "pluginVersion": "8.4.6",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "flashCacheDisk": {
-              "selected": false,
-              "text": "md3",
-              "value": "md3"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:2925",
@@ -4662,9 +4403,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Bytes Read/Write: $flashCacheDisk- ($Device)",
           "tooltip": {
             "shared": true,
@@ -4673,9 +4412,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -4683,25 +4420,18 @@
             {
               "$$hashKey": "object:2897",
               "format": "Bps",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:2898",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -4709,19 +4439,18 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": []
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
           },
+          "description": "",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 54
+            "y": 70
           },
           "hiddenSeries": false,
           "id": 995,
@@ -4744,17 +4473,10 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "7.5.5",
+          "pluginVersion": "8.4.6",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "flashCacheDisk": {
-              "selected": false,
-              "text": "md3",
-              "value": "md3"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:2925",
@@ -4782,9 +4504,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Read/Write Hits: $flashCacheDisk- ($Device)",
           "tooltip": {
             "shared": true,
@@ -4793,9 +4513,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -4803,25 +4521,18 @@
             {
               "$$hashKey": "object:2897",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:2898",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -4829,19 +4540,18 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": []
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
           },
+          "description": "",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 60
+            "y": 76
           },
           "hiddenSeries": false,
           "id": 996,
@@ -4864,17 +4574,10 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "7.5.5",
+          "pluginVersion": "8.4.6",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "flashCacheDisk": {
-              "selected": false,
-              "text": "md3",
-              "value": "md3"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:2925",
@@ -4902,9 +4605,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Read/Write Total: $flashCacheDisk- ($Device)",
           "tooltip": {
             "shared": true,
@@ -4913,9 +4614,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -4923,25 +4622,18 @@
             {
               "$$hashKey": "object:2897",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:2898",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -4949,19 +4641,18 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": []
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
           },
+          "description": "",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 60
+            "y": 76
           },
           "hiddenSeries": false,
           "id": 936,
@@ -4984,17 +4675,10 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "7.5.5",
+          "pluginVersion": "8.4.6",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "flashCacheDisk": {
-              "selected": false,
-              "text": "md3",
-              "value": "md3"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:1407",
@@ -5022,9 +4706,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Read/Write Hit Rate: $flashCacheDisk- ($Device)",
           "tooltip": {
             "shared": true,
@@ -5033,9 +4715,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -5043,25 +4723,18 @@
             {
               "$$hashKey": "object:2897",
               "format": "percent",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:2898",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -5069,19 +4742,18 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": []
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
           },
+          "description": "",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 66
+            "y": 82
           },
           "hiddenSeries": false,
           "id": 997,
@@ -5104,17 +4776,10 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "7.5.5",
+          "pluginVersion": "8.4.6",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "flashCacheDisk": {
-              "selected": false,
-              "text": "md3",
-              "value": "md3"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:2925",
@@ -5142,9 +4807,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Read/Write Skips: $flashCacheDisk- ($Device)",
           "tooltip": {
             "shared": true,
@@ -5153,9 +4816,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -5163,25 +4824,18 @@
             {
               "$$hashKey": "object:2897",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:2898",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -5189,19 +4843,18 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "The number of\ndata writes to SSD\nfor the first time",
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": []
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
           },
+          "description": "The number of\ndata writes to SSD\nfor the first time",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 66
+            "y": 82
           },
           "hiddenSeries": false,
           "id": 998,
@@ -5224,17 +4877,10 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "7.5.5",
+          "pluginVersion": "8.4.6",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "flashCacheDisk": {
-              "selected": false,
-              "text": "md3",
-              "value": "md3"
-            }
-          },
           "seriesOverrides": [],
           "spaceLength": 10,
           "stack": false,
@@ -5249,9 +4895,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Write Misses: $flashCacheDisk- ($Device)",
           "tooltip": {
             "shared": true,
@@ -5260,9 +4904,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -5270,25 +4912,18 @@
             {
               "$$hashKey": "object:2897",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:2898",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         }
       ],
@@ -5298,18 +4933,23 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 70
       },
       "id": 654,
       "panels": [
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -5321,8 +4961,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-blue",
-                    "value": null
+                    "color": "dark-blue"
                   }
                 ]
               },
@@ -5337,7 +4976,6 @@
             "y": 43
           },
           "id": 703,
-          "interval": null,
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -5357,13 +4995,6 @@
           },
           "pluginVersion": "7.5.6",
           "repeatDirection": "h",
-          "scopedVars": {
-            "hrMemoryDescr": {
-              "selected": false,
-              "text": "Cached memory",
-              "value": "Cached memory"
-            }
-          },
           "targets": [
             {
               "exemplar": true,
@@ -5389,7 +5020,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -5432,13 +5066,6 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "scopedVars": {
-            "hrMemoryDescr": {
-              "selected": false,
-              "text": "Cached memory",
-              "value": "Cached memory"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:411",
@@ -5495,9 +5122,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Memory Usage: $hrMemoryDescr ($Device)",
           "tooltip": {
             "shared": true,
@@ -5506,9 +5131,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -5516,30 +5139,27 @@
             {
               "$$hashKey": "object:1861",
               "format": "bytes",
-              "label": null,
               "logBase": 1,
-              "max": null,
               "min": "0",
               "show": true
             },
             {
               "$$hashKey": "object:1862",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
               "min": "0",
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -5552,8 +5172,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-green",
-                    "value": null
+                    "color": "dark-green"
                   },
                   {
                     "color": "light-yellow",
@@ -5580,7 +5199,6 @@
             "y": 45
           },
           "id": 756,
-          "interval": null,
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -5598,13 +5216,6 @@
           },
           "pluginVersion": "7.5.6",
           "repeatDirection": "h",
-          "scopedVars": {
-            "hrMemoryDescr": {
-              "selected": false,
-              "text": "Cached memory",
-              "value": "Cached memory"
-            }
-          },
           "targets": [
             {
               "exemplar": true,
@@ -5627,17 +5238,23 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 63
+        "y": 75
       },
       "id": 17,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "fieldConfig": {
             "defaults": {
               "custom": {
@@ -5651,8 +5268,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5672,28 +5288,18 @@
                     "id": "mappings",
                     "value": [
                       {
-                        "from": "",
-                        "id": 1,
-                        "text": "UP",
-                        "to": "",
-                        "type": 1,
-                        "value": "1"
-                      },
-                      {
-                        "from": "",
-                        "id": 2,
-                        "text": "DOWN",
-                        "to": "",
-                        "type": 1,
-                        "value": "2"
-                      },
-                      {
-                        "from": "",
-                        "id": 3,
-                        "text": "TESTING",
-                        "to": "",
-                        "type": 1,
-                        "value": "3"
+                        "options": {
+                          "1": {
+                            "text": "UP"
+                          },
+                          "2": {
+                            "text": "DOWN"
+                          },
+                          "3": {
+                            "text": "TESTING"
+                          }
+                        },
+                        "type": "value"
                       }
                     ]
                   },
@@ -5707,8 +5313,7 @@
                       "mode": "absolute",
                       "steps": [
                         {
-                          "color": "green",
-                          "value": null
+                          "color": "green"
                         },
                         {
                           "color": "red",
@@ -5753,60 +5358,30 @@
                     "id": "mappings",
                     "value": [
                       {
-                        "from": "",
-                        "id": 1,
-                        "text": "UP",
-                        "to": "",
-                        "type": 1,
-                        "value": "1"
-                      },
-                      {
-                        "from": "",
-                        "id": 2,
-                        "text": "DOWN",
-                        "to": "",
-                        "type": 1,
-                        "value": "2"
-                      },
-                      {
-                        "from": "",
-                        "id": 3,
-                        "text": "TESTING",
-                        "to": "",
-                        "type": 1,
-                        "value": "3"
-                      },
-                      {
-                        "from": "",
-                        "id": 4,
-                        "text": "UNKNOWN",
-                        "to": "",
-                        "type": 1,
-                        "value": "4"
-                      },
-                      {
-                        "from": "",
-                        "id": 5,
-                        "text": "DORMANT",
-                        "to": "",
-                        "type": 1,
-                        "value": "5"
-                      },
-                      {
-                        "from": "",
-                        "id": 6,
-                        "text": "NOT PRESENT",
-                        "to": "",
-                        "type": 1,
-                        "value": "6"
-                      },
-                      {
-                        "from": "",
-                        "id": 7,
-                        "text": "LOWER LAYER DOWN",
-                        "to": "",
-                        "type": 1,
-                        "value": "7"
+                        "options": {
+                          "1": {
+                            "text": "UP"
+                          },
+                          "2": {
+                            "text": "DOWN"
+                          },
+                          "3": {
+                            "text": "TESTING"
+                          },
+                          "4": {
+                            "text": "UNKNOWN"
+                          },
+                          "5": {
+                            "text": "DORMANT"
+                          },
+                          "6": {
+                            "text": "NOT PRESENT"
+                          },
+                          "7": {
+                            "text": "LOWER LAYER DOWN"
+                          }
+                        },
+                        "type": "value"
                       }
                     ]
                   },
@@ -5820,8 +5395,7 @@
                       "mode": "absolute",
                       "steps": [
                         {
-                          "color": "green",
-                          "value": null
+                          "color": "green"
                         },
                         {
                           "color": "red",
@@ -5870,13 +5444,6 @@
             "sortBy": []
           },
           "pluginVersion": "7.5.6",
-          "scopedVars": {
-            "Interface": {
-              "selected": false,
-              "text": "bond0",
-              "value": "bond0"
-            }
-          },
           "targets": [
             {
               "exemplar": true,
@@ -5934,8 +5501,6 @@
               "refId": "F"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Interfaces Details: $Interface - ($Device)",
           "transformations": [
             {
@@ -5993,7 +5558,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "error": false,
@@ -6038,15 +5606,7 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "repeat": null,
           "repeatDirection": "h",
-          "scopedVars": {
-            "Interface": {
-              "selected": false,
-              "text": "bond0",
-              "value": "bond0"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:803",
@@ -6080,9 +5640,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Traffic: $Interface - ($Device)",
           "tooltip": {
             "msResolution": false,
@@ -6092,9 +5650,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -6102,25 +5658,18 @@
             {
               "$$hashKey": "object:671",
               "format": "bps",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:672",
               "format": "decbits",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -6130,7 +5679,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "error": false,
@@ -6176,13 +5728,6 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "scopedVars": {
-            "Interface": {
-              "selected": false,
-              "text": "bond0",
-              "value": "bond0"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:803",
@@ -6238,9 +5783,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Multicast & Broadcast: $Interface - ($Device)",
           "tooltip": {
             "msResolution": false,
@@ -6250,9 +5793,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -6260,25 +5801,18 @@
             {
               "$$hashKey": "object:671",
               "format": "bps",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:672",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -6288,7 +5822,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "error": false,
@@ -6332,13 +5869,6 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "scopedVars": {
-            "Interface": {
-              "selected": false,
-              "text": "bond0",
-              "value": "bond0"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:803",
@@ -6388,9 +5918,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Errors $Interface: - ($Device)",
           "tooltip": {
             "msResolution": false,
@@ -6400,9 +5928,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -6410,25 +5936,18 @@
             {
               "$$hashKey": "object:671",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:672",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         }
       ],
@@ -6438,12 +5957,15 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 68
+        "y": 81
       },
       "id": 39,
       "panels": [
@@ -6452,7 +5974,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {},
@@ -6491,13 +6016,6 @@
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "spaceIODevice": {
-              "selected": false,
-              "text": "dm-0",
-              "value": "dm-0"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:5137",
@@ -6525,9 +6043,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Volume Throughput - $spaceIODevice ($Device)",
           "tooltip": {
             "shared": true,
@@ -6536,9 +6052,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -6546,25 +6060,18 @@
             {
               "$$hashKey": "object:5109",
               "format": "Bps",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:5110",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -6572,7 +6079,10 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "fieldConfig": {
             "defaults": {},
             "overrides": []
@@ -6610,13 +6120,6 @@
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "scopedVars": {
-            "spaceIODevice": {
-              "selected": false,
-              "text": "dm-0",
-              "value": "dm-0"
-            }
-          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:5137",
@@ -6644,9 +6147,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Volume IOPS - $spaceIODevice ($Device)",
           "tooltip": {
             "shared": true,
@@ -6655,9 +6156,7 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -6665,25 +6164,18 @@
             {
               "$$hashKey": "object:5109",
               "format": "iops",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:5110",
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         }
       ],
@@ -6693,17 +6185,23 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 82
       },
       "id": 814,
       "panels": [
         {
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6715,8 +6213,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6750,13 +6247,6 @@
             "textMode": "value_and_name"
           },
           "pluginVersion": "7.5.5",
-          "scopedVars": {
-            "SmartDev": {
-              "selected": false,
-              "text": "/dev/sda",
-              "value": "/dev/sda"
-            }
-          },
           "targets": [
             {
               "exemplar": true,
@@ -6770,7 +6260,10 @@
           "type": "stat"
         },
         {
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6786,8 +6279,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-red",
-                    "value": null
+                    "color": "dark-red"
                   }
                 ]
               }
@@ -6835,13 +6327,6 @@
             ]
           },
           "pluginVersion": "7.5.5",
-          "scopedVars": {
-            "SmartDev": {
-              "selected": false,
-              "text": "/dev/sda",
-              "value": "/dev/sda"
-            }
-          },
           "targets": [
             {
               "exemplar": true,
@@ -6998,7 +6483,10 @@
           "type": "table"
         },
         {
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7011,8 +6499,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "dark-red",
@@ -7046,13 +6533,6 @@
             "textMode": "auto"
           },
           "pluginVersion": "7.5.5",
-          "scopedVars": {
-            "SmartDev": {
-              "selected": false,
-              "text": "/dev/sda",
-              "value": "/dev/sda"
-            }
-          },
           "targets": [
             {
               "exemplar": true,
@@ -7075,8 +6555,6 @@
               "refId": "C"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "S.M.A.R.T: $SmartDev",
           "transformations": [
             {
@@ -7149,7 +6627,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 27,
+  "schemaVersion": 35,
   "style": "dark",
   "tags": [
     "synology",
@@ -7159,23 +6637,21 @@
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": "4",
-          "value": "4"
+          "selected": false,
+          "text": "1",
+          "value": "1"
         },
         "description": "Total Number of NAS Systems manually entered.",
-        "error": null,
         "hide": 2,
-        "label": null,
         "name": "NASDevices",
         "options": [
           {
             "selected": true,
-            "text": "4",
-            "value": "4"
+            "text": "1",
+            "value": "1"
           }
         ],
-        "query": "4",
+        "query": "1",
         "skipUrlSync": false,
         "type": "textbox"
       },
@@ -7186,9 +6662,7 @@
           "value": "8"
         },
         "description": "This controls whether network interfaces report Megebyte set to 1, Megabits set to 8.",
-        "error": null,
         "hide": 2,
-        "label": null,
         "name": "interfacebits",
         "options": [
           {
@@ -7202,12 +6676,16 @@
         "type": "textbox"
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "snmp-exporter",
+          "value": "snmp-exporter"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(ssCpuUser, job)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Job Name",
@@ -7223,21 +6701,23 @@
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "192.168.0.18",
+          "value": "192.168.0.18"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "query_result(ssCpuUser{job=~'$JobName'})",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "Device",
         "options": [],
@@ -7249,22 +6729,23 @@
         "regex": ".*instance=\"(.*?)\".*",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(ifName{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Regex controls interfaces to show.  Default: ^eth.*|^bond.*|^docker[0-9]",
-        "error": null,
         "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "Interface",
         "options": [],
@@ -7276,19 +6757,21 @@
         "regex": "^eth.*|^bond.*|^docker[0-9]",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(ifName{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Physical Network Interfaces",
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Network Interface",
@@ -7304,18 +6787,22 @@
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(ifType_info{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Bonds an VLans",
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Virtual Interfaces",
@@ -7331,18 +6818,21 @@
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(diskID{job=~'$JobName',instance=~'$Device'},diskID)",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": true,
         "label": "Disk",
@@ -7358,18 +6848,21 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(diskID{job=~'$JobName',instance=~'$Device'},diskID)",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": true,
         "label": "Cache",
@@ -7385,18 +6878,21 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(raidName{job=~'$JobName',instance=~'$Device'},raidName)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Storage",
@@ -7411,19 +6907,20 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(storageIODevice{job=~'$JobName',instance=~'$Device'},storageIODevice)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Disk",
@@ -7438,19 +6935,20 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(spaceIODevice{job=~'$JobName',instance=~'$Device'},spaceIODevice)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Volume Name",
@@ -7465,19 +6963,21 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(hrStorageDescr{job=~'$JobName',instance=~'$Device'},hrStorageDescr)",
         "description": "Regex controls the hrStorageDescr devices  to hide.  Memory is hidden here and used in the \"hrMemoryDescr\" variable instead.  Default: /^(?!/run|/sys/.*|/dev|.*@docker.*|.*[M|m]emory)/",
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "File System",
@@ -7492,19 +6992,20 @@
         "regex": "/^(?!/run|/sys/.*|/dev|.*@docker.*|.*[M|m]emory)/",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(flashCacheSSDDev{job=~'$JobName',instance=~'$Device'},flashCacheSSDDev)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Cache",
@@ -7519,19 +7020,21 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(hrStorageDescr{job=~'$JobName',instance=~'$Device'},hrStorageDescr)",
         "description": "Regex controls file hrStorageDescr devices to show here.   Default: /.*[M|m]emory.*/",
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Memory",
@@ -7546,19 +7049,20 @@
         "regex": "/.*[M|m]emory.*/",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(diskSMARTInfoDevName{job=~'$JobName',instance=~'$Device'},diskSMARTInfoDevName)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "S.M.A.R.T",
@@ -7573,22 +7077,23 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(serviceName{job=~'$JobName',instance=~'$Device'},serviceName)",
         "description": "Regex controls which services to hide.  Default: /^(?!TELNET|FTP|AFP|OTHER)/",
-        "error": null,
         "hide": 2,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "services",
         "options": [],
@@ -7600,9 +7105,6 @@
         "regex": "/^(?!TELNET|FTP|AFP|OTHER)/",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": null,
-        "tags": [],
-        "tagsQuery": null,
         "type": "query",
         "useTags": false
       }
@@ -7641,5 +7143,6 @@
   "timezone": "browser",
   "title": "Synology NAS Details",
   "uid": "i55CRAlMk",
-  "version": 261
+  "version": 1,
+  "weekStart": ""
 }
