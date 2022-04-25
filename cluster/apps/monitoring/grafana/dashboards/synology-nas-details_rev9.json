@@ -248,7 +248,7 @@
               },
               {
                 "id": "unit",
-                "value": "fahrenheit"
+                "value": "celcius"
               },
               {
                 "id": "custom.displayMode",
@@ -446,7 +446,7 @@
         },
         {
           "exemplar": true,
-          "expr": "(temperature{job=~'$JobName',instance=~'$Device'}*9/5)+32",
+          "expr": "(temperature{job=~'$JobName',instance=~'$Device'})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -3063,7 +3063,7 @@
               },
               {
                 "id": "unit",
-                "value": "fahrenheit"
+                "value": "celcius"
               }
             ]
           },
@@ -3200,7 +3200,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "(diskTemperature{job=~'$JobName',instance=~'$Device'}*9/5)+32",
+          "expr": "(diskTemperature{job=~'$JobName',instance=~'$Device'})",
           "format": "table",
           "instant": true,
           "interval": "",

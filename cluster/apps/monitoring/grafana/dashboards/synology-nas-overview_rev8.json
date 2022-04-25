@@ -12,7 +12,7 @@
       "name": "VAR_NASDEVICES",
       "type": "constant",
       "label": "NASDevices",
-      "value": "5",
+      "value": "1",
       "description": ""
     }
   ],
