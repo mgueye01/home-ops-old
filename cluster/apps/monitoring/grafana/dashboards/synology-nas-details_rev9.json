@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -24,7 +27,7 @@
   "gnetId": 14284,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1650891974333,
+  "iteration": 1650977266469,
   "links": [
     {
       "asDropdown": true,
@@ -61,13 +64,18 @@
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {
             "align": "auto",
             "displayMode": "auto",
-            "filterable": false
+            "filterable": false,
+            "inspect": false
           },
           "decimals": 0,
           "mappings": [],
@@ -217,11 +225,11 @@
                     },
                     {
                       "color": "yellow",
-                      "value": 60
+                      "value": 30
                     },
                     {
                       "color": "dark-red",
-                      "value": 79.9912
+                      "value": 60
                     }
                   ]
                 }
@@ -368,7 +376,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "datasource": {
@@ -739,7 +747,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -895,7 +903,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -1032,7 +1040,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -1166,7 +1174,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -1301,7 +1309,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -1412,7 +1420,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -1497,7 +1505,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1636,7 +1644,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1774,7 +1782,7 @@
         "alertThreshold": true
       },
       "percentage": true,
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1935,7 +1943,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2136,7 +2144,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2246,7 +2254,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2380,7 +2388,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2474,7 +2482,7 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2554,7 +2562,8 @@
           "custom": {
             "align": "auto",
             "displayMode": "auto",
-            "filterable": false
+            "filterable": false,
+            "inspect": false
           },
           "links": [],
           "mappings": [],
@@ -2791,7 +2800,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "exemplar": true,
@@ -2904,12 +2913,17 @@
       "type": "table"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
             "align": "center",
             "displayMode": "auto",
-            "filterable": false
+            "filterable": false,
+            "inspect": false
           },
           "decimals": 0,
           "mappings": [],
@@ -2923,11 +2937,11 @@
               },
               {
                 "color": "dark-yellow",
-                "value": 60
+                "value": 30
               },
               {
                 "color": "dark-red",
-                "value": 80
+                "value": 60
               }
             ]
           },
@@ -3093,7 +3107,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "targets": [
         {
           "datasource": {
@@ -3342,7 +3356,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "repeatDirection": "h",
       "targets": [
         {
@@ -3410,7 +3424,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -3554,7 +3568,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "repeatDirection": "h",
       "targets": [
         {
@@ -3633,7 +3647,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.4.6",
+      "pluginVersion": "8.5.0",
       "repeatDirection": "h",
       "targets": [
         {
@@ -6629,7 +6643,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 35,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "synology",
