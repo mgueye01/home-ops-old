@@ -25,7 +25,7 @@ spec:
     postgresqlDatabase: authelia
     postgresqlUsername: authelia
     metrics:
-      enabled: false
+      enabled: true
       serviceMonitor:
         enabled: true
       image:
