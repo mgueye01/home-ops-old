@@ -25,7 +25,7 @@ spec:
       repository: ghcr.io/home-assistant/home-assistant
       tag: 2022.4.7
     env:
-      TZ: "Europe/Paris"
+      TZ: "${TIMEZONE}"
     envFrom:
       - secretRef:
           name: home-assistant

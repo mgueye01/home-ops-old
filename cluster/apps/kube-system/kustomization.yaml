@@ -7,3 +7,4 @@ resources:
   - descheduler
   - kured
   - intel-gpu-plugin
+  - node-feature-discovery
