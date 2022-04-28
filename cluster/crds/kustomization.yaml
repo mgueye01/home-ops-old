@@ -4,7 +4,8 @@ resources:
   - cert-manager
   #  - traefik
   - rook-ceph
-  - velero
+ # - velero
   - kube-prometheus-stack
   - external-dns
   - external-snapshotter
+  - starboard
