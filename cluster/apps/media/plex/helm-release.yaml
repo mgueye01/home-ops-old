@@ -69,7 +69,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: /CLOUDNATIVE1/Backups/plex
+            path: /volume1/CLOUDNATIVE1/Backups/plex
         mountPath: /config/Backups
         readOnly: false
       transcode:
