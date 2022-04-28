@@ -8,3 +8,4 @@ resources:
   - system-upgrade
   - rook-ceph
   - synology-csi
+  - starboard-system

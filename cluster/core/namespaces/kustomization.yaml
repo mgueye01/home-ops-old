@@ -17,3 +17,4 @@ resources:
   - synology-csi.yaml
   - harbor.yaml
   - media.yaml
+  - starboard-system.yaml

@@ -5,7 +5,7 @@ metadata:
   name: pgadmin-config
   namespace: database
   labels:
-    benji-backup.me/instance: "benji-k8s"
+    k10.kasten.io/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce
