@@ -49,8 +49,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: plex-tls
-            hosts:
+          - hosts:
               - *host
     persistence:
       config:
