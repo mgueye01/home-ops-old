@@ -37,3 +37,4 @@ resources:
   - harbor-charts.yaml
   - vector-charts.yaml
   - crowdsec-charts.yaml
+  - aqua-charts.yaml
