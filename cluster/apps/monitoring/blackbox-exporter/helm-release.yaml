@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: blackbox-exporter
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: prometheus-blackbox-exporter
+      version: 5.7.0
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+      interval: 5m
+  values:
+    fullnameOverride: blackbox-exporter
+    nameOverride: blackbox-exporter
+    allowIcmp: true
+    secretConfig: false
+    config:
+      modules:
+        http_2xx:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+            follow_redirects: true
+            preferred_ip_protocol: "ip4"
+        icmp:
+          prober: icmp
+          timeout: 30s
+          icmp:
+            preferred_ip_protocol: "ip4"
+    serviceMonitor:
+      enabled: true
+      defaults:
+        labels:
+          release: prometheus
+        interval: 30s
+        scrapeTimeout: 30s
+      targets:
+        - name: router
+          url: 192.168.0.1
+          module: icmp
+        - name: switch
+          url: 192.168.0.56
+          module: icmp
+        - name: nas
+          url: 192.168.0.18
+          module: icmp
+        - name: qnap
+          url: 192.168.0.55
+          module: icmp
+        - name: haproxy1
+          url: 192.168.10.2
+          module: icmp
+        - name: haproxy2
+          url: 192.168.10.3
+          module: icmp
+        - name: hue-bridge
+          url: 192.168.0.46
+          module: icmp
