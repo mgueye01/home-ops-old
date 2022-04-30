@@ -187,6 +187,12 @@ spec:
       - grafana-worldmap-panel
       - grafana-clock-panel
       - btplc-status-dot-panel
+      - grafana-polystat-panel
+      - grafana-singlestat-panel
+      - mxswat-separator-panel
+      - farski-blendstat-panel
+      - speakyourcode-button-panel
+      - snuids-trafficlights-panel
     serviceMonitor:
       enabled: true
     # ingress:
