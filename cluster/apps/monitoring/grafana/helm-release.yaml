@@ -172,6 +172,9 @@ spec:
         Synology-nas-details:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/synology-nas-details_rev9.json
           datasource: Prometheus
+        Blackbox-exporter:
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/blackbox-exporter.json
+          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
