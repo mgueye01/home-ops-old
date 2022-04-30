@@ -48,7 +48,7 @@ spec:
         - name: switch-flex-mini
           url: 192.168.0.56
           module: icmp
-        - name: synology-Nas
+        - name: synology-nas
           url: 192.168.0.18
           module: icmp
         - name: qnap-10g
