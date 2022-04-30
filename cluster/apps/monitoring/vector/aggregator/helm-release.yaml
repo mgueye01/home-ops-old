@@ -40,21 +40,22 @@ spec:
           address: 0.0.0.0:6010
           type: vector
           version: "2"
-        # opnsense_logs:
-        #   address: 0.0.0.0:6020
-        #   type: vector
-        #   version: "2"
-        # opnsense_filterlog_logs:
-        #   address: 0.0.0.0:6030
-        #   type: vector
-        #   version: "2"
-      # transforms:
-      #   opnsense_logs_remap:
-      #     type: remap
-      #     inputs:
-      #       - opnsense_logs
-      #     source: |
-      #       . |= parse_syslog!(.message)
+        udmp_logs:
+          address: 0.0.0.0:6100
+          type: syslog
+          mode: "udp"
+          max_length: 102_400
+
+        vector_metrics:
+          type: internal_metrics
+      # Transforms
+      transforms:
+        udmp_logs_xform:
+          type: "remap"
+          inputs:
+            - "udmp_logs"
+          source: |-
+            .timestamp=null
       sinks:
         loki_journal:
           type: loki
@@ -94,30 +95,22 @@ spec:
               {{`{{ kubernetes.pod_node_name }}`}}
             pod: >-
               {{`{{ kubernetes.pod_name }}`}}
-        # loki_opnsense:
-        #   type: loki
-        #   inputs:
-        #     - opnsense_logs_remap
-        #   endpoint: http://loki:3100
-        #   encoding:
-        #     codec: json
-        #   batch:
-        #     max_bytes: 2049000
-        #   out_of_order_action: rewrite_timestamp
-        #   labels:
-        #     hostname: opnsense
-        # loki_opnsense_filterlog:
-        #   type: loki
-        #   inputs:
-        #     - opnsense_filterlog_logs
-        #   endpoint: http://loki:3100
-        #   encoding:
-        #     codec: json
-        #   batch:
-        #     max_bytes: 2049000
-        #   out_of_order_action: rewrite_timestamp
-        #   labels:
-        #     hostname: opnsense
+        loki_udmp:
+          type: loki
+          inputs:
+            - udmp_logs_xform
+          endpoint: http://loki:3100
+          encoding:
+            codec: "json"
+          batch:
+            max_bytes: 2049000
+          out_of_order_action: rewrite_timestamp
+          remove_label_fields: true
+          remove_timestamp: true
+          labels:
+            hostname: udmp
+            appname: >-
+              {{`"{{ appname }}"`}}
     podMonitor:
       enabled: true
     service:
