@@ -205,7 +205,7 @@ spec:
                 target_label: target
                 # Ensure blackbox-exporter is reachable from Prometheus
               - target_label: __address__
-                replacement: prometheus-blackbox-exporter.monitoring:9115
+                replacement: blackbox-exporter.monitoring:9115
         enableAdminAPI: true
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
