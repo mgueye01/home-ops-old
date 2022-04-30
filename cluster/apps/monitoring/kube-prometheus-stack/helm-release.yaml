@@ -192,11 +192,8 @@ spec:
             static_configs:
               # Add URLs as target parameter
               - targets:
-                  - https://example.com
-                  - https://www.google.com
-                  - https://stackoverflow.com
-                  - https://scala-lang.org
-                  - https://helm.sh
+                  - https://blog.g-eye.io
+                  - https://me.${SECRET_DOMAIN}
             relabel_configs:
               - source_labels: [__address__]
                 target_label: __param_target
