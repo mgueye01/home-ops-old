@@ -42,24 +42,24 @@ spec:
         interval: 30s
         scrapeTimeout: 30s
       targets:
-        - name: router
+        - name: UDM-SE
           url: 192.168.0.1
           module: icmp
-        - name: switch
+        - name: USW-Flex-Mini
           url: 192.168.0.56
           module: icmp
-        - name: nas
+        - name: Synology-Nas
           url: 192.168.0.18
           module: icmp
-        - name: qnap
+        - name: Qnap-10g
           url: 192.168.0.55
           module: icmp
-        - name: haproxy1
+        - name: Haproxy1
           url: 192.168.10.2
           module: icmp
-        - name: haproxy2
+        - name: Haproxy2
           url: 192.168.10.3
           module: icmp
-        - name: hue-bridge
+        - name: Hue-bridge
           url: 192.168.0.46
           module: icmp
