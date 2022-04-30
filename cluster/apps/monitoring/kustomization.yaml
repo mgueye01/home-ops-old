@@ -16,4 +16,5 @@ resources:
   - vector
   - kubernetes-event-exporter
   - blackbox-exporter
+  - speedtest-exporter
 #  - goldilocks
