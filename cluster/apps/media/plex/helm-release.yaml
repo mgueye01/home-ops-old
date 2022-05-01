@@ -62,8 +62,6 @@ spec:
           external-dns/is-public: "true"
           external-dns.alpha.kubernetes.io/target: ipv4.${SECRET_DOMAIN}
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
         hosts:
           - host: "plex.${SECRET_DOMAIN}"
             paths:
