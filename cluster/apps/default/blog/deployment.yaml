@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: *app
-          image: "harbor.mgueye01.com/mgueye01/blog:1.0.15" # {"$imagepolicy": "flux-system:blog"}
+          image: "harbor.mgueye01.com/mgueye01/blog:1.0.6" # {"$imagepolicy": "flux-system:blog"}
           imagePullPolicy: Always
           ports:
             - name: http
