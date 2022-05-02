@@ -7,5 +7,5 @@ resources:
   - metallb-system
   - system-upgrade
   - rook-ceph
-  - synology-csi
+#  - synology-csi
   - starboard-system
