@@ -17,15 +17,14 @@ spec:
   values:
     controller:
       replicaCount: 2
-      containerPort:
-        http: 80
-        https: 443
       service:
-        type: NodePort
         externalIPs:
           - ${SVC_NGINX_ADDR}
         externalTrafficPolicy: Local
-      ingressClass: nginx
+      publishService:
+        enabled: true
+      ingressClassResource:
+        default: true
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
