@@ -33,7 +33,7 @@ spec:
       tag: v1.26.0.5715-8cf78dab3
     env:
       TZ: "${TIMEZONE}"
-      ADVERTISE_IP: "https://plex.${SECRET_DOMAIN}:443/,http://${SVC_PLEX_ADDR}:32400/"
+#      ADVERTISE_IP: "https://plex.${SECRET_DOMAIN}:443/,http://${SVC_PLEX_ADDR}:32400/"
       PLEX_CLAIM: "${SECRET_PLEX_TOKEN}"
 
     podSecurityContext:
@@ -72,7 +72,7 @@ spec:
         tls:
           - hosts:
               - "plex.${SECRET_DOMAIN}"
-
+    advertiseIp: "https://plex.${SECRET_DOMAIN}"
     persistence:
       config:
         enabled: true
