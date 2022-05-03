@@ -38,6 +38,5 @@ spec:
         - "k10.${SECRET_DOMAIN}"
       tls:
         enabled: true
-        secretName: "networking/${SECRET_DOMAIN/./-}-tls"
     grafana:
       enabled: false
