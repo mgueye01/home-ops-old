@@ -54,8 +54,8 @@ spec:
           add_header X-Content-Type-Options nosniff always;
           add_header X-XSS-Protection "1; mode=block" always;
       extraArgs:
-        http-port: 9080
-        https-port: 9443
+        http-port: 80
+        https-port: 443
         default-ssl-certificate: networking/${SECRET_DOMAIN/./-}-tls
       resources:
         requests:
