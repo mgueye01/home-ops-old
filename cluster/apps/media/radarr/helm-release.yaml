@@ -1,0 +1,87 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: radarr
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: radarr
+      version: 16.2.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/radarr-develop
+      tag: v4.1.0.6175
+    env:
+      TZ: "${TIMEZONE}"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_PUBLIC_DOMAIN}/css/base/radarr/nord.css"></head>';
+            sub_filter_once on;
+        hosts:
+          - host: &host "radarr.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      supplementalGroups:
+        - 100
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 5m
+        scrapeTimeout: 1m
+      prometheusRule:
+        enabled: false
+      exporter:
+        image:
+          repository: ghcr.io/onedr0p/exportarr
+          tag: v1.0.0
+        env:
+          port: 9794
+          additionalMetrics: true
+          unknownQueueItems: true
+    persistence:
+      config:
+        enabled: true
+        existingClaim: radarr-config-v1
+      media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDR}
+            path: /volume1/video/Movie
+        mountPath: /media
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDR}
+            path: /volume1/CLOUDNATIVE1/Backups/radarr
+        mountPath: /config/Backups
+        readOnly: false
+    resources:
+      requests:
+        cpu: 100m
+        memory: 250Mi
+      limits:
+        memory: 2000Mi
