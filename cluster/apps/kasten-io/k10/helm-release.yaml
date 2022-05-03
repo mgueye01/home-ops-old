@@ -32,11 +32,12 @@ spec:
     ingress:
       create: true
       class: nginx
-      host: "k10.${SECRET_DOMAIN}"
+      host: &host "k10.${SECRET_DOMAIN}"
       urlPath: k10
       hosts:
-        - "k10.${SECRET_DOMAIN}"
+        - *host
       tls:
         enabled: true
+        secretName: "${SECRET_DOMAIN/./-}-tls"
     grafana:
       enabled: false
