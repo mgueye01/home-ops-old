@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: sonarr
   namespace: media
 spec:
   interval: 5m
   chart:
     spec:
-      chart: radarr
+      chart: sonarr
       version: 16.2.2
       sourceRef:
         kind: HelmRepository
@@ -19,8 +19,8 @@ spec:
     createNamespace: true
   values:
     image:
-      repository: ghcr.io/k8s-at-home/radarr-develop
-      tag: v4.1.0.6175
+      repository: ghcr.io/k8s-at-home/sonarr-develop
+      tag: v3.0.8.1517
     env:
       TZ: "${TIMEZONE}"
     ingress:
@@ -34,7 +34,7 @@ spec:
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - host: &host "radarr.${SECRET_DOMAIN}"
+          - host: &host "sonarr.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -62,22 +62,22 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: radarr-config-v1
+        existingClaim: sonarr-config-v1
       media:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDR}
-            path: /volume1/video/Movie
+            server: "${NAS_ADDR}"
+            path: /volume1/video/TVshows
         mountPath: /media
       backup:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDR}
-            path: /volume1/CLOUDNATIVE1/Backups/radarr
+            server: "${NAS_ADDR}"
+            path: /volume1/CLOUDNATIVE1/Backups/sonarr
         mountPath: /config/Backups
         readOnly: false
     resources:
