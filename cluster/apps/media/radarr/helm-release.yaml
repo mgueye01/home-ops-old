@@ -83,7 +83,7 @@ spec:
           nfs:
             server: ${NAS_ADDR}
             path: /volume1/downloads/complete
-        mountPath: /mnt
+        mountPath: /downloads
       backup:
         enabled: true
         type: custom
