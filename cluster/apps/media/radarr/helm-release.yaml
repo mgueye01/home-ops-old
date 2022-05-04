@@ -76,6 +76,14 @@ spec:
             server: ${NAS_ADDR}
             path: /volume1/video/Movie
         mountPath: /media
+      downloads:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDR}
+            path: /volume1/downloads/complete
+        mountPath: /downloads
       backup:
         enabled: true
         type: custom
