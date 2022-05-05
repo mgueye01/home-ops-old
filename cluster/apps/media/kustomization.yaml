@@ -9,3 +9,4 @@ resources:
   - prowlarr
   - overseerr
   - trash-updater
+  - plex-meta-manager
