@@ -6,6 +6,7 @@ resources:
   - plex
   - radarr
   - sonarr
+  - lidarr
   - prowlarr
   - overseerr
   - trash-updater
