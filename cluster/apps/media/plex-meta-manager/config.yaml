@@ -1,7 +1,7 @@
 libraries:
   Films:
     metadata_path:
-      - file: config/Movies.yml
+      - file: config/Films.yml
       - git: Speedmod/Movies/Collections
       - git: Speedmod/Movies/Holiday
       - git: MMagTech/Movies
@@ -9,12 +9,12 @@ libraries:
       - git: meisnate12/MovieCharts
   Series:
     metadata_path:
-      - file: config/TV Shows.yml
+      - file: config/Series.yml
       - git: meisnate12/ShowCharts
-      - git: meisnate12/Networks
+      - git: meisnate12/Networksg
   Disney:
     metadata_path:
-      - file: config/Anime TV.yml
+      - file: config/Disney.yml
       - git: meisnate12/AnimeCharts
 settings:
   cache: false
