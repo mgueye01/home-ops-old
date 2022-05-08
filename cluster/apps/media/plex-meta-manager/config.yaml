@@ -1,5 +1,5 @@
 libraries:
-  Movies:
+  Films:
     metadata_path:
       - file: config/Movies.yml
       - git: Speedmod/Movies/Collections
@@ -7,17 +7,12 @@ libraries:
       - git: MMagTech/Movies
       - git: meisnate12/Studios
       - git: meisnate12/MovieCharts
-  TV shows:
+  Series:
     metadata_path:
       - file: config/TV Shows.yml
       - git: meisnate12/ShowCharts
       - git: meisnate12/Networks
-  Cartoons TV:
-    metadata_path:
-      - file: config/TV Shows.yml
-      - git: meisnate12/ShowCharts
-      - git: meisnate12/Networks
-  Anime TV:
+  Disney:
     metadata_path:
       - file: config/Anime TV.yml
       - git: meisnate12/AnimeCharts
