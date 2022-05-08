@@ -55,7 +55,7 @@ tautulli:
 radarr:
   url: http://radarr.media:7878
   token: ${SECRET_RADARR_API_KEY}
-  root_folder_path: /media/movies
+  root_folder_path: /media
   monitor: true
   availability: announced
   quality_profile: HD - 720p/1080p/2160p
@@ -69,7 +69,7 @@ sonarr:
   token: ${SECRET_SONARR_API_KEY}
   version: v3
   add: false
-  root_folder_path: /media/tv
+  root_folder_path: /media
   monitor: all
   quality_profile: HD - 720p/1080p/2160p
   language_profile: English
