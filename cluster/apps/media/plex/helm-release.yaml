@@ -103,10 +103,10 @@ spec:
       requests:
         cpu: 20m
         memory: 2000Mi
-        gpu.intel.com/i915: 1
+        gpu.intel.com/i915: 2
       limits:
         memory: 10000Mi
-        gpu.intel.com/i915: 1
+        gpu.intel.com/i915: 2
 
     addons:
       promtail:
