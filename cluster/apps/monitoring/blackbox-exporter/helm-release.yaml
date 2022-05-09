@@ -16,7 +16,7 @@ spec:
         namespace: flux-system
       interval: 5m
   install:
-    createNamespace: true
+    createNamespace: false
   values:
     fullnameOverride: blackbox-exporter
     image:
