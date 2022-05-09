@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: prometheus-blackbox-exporter
       version: 5.7.0
       sourceRef:
@@ -16,11 +15,24 @@ spec:
         name: prometheus-community-charts
         namespace: flux-system
       interval: 5m
+  install:
+    createNamespace: true
   values:
     fullnameOverride: blackbox-exporter
-    nameOverride: blackbox-exporter
+    image:
+      repository: quay.io/prometheus/blackbox-exporter
+    ingress:
+      enabled: true
+      className: nginx
+      hosts:
+        - host: &host "blackbox.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
     allowIcmp: true
-    secretConfig: false
     config:
       modules:
         http_2xx:
@@ -40,7 +52,7 @@ spec:
       defaults:
         labels:
           release: prometheus
-        interval: 30s
+        interval: 2m
         scrapeTimeout: 30s
       targets:
         - name: udmse
@@ -64,3 +76,33 @@ spec:
         - name: hue-bridge
           url: 192.168.0.46
           module: icmp
+    prometheusRule:
+      enabled: true
+      additionalLabels:
+        app: prometheus-operator
+        release: prometheus
+      rules:
+        - alert: BlackboxSslCertificateWillExpireSoon
+          expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 3
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The SSL certificate for {{"{{ $labels.target }}"}} will expire in less than 3 days
+        - alert: BlackboxSslCertificateExpired
+          expr: probe_ssl_earliest_cert_expiry - time() <= 0
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The SSL certificate for {{"{{ $labels.target }}"}} has expired
+        - alert: BlackboxProbeFailed
+          expr: probe_success == 0
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The host {{"{{ $labels.target }}"}} is currently unreachable
