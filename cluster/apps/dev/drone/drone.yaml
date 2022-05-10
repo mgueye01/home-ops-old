@@ -31,7 +31,8 @@ spec:
       hosts:
         - host: dr.${SECRET_DOMAIN}
           paths:
-            - /
+            - path: /
+              pathType: ImplementationSpecific
       tls:
         - hosts:
             - dr.${SECRET_DOMAIN}
