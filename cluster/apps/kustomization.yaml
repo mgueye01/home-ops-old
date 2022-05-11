@@ -6,9 +6,9 @@ resources:
   - networking
   - system-upgrade
   # - tools
-  - monitoring
+#  - monitoring
   - flux-system
-  - calico-system
+#  - calico-system
   - home
   - database
   - dev
