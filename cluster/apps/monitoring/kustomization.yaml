@@ -1,20 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - botkube
-  - uptimerobot-heartbeat
-#  - thanos
-  - promtail
-  - grafana
-  - loki
-#  - kube-prometheus-stack
-  - uptime-kuma
-  - unifi-poller
-#  - gotify
-  - node-problem-detector
-  - karma
-  - vector
-  - kubernetes-event-exporter
-#  - blackbox-exporter
-  - speedtest-exporter
-#  - goldilocks
+  # - botkube
+  # - uptimerobot-heartbeat
+  - thanos
+#   - promtail
+#   - grafana
+#   - loki
+  - kube-prometheus-stack
+#   - uptime-kuma
+#   - unifi-poller
+# #  - gotify
+#   - node-problem-detector
+#   - karma
+#   - vector
+#   - kubernetes-event-exporter
+# #  - blackbox-exporter
+#   - speedtest-exporter
+# #  - goldilocks
