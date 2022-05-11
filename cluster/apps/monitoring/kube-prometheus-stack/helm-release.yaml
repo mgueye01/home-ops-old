@@ -185,24 +185,24 @@ spec:
                 target_label: instance
               - target_label: __address__
                 replacement: 192.168.0.18:9116 # The SNMP exporter's real hostname:port.
-          # - job_name: blackbox
-          #   metrics_path: /probe
-          #   params:
-          #     module: [http_2xx]
-          #   static_configs:
-          #     # Add URLs as target parameter
-          #     - targets:
-          #         - https://blog.g-eye.io
-          #         - https://me.${SECRET_DOMAIN}
-          #   relabel_configs:
-          #     - source_labels: [__address__]
-          #       target_label: __param_target
-          #     - source_labels: [__param_target]
-          #       # Important!
-          #       target_label: target
-          #       # Ensure blackbox-exporter is reachable from Prometheus
-          #     - target_label: __address__
-          #       replacement: blackbox-exporter.monitoring:9115
+          - job_name: blackbox
+            metrics_path: /probe
+            params:
+              module: [http_2xx]
+            static_configs:
+              # Add URLs as target parameter
+              - targets:
+                  - https://blog.g-eye.io
+                  - https://me.${SECRET_DOMAIN}
+            relabel_configs:
+              - source_labels: [__address__]
+                target_label: __param_target
+              - source_labels: [__param_target]
+                # Important!
+                target_label: target
+                # Ensure blackbox-exporter is reachable from Prometheus
+              - target_label: __address__
+                replacement: blackbox-exporter.monitoring:9115
         enableAdminAPI: true
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
