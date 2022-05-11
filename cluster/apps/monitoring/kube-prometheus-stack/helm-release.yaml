@@ -89,6 +89,11 @@ spec:
         enabled: true
         pathType: Prefix
         ingressClassName: "nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
         hosts:
           - &host "alert-manager.${SECRET_DOMAIN}"
         tls:
@@ -169,6 +174,11 @@ spec:
         enabled: true
         pathType: Prefix
         ingressClassName: "nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
         hosts:
           - &host "prometheus.${SECRET_DOMAIN}"
         tls:
@@ -218,7 +228,7 @@ spec:
           # renovate: datasource=docker depName=quay.io/thanos/thanos
           version: "v0.26.0"
           objectStorageConfig:
-            name: thanos-objstore-secret
+            name: thanos-objstore
             key: objstore.yml
         resources:
           requests:
