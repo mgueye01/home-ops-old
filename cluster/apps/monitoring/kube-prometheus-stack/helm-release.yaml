@@ -5,19 +5,21 @@ metadata:
   name: kube-prometheus-stack
   namespace: monitoring
 spec:
+  interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
-      interval: 5m
+      version: 35.0.3
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
         namespace: flux-system
-      version: 35.0.3
-  interval: 5m
+      interval: 5m
   install:
     createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
     remediation:
       retries: 5
   values:
@@ -87,17 +89,35 @@ spec:
         enabled: true
         pathType: Prefix
         ingressClassName: "nginx"
-        annotations:
-          nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
         hosts:
-          - "alert-manager.${SECRET_DOMAIN}"
+          - &host "alert-manager.${SECRET_DOMAIN}"
         tls:
           - hosts:
-              - "alert-manager.${SECRET_DOMAIN}"
-    fullnameOverride: prometheus
+              - *host
+      alertmanagerSpec:
+        replicas: 3
+        podAntiAffinity: hard
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "ceph-block"
+              resources:
+                requests:
+                  # TODO(kube-prometheus-stack): change alertmanager volume to 250Mi
+                  storage: 1Gi
+    kube-state-metrics:
+      metricLabelsAllowlist:
+        - "persistentvolumeclaims=[*]"
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: kubernetes_node
     grafana:
       enabled: false
       forceDeployDashboards: true
@@ -106,38 +126,6 @@ spec:
           multicluster:
             etcd:
               enabled: true
-    kube-state-metrics:
-      fullnameOverride: kube-state-metrics
-    kubeApiServer:
-      enabled: true
-    kubeControllerManager:
-      enabled: true
-      endpoints:
-        - "192.168.10.11"
-        - "192.168.10.12"
-        - "192.168.10.13"
-    kubeEtcd:
-      enabled: true
-      endpoints:
-        - "192.168.10.11"
-        - "192.168.10.12"
-        - "192.168.10.13"
-      service:
-        enabled: true
-        port: 2381
-        targetPort: 2381
-    kubeProxy:
-      enabled: true
-      endpoints:
-        - "192.168.10.11"
-        - "192.168.10.12"
-        - "192.168.10.13"
-    kubeScheduler:
-      enabled: true
-      endpoints:
-        - "192.168.10.11"
-        - "192.168.10.12"
-        - "192.168.10.13"
     kubelet:
       enabled: true
       serviceMonitor:
@@ -146,31 +134,98 @@ spec:
             sourceLabels:
               - node
             targetLabel: instance
-    nodeExporter:
-      serviceMonitor:
-        relabelings:
-          - action: replace
-            regex: (.*)
-            replacement: $1
-            sourceLabels:
-              - __meta_kubernetes_pod_node_name
-            targetLabel: kubernetes_node
+    # kubeApiServer:
+    #   enabled: true
+    # kubeControllerManager:
+    #   enabled: true
+    #   endpoints:
+    #     - 192.168.10.11
+    #     - 192.168.10.12
+    #     - 192.168.10.13
+    # kubeScheduler:
+    #   enabled: true
+    #   endpoints:
+    #     - 192.168.10.11
+    #     - 192.168.10.12
+    #     - 192.168.10.13
+    # kubeProxy:
+    #   enabled: true
+    #   endpoints:
+    #     - 192.168.10.11
+    #     - 192.168.10.12
+    #     - 192.168.10.13
+    # kubeEtcd:
+    #   enabled: true
+    #   endpoints:
+    #     - 192.168.10.11
+    #     - 192.168.10.12
+    #     - 192.168.10.13
+    #   service:
+    #     enabled: true
+    #     port: 2381
+    #     targetPort: 2381
     prometheus:
       ingress:
         enabled: true
         pathType: Prefix
         ingressClassName: "nginx"
+        hosts:
+          - &host "prometheus.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+      thanosService:
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
+      thanosIngress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "nginx"
         annotations:
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
           nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-          - "prometheus.${SECRET_DOMAIN}"
+          - &host "thanos-sidecar.${SECRET_DOMAIN}"
         tls:
           - hosts:
-              - "prometheus.${SECRET_DOMAIN}"
+              - *host
       prometheusSpec:
+        replicas: 3
+        replicaExternalLabelName: "replica"
+        podAntiAffinity: hard
+        retentionSize: "4GB"
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        retention: 2d
+        enableAdminAPI: true
+        walCompression: true
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "ceph-block"
+              resources:
+                requests:
+                  storage: 10Gi
+        thanos:
+          image: quay.io/thanos/thanos:v0.26.0
+          # renovate: datasource=docker depName=quay.io/thanos/thanos
+          version: "v0.26.0"
+          objectStorageConfig:
+            name: thanos-objstore-secret
+            key: objstore.yml
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2000Mi
+          limits:
+            memory: 8000Mi
         additionalScrapeConfigs:
           - honor_timestamps: true
             job_name: minio-job
@@ -196,50 +251,6 @@ spec:
                 target_label: instance
               - target_label: __address__
                 replacement: 192.168.0.18:9116 # The SNMP exporter's real hostname:port.
-          - job_name: blackbox
-            metrics_path: /probe
-            params:
-              module: [http_2xx]
-            static_configs:
-              # Add URLs as target parameter
-              - targets:
-                  - https://blog.g-eye.io
-                  - https://me.${SECRET_DOMAIN}
-            relabel_configs:
-              - source_labels: [__address__]
-                target_label: __param_target
-              - source_labels: [__param_target]
-                # Important!
-                target_label: target
-                # Ensure blackbox-exporter is reachable from Prometheus
-              - target_label: __address__
-                replacement: blackbox-exporter.monitoring:9115
-        enableAdminAPI: true
-        podMonitorSelectorNilUsesHelmValues: false
-        probeSelectorNilUsesHelmValues: false
-        replicaExternalLabelName: replica
-        replicas: 1
-        retention: 6h
-        ruleSelectorNilUsesHelmValues: false
-        serviceMonitorSelectorNilUsesHelmValues: false
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              resources:
-                requests:
-                  storage: 12Gi
-              storageClassName: ceph-block
-        thanos:
-          image: "quay.io/thanos/thanos:v0.26.0"
-          objectStorageConfig:
-            key: objstore.yml
-            name: thanos-objstore
-          version: v0.23.1
-        walCompression: true
-      thanosService:
-        enabled: true
-      thanosServiceMonitor:
-        enabled: true
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
