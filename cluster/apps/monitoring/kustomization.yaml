@@ -7,14 +7,14 @@ resources:
   - promtail
   - grafana
   - loki
-  - kube-prometheus-stack
+#  - kube-prometheus-stack
   - uptime-kuma
   - unifi-poller
 #  - gotify
   - node-problem-detector
   - karma
   - vector
-#  - kubernetes-event-exporter
+  - kubernetes-event-exporter
 #  - blackbox-exporter
   - speedtest-exporter
 #  - goldilocks
