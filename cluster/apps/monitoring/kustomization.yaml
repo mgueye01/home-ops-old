@@ -10,7 +10,7 @@ resources:
   - kube-prometheus-stack
   - uptime-kuma
   - unifi-poller
-  - gotify
+#  - gotify
   - node-problem-detector
   - karma
   - vector
