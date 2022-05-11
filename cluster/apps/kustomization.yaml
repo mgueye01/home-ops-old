@@ -8,7 +8,7 @@ resources:
   # - tools
   - monitoring
   - flux-system
-  - calico-system
+#  - calico-system
   - home
   - database
   - dev
