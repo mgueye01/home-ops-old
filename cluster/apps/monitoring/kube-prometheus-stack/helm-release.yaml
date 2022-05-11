@@ -141,24 +141,24 @@ spec:
             targetLabel: instance
     kubeApiServer:
       enabled: true
-    kubeControllerManager:
-      enabled: true
-      endpoints:
-        - 192.168.10.11
-        - 192.168.10.12
-        - 192.168.10.13
-    kubeScheduler:
-      enabled: true
-      endpoints:
-        - 192.168.10.11
-        - 192.168.10.12
-        - 192.168.10.13
-    kubeProxy:
-      enabled: true
-      endpoints:
-        - 192.168.10.11
-        - 192.168.10.12
-        - 192.168.10.13
+    # kubeControllerManager:
+    #   enabled: true
+    #   endpoints:
+    #     - 192.168.10.11
+    #     - 192.168.10.12
+    #     - 192.168.10.13
+    # kubeScheduler:
+    #   enabled: true
+    #   endpoints:
+    #     - 192.168.10.11
+    #     - 192.168.10.12
+    #     - 192.168.10.13
+    # kubeProxy:
+    #   enabled: true
+    #   endpoints:
+    #     - 192.168.10.11
+    #     - 192.168.10.12
+    #     - 192.168.10.13
     kubeEtcd:
       enabled: true
       endpoints:
