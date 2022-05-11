@@ -15,6 +15,6 @@ resources:
   - karma
   - vector
   - kubernetes-event-exporter
-  - blackbox-exporter
+#  - blackbox-exporter
   - speedtest-exporter
 #  - goldilocks
