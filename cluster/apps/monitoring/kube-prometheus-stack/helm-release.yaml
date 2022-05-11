@@ -14,8 +14,12 @@ spec:
         kind: HelmRepository
         name: prometheus-community-charts
         namespace: flux-system
-      version: "20.0.1"
+      version: 35.0.3
   interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
   values:
     alertmanager:
       config:
