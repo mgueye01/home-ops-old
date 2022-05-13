@@ -25,7 +25,7 @@ spec:
       replicaLabels:
         - replica
       dnsDiscovery:
-        sidecarsService: kube-prometheus-stack-prometheus
+        sidecarsService: prometheus-thanos-discovery
         sidecarsNamespace: monitoring
       ingress:
         enabled: true
