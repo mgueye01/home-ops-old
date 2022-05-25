@@ -82,7 +82,7 @@ spec:
             url: http://loki:3100
           - name: MySQL Blocky
             type: mysql
-            url: mariadb.db:3306
+            url: mariadb.database:3306
             database: blocky
             user: ${MARIADB_GRAFANA_USER}
             secureJsonData:
