@@ -80,6 +80,13 @@ spec:
             type: loki
             access: proxy
             url: http://loki:3100
+          - name: MySQL Blocky
+            type: mysql
+            url: mariadb.db:3306
+            database: blocky
+            user: ${MARIADB_GRAFANA_USER}
+            secureJsonData:
+              password: ${MARIADB_GRAFANA_PASSWORD}
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/12175
@@ -131,6 +138,9 @@ spec:
         blocky:
           url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.16/docs/blocky-grafana.json
           datasource: Prometheus
+        blocky-query:
+          url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.16/docs/blocky-query-grafana.json
+          datasource: MySQL Blocky
         k8s-dashboard:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/k8s-for-prometheus-dashboard.json
           datasource: Prometheus
