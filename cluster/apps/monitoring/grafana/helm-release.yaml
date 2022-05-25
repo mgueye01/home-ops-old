@@ -84,9 +84,9 @@ spec:
             type: mysql
             url: mariadb.database:3306
             database: blocky
-            user: ${MARIADB_GRAFANA_USER}
+            user: ${SECRET_MARIADB_GRAFANA_USER}
             secureJsonData:
-              password: ${MARIADB_GRAFANA_PASSWORD}
+              password: $SECRET_MARIADB_GRAFANA_PASSWORD}
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/12175
