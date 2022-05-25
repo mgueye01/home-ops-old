@@ -1,0 +1,103 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: blocky
+  namespace: networking
+spec:
+  interval: 10m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: blocky
+      version: 10.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/0xerr0r/blocky
+      tag: v0.18
+    controller:
+      replicas: 2
+    config: |
+      upstream:
+        default:
+          - tcp-tls:1dot1dot1dot1.cloudflare-dns.com
+          - tcp-tls:dns.google
+          - tcp-tls:dns10.quad9.net
+      conditional:
+        mapping:
+          # ${DOMAIN}: tcp+udp:${COREDNS_IP}
+          # ${CLUSTER_DOMAIN}: tcp+udp:${COREDNS_IP}
+          # milkyway: tcp+udp:${ROUTER_IP}
+          ${SECRET_DOMAIN}: tcp+udp:${GATEWAY_ADDR}
+      clientLookup:
+        upstream: tcp+udp:${GATEWAY_ADDR}
+      blocking:
+        blackLists:
+          ads:
+            - https://dbl.oisd.nl/
+          tvs:
+            # Wassname
+            # https://gist.github.com/wassname/b594c63222f9e4c83ea23c818440901b
+            - https://gist.githubusercontent.com/wassname/b594c63222f9e4c83ea23c818440901b/raw/1b0afd2aecf3a099f1681b1cf18fc0e6e2fa116a/Samsung%2520Smart-TV%2520Blocklist%2520Adlist%2520(for%2520PiHole)
+            # https://gist.github.com/wassname/78eeaaad299dc4cddd04e372f20a9aa7
+            - https://gist.githubusercontent.com/wassname/78eeaaad299dc4cddd04e372f20a9aa7/raw/d7863a978993e99d9c77c9001008ce670a3b4c29/LG%2520Smart-TV%2520Blocklist%2520Adlist%2520(for%2520PiHole)
+            # Perflyst
+            # https://github.com/Perflyst/PiHoleBlocklist/blob/master/SmartTV.txt
+            - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
+            # hkamran80
+            # https://gist.github.com/hkamran80/779019103fcd306979411d44c8d38459
+            - https://gist.githubusercontent.com/hkamran80/779019103fcd306979411d44c8d38459/raw/e0f084b396bb8ffcb390c8e7272ae96a6c292d10/SmartTV2.txt
+        clientGroupsBlock:
+          default:
+            - ads
+          10.0.30.0/24:
+            - ads
+            - tvs
+      prometheus:
+        enable: true
+      bootstrapDns: tcp+udp:1.1.1.1
+      httpPort: 4000
+      queryLog:
+        type: mysql
+        target: ${SECRET_MARIADB_BLOCKY_USER}:${SECRET_MARIADB_BLOCKY_PASSWORD}@tcp(mariadb.db:3306)/${SECRET_MARIADB_BLOCKY_DATABASE}?charset=utf8mb4&parseTime=True&loc=Local
+        logRetentionDays: 7
+    service:
+      dns-udp:
+        enabled: true
+        type: LoadBalancer
+        externalIPs:
+          - ${SVC_BLOCKY_ADDR}
+        externalTrafficPolicy: Local
+        ports:
+          dns-udp:
+            enabled: true
+            port: 53
+            protocol: UDP
+            targetPort: 53
+    metrics:
+      enabled: true
+      prometheusRule:
+        enabled: true
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: blocky-config
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - blocky
+            topologyKey: kubernetes.io/hostname
+    resources:
+      requests:
+        cpu: 200m
+        memory: 700Mi
+      limits:
+        cpu: 1
+        memory: 1Gi
