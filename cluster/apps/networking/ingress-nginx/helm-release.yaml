@@ -35,7 +35,7 @@ spec:
       config:
         client-header-timeout: 120
         client-body-buffer-size: "1000M"
-        client_max_body_size: 800M
+        client_max_body_size: 1000M
         client-body-timeout: 120
         custom-http-errors: >-
           401,403,404,500,501,502,503
@@ -44,7 +44,7 @@ spec:
         hsts-max-age: "31449600"
         keep-alive: 120
         keep-alive-requests: 10000
-        proxy-body-size: "100M"
+        proxy-body-size: "1000M"
         ssl-protocols: "TLSv1.3 TLSv1.2"
         use-forwarded-headers: "true"
       metrics:
