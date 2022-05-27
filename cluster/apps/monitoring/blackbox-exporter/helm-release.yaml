@@ -47,7 +47,7 @@ spec:
           icmp:
             preferred_ip_protocol: "ip4"
     serviceMonitor:
-      enabled: false
+      enabled: true
       defaults:
         labels:
           release: prometheus
