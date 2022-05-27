@@ -176,7 +176,7 @@ spec:
         - 192.168.10.12
         - 192.168.10.13
     kubeEtcd:
-      enabled: true
+      enabled: false
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
