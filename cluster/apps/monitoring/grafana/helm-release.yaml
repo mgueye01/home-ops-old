@@ -86,7 +86,7 @@ spec:
             database: blocky
             user: ${SECRET_MARIADB_GRAFANA_USER}
             secureJsonData:
-              password: $SECRET_MARIADB_GRAFANA_PASSWORD}
+              password: ${SECRET_MARIADB_GRAFANA_PASSWORD}
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/12175
