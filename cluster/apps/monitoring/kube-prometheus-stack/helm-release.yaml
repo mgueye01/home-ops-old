@@ -261,7 +261,7 @@ spec:
                   - "192.168.0.18:9000"
           - job_name: node
             static_configs:
-              - targets: ['192.168.0.18:9100']
+              - targets: ["192.168.0.18:9100"]
           - job_name: "snmp-exporter"
             static_configs:
               - targets: ["192.168.0.18"]
@@ -278,9 +278,9 @@ spec:
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
-        - '--collector.textfile.directory=/var/lib/node_exporter/textfile_collector'
-        - '--collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)'
-        - '--collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$'
+        - "--collector.textfile.directory=/var/lib/node_exporter/textfile_collector"
+        - "--collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)"
+        - "--collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$"
       extraHostVolumeMounts:
         - name: textfiles
           hostPath: /var/lib/node_exporter/textfile_collector

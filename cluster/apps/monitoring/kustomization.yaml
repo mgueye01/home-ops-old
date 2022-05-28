@@ -8,9 +8,9 @@ resources:
   - grafana
   - loki
   - kube-prometheus-stack
-#  - uptime-kuma
+  #  - uptime-kuma
   - unifi-poller
-#  - gotify
+  #  - gotify
   - node-problem-detector
   - karma
   - vector

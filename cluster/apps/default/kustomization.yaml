@@ -2,9 +2,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-#  - hajimari
-#  - blog
+  #  - hajimari
+  #  - blog
   - littlelink
-#  - podinfo
-#  - dashboard
+  #  - podinfo
+  #  - dashboard
   - theme-park
