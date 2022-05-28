@@ -63,7 +63,7 @@ spec:
       httpPort: 4000
       queryLog:
         type: mysql
-        target: ${SECRET_MARIADB_BLOCKY_USER}:${SECRET_MARIADB_BLOCKY_PASSWORD}@tcp(mariadb.db:3306)/${SECRET_MARIADB_BLOCKY_DATABASE}?charset=utf8mb4&parseTime=True&loc=Local
+        target: ${SECRET_MARIADB_BLOCKY_USER}:${SECRET_MARIADB_BLOCKY_PASSWORD}@tcp(mariadb.database:3306)/${SECRET_MARIADB_BLOCKY_DATABASE}?charset=utf8mb4&parseTime=True&loc=Local
         logRetentionDays: 7
     service:
       dns-udp:
