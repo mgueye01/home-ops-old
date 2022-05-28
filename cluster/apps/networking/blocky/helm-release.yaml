@@ -81,7 +81,7 @@ spec:
     metrics:
       enabled: true
       prometheusRule:
-        enabled: false
+        enabled: true
     podAnnotations:
       configmap.reloader.stakater.com/reload: blocky-config
     affinity:
