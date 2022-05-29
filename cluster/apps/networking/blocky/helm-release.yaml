@@ -26,15 +26,30 @@ spec:
       strategy: RollingUpdate
       replicas: 2
     env:
-      TZ: "Europe/Paris"
+      TZ: "${TIMEZONE}"
     service:
+      # main:
+      #   ports:
+      #     http:
+      #       port: 4000
       main:
+        enabled: true
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: blocky
+          metallb.universe.tf/loadBalancerIPs: "${SVC_BLOCKY_ADDR}"
+        externalTrafficPolicy: Local
         ports:
           http:
+            enabled: true
             port: 4000
+            protocol: HTTP
       dns:
         enabled: true
         type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: blocky
+          metallb.universe.tf/loadBalancerIPs: "${SVC_BLOCKY_ADDR}"
         externalIPs:
           - "${SVC_BLOCKY_ADDR}"
         ports:
@@ -60,12 +75,16 @@ spec:
       upstream:
         default:
           - tcp+udp:${GATEWAY_ADDR}
+          - tcp-tls:1dot1dot1dot1.cloudflare-dns.com
+          - tcp-tls:dns.google
+          - tcp-tls:dns10.quad9.net
       conditional:
         mapping:
           ${SECRET_DOMAIN}: tcp+udp:${GATEWAY_ADDR}
       blocking:
         blackLists:
           ads:
+            - https://dbl.oisd.nl/
             - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
             - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
             - http://sysctl.org/cameleon/hosts
