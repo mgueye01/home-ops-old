@@ -275,9 +275,6 @@ spec:
                 target_label: instance
               - target_label: __address__
                 replacement: 192.168.0.18:9116 # The SNMP exporter's real hostname:port.
-          - job_name: 'blocky'
-            static_configs:
-              - targets: ['192.168.10.64:4000']
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
