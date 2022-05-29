@@ -59,6 +59,7 @@ spec:
             - tvs
       prometheus:
         enable: true
+        path: /metrics
       bootstrapDns: tcp+udp:1.1.1.1
       httpPort: 4000
       queryLog:
