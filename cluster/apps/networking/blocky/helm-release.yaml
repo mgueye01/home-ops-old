@@ -55,7 +55,7 @@ spec:
         interval: 30s
         scrapeTimeout: 10s
       prometheusRule:
-        enabled: true
+        enabled: false
     config: |
       upstream:
         default:
