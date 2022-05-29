@@ -100,8 +100,10 @@ spec:
         path: /metrics
       bootstrapDns: tcp:1.1.1.1
       httpPort: 4000
-      logFormat: json
-      logLevel: info
+      queryLog:
+        type: mysql
+        target: ${SECRET_MARIADB_BLOCKY_USER}:${SECRET_MARIADB_BLOCKY_PASSWORD}@tcp(mariadb.database:3306)/${SECRET_MARIADB_BLOCKY_DATABASE}?charset=utf8mb4&parseTime=True&loc=Local
+        logRetentionDays: 7
     persistence:
       whitelists:
         enabled: true
