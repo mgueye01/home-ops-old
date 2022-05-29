@@ -28,10 +28,6 @@ spec:
     env:
       TZ: "${TIMEZONE}"
     service:
-      # main:
-      #   ports:
-      #     http:
-      #       port: 4000
       main:
         enabled: true
         type: LoadBalancer
@@ -70,7 +66,7 @@ spec:
         interval: 30s
         scrapeTimeout: 10s
       prometheusRule:
-        enabled: false
+        enabled: true
     config: |
       upstream:
         default:
