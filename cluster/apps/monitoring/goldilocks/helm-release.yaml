@@ -30,6 +30,7 @@ spec:
           cpu: 100m
           memory: 64M
         limits:
+          cpu: 200m
           memory: 250M
     dashboard:
       enabled: true
@@ -56,5 +57,5 @@ spec:
           cpu: 100m
           memory: 64Mi
         limits:
-          cpu: 100m
+          cpu: 200m
           memory: 100M
