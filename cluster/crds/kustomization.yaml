@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - cert-manager
   - rook-ceph
-  # - velero
+  - kyverno
   - kube-prometheus-stack
   - external-dns
   - external-snapshotter

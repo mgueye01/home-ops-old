@@ -7,9 +7,9 @@ resources:
   - monitoring-namespace.yaml
   - rook-ceph.yaml
   - tools.yaml
-  - velero.yaml
+  - kyverno.yaml
   - home.yaml
-  #  - longhorn-system.yaml
+  - calico-system.yaml
   - database.yaml
   - dev.yaml
   - kasten-io.yaml
@@ -18,3 +18,5 @@ resources:
   - harbor.yaml
   - media.yaml
   - starboard-system.yaml
+  - flux-system.yaml
+  - kube-system.yaml

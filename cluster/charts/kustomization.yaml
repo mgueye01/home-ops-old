@@ -32,3 +32,4 @@ resources:
   - vector-charts.yaml
   - crowdsec-charts.yaml
   - aqua-charts.yaml
+  - kyverno-charts.yaml
