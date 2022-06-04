@@ -7,7 +7,6 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  timeout: 5m
   ref:
     branch: main
   secretRef:
@@ -26,7 +25,3 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
