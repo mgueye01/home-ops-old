@@ -33,3 +33,4 @@ resources:
   - crowdsec-charts.yaml
   - aqua-charts.yaml
   - kyverno-charts.yaml
+  - cilium-charts.yaml
