@@ -10,3 +10,4 @@ resources:
   - synology-csi
   - starboard-system
   - kyverno
+  - cilium
