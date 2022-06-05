@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   # - default
   # - kube-system
-  # - networking
+  - networking
   # - system-upgrade
   # # - tools
   # - monitoring
