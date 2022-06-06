@@ -9,5 +9,5 @@ resources:
   - rook-ceph
   - synology-csi
   - starboard-system
-  - kyverno
+#  - kyverno
   - cilium
