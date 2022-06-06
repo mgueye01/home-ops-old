@@ -89,17 +89,17 @@ spec:
               password: ${SECRET_MARIADB_GRAFANA_PASSWORD}
     dashboards:
       default:
-        # Ref: https://grafana.com/grafana/dashboards/12175
-        calico-felix:
-          gnetId: 12175
-          revision: 5
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/2842
-        ceph-cluster:
-          gnetId: 2842
-          revision: 14
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/5336
+        # # Ref: https://grafana.com/grafana/dashboards/12175
+        # calico-felix:
+        #   gnetId: 12175
+        #   revision: 5
+        #   datasource: Prometheus
+        # # Ref: https://grafana.com/grafana/dashboards/2842
+        # ceph-cluster:
+        #   gnetId: 2842
+        #   revision: 14
+        #   datasource: Prometheus
+        # # Ref: https://grafana.com/grafana/dashboards/5336
         ceph-osd:
           gnetId: 5336
           revision: 5
@@ -147,15 +147,15 @@ spec:
         k8s-node-exporter-dashboard:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/node-exporter-for-prometheus.json
           datasource: Prometheus
-        k8s-loki-stack-monitoring-dashboard:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/loki-stack-monitoring.json
-          datasource: Prometheus
-        loki-logging-dashboard:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/loki-logging-dashboard.json
-        kubernete events dashboard:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/kubernetes-events-dashboard.json
-          datasource: loki
-        # Ref: https://grafana.com/grafana/dashboards/11315
+        # k8s-loki-stack-monitoring-dashboard:
+        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/loki-stack-monitoring.json
+        #   datasource: Prometheus
+        # loki-logging-dashboard:
+        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/loki-logging-dashboard.json
+        # kubernete events dashboard:
+        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/kubernetes-events-dashboard.json
+        #   datasource: loki
+        # # Ref: https://grafana.com/grafana/dashboards/11315
         unifi-client-insights:
           gnetId: 11315
           revision: 8
