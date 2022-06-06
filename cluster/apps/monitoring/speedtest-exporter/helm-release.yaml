@@ -30,7 +30,7 @@ spec:
       enabled: true
       prometheusRule:
         enabled: true
-        downloadLimit: 450
-        uploadLimit: 450
+        downloadLimit: 900
+        uploadLimit: 700
         pingLimit: 25
         jitterLimit: 10
