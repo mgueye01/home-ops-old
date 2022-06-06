@@ -95,11 +95,11 @@ spec:
         #   revision: 5
         #   datasource: Prometheus
         # # Ref: https://grafana.com/grafana/dashboards/2842
-        # ceph-cluster:
-        #   gnetId: 2842
-        #   revision: 14
-        #   datasource: Prometheus
-        # # Ref: https://grafana.com/grafana/dashboards/5336
+        ceph-cluster:
+          gnetId: 2842
+          revision: 14
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/5336
         ceph-osd:
           gnetId: 5336
           revision: 5
