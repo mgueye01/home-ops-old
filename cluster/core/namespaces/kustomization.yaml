@@ -6,10 +6,10 @@ resources:
   - networking.yaml
   - monitoring-namespace.yaml
   - rook-ceph.yaml
-  - tools.yaml
+  # - tools.yaml
   - kyverno.yaml
   - home.yaml
-  - calico-system.yaml
+  # - calico-system.yaml
   - database.yaml
   - dev.yaml
   - kasten-io.yaml
