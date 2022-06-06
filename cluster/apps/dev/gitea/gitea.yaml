@@ -89,7 +89,7 @@ spec:
               cpu: 2000m
               memory: 650Mi
             requests:
-              cpu: 500m
+              cpu: 200m
               memory: 215Mi
           volumeMounts:
             - name: data
