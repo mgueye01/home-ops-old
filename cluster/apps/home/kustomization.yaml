@@ -4,7 +4,7 @@ resources:
   #  - emqx
   - home-assistant
   - node-red
-  - vaultwarden
+  # - vaultwarden
   #  - zigbee2mqtt
   - zwavejs2mqtt
   - mosquitto
