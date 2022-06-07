@@ -27,6 +27,10 @@ spec:
           nginx.ingress.kubernetes.io/enable-global-auth: "false"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
+          ingress.kubernetes.io/ssl-redirect: "true"
+          ingress.kubernetes.io/proxy-body-size: "0"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
           core: harbor.${SECRET_DOMAIN}
     externalURL: https://harbor.${SECRET_DOMAIN}
