@@ -8,34 +8,82 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://kubernetes-sigs.github.io/descheduler
       chart: descheduler
-      version: 0.24.0
+      version: 0.24.1
       sourceRef:
         kind: HelmRepository
         name: descheduler-charts
         namespace: flux-system
-      interval: 5m
-      containers:
-        resources:
-          requests:
-            cpu: 15m
-            memory: 105M
-          limits:
-            cpu: 15m
-            memory: 105M
+      interval: 10m
   values:
-    kind: Deployment
+    schedule: "*/5 * * * *"
     deschedulerPolicy:
       strategies:
+        RemovePodsHavingTooManyRestarts:
+          enabled: true
+          params:
+            podsHavingTooManyRestarts:
+              podRestartThreshold: 100
+              includingInitContainers: true
+        RemovePodsViolatingTopologySpreadConstraint:
+          enabled: true
+          params:
+            includeSoftConstraints: true
+        RemoveFailedPods:
+          enabled: true
+          params:
+            failedPods:
+              reasons:
+                - OutOfcpu
+                - CreateContainerConfigError
+              includingInitContainers: true
+              excludeOwnerKinds:
+                - Job
+              minPodLifetimeSeconds: 3600
         RemoveDuplicates:
-          enabled: false
+          enabled: true
+        RemovePodsViolatingNodeTaints:
+          enabled: true
         RemovePodsViolatingNodeAffinity:
           enabled: true
           params:
             nodeAffinityType:
               - requiredDuringSchedulingIgnoredDuringExecution
         RemovePodsViolatingInterPodAntiAffinity:
-          enabled: false
+          enabled: true
         LowNodeUtilization:
-          enabled: false
+          enabled: true
+          params:
+            nodeResourceUtilizationThresholds:
+              thresholds:
+                cpu: 20
+                memory: 20
+                pods: 20
+              targetThresholds:
+                cpu: 50
+                memory: 50
+                pods: 50
+    resources:
+      requests:
+        cpu: 50m
+        memory: 50Mi
+      limits:
+        memory: 105Mi
+    service:
+      enabled: true
+    serviceMonitor:
+      enabled: true
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: *app
+    # affinity:
+    #   podAntiAffinity:
+    #     preferredDuringSchedulingIgnoredDuringExecution:
+    #       - weight: 100
+    #         podAffinityTerm:
+    #           labelSelector:
+    #             matchExpressions:
+    #               - key: app.kubernetes.io/name
+    #                 operator: In
+    #                 values:
+    #                   - *app
+    #           topologyKey: kubernetes.io/hostname
