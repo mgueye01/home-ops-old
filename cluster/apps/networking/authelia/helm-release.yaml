@@ -53,18 +53,18 @@ spec:
             items:
               - key: users_database.yml
                 path: users_database.yml
-      # resources:
-      #   requests:
-      #     cpu: 200m
-      #     memory: 1500Mi
-      #   limits: {}
       resources:
         requests:
-          cpu: 15m
-          memory: 127M
-        limits:
-          cpu: 15m
-          memory: 127M
+          cpu: 200m
+          memory: 1500Mi
+        limits: {}
+      # resources:
+      #   requests:
+      #     cpu: 15m
+      #     memory: 127M
+      #   limits:
+      #     cpu: 15m
+      #     memory: 127M
     ##
     ## Authelia Config Map Generator
     ##
