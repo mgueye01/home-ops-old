@@ -55,8 +55,8 @@ spec:
                 path: users_database.yml
       resources:
         requests:
-          cpu: 20m
-          memory: 150Mi
+          cpu: 100m
+          memory: 250Mi
         limits: {}
       # resources:
       #   requests:
