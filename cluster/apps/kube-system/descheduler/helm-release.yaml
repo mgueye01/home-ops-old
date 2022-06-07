@@ -16,6 +16,14 @@ spec:
         name: descheduler-charts
         namespace: flux-system
       interval: 5m
+      containers:
+        resources:
+          requests:
+            cpu: 15m
+            memory: 105M
+          limits:
+            cpu: 15m
+            memory: 105M
   values:
     kind: Deployment
     deschedulerPolicy:
