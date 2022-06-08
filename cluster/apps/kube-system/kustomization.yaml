@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - metrics-server
   - reloader
-  - descheduler
+  # - descheduler
   - kured
   - intel-gpu-plugin
   - node-feature-discovery
