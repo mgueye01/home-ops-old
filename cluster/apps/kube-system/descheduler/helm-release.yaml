@@ -75,10 +75,10 @@ spec:
                 pods: 50
     resources:
       requests:
-        cpu: 50m
-        memory: 50Mi
+        cpu: 10m
+        memory: 30Mi
       limits:
-        memory: 105Mi
+        memory: 50Mi
     service:
       enabled: true
     serviceMonitor:

@@ -246,10 +246,10 @@ spec:
             key: objstore.yml
         resources:
           requests:
-            cpu: 500m
+            cpu: 200m
             memory: 2000Mi
           limits:
-            memory: 8000Mi
+            memory: 4000Mi
         additionalScrapeConfigs:
           - honor_timestamps: true
             job_name: minio-job

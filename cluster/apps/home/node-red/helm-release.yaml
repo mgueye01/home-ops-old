@@ -67,10 +67,10 @@ spec:
     #   post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/data"]'
     resources:
       requests:
-        memory: 100Mi
+        memory: 60Mi
         cpu: 10m
       limits:
-        memory: 500Mi
+        memory: 100Mi
     # additionalContainers:
     #   fsfreeze:
     #     name: fsfreeze
