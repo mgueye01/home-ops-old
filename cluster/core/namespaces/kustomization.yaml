@@ -7,7 +7,7 @@ resources:
   - monitoring-namespace.yaml
   - rook-ceph.yaml
   # - tools.yaml
-  # - kyverno.yaml
+  - kyverno.yaml
   - home.yaml
   # - calico-system.yaml
   - database.yaml
