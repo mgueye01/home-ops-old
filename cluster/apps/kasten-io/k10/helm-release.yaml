@@ -33,11 +33,16 @@ spec:
       create: true
       class: nginx
       host: &host "k10.${SECRET_DOMAIN}"
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        external-dns/is-public: "true"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
       urlPath: k10
       hosts:
         - *host
       tls:
         enabled: true
-        # secretName: "${SECRET_DOMAIN/./-}-tls"
+        secretName: "${SECRET_DOMAIN/./-}-tls"
     grafana:
       enabled: false
