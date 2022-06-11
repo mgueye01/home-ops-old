@@ -34,3 +34,4 @@ resources:
   - aqua-charts.yaml
   - kyverno-charts.yaml
   - cilium-charts.yaml
+  - trilio.yaml

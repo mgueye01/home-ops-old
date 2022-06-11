@@ -1,0 +1,15 @@
+---
+apiVersion: "triliovault.trilio.io/v1"
+kind: "Target"
+metadata:
+  name: "nas"
+  namespace: "dev"
+spec:
+  nfsCredentials:
+    nfsExport: "${NAS_ADDR}:/volume1/CLOUDNATIVE1/Backups/trilio/cluster-0/dev"
+    nfsOptions: nfsvers=4.1,rsize=8192,wsize=8192,nosuid,nconnect=8,noatime
+  objectStoreCredentials:
+    bucketName: ""
+  thresholdCapacity: "512Gi"
+  type: "NFS"
+  vendor: "Other"
