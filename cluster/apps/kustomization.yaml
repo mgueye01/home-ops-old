@@ -12,7 +12,7 @@ resources:
   - home
   - database
   - dev
-  - kasten-io
+  # - kasten-io
   - harbor
   - media
   - cert-manager
