@@ -2,7 +2,27 @@
 apiVersion: triliovault.trilio.io/v1
 kind: License
 metadata:
-    name: trilio-license-1
+    name: trilio-license
     namespace: trilio
 spec:
-    key:
+    key: xL8NDgwKD3jajZFRa8IwFIXf8ysCew4k0bZ20IetytimTqj1/Sa9YmCmJUll/vtV+zBpRXbJ073Jd27OeSog0I/WUiEol8886Q6VXEqSO4RgajuHgPSvssuQ8ZgJQRaVudygg8pewRtNQAdzQjqaBtci+TYarccdOn9LyCRZgbEBLViNi5/GuHO/wEU3uepGJK+PDdjziLwyDmwwnjK6qlsfoDkAfWvxjF2nX2rdHhW6r33pO+Wbp0yQAt0J3ft8SEUdVUmUShanXLCp0sggRWApn0Zqz9UsrhQpFmt6p7KuzyYCq6pKY4apVJ1vqNkswgkTKlFSxdNYgiLL3pChfLbdvZTLbc9AqR8yrn7BKJJb6zat0wfw+CDVQtcN3vmKhSP6BjRW5LNVWI6c+qdVOXQQE4bxZSLmNN+U/hdquqOUMCwCFBkaXlk+YeZM/RfkpWPq3qb8tqrDAhRc7NxRrSepipCnadKOkc+/wwDmyA==X02fr
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age15semdv8gcjnwk8krt0zkhua9k0aa3054drh66dxhz0gs637vmpks0hzgl8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBCWTMxZkRoblRnQlFla1ND
+            ZUdwMFdubnNXaGh6dzByQUVFU21iWXhhVVhRCjVodWkwK1NKZEZINWthMGx3Nno1
+            bCtQWm1CWHdZZHpYcXRGZWZUTDFLbEUKLS0tIHRsd2NKRDV0UnE5Um5mcStua1hJ
+            Vkhja250cTB1cWpOMmNGZ3ZsSUJJeG8KzGLLsBn6ztbdzLV/r4xbcfx/BzCDbrl3
+            HTpn33JHwZ9sh4eHNOvVoWTx7Y+zEDwrCfwddShqBPJu9chC09v+/w==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-06-11T02:11:21Z"
+    mac: ENC[AES256_GCM,data:tNbEl+BIsgqmANjR50AsxD+F06Zf/ch2X6duX/+8e0nIiZ+0RWgcnzWWRCKuW+WOOFNYrI5ZDfgrgla6PujdHuw6tcuCZRZOAFsIKiaOfurMRRedyMV0ws9iyEl1gotjdVJwqXfRffQQtNE2Sv0FSwetBqsrbudsQTunF3ZwZSU=,iv:73eXB7XZNovyj+UAPxkVowclFy5riDe/snbmyuVftgM=,tag:c/Kr2Lu2uqH4Jl5TNISmjQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
