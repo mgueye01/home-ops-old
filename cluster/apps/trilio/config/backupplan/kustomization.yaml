@@ -6,4 +6,4 @@ resources:
   - dev.yaml
   - home.yaml
   - media.yaml
-  - networking.yaml
+  - network.yaml
