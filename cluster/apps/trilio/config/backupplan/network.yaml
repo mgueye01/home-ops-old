@@ -3,33 +3,33 @@ apiVersion: triliovault.trilio.io/v1
 kind: BackupPlan
 metadata:
   name: network
-  namespace: network
+  namespace: networking
 spec:
   backupConfig:
     retentionPolicy:
       apiVersion: triliovault.trilio.io/v1
       kind: Policy
       name: retention
-      namespace: network
+      namespace: networking
 
     schedulePolicy:
       fullBackupPolicy:
         apiVersion: triliovault.trilio.io/v1
         kind: Policy
         name: weekly-schedule
-        namespace: network
+        namespace: networking
 
       incrementalBackupPolicy:
         apiVersion: triliovault.trilio.io/v1
         kind: Policy
         name: daily-schedule
-        namespace: network
+        namespace: networking
 
     target:
       apiVersion: triliovault.trilio.io/v1
       kind: Target
       name: nas
-      namespace: network
+      namespace: networking
 
   excludeResources:
     labelSelector:

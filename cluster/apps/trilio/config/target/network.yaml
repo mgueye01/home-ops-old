@@ -3,7 +3,7 @@ apiVersion: "triliovault.trilio.io/v1"
 kind: "Target"
 metadata:
   name: "nas"
-  namespace: "network"
+  namespace: "networking"
 spec:
   nfsCredentials:
     nfsExport: "${NAS_ADDR}:/volume1/CLOUDNATIVE1/Backups/trilio/cluster-0/network"
