@@ -1,0 +1,18 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: homelab
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://github.com/mgueye01/homelab.git
+  ignore: |
+    # exclude all
+    /*
+    # include gitops dirs
+    !/cluster/apps/trilio
+    # exclude files from gitops dirs
+    /cluster/**/*.md
