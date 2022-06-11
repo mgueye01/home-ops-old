@@ -25,7 +25,7 @@ spec:
       tvkInstanceName: "cluster-0"
       ingressConfig:
         host: "trilio.${SECRET_DOMAIN}"
-        tlsSecretName: "trilio-${CLUSTER_NAME}-tls"
+        tlsSecretName: "trilio-cluster-0-tls"
         ingressClass: "nginx"
       ComponentConfiguration:
         ingressController:
