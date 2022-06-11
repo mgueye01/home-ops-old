@@ -6,3 +6,5 @@ resources:
   - helmrelease.yaml
   - secret-dex.sops.yaml
   - rbac.yaml
+patchesStrategicMerge:
+  - helm-values.yaml
