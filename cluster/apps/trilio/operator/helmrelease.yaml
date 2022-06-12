@@ -27,6 +27,9 @@ spec:
         host: "trilio.${SECRET_DOMAIN}"
         tlsSecretName: "trilio-cluster-0-tls"
         ingressClass: "nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
       ComponentConfiguration:
         ingressController:
           enabled: false
