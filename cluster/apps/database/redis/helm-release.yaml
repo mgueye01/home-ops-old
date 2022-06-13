@@ -20,7 +20,7 @@ spec:
     image:
       registry: docker.io
       repository: redis
-      tag: 7.0.1
+      tag: 7.0.2
     architecture: standalone
     auth:
       enabled: true
