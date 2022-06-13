@@ -5,3 +5,4 @@ metadata:
   name: drone
   labels:
     goldilocks.fairwinds.com/enabled: "true"
+    triliovault.trilio.io/backup: "true"
