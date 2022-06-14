@@ -21,7 +21,7 @@ spec:
       repository: ghost
       tag: 5.2.2
     env:
-      url: "https://blog.${SECRET_DOMAIN}"
+      url: "https://${SECRET_PUBLIC_DOMAIN_2}"
       database__client: mysql
       database__connection__host: ghost-mysql.database
       database__connection__user: ghost
@@ -34,15 +34,15 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           external-dns/is-public: "true"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN_2}"
         hosts:
-          - host: "blog.${SECRET_DOMAIN}"
+          - host: "${SECRET_PUBLIC_DOMAIN_2}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "blog.${SECRET_DOMAIN}"
+              - "${SECRET_PUBLIC_DOMAIN_2}"
             secretName: "ghost-tls"
     persistence:
       content:
