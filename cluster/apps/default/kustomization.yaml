@@ -8,3 +8,4 @@ resources:
   #  - podinfo
   #  - dashboard
   - theme-park
+  - ghost
