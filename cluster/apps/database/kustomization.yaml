@@ -6,4 +6,4 @@ resources:
   - redis
   - mariadb
   - phpmyadmin
-  - mysql
+  # - mysql
