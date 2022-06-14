@@ -35,6 +35,8 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production-ovh"
           external-dns/is-public: "true"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN_2}"
+          nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+        name: www."${SECRET_PUBLIC_DOMAIN_2}"
         hosts:
           - host: "${SECRET_PUBLIC_DOMAIN_2}"
             paths:
