@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghost
-      tag: 5.2.2
+      tag: 5.2.3
     env:
       url: "https://${SECRET_PUBLIC_DOMAIN_2}"
       database__client: mysql
