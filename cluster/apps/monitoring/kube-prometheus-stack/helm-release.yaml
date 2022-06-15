@@ -76,6 +76,7 @@ spec:
           repeat_interval: 6h
           receiver: "pushover"
           routes:
+            - receiver: "robusta"
             - receiver: "null"
               matchers:
                 - alertname =~ "InfoInhibitor|Watchdog"
