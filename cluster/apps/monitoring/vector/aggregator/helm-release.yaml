@@ -37,10 +37,11 @@ spec:
           type: vector
           address: 0.0.0.0:6010
           version: "2"
-        # opnsense_filterlog_logs:
-        #   type: syslog
-        #   address: 0.0.0.0:5140
-        #   mode: udp
+        udmse_logs:
+          address: 0.0.0.0:6100
+          type: syslog
+          mode: "udp"
+          max_length: 102_400
         vector_metrics:
           type: internal_metrics
       #
@@ -54,32 +55,12 @@ spec:
           source: |
             # Standardize 'app' index
             .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
-        opnsense_filterlog_remap:
-          type: remap
+        udmse_logs_xform:
+          type: "remap"
           inputs:
-            - opnsense_filterlog_logs
-          source: |
-            msg = parse_csv!(string!(.message))
-            # Only parse IPv4 / IPv6
-            if msg[8] == "4" || msg[8] == "6" {
-              .filter_interface = msg[4]
-              .filter_direction = msg[7]
-              .filter_action = msg[6]
-              .filter_ip_version = msg[8]
-              .filter_protocol = msg[16]
-              .filter_source_ip = msg[18]
-              .filter_destination_ip = msg[19]
-              if (msg[16] == "icmp" || msg[16] == "igmp" || msg[16] == "gre") {
-                .filter_data = msg[20]
-              } else {
-                .filter_source_port = msg[20]
-                .filter_destination_port = msg[21]
-                .filter_data_length = msg[22]
-                if msg[8] == "4" && msg[16] == "tcp" {
-                  .filter_tcp_flags = msg[23]
-                }
-              }
-            }
+            - "udmse_logs"
+          source: |-
+            .timestamp=null
       #
       # Sinks
       #
@@ -132,6 +113,22 @@ spec:
               {{`{{ kubernetes.pod_node_name }}`}}
             pod: >-
               {{`{{ kubernetes.pod_name }}`}}
+        loki_udmse:
+          type: loki
+          inputs:
+            - udmp_logs_xform
+          endpoint: http://loki-gateway:80
+          batch:
+            max_bytes: 1048576
+          out_of_order_action: rewrite_timestamp
+          remove_label_fields: true
+          remove_timestamp: true
+          encoding:
+            codec: json
+          labels:
+            hostname: udmse
+            service: >-
+              {{`"{{ appname }}"`}}
         prometheus_sink:
           type: prometheus_exporter
           inputs:
