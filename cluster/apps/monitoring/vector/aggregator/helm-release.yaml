@@ -116,7 +116,7 @@ spec:
         loki_udmse:
           type: loki
           inputs:
-            - udmp_logs_xform
+            - udmse_logs_xform
           endpoint: http://loki-gateway:80
           batch:
             max_bytes: 1048576
