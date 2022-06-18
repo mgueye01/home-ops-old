@@ -23,6 +23,9 @@ spec:
     remediation:
       remediateLastFailure: true
   values:
+    replicas: 2
+    persistence:
+      enabled: false
     image:
       repository: ghcr.io/k8s-at-home/loki
     ingress:
@@ -80,7 +83,7 @@ spec:
       storage_config:
         aws:
           bucketnames: loki
-          endpoint: 192.168.0.18:9000
+          endpoint: "${SECRET_MINIO_ENDPOINT}"
           access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
           secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
           s3forcepathstyle: true
