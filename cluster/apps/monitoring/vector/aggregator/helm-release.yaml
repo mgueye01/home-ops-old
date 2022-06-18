@@ -93,24 +93,18 @@ spec:
           remove_label_fields: true
           remove_timestamp: true
           labels:
-            # app: >-
-            #   {{`{{ custom_app_name }}`}}
-            # namespace: >-
-            #   {{`{{ kubernetes.pod_namespace }}`}}
-            # node: >-
-            #   {{`{{ kubernetes.pod_node_name }}`}}
             app: >-
-              {{`{{ kubernetes.pod_labels."app.kubernetes.io/name" }}`}}
+              {{`{{ custom_app_name }}`}}
+            namespace: >-
+              {{`{{ kubernetes.pod_namespace }}`}}
+            node: >-
+              {{`{{ kubernetes.pod_node_name }}`}}
             container: >-
               {{`{{ kubernetes.container_name }}`}}
             filename: >-
               {{`{{ kubernetes.file }}`}}
             instance: >-
               {{`{{ kubernetes.pod_labels."app.kubernetes.io/instance" }}`}}
-            namespace: >-
-              {{`{{ kubernetes.pod_namespace }}`}}
-            node: >-
-              {{`{{ kubernetes.pod_node_name }}`}}
             pod: >-
               {{`{{ kubernetes.pod_name }}`}}
         loki_udmse:
