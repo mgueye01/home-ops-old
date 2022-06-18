@@ -28,9 +28,9 @@ spec:
         global:
           resolve_timeout: 5m
         receivers:
-          - name: 'robusta'
+          - name: "robusta"
             webhook_configs:
-              - url: 'http://robusta-runner.monitoring.svc.cluster.local/api/alerts'
+              - url: "http://robusta-runner.monitoring.svc.cluster.local/api/alerts"
                 send_resolved: true
           - name: "null"
           - name: "pushover"
