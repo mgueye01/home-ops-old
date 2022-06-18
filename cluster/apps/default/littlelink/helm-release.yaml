@@ -22,7 +22,7 @@ spec:
       repository: ghcr.io/techno-tim/littlelink-server
       tag: latest
     env:
-      TZ: "Europe/Paris"
+      TZ: "${TIMEZONE}"
       META_TITLE: Moustapha Gueye
       META_DESCRIPTION: Moustapha Gueye Link Page
       META_AUTHOR: Moustapha Gueye
