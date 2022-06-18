@@ -34,4 +34,3 @@ resources:
   - kyverno-charts.yaml
   - cilium-charts.yaml
   - trilio.yaml
-  - falco-security-charts.yaml

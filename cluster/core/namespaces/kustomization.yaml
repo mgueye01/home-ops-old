@@ -20,4 +20,3 @@ resources:
   - starboard-system.yaml
   - flux-system.yaml
   - kube-system.yaml
-  - falco-system.yaml

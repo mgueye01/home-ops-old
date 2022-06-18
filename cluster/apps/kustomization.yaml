@@ -17,4 +17,3 @@ resources:
   - media
   - cert-manager
   - trilio
-  # - falco-system
