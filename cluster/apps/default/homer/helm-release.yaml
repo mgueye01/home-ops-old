@@ -41,10 +41,11 @@ spec:
       main:
         enabled: true
         ingressClassName: "nginx"
-        external-dns/is-public: "true"
-        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-        nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-        nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+        annotations:
+          external-dns/is-public: "true"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
         hosts:
           - host: "homer.${SECRET_DOMAIN}"
             paths:
@@ -77,10 +78,11 @@ spec:
         ingress:
           enabled: true
           ingressClassName: "nginx"
-          external-dns/is-public: "true"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+          annotations:
+            external-dns/is-public: "true"
+            external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+            nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
+            nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
           hosts:
             - host: "homer-config.${SECRET_DOMAIN}"
               paths:
