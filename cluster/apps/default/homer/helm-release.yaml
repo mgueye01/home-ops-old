@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: homer
-  namespace: default
+  namespace: home
 spec:
   interval: 5m
   chart:
@@ -22,14 +22,15 @@ spec:
       tag: v22.06.1
       pullPolicy: IfNotPresent
 
-    env:
-      TZ: "${TIMEZONE}"
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: homer-config
 
-    persistence:
-      config:
-        enabled: true
-        mountPath: /www/assets
-        existingClaim: homer-config
+    env:
+      TZ: ${TZ}
+      INIT_ASSETS: "0"
+
+    strategy:
+      type: RollingUpdate
 
     service:
       main:
@@ -40,58 +41,30 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
         annotations:
           external-dns/is-public: "true"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
         hosts:
-          - host: "homer.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-          - host: "services.${SECRET_DOMAIN}"
+          - host: &host "home.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "homer.${SECRET_DOMAIN}"
-              - "services.${SECRET_DOMAIN}"
-            secretName: "${SECRET_CLUSTER_CERTIFICATE_DEFAULT}"
+              - *host
+            secretName: "{{ .Release.Name }}-tls"
 
-    addons:
-      codeserver:
+    persistence:
+      config:
         enabled: true
-        image:
-          repository: ghcr.io/k8s-at-home/code-server
-          tag: v4.4.0
-        workingDir: "/www/assets"
-        args:
-          - --auth
-          - "none"
-          - --user-data-dir
-          - "/www/assets/.vscode"
-          - --extensions-dir
-          - "/www/assets/.vscode"
-        ingress:
-          enabled: true
-          ingressClassName: "nginx"
-          annotations:
-            external-dns/is-public: "true"
-            external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-            nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-            nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
-          hosts:
-            - host: "homer-config.${SECRET_DOMAIN}"
-              paths:
-                - path: /
-                  pathType: Prefix
-          tls:
-            - hosts:
-                - "homer-config.${SECRET_DOMAIN}"
-              secretName: "${SECRET_CLUSTER_CERTIFICATE_DEFAULT}"
-        volumeMounts:
-          - name: config
-            mountPath: /www/assets
+        type: configMap
+        name: homer-config
+        mountPath: /www/assets/
+      data:
+        enabled: true
+        type: nfs
+        server: ${NAS_ADDR}
+        path: /volume1/CLOUDNATIVE1/code/homer
+        mountPath: /www/assets/data
