@@ -6,6 +6,7 @@ resources:
   #  - blog
   - littlelink
   #  - podinfo
-  - dashboard
+  # - dashboard
   - theme-park
   - ghost
+  - homer
