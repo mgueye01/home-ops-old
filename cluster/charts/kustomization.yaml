@@ -34,3 +34,5 @@ resources:
   - kyverno-charts.yaml
   - cilium-charts.yaml
   - trilio.yaml
+  - tika-charts.yaml
+  - kurt108-charts.yaml
