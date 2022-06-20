@@ -7,7 +7,7 @@ services:
     items:
       - name: DSchaton
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/synology.png"
-        url: "https://${NAS_ADDR}"
+        url: "http://dschaton.local/"
         subtitle: Synology NAS
       - name: Rook-Ceph
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/rook.png"
@@ -27,7 +27,7 @@ services:
       #   subtitle: Real-time multi-device file synchronization
       - name: Minio
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/minio.png"
-        url: "https://${NAS_ADDR}:9001"
+        url: "http://dschaton.local:9001"
         subtitle: S3 compatible datastore
       - name: Thanos
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/thanos.png"
@@ -98,4 +98,4 @@ services:
       #   url: "https://appdaemon-code.${SECRET_DOMAIN}"
       - name: Home Assistant Code
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/home-assistant-code.png"
-        url: "https://home-assistant-code.${SECRET_DOMAIN}"
+        url: "https://hass-config.${SECRET_DOMAIN}"

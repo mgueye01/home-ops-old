@@ -46,7 +46,7 @@ services:
     items:
       - name: Tautulli
         subtitle: Plex statistics
-        logo: "https://home.${SECRET_DOMAIN}/assets/data/tautulli.png"
+        logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/tautulli.png"
         url: "https://tautulli.${SECRET_DOMAIN}"
       - name: Prowlarr
         subtitle: "Indexer manager/proxy"
