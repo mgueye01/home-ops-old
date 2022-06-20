@@ -34,7 +34,7 @@ spec:
       PAPERLESS_OCR_LANGUAGE: fra
       PAPERLESS_TIME_ZONE: "${TIMEZONE}"
       PAPERLESS_CONSUMER_POLLING: "60"
-      PAPERLESS_REDIS: redis://localhost:6379
+      PAPERLESS_REDIS: 'redis://paperless-redis-master'
       PAPERLESS_DBNAME: paperless
       PAPERLESS_DBUSER: paperless
       PAPERLESS_DBPASS: '${SECRET_PAPERLESS_POSTGRES_PASSWORD}'
