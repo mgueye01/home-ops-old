@@ -65,7 +65,7 @@ services:
       - name: Overseerr
         subtitle: Media requests
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/overseerr.png"
-        url: "https://overseerr.${SECRET_DOMAIN}"
+        url: "https://requests.${SECRET_DOMAIN}"
       - name: Home Assistant
         subtitle: "Home automation system"
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/home-assistant.png"
