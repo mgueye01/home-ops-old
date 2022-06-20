@@ -19,7 +19,7 @@ spec:
 
   dependsOn:
     - name: ingress-nginx
-      namespace: network
+      namespace: networking
     - name: rook-ceph
       namespace: rook-ceph
 
