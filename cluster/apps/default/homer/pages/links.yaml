@@ -28,7 +28,7 @@ services:
     items:
       - name: Renovate
         subtitle: Dashboard
-        url: https://github.com/mchestr/home-cluster/issues/2
+        url: https://github.com/mgueye01/homelab/issues/20
       - name: Repository
         subtitle: home-cluster
-        url: https://github.com/mchestr/home-cluster
+        url: https://github.com/mgueye01/homelab
