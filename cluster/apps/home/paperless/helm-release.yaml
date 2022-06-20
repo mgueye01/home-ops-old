@@ -62,7 +62,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: /CLOUDNATIVE1/paperless/in
+            path: /volume1/CLOUDNATIVE1/paperless/in
         mountPath: /usr/src/paperless/consume
       export:
         enabled: true
@@ -70,7 +70,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: /CLOUDNATIVE1/paperless/out
+            path: /volume1/CLOUDNATIVE1/paperless/out
         mountPath: /usr/src/paperless/export
 
     ingress:
