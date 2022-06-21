@@ -31,7 +31,7 @@ spec:
 
     env:
       TZ: "${TIMEZONE}"
-      PAPERLESS_OCR_LANGUAGE: fra
+      PAPERLESS_OCR_LANGUAGE: fra+eng
       PAPERLESS_TIME_ZONE: "${TIMEZONE}"
       PAPERLESS_CONSUMER_POLLING: "60"
       PAPERLESS_REDIS: 'redis://paperless-redis-master'
@@ -78,7 +78,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production-ovh"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
@@ -91,6 +91,13 @@ spec:
           - secretName: "{{ .Release.Name }}-tls"
             hosts:
               - *host
+    resources:
+      requests:
+        cpu: 100m
+        memory: 324M
+      limits:
+        cpu: 1500m
+        memory: 3000M
 
     redis:
       enabled: true

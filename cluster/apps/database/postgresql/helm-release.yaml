@@ -32,6 +32,20 @@ spec:
         registry: docker.io
         repository: prometheuscommunity/postgres-exporter
         tag: v0.10.1
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32M
+        limits:
+          # cpu: 15m
+          memory: 34M
     persistence:
       size: 5Gi
       existingClaim: postgresql-config-v1
+    resources:
+      requests:
+        cpu: 10m
+        memory: 110M
+      limits:
+        # cpu: 32m
+        memory: 209M
