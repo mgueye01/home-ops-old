@@ -74,3 +74,8 @@ tasks:
     dir: provision/ansible
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml -a '/usr/bin/systemctl poweroff' --become"
+  adhoc:prune:
+    desc: Prune unused images
+    dir: provision/ansible
+    cmds:
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml -a '/usr/local/bin/crictl rmi --prune' --become"
