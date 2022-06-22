@@ -24,7 +24,7 @@ spec:
       timeZone: "${TIMEZONE}"
       startTime: "10pm"
       endTime: "2am"
-      notifyUrl: "${SECRET_KURED_DISCORD_WEBHOOK}"
+      notifyUrl: discord://${SECRET_KURED_DISCORD_WEBHOOK_TOKEN}@${SECRET_KURED_DISCORD_WEBHOOK_ID}
       messageTemplateDrain: "⏳ Draining node %s"
       messageTemplateReboot: "♻️ Rebooted node %s"
       rebootCommand: "/usr/bin/systemctl reboot"
