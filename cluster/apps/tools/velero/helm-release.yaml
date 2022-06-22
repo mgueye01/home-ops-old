@@ -41,7 +41,7 @@ spec:
       repository: velero/velero
       tag: v1.8.1
     initContainers:
-      - image: "velero/velero-plugin-for-aws:v1.4.1"
+      - image: "velero/velero-plugin-for-aws:v1.5.0"
         imagePullPolicy: IfNotPresent
         name: velero-plugin-for-aws
         volumeMounts:
