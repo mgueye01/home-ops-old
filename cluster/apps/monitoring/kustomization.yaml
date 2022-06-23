@@ -3,12 +3,12 @@ kind: Kustomization
 resources:
   - botkube
   - uptimerobot-heartbeat
+  - uptimerobot-operator
   - thanos
   # - promtail
   - grafana
   - loki
   - kube-prometheus-stack
-    - uptimerobot-operator
   - unifi-poller
   # - gotify
   - node-problem-detector

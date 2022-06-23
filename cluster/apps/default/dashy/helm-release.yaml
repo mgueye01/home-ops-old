@@ -1,0 +1,104 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: dashy
+  namespace: default
+spec:
+  interval: 1m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.jmmaloney4.xyz/
+      chart: basic
+      version: 0.2.5
+      sourceRef:
+        kind: HelmRepository
+        name: jmmaloney4
+        namespace: flux-system
+      interval: 1m
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: ghcr.io/lissy93/dashy
+      tag: 2.1.0@sha256:9eb8025398d51c02ba90927edb494d22b405f752abb377fa73dfa5f0904226a9
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          uroperator.brennerm.github.io/monitor.type: HTTPS
+          nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+          external-dns/is-public: "true"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
+          nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            auth_request_set $name_upstream_1 $upstream_cookie_name_1;
+            access_by_lua_block {
+              if ngx.var.name_upstream_1 ~= "" then
+                ngx.header["Set-Cookie"] = "name_1=" .. ngx.var.name_upstream_1 .. ngx.var.auth_cookie:match("(; .*)")
+              end
+            }
+        hosts:
+          - host: "dash.${SECRET_DOMAIN}"
+            paths:
+              - path: "/"
+                service:
+                  name: dashy-basic
+                  port: 80
+        tls:
+          - secretName: dash-tls
+            hosts:
+              - "dash.${SECRET_DOMAIN}"
+    service:
+      main:
+        enabled: true
+        ports:
+          http:
+            enabled: true
+            primary: true
+            port: 80
+    persistence:
+      config:
+        enabled: true
+        type: configMap
+        name: dashy-basic-config
+        mountPath: /app/public/conf.yml
+        subPath: conf.yml
+    configmap:
+      config:
+        enabled: true
+        data:
+          conf.yml: |
+            pageInfo:
+              title: "Homelab dashboard"
+              description: "\"Links to homelab hosted services.\""
+            appConfig:
+              theme: vaporware
+              disableConfiguration: true
+              startingView: default
+              defaultOpeningMethod: newtab
+              webSearch:
+                searchEngine: duckduckgo
+              hideComponents:
+                hideFooter: true
+            sections:
+            - name: System
+              items:
+              - title: Ceph Dashboard
+                url: https://ceph.roomofrequirement.xyz/
+            - name: Media
+              items:
+              - title: Music
+                url: https://secure.roomofrequirement.xyz/flood/music/
+              - title: Movies
+                url: https://secure.roomofrequirement.xyz/flood/movies/
+              - title: TV Shows
+                url: https://secure.roomofrequirement.xyz/flood/tv/
+              - title: Jackett
+                url: https://secure.roomofrequirement.xyz/jackett/
+              - title: Radarr
+                url: https://secure.roomofrequirement.xyz/radarr/
+              - title: Sonarr
+                url: https://secure.roomofrequirement.xyz/sonarr/
