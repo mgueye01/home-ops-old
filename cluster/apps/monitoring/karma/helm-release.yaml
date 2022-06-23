@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/prymitive/karma
-      tag: v0.104
+      tag: v0.103
     nameOverride: karma
     env:
       ALERTMANAGER_URI: http://alertmanager-operated:9093
