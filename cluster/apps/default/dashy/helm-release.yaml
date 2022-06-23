@@ -27,18 +27,10 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           uroperator.brennerm.github.io/monitor.type: HTTPS
-          nginx.ingress.kubernetes.io/auth-response-headers: Authorization
           external-dns/is-public: "true"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
           nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            auth_request_set $name_upstream_1 $upstream_cookie_name_1;
-            access_by_lua_block {
-              if ngx.var.name_upstream_1 ~= "" then
-                ngx.header["Set-Cookie"] = "name_1=" .. ngx.var.name_upstream_1 .. ngx.var.auth_cookie:match("(; .*)")
-              end
-            }
         hosts:
           - host: "dash.${SECRET_DOMAIN}"
             paths:
