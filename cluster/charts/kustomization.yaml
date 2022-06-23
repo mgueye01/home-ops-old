@@ -36,3 +36,4 @@ resources:
   - trilio.yaml
   - tika-charts.yaml
   - kurt108-charts.yaml
+  - uptimerobot-operator-charts.yaml

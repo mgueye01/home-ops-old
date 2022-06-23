@@ -1,7 +1,6 @@
 title: System Administration
 
 services:
-
   - name: Storage, Database & Messaging
     icon: fas fa-database
     items:
