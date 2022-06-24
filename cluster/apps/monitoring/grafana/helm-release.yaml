@@ -109,12 +109,6 @@ spec:
           gnetId: 5342
           revision: 5
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/7845
-        # zfs:
-        #   gnetId: 7845
-        #   revision: 4
-        #   datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/13502
         minio:
           gnetId: 13502
           revision: 10
@@ -147,15 +141,6 @@ spec:
         k8s-node-exporter-dashboard:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/node-exporter-for-prometheus.json
           datasource: Prometheus
-        # k8s-loki-stack-monitoring-dashboard:
-        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/loki-stack-monitoring.json
-        #   datasource: Prometheus
-        # loki-logging-dashboard:
-        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/loki-logging-dashboard.json
-        # kubernete events dashboard:
-        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/kubernetes-events-dashboard.json
-        #   datasource: loki
-        # # Ref: https://grafana.com/grafana/dashboards/11315
         unifi-client-insights:
           gnetId: 11315
           revision: 8
@@ -208,18 +193,6 @@ spec:
       - snuids-trafficlights-panel
     serviceMonitor:
       enabled: true
-    # ingress:
-    #   enabled: true
-    #   ingressClassName: "traefik"
-    #   annotations:
-    #     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    #     cert-manager.io/cluster-issuer: "letsencrypt-production"
-    #   hosts:
-    #     - "grafana.${SECRET_DOMAIN}"
-    #   tls:
-    #     - hosts:
-    #         - "grafana.${SECRET_DOMAIN}"
-    #       secretName: "grafana-tls"
     ingress:
       enabled: true
       ingressClassName: "nginx"

@@ -101,7 +101,7 @@ spec:
                         {key,value} in the matchLabels map is equivalent to an element
                         of matchExpressions, whose key field is "key", the operator
                         is "In", and the values array contains only "value". The requirements
-                        are ANDed.
+                        are ANDead.
                       type: object
                     name:
                       description: Name of the referent
@@ -308,7 +308,7 @@ spec:
                             A single {key,value} in the matchLabels map is equivalent
                             to an element of matchExpressions, whose key field is
                             "key", the operator is "In", and the values array contains
-                            only "value". The requirements are ANDed.
+                            only "value". The requirements are ANDead.
                           type: object
                       type: object
                     type: array
@@ -543,7 +543,7 @@ spec:
                             A single {key,value} in the matchLabels map is equivalent
                             to an element of matchExpressions, whose key field is
                             "key", the operator is "In", and the values array contains
-                            only "value". The requirements are ANDed.
+                            only "value". The requirements are ANDead.
                           type: object
                       type: object
                     type: array
@@ -819,7 +819,7 @@ spec:
                             A single {key,value} in the matchLabels map is equivalent
                             to an element of matchExpressions, whose key field is
                             "key", the operator is "In", and the values array contains
-                            only "value". The requirements are ANDed.
+                            only "value". The requirements are ANDead.
                           type: object
                       type: object
                     type: array
@@ -1152,7 +1152,7 @@ spec:
                             A single {key,value} in the matchLabels map is equivalent
                             to an element of matchExpressions, whose key field is
                             "key", the operator is "In", and the values array contains
-                            only "value". The requirements are ANDed.
+                            only "value". The requirements are ANDead.
                           type: object
                       type: object
                     type: array
@@ -1563,7 +1563,7 @@ spec:
                             A single {key,value} in the matchLabels map is equivalent
                             to an element of matchExpressions, whose key field is
                             "key", the operator is "In", and the values array contains
-                            only "value". The requirements are ANDed.
+                            only "value". The requirements are ANDead.
                           type: object
                       type: object
                     type: array
@@ -1820,7 +1820,7 @@ spec:
                             A single {key,value} in the matchLabels map is equivalent
                             to an element of matchExpressions, whose key field is
                             "key", the operator is "In", and the values array contains
-                            only "value". The requirements are ANDed.
+                            only "value". The requirements are ANDead.
                           type: object
                       type: object
                     type: array
@@ -2967,7 +2967,7 @@ spec:
                             A single {key,value} in the matchLabels map is equivalent
                             to an element of matchExpressions, whose key field is
                             "key", the operator is "In", and the values array contains
-                            only "value". The requirements are ANDed.
+                            only "value". The requirements are ANDead.
                           type: object
                       type: object
                     type: array
@@ -3188,7 +3188,7 @@ spec:
                             A single {key,value} in the matchLabels map is equivalent
                             to an element of matchExpressions, whose key field is
                             "key", the operator is "In", and the values array contains
-                            only "value". The requirements are ANDed.
+                            only "value". The requirements are ANDead.
                           type: object
                       type: object
                     type: array
@@ -4386,7 +4386,7 @@ spec:
                             A single {key,value} in the matchLabels map is equivalent
                             to an element of matchExpressions, whose key field is
                             "key", the operator is "In", and the values array contains
-                            only "value". The requirements are ANDed.
+                            only "value". The requirements are ANDead.
                           type: object
                       type: object
                     type: array
@@ -6785,7 +6785,7 @@ spec:
                         {key,value} in the matchLabels map is equivalent to an element
                         of matchExpressions, whose key field is "key", the operator
                         is "In", and the values array contains only "value". The requirements
-                        are ANDed.
+                        are ANDead.
                       type: object
                     name:
                       description: Name of the referent

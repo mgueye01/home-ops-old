@@ -9,11 +9,16 @@ repos:
           - .github/lint/.yamllint.yaml
         id: yamllint
   - repo: https://github.com/pre-commit/pre-commit-hooks
+    ## Default pre-commit hooks
     rev: v4.2.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: mixed-line-ending
+      - id: check-json
+      # - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.13
     hooks:
@@ -27,9 +32,15 @@ repos:
     rev: v2.1.0
     hooks:
       - id: forbid-secrets
-        #  - repo: https://github.com/Truxnell/pre-commit
-        #    rev: v0.0.9
-        #    hooks:
-        #      - id: kustomize_build
-        #        files: ^cluster/
-        #        args: [--dry-run=server]
+  # ## Typos
+  # - repo: https://github.com/crate-ci/typos
+  #   rev: typos-v0.8.6
+  #   hooks:
+  #     - id: typos
+  # # Markdown linter
+  # - repo: https://github.com/igorshubovych/markdownlint-cli
+  #   rev: v0.31.1
+  #   hooks:
+  #   - id: markdownlint
+  #     args:
+  #     - "--disable=MD013"

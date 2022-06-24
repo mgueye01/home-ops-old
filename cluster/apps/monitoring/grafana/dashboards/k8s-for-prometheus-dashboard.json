@@ -217,7 +217,7 @@
             "expr": "sum(kube_pod_container_resource_limits{origin_prometheus=~\"$origin_prometheus\",resource=\"cpu\", unit=\"core\",node=~\"^$Node$\"}) / sum(kube_node_status_allocatable{origin_prometheus=~\"$origin_prometheus\",resource=\"cpu\", unit=\"core\", node=~\"^$Node$\"})",
             "instant": true,
             "interval": "",
-            "legendFormat": "CPU limite rate",
+            "legendFormat": "CPU limit rate",
             "refId": "B"
           }
         ],

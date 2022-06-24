@@ -69,7 +69,7 @@ services:
       - name: Home Assistant
         subtitle: "Home automation system"
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/home-assistant.png"
-        url: "https://hass.${SECRET_DOMAIN}"
+        url: "https://hash.${SECRET_DOMAIN}"
       - name: Paperless
         subtitle: Digital document storage
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/paperless.png"

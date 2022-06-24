@@ -7,5 +7,5 @@ resources:
   # - vaultwarden
   #  - zigbee2mqtt
   - zwavejs2mqtt
-  - mosquitto
+  - mosquito
   - paperless

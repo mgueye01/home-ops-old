@@ -693,7 +693,7 @@
       {
         "aliasColors": {
           "192.168.200.241:9100_总内存": "dark-red",
-          "内存_Avaliable": "#6ED0E0",
+          "内存_Available": "#6ED0E0",
           "内存_Cached": "#EF843C",
           "内存_Free": "#629E51",
           "内存_Total": "#6d1f62",
@@ -2098,7 +2098,7 @@
         "aliasColors": {
           "192.168.200.241:9100_总内存": "dark-red",
           "使用率": "yellow",
-          "内存_Avaliable": "#6ED0E0",
+          "内存_Available": "#6ED0E0",
           "内存_Cached": "#EF843C",
           "内存_Free": "#629E51",
           "内存_Total": "#6d1f62",
@@ -2203,7 +2203,7 @@
             "hide": false,
             "interval": "",
             "intervalFactor": 1,
-            "legendFormat": "Avaliable",
+            "legendFormat": "Available",
             "refId": "F",
             "step": 4
           },
@@ -3251,7 +3251,7 @@
         "dashes": false,
         "datasource": "Prometheus",
         "decimals": 2,
-        "description": "Sockets_used - Sockets currently in use\n\nCurrEstab - TCP connections for which the current state is either ESTABLISHED or CLOSE- WAIT\n\nTCP_alloc - Allocated sockets\n\nTCP_tw - Sockets wating close\n\nUDP_inuse - Udp sockets currently in use\n\nRetransSegs - TCP retransmission packets\n\nOutSegs - Number of packets sent by TCP\n\nInSegs - Number of packets received by TCP",
+        "description": "Sockets_used - Sockets currently in use\n\nCurrEstab - TCP connections for which the current state is either ESTABLISHED or CLOSE- WAIT\n\nTCP_alloc - Allocated sockets\n\nTCP_tw - Sockets waiting close\n\nUDP_inuse - Udp sockets currently in use\n\nRetransSegs - TCP retransmission packets\n\nOutSegs - Number of packets sent by TCP\n\nInSegs - Number of packets received by TCP",
         "fieldConfig": {
           "defaults": {
             "links": []

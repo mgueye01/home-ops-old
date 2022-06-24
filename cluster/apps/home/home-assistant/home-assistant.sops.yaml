@@ -5,12 +5,12 @@ metadata:
     name: home-assistant
     namespace: home
 stringData:
-    HASS_ELEVATION: ENC[AES256_GCM,data:U1g=,iv:S+RC/CL224JNXHsnAdXtGnDzOXmqT52JuJ+ywwH5Wjg=,tag:Iu9BO6df7D5chb25CEkQ0g==,type:str]
-    HASS_LATITUDE: ENC[AES256_GCM,data:Iqek1BlYJWYhYg==,iv:EquiUXffR9CMYwTTy1HEoqwS9Ed2BrDiZTmqnLZWlvk=,tag:D69xa8NBrUllaEreHjGTKA==,type:str]
-    HASS_LONGITUDE: ENC[AES256_GCM,data:Nk+IkOJtBT3G,iv:gZ2j+ptNtrvinclrsueFCG4feipIxQkX3pqRPLm7jx8=,tag:yviQyMr575UVOhovOADDRw==,type:str]
-    HASS_MQTT_PASSWORD: ENC[AES256_GCM,data:m7WeS5bRl3I=,iv:L2+k1oDFiqYyOlpCzRfelC0JUy5/bWaH5rcML51yoGQ=,tag:qW5tS3zRDOuY9L6ZQBG/pw==,type:str]
-    HASS_MQTT_USERNAME: ENC[AES256_GCM,data:0geYJiwaKg==,iv:VrpDtTC2/pRVyipOBgL87Erl9mRyi06O9wb1kCGIYjI=,tag:fxaoPqeEYRtfzrjiuQnRfQ==,type:str]
-    HASS_POSTGRESQL_CONNECTION_STRING: ENC[AES256_GCM,data:xRd3zJVxXuJGCPnKPCCFQgT7E1LV1Fe1fvbw7fGFQZflVbsX8s8gmNJVfRU=,iv:t8CiFRoswtuDhtwmAoOsczZyXwUb2qcn8Xekwtv1RDg=,tag:e3pZ9On5/ZDqCt+PJGFsyg==,type:str]
+    HASH_ELEVATION: ENC[AES256_GCM,data:U1g=,iv:S+RC/CL224JNXHsnAdXtGnDzOXmqT52JuJ+ywwH5Wjg=,tag:Iu9BO6df7D5chb25CEkQ0g==,type:str]
+    HASH_LATITUDE: ENC[AES256_GCM,data:Iqek1BlYJWYhYg==,iv:EquiUXffR9CMYwTTy1HEoqwS9Ed2BrDiZTmqnLZWlvk=,tag:D69xa8NBrUllaEreHjGTKA==,type:str]
+    HASH_LONGITUDE: ENC[AES256_GCM,data:Nk+IkOJtBT3G,iv:gZ2j+ptNtrvinclrsueFCG4feipIxQkX3pqRPLm7jx8=,tag:yviQyMr575UVOhovOADDRw==,type:str]
+    HASH_MQTT_PASSWORD: ENC[AES256_GCM,data:m7WeS5bRl3I=,iv:L2+k1oDFiqYyOlpCzRfelC0JUy5/bWaH5rcML51yoGQ=,tag:qW5tS3zRDOuY9L6ZQBG/pw==,type:str]
+    HASH_MQTT_USERNAME: ENC[AES256_GCM,data:0geYJiwaKg==,iv:VrpDtTC2/pRVyipOBgL87Erl9mRyi06O9wb1kCGIYjI=,tag:fxaoPqeEYRtfzrjiuQnRfQ==,type:str]
+    HASH_POSTGRESQL_CONNECTION_STRING: ENC[AES256_GCM,data:xRd3zJVxXuJGCPnKPCCFQgT7E1LV1Fe1fvbw7fGFQZflVbsX8s8gmNJVfRU=,iv:t8CiFRoswtuDhtwmAoOsczZyXwUb2qcn8Xekwtv1RDg=,tag:e3pZ9On5/ZDqCt+PJGFsyg==,type:str]
 sops:
     kms: []
     gcp_kms: []

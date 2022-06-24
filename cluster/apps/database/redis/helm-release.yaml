@@ -24,13 +24,13 @@ spec:
     architecture: standalone
     auth:
       enabled: true
-      sentinal: true
+      sentinel: true
       password: "${SECRET_AUTHELIA_REDIS_PASSWORD}"
     master:
       persistence:
         size: 5Gi
         existingClaim: redis-config-v1
-    sentinal:
+    sentinel:
       enabled: true
       masterSet: redis-master
     metrics:

@@ -97,4 +97,4 @@ services:
       #   url: "https://appdaemon-code.${SECRET_DOMAIN}"
       - name: Home Assistant Code
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/codeserver-light.png"
-        url: "https://hass-config.${SECRET_DOMAIN}"
+        url: "https://hash-config.${SECRET_DOMAIN}"

@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: mosquitto
+  name: mosquito
   namespace: home
 spec:
   interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: mosquitto
+      chart: mosquito
       version: 4.4.0
       sourceRef:
         kind: HelmRepository
@@ -24,19 +24,19 @@ spec:
       main:
         type: LoadBalancer
         externalIPs:
-          - "${SVC_MOSQUITTO_ADDR}"
+          - "${SVC_MOSQUITO_ADDR}"
         externalTrafficPolicy: Local
     auth:
       enabled: true
     podAnnotations:
-      secret.reloader.stakater.com/reload: mosquitto
+      secret.reloader.stakater.com/reload: mosquito
     persistence:
       data:
         enabled: true
-        existingClaim: mosquitto-config-v1
+        existingClaim: mosquito-config-v1
       configinc:
         enabled: true
         type: custom
         volumeSpec:
           secret:
-            secretName: mosquitto
+            secretName: mosquito

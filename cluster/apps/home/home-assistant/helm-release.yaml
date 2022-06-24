@@ -18,7 +18,7 @@ spec:
         namespace: flux-system
       interval: 5m
   dependsOn:
-    - name: mosquitto
+    - name: mosquito
       namespace: home
   values:
     image:
@@ -47,13 +47,13 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "home-assistant"
         hosts:
-          - host: "hass.${SECRET_DOMAIN}"
+          - host: "hash.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "hass.${SECRET_DOMAIN}"
+              - "hash.${SECRET_DOMAIN}"
     probes:
       liveness:
         enabled: false
@@ -99,13 +99,13 @@ spec:
             hajimari.io/enable: "true"
             hajimari.io/icon: "home-assistant"
           hosts:
-            - host: "hass-config.${SECRET_DOMAIN}"
+            - host: "hash-config.${SECRET_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix
           tls:
             - hosts:
-                - "hass-config.${SECRET_DOMAIN}"
+                - "hash-config.${SECRET_DOMAIN}"
         volumeMounts:
           - name: config
             mountPath: /config
