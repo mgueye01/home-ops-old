@@ -17,4 +17,4 @@ resources:
   - media
   - cert-manager
   - trilio
-  # - security
+  - security
