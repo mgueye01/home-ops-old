@@ -39,3 +39,4 @@ resources:
   - uptimerobot-operator-charts.yaml
   - giantswarm-charts.yaml
   - kubeclarity-charts.yamlg
+  - emqx-charts.yaml
