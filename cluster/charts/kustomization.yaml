@@ -37,4 +37,4 @@ resources:
   - tika-charts.yaml
   - kurt108-charts.yaml
   - uptimerobot-operator-charts.yaml
-  - dashy-chart.yaml
+  - giantswarm-charts.yaml
