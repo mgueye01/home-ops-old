@@ -21,3 +21,4 @@ resources:
   - flux-system.yaml
   - kube-system.yaml
   - velero.yaml
+  - security.yaml
