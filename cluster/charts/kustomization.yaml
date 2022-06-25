@@ -40,3 +40,4 @@ resources:
   - giantswarm-charts.yaml
   - kubeclarity-charts.yaml
   - emqx-charts.yaml
+  - home-emqx.yaml
