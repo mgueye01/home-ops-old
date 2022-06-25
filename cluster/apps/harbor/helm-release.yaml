@@ -29,7 +29,7 @@ spec:
     #     hosts:
     #       core: harbor.${SECRET_DOMAIN}
     # externalURL: https://harbor.${SECRET_DOMAIN}
-    # logLevel: info
+    logLevel: info
     expose:
       type: ingress
       ingress:
@@ -49,6 +49,7 @@ spec:
         certSource: secret
         secret:
           secretName: harbor-tls
+    externalURL: https://harbor.${SECRET_DOMAIN}
     trivy:
       enabled: true
     chartmuseum:
