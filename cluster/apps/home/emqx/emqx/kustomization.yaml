@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - secret.sops.yaml
-  # - prometheus-exporter.yaml
-  # - dashboard
+  - prometheus-exporter.yaml
+  - dashboard
