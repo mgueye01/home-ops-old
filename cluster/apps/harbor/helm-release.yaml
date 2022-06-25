@@ -17,24 +17,38 @@ spec:
         namespace: flux-system
       interval: 1h
   values:
+    # expose:
+    #   tls:
+    #     # The ingress controller has a default certificate so we don't need to configure it
+    #     certSource: none
+    #   ingress:
+    #     annotations:
+    #       kubernetes.io/ingress.class: nginx
+    #       external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    #       external-dns/is-public: "true"
+    #     hosts:
+    #       core: harbor.${SECRET_DOMAIN}
+    # externalURL: https://harbor.${SECRET_DOMAIN}
+    # logLevel: info
     expose:
-      tls:
-        # The ingress controller has a default certificate so we don't need to configure it
-        certSource: none
+      type: ingress
       ingress:
+        hosts:
+          core: harbor.${SECRET_DOMAIN}
+          # notary:
         annotations:
-          kubernetes.io/ingress.class: nginx
-          nginx.ingress.kubernetes.io/enable-global-auth: "false"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          kubernetes.io/ingress.class: nginx
           ingress.kubernetes.io/ssl-redirect: "true"
           ingress.kubernetes.io/proxy-body-size: "0"
           nginx.ingress.kubernetes.io/ssl-redirect: "true"
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
-        hosts:
-          core: harbor.${SECRET_DOMAIN}
-    externalURL: https://harbor.${SECRET_DOMAIN}
-
+      tls:
+        certSource: secret
+        secret:
+          secretName: harbor-tls
     trivy:
       enabled: true
     chartmuseum:
@@ -47,7 +61,7 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-
+    harborAdminPassword: "${SECRET_HARBOR_ADMIN_PASSWORD}"
     # portal:
     #   image:
     #     repository: liupeng0518/harbor-portal
