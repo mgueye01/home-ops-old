@@ -38,5 +38,5 @@ resources:
   - kurt108-charts.yaml
   - uptimerobot-operator-charts.yaml
   - giantswarm-charts.yaml
-  - kubeclarity-charts.yamlg
+  - kubeclarity-charts.yaml
   - emqx-charts.yaml
