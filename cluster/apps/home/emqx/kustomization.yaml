@@ -5,4 +5,3 @@ resources:
   - helm-release.yaml
   - secret.sops.yaml
   - prometheus-exporter.yaml
-  # - dashboard
