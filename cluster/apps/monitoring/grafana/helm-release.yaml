@@ -145,22 +145,27 @@ spec:
           gnetId: 11315
           revision: 8
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11311
+        # Ref: https://grafana.com/grafana/dashboards/11315
         unifi-network-sites:
           gnetId: 11311
           revision: 4
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11314
+        # Ref: https://grafana.com/grafana/dashboards/11311
         unifi-uap-insights:
           gnetId: 11314
           revision: 9
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11312
+        # Ref: https://grafana.com/grafana/dashboards/11314
         unifi-usw-insights:
           gnetId: 11312
           revision: 8
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/14284
+        # Ref: https://grafana.com/grafana/dashboards/11312
+        velero-exporter-overview:
+          gnetId: 15469
+          revision: 1
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/15469
         Synology-nas-overview:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/synology-nas-overview_rev8.json
           datasource: Prometheus
