@@ -267,6 +267,19 @@ spec:
           - job_name: node
             static_configs:
               - targets: ["192.168.0.18:9100"]
+          - job_name: 'blocky'
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "blocky.networking.svc.cluster.local:4000"
+          - job_name: 'uptimerobot'
+            params:
+              script: [uptimerobot]
+            static_configs:
+              - targets:
+                  - "uptimerobot-prometheus.monitoring.svc.cluster.local:9705"
+            scrape_interval: 5m
+            scrape_timeout: 90s
           - job_name: "snmp-exporter"
             static_configs:
               - targets: ["192.168.0.18"]
