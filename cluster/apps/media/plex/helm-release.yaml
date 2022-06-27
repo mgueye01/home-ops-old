@@ -41,8 +41,6 @@ spec:
       tag: v1.27.1.5916-6b0e31a64 # {"$imagepolicy": "flux-system:plex:tag"}
     controller:
       strategy: Recreate
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
     env:
       TZ: "${TIMEZONE}"
       ADVERTISE_IP: "https://plex.${SECRET_DOMAIN}:443/,http://${SVC_PLEX_ADDR}:32400/"
@@ -144,7 +142,26 @@ spec:
       limits:
         memory: 10000Mi
         gpu.intel.com/i915: 2
-
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ubuntu:focal-20210827
+        imagePullPolicy: IfNotPresent
+        command:
+          - "/bin/bash"
+          - "-c"
+          - "sleep infinity"
+        volumeMounts:
+          - name: config
+            mountPath: /config
+        securityContext:
+          privileged: true
     # addons:
     #   promtail:
     #     enabled: true
