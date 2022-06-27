@@ -27,10 +27,10 @@ spec:
         default: true
         bucket: velero
         config:
-          publicUrl: "${SECRET_MINIO_ENDPOINT}"
+          publicUrl: "http://${SECRET_MINIO_ENDPOINT}"
           region: eu-west-3
           s3ForcePathStyle: true
-          s3Url: "${SECRET_MINIO_ENDPOINT}"
+          s3Url: "http://${SECRET_MINIO_ENDPOINT}"
       provider: aws
       resticTimeout: 4h
       volumeSnapshotLocation:
