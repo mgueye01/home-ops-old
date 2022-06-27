@@ -5,21 +5,39 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
   git:
     checkout:
       ref:
         branch: main
     commit:
       author:
-        email: fluxcdbot@users.noreply.github.com
-        name: fluxcdbot
-      messageTemplate: "{{range .Updated.Images}}{{println .}}{{end}}"
+        email: ${BOT_COMMIT_NAME}@users.noreply.github.com
+        name: ${BOT_COMMIT_NAME}
+      messageTemplate: |
+        Automated image update
+
+        Automation name: {{ .AutomationObject }}
+
+        Files:
+        {{ range $filename, $_ := .Updated.Files -}}
+        - {{ $filename }}
+        {{ end -}}
+
+        Objects:
+        {{ range $resource, $_ := .Updated.Objects -}}
+        - {{ $resource.Kind }} {{ $resource.Name }}
+        {{ end -}}
+
+        Images:
+        {{ range .Updated.Images -}}
+        - {{.}}
+        {{ end -}}
     push:
-      branch: main
-  interval: 1m0s
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
+      branch: auto-update/images
   update:
-    #    path: ./cluster/apps
+    path: /cluster
     strategy: Setters

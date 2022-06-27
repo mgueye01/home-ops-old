@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: vmware-tanzu-charts
         namespace: flux-system
-      version: "2.26.5"
+      version: 2.30.0
   install:
     crds: Create
   interval: 5m
@@ -23,23 +23,23 @@ spec:
   values:
     configuration:
       backupStorageLocation:
+        name: default
+        default: true
         bucket: velero
         config:
-          publicUrl: "http://192.168.0.18:9000"
+          publicUrl: "${SECRET_MINIO_ENDPOINT}"
           region: eu-west-3
           s3ForcePathStyle: true
-          s3Url: "http://192.168.0.18:9000"
-        name: tools
+          s3Url: "${SECRET_MINIO_ENDPOINT}"
       provider: aws
-      resticTimeout: 6h
+      resticTimeout: 4h
       volumeSnapshotLocation:
         config:
           region: eu-west-3
         name: aws
     deployRestic: true
     image:
-      repository: velero/velero
-      tag: v1.9.0
+      repository: ghcr.io/k8s-at-home/velero
     initContainers:
       - image: "velero/velero-plugin-for-aws:v1.5.0"
         imagePullPolicy: IfNotPresent

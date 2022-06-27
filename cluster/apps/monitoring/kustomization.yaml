@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - botkube
   - uptimerobot-heartbeat
-  - uptimerobot-operator
+  - uptimerobot
   - thanos
   # - promtail
   - grafana
@@ -18,3 +18,4 @@ resources:
   - blackbox-exporter
   - speedtest-exporter
   - goldilocks
+  - pushgateway

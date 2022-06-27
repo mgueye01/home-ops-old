@@ -80,7 +80,7 @@ spec:
       replicaCount: 1
       extraEnvs:
         - name: TEMPLATE_NAME
-          value: ghost
+          value: lost-in-space
         - name: SHOW_DETAILS
           value: "false"
       affinity:
