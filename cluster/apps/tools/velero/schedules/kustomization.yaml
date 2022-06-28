@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - media-backup.yaml
   - database-backup.yaml
+  - default-backup.yaml
