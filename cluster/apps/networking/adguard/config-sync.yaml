@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adguard-config-sync
+  namespace: networking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adguard-config-sync
+  template:
+    metadata:
+      labels:
+        app: adguard-config-sync
+    spec:
+      containers:
+        - name: adguard-sync-to-secondary
+          image: quay.io/bakito/adguardhome-sync
+          command: ["/opt/go/adguardhome-sync"]
+          args: ["run"]
+          env:
+            - name: ORIGIN_URL
+              value: http://adguard-home-0:3000
+            # - name: ORIGIN_USERNAME
+            #   value:
+            # - name: ORIGIN_PASSWORD
+            #   value:
+            - name: REPLICA_URL
+              value: http://adguard-home-1:3000
+            # - name: REPLICA_USERNAME
+            #   value:
+            # - name: REPLICA_PASSWORD
+            #   value:
+            - name: RUNONSTART
+              value: "true"
+            - name: CRON
+              value: "*/10 * * * *"
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 50m
+            limits:
+              memory: 200Mi
