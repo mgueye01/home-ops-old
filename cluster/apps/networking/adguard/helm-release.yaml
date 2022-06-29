@@ -101,6 +101,9 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
+  dependsOn:
+    - name: adguard-home-0
+      namespace: networking
   values:
     image:
       repository: adguard/adguardhome
