@@ -85,7 +85,7 @@ spec:
         bind_hosts:
         - 0.0.0.0
         port: 53
-        statistics_interval: 1
+        statistics_interval: 7
         querylog_enabled: true
         querylog_file_enabled: true
         querylog_interval: 168h
@@ -95,22 +95,21 @@ spec:
         blocking_mode: default
         blocking_ipv4: ""
         blocking_ipv6: ""
-        blocked_response_ttl: 10
+        blocked_response_ttl: 300
         parental_block_host: family-block.dns.adguard.com
         safebrowsing_block_host: standard-block.dns.adguard.com
         ratelimit: 0
         ratelimit_whitelist: []
         refuse_any: true
         upstream_dns:
-        - 10.10.1.1
-        - 10.10.1.10
+        - tls://1.1.1.1
+        - tls://1.0.0.1
         upstream_dns_file: ""
         bootstrap_dns:
-        - 10.10.1.1
-        - 10.10.1.10
-        - 8.8.8.8
+        - 1.1.1.1
+        - 1.0.0.1
         all_servers: false
-        fastest_addr: false
+        fastest_addr: true
         fastest_timeout: 1s
         allowed_clients: []
         disallowed_clients: []
@@ -128,33 +127,38 @@ spec:
         bogus_nxdomain: []
         aaaa_disabled: false
         enable_dnssec: false
-        edns_client_subnet: false
+        edns_client_subnet: true
         max_goroutines: 300
         ipset: []
-        filtering_enabled: false
-        filters_update_interval: 24
-        parental_enabled: true
-        safesearch_enabled: true
-        safebrowsing_enabled: true
+        filtering_enabled: true
+        filters_update_interval: 12
+        parental_enabled: false
+        safesearch_enabled: false
+        safebrowsing_enabled: false
         safebrowsing_cache_size: 1048576
         safesearch_cache_size: 1048576
         parental_cache_size: 1048576
         cache_time: 30
         rewrites: []
-        blocked_services: []
+        blocked_services:
+        - tinder
+        - ok
+        - mail_ru
+        - vk
+        - weibo
+        - viber
+        - qq
         upstream_timeout: 10s
-        resolve_clients: true
+        private_networks: []
         use_private_ptr_resolvers: true
-        local_ptr_upstreams:
-        - 10.10.1.1
-        - 10.10.1.10
+        local_ptr_upstreams: []
       tls:
         enabled: false
         server_name: ""
-        force_https: false
+        force_https: true
         port_https: 443
         port_dns_over_tls: 853
-        port_dns_over_quic: 784
+        port_dns_over_quic: 853
         port_dnscrypt: 0
         dnscrypt_config_file: ""
         allow_unencrypted_doh: false
@@ -166,48 +170,217 @@ spec:
       filters:
       - enabled: true
         url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-        name: AdGuard DNS filter
+        name: AdGuard DNS List
         id: 1
-      - enabled: false
+      - enabled: true
         url: https://adaway.org/hosts.txt
-        name: AdAway
+        name: Advertising AdAway List
         id: 2
-      - enabled: false
-        url: https://www.malwaredomainlist.com/hostslist/hosts.txt
-        name: MalwareDomainList.com Hosts List
+      - enabled: true
+        url: http://sysctl.org/cameleon/hosts
+        name: Sysctl Hosts List
+        id: 3
+      - enabled: true
+        url: https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
+        name: Tracking Disconnect.me Simple Tracking List
         id: 4
       - enabled: true
-        url: https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareAdGuardHome.txt
-        name: Dandelion Sprout's Anti-Malware List
-        id: 1645163124
+        url: https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+        name: Advertising Disconnect.me Simple Ads List
+        id: 5
       - enabled: true
-        url: https://curben.gitlab.io/malware-filter/urlhaus-filter-agh-online.txt
-        name: Online Malicious URL Blocklist
-        id: 1645163125
+        url: https://raw.githubusercontent.com/evankrob/hosts-filenetrehost/master/ad_servers.txt
+        name: Evan K Rob Hosts File List
+        id: 6
       - enabled: true
-        url: https://raw.githubusercontent.com/durablenapkin/scamblocklist/master/adguard.txt
-        name: Scam Blocklist by DurableNapkin
-        id: 1645163126
+        url: https://dbl.oisd.nl/
+        name: Domain Blocklists (oisd.nl)
+        id: 7
+      - enabled: true
+        url: https://www.malwaredomainlist.com/hostslist/hosts.txt
+        name: MalwareDomainList.com Hosts List
+        id: 8
+      # DEFAULT LISTS
+      - enabled: true
+        url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+        name: StevenBlack
+        id: 9
+      - enabled: true
+        url: https://mirror1.malwaredomains.com/files/justdomains
+        name: MalwareDomains
+        id: 10
+      # SUSPICIOUS
+      - enabled: true
+        url: https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt
+        name: PolishFiltersTeam
+        id: 11
+      - enabled: true
+        url: https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Spam/hosts
+        name: FadeMind
+        id: 12
+      - enabled: true
+        url: https://v.firebog.net/hosts/static/w3kbl.txt
+        name: Firebog
+        id: 13
+      - enabled: true
+        url: https://v.firebog.net/hosts/Admiral.txt
+        name: Firebog Admiral
+        id: 14
+      - enabled: true
+        url: https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
+        name: adudeepmd Adservers
+        id: 15
+      - enabled: true
+        url: https://v.firebog.net/hosts/Easylist.txt
+        name: Easylist
+        id: 16
+      - enabled: true
+        url: https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
+        name: Yoyo server list
+        id: 17
+      - enabled: true
+        url: https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts
+        name: Unchecky Ads
+        id: 18
+      - enabled: true
+        url: https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts
+        name: Bigdargon master
+        id: 19
+      # Tracking and Telemetry
+      - enabled: true
+        url: https://v.firebog.net/hosts/Prigent-Ads.txt
+        name: Firebog Prigent Ads
+        id: 20
+      - enabled: true
+        url: https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.2o7Net/hosts
+        name: Fademind Ads
+        id: 21
+      - enabled: true
+        url: https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt
+        name: WindowsSpyBlocker Hosts
+        id: 22
+      - enabled: true
+        url: https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt
+        name: Frogeye First Partys
+        id: 23
+      # Malicious
+      - enabled: true
+        url: https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt
+        name: Alrternate Adfilter
+        id: 24
+      - enabled: true
+        url: https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt
+        name: Intel Threats
+        id: 25
+      - enabled: true
+        url: https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt
+        name: Malware Advertizing
+        id: 26
+      - enabled: true
+        url: https://v.firebog.net/hosts/Prigent-Crypto.txt
+        name: Crypto prigent
+        id: 27
+      - enabled: true
+        url: https://bitbucket.org/ethanr/dns-blacklists/raw/8575c9f96e5b4a1308f2f12394abd86d0927a4a0/bad_lists/Mandiant_APT1_Report_Appendix_D.txt
+        name: Mandiant APT1
+        id: 28
+      - enabled: true
+        url: https://phishing.army/download/phishing_army_blocklist_extended.txt
+        name: Phishing army
+        id: 29
+      - enabled: true
+        url: https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt
+        name: notrack malware
+        id: 30
+      - enabled: true
+        url: https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt
+        name: spam404
+        id: 31
+      - enabled: true
+        url: https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Risk/hosts
+        name: Add.Risk
+        id: 32
+      - enabled: true
+        url: https://urlhaus.abuse.ch/downloads/hostfile/
+        name: urlhause abuse list
+        id: 33
+      - enabled: true
+        url: https://someonewhocares.org/hosts/zero/hosts
+        name: Dan Pollock's List
+        id: 34
+      - enabled: true
+        url: https://raw.githubusercontent.com/DandelionSprout/adfilt/master/GameConsoleAdblockList.txt
+        name: Game Console Adblock List
+        id: 35
       - enabled: true
         url: https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV-AGH.txt
         name: Perflyst and Dandelion Sprout's Smart-TV Blocklist
-        id: 1645163127
+        id: 36
       - enabled: true
-        url: https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites/master/hosts
-        name: The Big List of Hacked Malware Web Sites
-        id: 1645163128
+        url: https://abp.oisd.nl/basic/
+        name: OISD Blocklist Basic
+        id: 37
       - enabled: true
-        url: https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
-        name: NoCoin Filter List
-        id: 1645163129
+        url: https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=1&mimetype=plaintext
+        name: Peter Lowe's List
+        id: 38
+      - enabled: true
+        url: https://easylist-downloads.adblockplus.org/easylistdutch.txt
+        name: 'NLD: Easylist'
+        id: 39
+      - enabled: true
+        url: https://v.firebog.net/hosts/AdguardDNS.txt
+        name: Advertising Firebog AdguardDNS List
+        id: 40
+      - enabled: true
+        url: https://v.firebog.net/hosts/Easylist.txt
+        name: Advertising Firebog Easylist
+        id: 41
+      - enabled: true
+        url: https://v.firebog.net/hosts/Easyprivacy.txt
+        name: Tracking Firebog EasyPrivacy List
+        id: 42
+      - enabled: true
+        url: https://v.firebog.net/hosts/Prigent-Ads.txt
+        name: Tracking Firebog PrigentAds List
+        id: 43
+      - enabled: true
+        url: https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt
+        name: Malware OSINT List
+        id: 44
+      - enabled: true
+        url: https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt
+        name: Malware Disconnect.me List
+        id: 45
       whitelist_filters: []
       user_rules:
-      - '@@||pubads.g.doubleclick.net^$client=''10.10.38.183'''
-      - ""
+      - '||metrics.icloud.com^'
+      - '||collector.tinybeans.com^'
+      - '||min-api.cryptocompare.com^'
+      - '||ads-serve.brave.com^'
+      - '||adzooma.com^'
+      - '||piwpak.com^'
+      - '||test.huedatastore.com^'
+      - '||web.diagnostic.networking.aws.dev^'
+      - '||graph.facebook.com^$ctag=~device_phone'
+      - '||lkt.is^$important'
+      - '||lookout.com^$important'
+      - '||crashlytics.com^$important'
+      - '||attcompute.com^$important'
+      - '@@||v.w-x.co^'
+      - '@@||fls-na.amazon.com^'
+      - '@@||kinesis.us-east-1.amazonaws.com^'
+      - '@@||kinesis.us-west-2.amazonaws.com^'
+      - '@@||app.townsq.io^'
+      - '@@||api.townsq.io^'
+      - '@@||local^$important'
+      # - '||example.org^ # block'
+      # - '||example.org^$ctag=~device_phone' # block for all, except device_phone tag (https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#ctag)
+      # - '@@||example.org^ # unblock'
       dhcp:
         enabled: false
         interface_name: ""
-        local_domain_name: lan
+        local_domain_name: ""
         dhcpv4:
           gateway_ip: ""
           subnet_mask: ""
@@ -221,9 +394,83 @@ spec:
           lease_duration: 86400
           ra_slaac_only: false
           ra_allow_slaac: false
-      clients: []
+      clients:
+        runtime_sources:
+          whois: true
+          arp: true
+          rdns: false
+          dhcp: true
+          hosts: true
+        persistent:
+        - name: IoT
+          tags: []
+          ids:
+          - 192.168.20.0/24
+          blocked_services: []
+          upstreams: []
+          use_global_settings: true
+          filtering_enabled: false
+          parental_enabled: false
+          safesearch_enabled: false
+          safebrowsing_enabled: false
+          use_global_blocked_services: true
+        - name: Chris
+          tags:
+          - device_phone
+          - user_regular
+          ids:
+          - 192.168.0.201
+          - 192.168.0.202
+          - 192.168.0.203
+          blocked_services: []
+          upstreams: []
+          use_global_settings: true
+          filtering_enabled: false
+          parental_enabled: false
+          safesearch_enabled: false
+          safebrowsing_enabled: false
+          use_global_blocked_services: true
+        - name: Tapha
+          tags:
+          - user_admin
+          ids:
+          - 192.168.0.100
+          - 192.168.0.101
+          - 192.168.0.102
+          blocked_services: []
+          upstreams: []
+          use_global_settings: true
+          filtering_enabled: false
+          parental_enabled: false
+          safesearch_enabled: false
+          safebrowsing_enabled: false
+          use_global_blocked_services: true
+        - name: Kids
+          tags: []
+          ids:
+          - 192.168.30.0/24
+          blocked_services: []
+          upstreams: []
+          use_global_settings: true
+          filtering_enabled: false
+          parental_enabled: false
+          safesearch_enabled: false
+          safebrowsing_enabled: false
+          use_global_blocked_services: true
+        - name: Work
+          tags: []
+          ids:
+          - 192.168.40.0/24
+          blocked_services: []
+          upstreams: []
+          use_global_settings: true
+          filtering_enabled: false
+          parental_enabled: false
+          safesearch_enabled: false
+          safebrowsing_enabled: false
+          use_global_blocked_services: true
       log_compress: false
-      log_localtime: false
+      log_localtime: true
       log_max_backups: 0
       log_max_size: 100
       log_max_age: 3
@@ -233,4 +480,4 @@ spec:
         group: ""
         user: ""
         rlimit_nofile: 0
-      schema_version: 10
+      schema_version: 13
