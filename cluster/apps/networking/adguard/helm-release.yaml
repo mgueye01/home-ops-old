@@ -39,7 +39,7 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/allow-shared-ip: adguard-home-1-dns
-          metallb.universe.tf/loadBalancerIPs: "${SVC_ADGUARD_ADDRESS}"
+          # metallb.universe.tf/loadBalancerIPs: "${SVC_ADGUARD_ADDRESS}"
         loadBalancerIP: ${SVC_ADGUARD_ADDRESS}
         externalTrafficPolicy: Local
         ports:
@@ -126,7 +126,7 @@ spec:
         loadBalancerIP: ${SVC_ADGUARD_ADDRESS}
         annotations:
           metallb.universe.tf/allow-shared-ip: adguard-home-0-dns
-          metallb.universe.tf/loadBalancerIPs: "${SVC_ADGUARD_ADDRESS}"
+          # metallb.universe.tf/loadBalancerIPs: "${SVC_ADGUARD_ADDRESS}"
         externalTrafficPolicy: Local
         ports:
           tcp:
