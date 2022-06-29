@@ -10,6 +10,7 @@ spec:
   chart:
     spec:
       chart: adguard-home
+      version: 5.3.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -40,7 +41,13 @@ spec:
         loadBalancerIP: ${SVC_ADGUARD_ADDRESS}
         annotations:
             metallb.universe.tf/allow-shared-ip: adguard-home-svc
-
+      image:
+        # -- image repository
+        repository: adguard/adguardhome
+        # -- image tag
+        tag: v0.107.7
+        # -- image pull policy
+        pullPolicy: IfNotPresent
 
     ingress:
       main:
@@ -226,4 +233,4 @@ spec:
         group: ""
         user: ""
         rlimit_nofile: 0
-      schema_version: 13
+      schema_version: 10
