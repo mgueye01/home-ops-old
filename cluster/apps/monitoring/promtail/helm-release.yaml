@@ -78,7 +78,7 @@ spec:
     serviceMonitor:
       enabled: true
     tolerations:
-      - key: "arch"
-        operator: "Equal"
-        value: "arm64"
-        effect: "NoSchedule"
+      - effect: NoSchedule
+        operator: Exists
+      - effect: NoExecute
+        operator: Exists
