@@ -4,4 +4,4 @@ resources:
   - config-0-pvc.yaml
   - config-1-pvc.yaml
   - helm-release.yaml
-  - config-sync.yaml
+  # - config-sync.yaml
