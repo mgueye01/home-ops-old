@@ -106,20 +106,20 @@ spec:
             store: inmemory
         enable_api: true
     alerting_groups:
-      #
-      # zigbee2mqtt
-      #
-      - name: zigbee2mqtt
-        rules:
-          - alert: ZigbeeUnableToReachMQTT
-            expr: |
-              sum(count_over_time({app="zigbee2mqtt"} |~ "(?i)not connected to mqtt server"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "Zigbee2mqtt is unable to reach MQTT"
+      # #
+      # # zigbee2mqtt
+      # #
+      # - name: zigbee2mqtt
+      #   rules:
+      #     - alert: ZigbeeUnableToReachMQTT
+      #       expr: |
+      #         sum(count_over_time({app="zigbee2mqtt"} |~ "(?i)not connected to mqtt server"[2m])) > 0
+      #       for: 10s
+      #       labels:
+      #         severity: critical
+      #         category: logs
+      #       annotations:
+      #         summary: "Zigbee2mqtt is unable to reach MQTT"
       #
       # zwavejs2mqtt
       #
@@ -134,20 +134,20 @@ spec:
               category: logs
             annotations:
               summary: "Zwavejs2mqtt is unable to reach MQTT"
-      #
-      # frigate
-      #
-      - name: frigate
-        rules:
-          - alert: FrigateUnableToReachMQTT
-            expr: |
-              sum(count_over_time({app="frigate"} |~ "(?i)unable to connect to mqtt server"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "Frigate is unable to reach MQTT"
+      # #
+      # # frigate
+      # #
+      # - name: frigate
+      #   rules:
+      #     - alert: FrigateUnableToReachMQTT
+      #       expr: |
+      #         sum(count_over_time({app="frigate"} |~ "(?i)unable to connect to mqtt server"[2m])) > 0
+      #       for: 10s
+      #       labels:
+      #         severity: critical
+      #         category: logs
+      #       annotations:
+      #         summary: "Frigate is unable to reach MQTT"
       #
       # home-assistant
       #
@@ -162,20 +162,20 @@ spec:
               category: logs
             annotations:
               summary: "Home Assistant is unable to connect to postgresql"
-      #
-      # vaultwarden
-      #
-      - name: vaultwarden
-        rules:
-          - alert: VaultwardenUnableToReachPostgresql
-            expr: |
-              sum by (app) (count_over_time({app=~"vaultwarden"} |~ "(?i)could not connect to server"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "Vaultwarden is unable to connect to postgresql"
+      # #
+      # # vaultwarden
+      # #
+      # - name: vaultwarden
+      #   rules:
+      #     - alert: VaultwardenUnableToReachPostgresql
+      #       expr: |
+      #         sum by (app) (count_over_time({app=~"vaultwarden"} |~ "(?i)could not connect to server"[2m])) > 0
+      #       for: 10s
+      #       labels:
+      #         severity: critical
+      #         category: logs
+      #       annotations:
+      #         summary: "Vaultwarden is unable to connect to postgresql"
       #
       # node-red
       #
