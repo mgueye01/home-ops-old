@@ -21,7 +21,7 @@ spec:
     persistence:
       config:
         enabled: true
-        # existingClaim: adguard-0-config-pvc
+        existingClaim: adguard-0-config-pvc
 
     env:
       TZ: "${TIMEZONE}"
