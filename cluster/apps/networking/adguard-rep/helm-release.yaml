@@ -502,7 +502,7 @@ spec:
         group: ""
         user: ""
         rlimit_nofile: 0
-      schema_version: 14
+      schema_version: 13
 # ---
 # apiVersion: helm.toolkit.fluxcd.io/v2beta1
 # kind: HelmRelease
