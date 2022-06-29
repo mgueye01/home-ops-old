@@ -1,6 +1,7 @@
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - release.yaml
-  # - release2.yaml
+  - config-0-pvc.yaml
+  - config-1-pvc.yaml
+  - helm-release.yaml
+  - config-sync.yaml
