@@ -5,15 +5,14 @@ resources:
   - uptimerobot-heartbeat
   - uptimerobot
   - thanos
-  # - promtail
+  - promtail
   - grafana
   - loki
   - kube-prometheus-stack
   - unifi-poller
-  # - gotify
   - node-problem-detector
   - karma
-  - vector
+  # - vector
   - kubernetes-event-exporter
   - blackbox-exporter
   - speedtest-exporter
