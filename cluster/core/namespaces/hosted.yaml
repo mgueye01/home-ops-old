@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: home
+  name: hosted
   labels:
     goldilocks.fairwinds.com/enabled: "true"
     triliovault.trilio.io/backup: "true"
