@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - wordpress-operator
   - mysql-operator
+  - stack
