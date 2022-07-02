@@ -22,3 +22,4 @@ resources:
   - kube-system.yaml
   - velero.yaml
   - security.yaml
+  - hosted.yaml
