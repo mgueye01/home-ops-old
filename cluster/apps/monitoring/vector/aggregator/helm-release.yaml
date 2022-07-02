@@ -5,48 +5,82 @@ metadata:
   name: vector-aggregator
   namespace: monitoring
 spec:
-  interval: 15m
+  dependsOn:
+    - name: loki
+      namespace: monitoring
+  interval: 5m
   chart:
     spec:
       chart: vector
-      version: 0.12.0
+      version: 0.13.2
       sourceRef:
         kind: HelmRepository
         name: vector-charts
         namespace: flux-system
-      interval: 15m
+      interval: 5m
   install:
     createNamespace: true
-  dependsOn:
-    - name: loki
-      namespace: monitoring
   values:
+    image:
+      repository: timberio/vector
+      tag: 0.22.3-debian
+    role: "Stateless-Aggregator"
+
+    podMonitor:
+      enabled: true
+      jobLabel: vector-aggregator
+      port: prometheus-sink
+
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - Stateless-Aggregator
+              topologyKey: kubernetes.io/hostname
+
+    service:
+      annotations:
+      enabled: true
+      type: LoadBalancer
+
+    resources:
+      requests:
+        cpu: 35m
+        memory: 100M
+      limits:
+        memory: 500M
+
     customConfig:
       data_dir: /vector-data-dir
+
       api:
         enabled: false
-      #
+
       # Sources
-      #
       sources:
-        journal_logs:
-          type: vector
-          address: 0.0.0.0:6000
-          version: "2"
         kubernetes_logs:
+          address: 0.0.0.0:6000
+          type: vector
+          version: "2"
+        journal_logs:
           type: vector
           address: 0.0.0.0:6010
           version: "2"
-        udmse_logs:
+        udm_logs:
           address: 0.0.0.0:6100
           type: syslog
           mode: "udp"
           max_length: 102_400
         vector_metrics:
           type: internal_metrics
-      #
-      # Transformations
-      #
+
+      # Transforms
       transforms:
         kubernetes_logs_remap:
           type: remap
@@ -55,15 +89,14 @@ spec:
           source: |
             # Standardize 'app' index
             .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
-        udmse_logs_xform:
+        udm_logs_xform:
           type: "remap"
           inputs:
-            - "udmse_logs"
+            - "udm_logs"
           source: |-
             .timestamp=null
-      #
+
       # Sinks
-      #
       sinks:
         loki_journal:
           type: loki
@@ -95,22 +128,22 @@ spec:
           labels:
             app: >-
               {{`{{ custom_app_name }}`}}
-            namespace: >-
-              {{`{{ kubernetes.pod_namespace }}`}}
-            node: >-
-              {{`{{ kubernetes.pod_node_name }}`}}
             container: >-
               {{`{{ kubernetes.container_name }}`}}
             filename: >-
               {{`{{ kubernetes.file }}`}}
             instance: >-
-              {{`{{ kubernetes.pod_labels."app.kubernetes.io/instance" }}`}}
+              {{`{{ kubernetes.pod_labels.app\.kubernetes\.io/instance }}`}}
+            namespace: >-
+              {{`{{ kubernetes.pod_namespace }}`}}
+            node: >-
+              {{`{{ kubernetes.pod_node_name }}`}}
             pod: >-
               {{`{{ kubernetes.pod_name }}`}}
-        loki_udmse:
+        loki_udm:
           type: loki
           inputs:
-            - udmse_logs_xform
+            - udm_logs_xform
           endpoint: http://loki:3100
           batch:
             max_bytes: 1048576
@@ -120,41 +153,18 @@ spec:
           encoding:
             codec: json
           labels:
-            hostname: udmse
-            service: >-
+            hostname: udm
+            appname: >-
               {{`"{{ appname }}"`}}
         prometheus_sink:
           type: prometheus_exporter
           inputs:
             - vector_metrics
           address: 0.0.0.0:9090
-    image:
-      repository: timberio/vector
-      tag: 0.22.3-debian
-    role: Stateless-Aggregator
-    replicas: 3
-    # env:
-    #   - name: VECTOR_LOG
-    #     value: debug
-    service:
-      enabled: true
-      type: LoadBalancer
-    podMonitor:
-      enabled: true
-      jobLabel: vector-aggregator
-      port: prometheus-sink
-    affinity:
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/component
-                    operator: In
-                    values:
-                      - Stateless-Aggregator
-              topologyKey: kubernetes.io/hostname
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: vector-aggregator
+
   postRenderers:
     - kustomize:
         patchesJson6902:
@@ -163,9 +173,5 @@ spec:
               name: vector-aggregator
             patch:
               - op: add
-                path: /spec/externalIPs
-                value:
-                  - "${SVC_SYSLOG_ADDR}"
-              - op: replace
-                path: /spec/externalTrafficPolicy
-                value: Local
+                path: /spec/loadBalancerIP
+                value: ${SVC_SYSLOG_ADDR}
