@@ -1,0 +1,74 @@
+# https://github.com/bitnami/charts/blob/master/bitnami/wordpress/values.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: stack
+  namespace: stack
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: stack
+      version: 0.12.3
+      sourceRef:
+        kind: HelmRepository
+        name: bitpoke-charts
+        namespace: flux-system
+  install:
+    timeout: 10m
+    remediation:
+      retries: 3
+  upgrade:
+    timeout: 10m
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
+  values:
+    letsencrypt:
+      enabled: false
+      email: ""
+      server: "https://acme-v02.api.letsencrypt.org/directory"
+
+    wordpress-operator:
+      enabled: true
+      extraArgs:
+        - --ingress-class=nginx
+
+    mysql-operator:
+      enabled: true
+      orchestrator:
+        topologyPassword: this-must-be-set-in-stone-because-of-mysql-operator-bug-75
+        replicas: 1
+
+    nginx-ingress:
+      enabled: false
+      controller:
+        ingressClassResource:
+          name: bitpoke-stack
+          controllerValue: "bitpoke.io/stack"
+        config:
+          proxy-buffer-size: 64k
+          custom-http-errors: 502,503,504
+          hsts-preload: "true"
+        addHeaders:
+          server: "nginx"
+        publishService:
+          enabled: true
+        extraArgs:
+          ingress-class: bitpoke.io/stack
+          default-ssl-certificate: bitpoke-stack/stack-ingress-default
+      defaultBackend:
+        enabled: true
+        image:
+          registry: docker.io
+          image: bitpoke/stack-default-backend
+          tag: latest
+          pullPolicy: Always
+
+    git-webhook:
+      enabled: false
