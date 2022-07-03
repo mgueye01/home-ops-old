@@ -8,3 +8,5 @@ resources:
   - external-dns
   - external-snapshotter
   - starboard
+  - wpops
+  - myslqops
