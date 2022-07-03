@@ -9,4 +9,4 @@ resources:
   - external-snapshotter
   - starboard
   - wpops
-  - myslqops
+  - mysqlops
