@@ -41,4 +41,3 @@ resources:
   - kubeclarity-charts.yaml
   - emqx-charts.yaml
   - home-emqx.yaml
-  - bitpoke-charts.yaml
