@@ -5,3 +5,8 @@ namespace: hosted
 resources:
   - site-secrets.sops.yaml
   - nfs-nas.yaml
+  - mysql-volume.yaml
+  - mysql
+  - wp-volume.yaml
+  - wp.yaml
+  - ingress.yaml
