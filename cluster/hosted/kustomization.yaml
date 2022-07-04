@@ -6,7 +6,7 @@ resources:
   - site-secrets.sops.yaml
   - nfs-nas.yaml
   - mysql-volume.yaml
-  - mysql
+  - mysql.yaml
   - wp-volume.yaml
   - wp.yaml
   - ingress.yaml
