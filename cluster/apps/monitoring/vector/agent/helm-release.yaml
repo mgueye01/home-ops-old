@@ -5,10 +5,7 @@ metadata:
   name: vector-agent
   namespace: monitoring
 spec:
-  dependsOn:
-    - name: loki
-      namespace: monitoring
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: vector
@@ -17,47 +14,28 @@ spec:
         kind: HelmRepository
         name: vector-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
   install:
     createNamespace: true
     remediation:
-      retries: 3
+      retries: 5
   upgrade:
     remediation:
-      retries: 3
-      remediateLastFailure: true
-    cleanupOnFail: true
-
+      retries: 5
+  dependsOn:
+    - name: vector-aggregator
+      namespace: monitoring
   values:
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: vector-agent
     image:
       repository: timberio/vector
       tag: 0.22.3-debian
-    role: "Agent"
-
-    podMonitor:
-      enabled: true
-      jobLabel: vector-agent
-      port: prometheus-sink
-
-    service:
-      enabled: false
-
-    resources:
-      requests:
-        cpu: 25m
-        memory: 180M
-      limits:
-        memory: 800M
-
+    role: Agent
     customConfig:
       data_dir: /vector-data-dir
-
       api:
         enabled: false
-
       # Sources
+      sources:
         journal_logs:
           type: journald
           journal_directory: /var/log/journal
@@ -90,7 +68,12 @@ spec:
           inputs:
             - vector_metrics
           address: 0.0.0.0:9090
-
+    service:
+      enabled: false
+    podMonitor:
+      enabled: true
+      jobLabel: vector-agent
+      port: prometheus-sink
     securityContext:
       privileged: true
     tolerations:
