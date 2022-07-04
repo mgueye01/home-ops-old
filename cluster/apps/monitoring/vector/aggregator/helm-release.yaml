@@ -102,7 +102,7 @@ spec:
           type: loki
           inputs:
             - journal_logs
-          endpoint: http://loki.monitoring.svc.cluster.local:3100
+          endpoint: http://loki-gateway:80
           encoding:
             codec: json
           batch:
@@ -117,7 +117,7 @@ spec:
           type: loki
           inputs:
             - kubernetes_logs_remap
-          endpoint: http://loki.monitoring.svc.cluster.local:3100
+          endpoint: http://loki-gateway:80
           encoding:
             codec: json
           batch:
@@ -144,7 +144,7 @@ spec:
           type: loki
           inputs:
             - udm_logs_xform
-          endpoint: http://loki.monitoring.svc.cluster.local:3100
+          endpoint: http://loki-gateway:80
           batch:
             max_bytes: 1048576
           out_of_order_action: rewrite_timestamp
