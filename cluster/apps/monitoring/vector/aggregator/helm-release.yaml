@@ -102,7 +102,7 @@ spec:
           type: loki
           inputs:
             - journal_logs
-          endpoint: http://loki:3100
+          endpoint: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
           encoding:
             codec: json
           batch:
@@ -117,7 +117,7 @@ spec:
           type: loki
           inputs:
             - kubernetes_logs_remap
-          endpoint: http://loki:3100
+          endpoint: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
           encoding:
             codec: json
           batch:
@@ -144,7 +144,7 @@ spec:
           type: loki
           inputs:
             - udm_logs_xform
-          endpoint: http://loki:3100
+          endpoint: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
           batch:
             max_bytes: 1048576
           out_of_order_action: rewrite_timestamp
@@ -173,5 +173,9 @@ spec:
               name: vector-aggregator
             patch:
               - op: add
-                path: /spec/loadBalancerIP
-                value: ${SVC_SYSLOG_ADDR}
+                path: /spec/externalIPs
+                value:
+                  - "${SVC_SYSLOG_ADDR}"
+              - op: replace
+                path: /spec/externalTrafficPolicy
+                value: Local
