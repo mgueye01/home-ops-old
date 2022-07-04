@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: hosted
 resources:
   - site-secrets.sops.yaml
-  - nfs-nas.yaml
   - mysql-volume.yaml
   - mysql.yaml
   - wp-volume.yaml
