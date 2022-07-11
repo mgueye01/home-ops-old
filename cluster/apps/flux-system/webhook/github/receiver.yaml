@@ -28,10 +28,10 @@ spec:
       kind: Kustomization
       name: config
       namespace: flux-system
-    - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-      kind: Kustomization
-      name: core
-      namespace: flux-system
+    # - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    #   kind: Kustomization
+    #   name: core
+    #   namespace: flux-system
     - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
       kind: Kustomization
       name: flux-system
@@ -42,13 +42,5 @@ spec:
       namespace: flux-system
     - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
       kind: Kustomization
-      name: external-snapshotter-crds
-      namespace: flux-system
-    - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-      kind: Kustomization
       name: crds-kube-prometheus-stack
-      namespace: flux-system
-    - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-      kind: Kustomization
-      name: crds-kyverno
       namespace: flux-system
