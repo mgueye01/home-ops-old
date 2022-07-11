@@ -42,7 +42,7 @@ spec:
       namespace: flux-system
     - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
       kind: Kustomization
-      name: crds-external-snapshotter
+      name: external-snapshotter-crds
       namespace: flux-system
     - apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
       kind: Kustomization
