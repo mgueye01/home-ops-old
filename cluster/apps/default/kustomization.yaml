@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   #  - blog
   - littlelink
-  #  - podinfo
+   - podinfo
   - theme-park
   - ghost
   - homer
