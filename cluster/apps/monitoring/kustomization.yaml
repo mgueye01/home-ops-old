@@ -12,7 +12,7 @@ resources:
   - unifi-poller
   - node-problem-detector
   - karma
-  - vector
+  # - vector
   - kubernetes-event-exporter
   - blackbox-exporter
   - speedtest-exporter
