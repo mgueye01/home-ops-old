@@ -22,7 +22,7 @@ spec:
       repository: k8s-at-home/promtail
     config:
       clients:
-        - url: http://loki-gateway:80
+        - url: http://loki:3100
       snippets:
         extraScrapeConfigs: |
           - job_name: journal
