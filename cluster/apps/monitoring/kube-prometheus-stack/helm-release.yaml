@@ -118,8 +118,6 @@ spec:
     kube-state-metrics:
       metricLabelsAllowlist:
         - "persistentvolumeclaims=[*]"
-      collectors:
-        verticalpodautoscalers: true
       prometheus:
         monitor:
           enabled: true
