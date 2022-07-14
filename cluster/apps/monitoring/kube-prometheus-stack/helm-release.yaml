@@ -119,6 +119,8 @@ spec:
       namespaceOverride: ""
       rbac:
         create: true
+      collectors:
+        verticalpodautoscalers: true
       metricLabelsAllowlist:
         - "persistentvolumeclaims=[*]"
       prometheus:
