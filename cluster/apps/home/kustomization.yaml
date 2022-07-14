@@ -4,8 +4,6 @@ resources:
   - emqx
   - home-assistant
   - node-red
-  # - vaultwarden
-  #  - zigbee2mqtt
   - zwavejs2mqtt
-  # - mosquitto
   - paperless
+  - mealie
