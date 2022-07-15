@@ -22,7 +22,7 @@ spec:
     api:
       image:
         repository: hkotel/mealie
-        tag: api-v1.0.0beta-3
+        # tag: api-v1.0.0beta-3
       env:
         ALLOW_SIGNUP: "false"
         TZ: "${TIMEZONE}"
