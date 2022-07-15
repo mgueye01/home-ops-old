@@ -18,11 +18,11 @@ spec:
   values:
     image:
       repository: hkotel/mealie
-      tag: frontend-v1.0.0beta-2
+      tag: frontend-v1.0.0beta-3
     api:
       image:
         repository: hkotel/mealie
-        tag: api-v1.0.0beta-2
+        tag: api-v1.0.0beta-3
       env:
         ALLOW_SIGNUP: "false"
         TZ: "${TIMEZONE}"
@@ -57,9 +57,9 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: "ceph-block"
+        # storageClass: "ceph-block"
         existingClaim: mealie-pvc
-        mountPath: /app/data/
+        # mountPath: /app/data/
     podAnnotations:
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
