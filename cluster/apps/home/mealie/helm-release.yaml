@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: hkotel/mealie
-      tag: frontend-v1.0.0beta-3
+      tag: v0.5.6
     api:
       image:
         repository: hkotel/mealie
