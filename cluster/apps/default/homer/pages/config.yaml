@@ -74,10 +74,10 @@ services:
         subtitle: Digital document storage
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/paperless.png"
         url: "https://paperless.${SECRET_DOMAIN}"
-      # - name: BitWarden
-      #   logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/bitwarden.png"
-      #   url: "https://vault.${SECRET_DOMAIN}"
-      #   subtitle: Password manager
+      - name: Mealie
+        logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/mealie.png"
+        url: "https://mealie.${SECRET_DOMAIN}"
+        subtitle: Receipts manager
       # - name: Calibre Web
       #   logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/calibre.png"
       #   url: "https://calibre-web.${SECRET_DOMAIN}"

@@ -48,10 +48,10 @@ services:
       #   logo: "https://home.${SECRET_DOMAIN}/assets/data/kubernetes-dashboard/android-chrome-maskable-512x512.png"
       #   url: "https://dashboard.${SECRET_DOMAIN}"
       #   subtitles: Cluster dashboard
-      # - name: Authentik Outpost
-      #   logo: "https://home.${SECRET_DOMAIN}/assets/data/authentik/android-chrome-maskable-512x512.png"
-      #   url: "https://outpost.${SECRET_DOMAIN}"
-      #   subtitle: Cluster authentication and authorization service
+      - name: Adguard Home
+        logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/adguard-home.png"
+        url: "https://adguard.${SECRET_DOMAIN}"
+        subtitle: DNS proxy as ad-blocker for local network
       - name: Grafana
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/grafana.png"
         url: "https://grafana.${SECRET_DOMAIN}"
@@ -72,10 +72,10 @@ services:
   - name: Home Automation Systems
     icon: fas fa-magic
     items:
-      # - name: AppDaemon
-      #   logo: "https://home.${SECRET_DOMAIN}/assets/data/appdaemon/android-chrome-maskable-512x512.png"
-      #   url: "https://appdaemon.${SECRET_DOMAIN}"
-      #   subtitle: Python scripting automations
+      - name: Node-Red
+        logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/nodered.png"
+        url: "https://node-red.${SECRET_DOMAIN}"
+        subtitle: Node-RED is low-code programming for event-driven applications
       # - name: ESPHome
       #   logo: "https://home.${SECRET_DOMAIN}/assets/data/esphome/android-chrome-maskable-512x512.png"
       #   url: "https://esphome.${SECRET_DOMAIN}"
