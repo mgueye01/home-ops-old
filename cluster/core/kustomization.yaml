@@ -11,3 +11,4 @@ resources:
   - starboard-system
   - kyverno
   - cilium
+  - kubernetes-dashboard

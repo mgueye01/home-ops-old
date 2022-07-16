@@ -23,3 +23,4 @@ resources:
   - velero.yaml
   - security.yaml
   - hosted.yaml
+  - kubernetes-dashboard.yaml
