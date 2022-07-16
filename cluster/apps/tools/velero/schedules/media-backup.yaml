@@ -4,9 +4,9 @@ metadata:
   name: media-backup
   namespace: velero
 spec:
-  schedule: "@every 24h"
+  schedule: "@every 6h"
   template:
-    defaultVolumesToRestic: true
+    defaultVolumesToRestic: false
     hooks: {}
     includedNamespaces:
       - media

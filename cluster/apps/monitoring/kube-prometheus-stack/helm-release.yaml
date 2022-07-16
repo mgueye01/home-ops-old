@@ -116,9 +116,6 @@ spec:
                   # TODO(kube-prometheus-stack): change alertmanager volume to 250Mi
                   storage: 1Gi
     kube-state-metrics:
-      # namespaceOverride: ""
-      # rbac:
-      #   create: true
       # collectors:
       #   verticalpodautoscalers: true
       metricLabelsAllowlist:
