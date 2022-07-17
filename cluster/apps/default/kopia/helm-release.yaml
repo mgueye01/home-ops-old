@@ -77,7 +77,7 @@ spec:
         enabled: true
         type: nfs
         server: "${NAS_ADDR}"
-        path: /volume1/CLOUDNATIVE1/Backups/
+        path: /volume1/CLOUDNATIVE1/Backups
         mountPath: /backups
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
