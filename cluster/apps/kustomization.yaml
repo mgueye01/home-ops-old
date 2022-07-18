@@ -18,4 +18,3 @@ resources:
   - cert-manager
   - trilio
   # - security
-  - cluster
