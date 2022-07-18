@@ -3,20 +3,20 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kyverno
-  namespace: kyverno
+  namespace: kube-system
 spec:
   interval: 15m
   chart:
     spec:
       chart: kyverno
-      version: v2.4.1
+      version: v2.5.1
       sourceRef:
         kind: HelmRepository
         name: kyverno-charts
         namespace: flux-system
       interval: 15m
   install:
-    createNamespace: false
+    createNamespace: true
     remediation:
       retries: 5
   upgrade:
@@ -25,6 +25,12 @@ spec:
   values:
     installCRDs: false
     replicaCount: 3
+    extraArgs:
+      - --autogenInternals=false
+      - --clientRateLimitQPS=30
+      - --clientRateLimitBurst=60
+    serviceMonitor:
+      enabled: true
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
@@ -32,11 +38,3 @@ spec:
         labelSelector:
           matchLabels:
             app.kubernetes.io/instance: kyverno
-    serviceMonitor:
-      enabled: true
-    resources:
-      limits:
-        memory: 613Mi
-      requests:
-        cpu: 100m
-        memory: 352Mi
