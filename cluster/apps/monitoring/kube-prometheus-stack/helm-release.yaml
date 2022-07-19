@@ -116,8 +116,6 @@ spec:
                   # TODO(kube-prometheus-stack): change alertmanager volume to 250Mi
                   storage: 1Gi
     kube-state-metrics:
-      # collectors:
-      #   verticalpodautoscalers: true
       metricLabelsAllowlist:
         - "persistentvolumeclaims=[*]"
       prometheus:
@@ -130,6 +128,8 @@ spec:
               sourceLabels:
                 - __meta_kubernetes_pod_node_name
               targetLabel: kubernetes_node
+      collectors:
+        - verticalpodautoscalers
     grafana:
       enabled: false
       forceDeployDashboards: true
