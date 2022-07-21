@@ -7,7 +7,6 @@ resources:
   - monitoring-namespace.yaml
   - rook-ceph.yaml
   - tools.yaml
-  - kyverno.yaml
   - home.yaml
   - trilio.yaml
   - database.yaml
@@ -23,4 +22,3 @@ resources:
   - velero.yaml
   - security.yaml
   - hosted.yaml
-  - kubernetes-dashboard.yaml
