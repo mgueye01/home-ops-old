@@ -89,12 +89,7 @@ spec:
               password: ${SECRET_MARIADB_GRAFANA_PASSWORD}
     dashboards:
       default:
-        # # Ref: https://grafana.com/grafana/dashboards/12175
-        # calico-felix:
-        #   gnetId: 12175
-        #   revision: 5
-        #   datasource: Prometheus
-        # # Ref: https://grafana.com/grafana/dashboards/2842
+        # Ref: https://grafana.com/grafana/dashboards/2842
         ceph-cluster:
           gnetId: 2842
           revision: 14
@@ -113,11 +108,6 @@ spec:
           gnetId: 13502
           revision: 10
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/13665
-        speedtest:
-          gnetId: 13665
-          revision: 1
-          datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/9628
         postgres:
           gnetId: 9628
@@ -129,43 +119,32 @@ spec:
         flux-control-plane:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
           datasource: Prometheus
-        blocky:
-          url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.16/docs/blocky-grafana.json
-          datasource: Prometheus
-        blocky-query:
-          url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.16/docs/blocky-query-grafana.json
-          datasource: MySQL Blocky
         k8s-dashboard:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/k8s-for-prometheus-dashboard.json
           datasource: Prometheus
         k8s-node-exporter-dashboard:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/node-exporter-for-prometheus.json
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11315
         unifi-client-insights:
           gnetId: 11315
           revision: 8
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11315
+        # Ref: https://grafana.com/grafana/dashboards/11311
         unifi-network-sites:
           gnetId: 11311
           revision: 4
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11311
+        # Ref: https://grafana.com/grafana/dashboards/11314
         unifi-uap-insights:
           gnetId: 11314
           revision: 9
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11314
+        # Ref: https://grafana.com/grafana/dashboards/11312
         unifi-usw-insights:
           gnetId: 11312
           revision: 8
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11312
-        velero-exporter-overview:
-          gnetId: 15469
-          revision: 1
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/15469
         Synology-nas-overview:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/synology-nas-overview_rev8.json
           datasource: Prometheus
