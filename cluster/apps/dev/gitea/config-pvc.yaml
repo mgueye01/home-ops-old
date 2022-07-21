@@ -5,7 +5,9 @@ metadata:
   name: gitea-config-v1
   namespace: dev
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name gitea
+    app.kubernetes.io/instance: *name
+    policy.home.arpa/snapshot: "true"
 spec:
   accessModes:
     - ReadWriteOnce
