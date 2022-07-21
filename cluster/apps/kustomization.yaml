@@ -16,5 +16,5 @@ resources:
   - harbor
   - media
   - cert-manager
-  - trilio
+  # - trilio
   # - security
