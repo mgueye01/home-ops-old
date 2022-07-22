@@ -5,12 +5,12 @@ metadata:
   name: metallb
   namespace: metallb-system
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       # renovate: registryUrl=https://metallb.github.io/metallb
       chart: metallb
-      version: 0.13.4
+      version: 0.13.3
       sourceRef:
         kind: HelmRepository
         name: metallb-charts
@@ -22,15 +22,21 @@ spec:
   upgrade:
     remediation:
       retries: 5
+
   values:
     crds:
       enabled: false
+
+    speaker:
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+
     prometheus:
-      scrapeAnnotations: false
-      metricsPort: 7472
-      serviceAccount: prometheus-prometheus
-      namespace: monitoring
-      podMonitor:
-        enabled: true
+      enabled: true
       prometheusRule:
+        enabled: true
+      serviceMonitor:
         enabled: true
