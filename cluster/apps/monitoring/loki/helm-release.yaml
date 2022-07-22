@@ -23,7 +23,7 @@ spec:
     remediation:
       remediateLastFailure: true
   values:
-    replicas: 2
+    replicas: 1
     persistence:
       enabled: false
     image:
