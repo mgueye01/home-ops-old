@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - botkube
   - uptimerobot-heartbeat
-  - uptimerobot
+  # - uptimerobot
   - thanos
   # - promtail
   - grafana
