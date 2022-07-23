@@ -5,4 +5,4 @@ resources:
   # - ingress.yaml
   - resources.yaml
   - snapshot-cronjob-controller.yaml
-  - inject-timezone.yaml
+  # - inject-timezone.yaml
