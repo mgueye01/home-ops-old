@@ -71,10 +71,12 @@ spec:
         shared_store: s3
         compaction_interval: 5m
       query_range:
-        split_queries_by_interval: 0
+        split_queries_by_interval: 24h
         parallelise_shardable_queries: false
       frontend:
         max_outstanding_per_tenant: 4096
+      query_scheduler:
+        max_outstanding_requests_per_tenant: 4096
       limits_config:
         enforce_metric_name: false
         reject_old_samples: true
