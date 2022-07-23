@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: loki
-      version: 2.13.2
+      version: 2.4.1
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
@@ -74,7 +74,7 @@ spec:
         split_queries_by_interval: 0
         parallelise_shardable_queries: false
       frontend:
-        max_outstanding_per_tenant: 2048
+        max_outstanding_per_tenant: 4096
       limits_config:
         enforce_metric_name: false
         reject_old_samples: true
