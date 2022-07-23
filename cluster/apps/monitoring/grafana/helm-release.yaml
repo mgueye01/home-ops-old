@@ -94,6 +94,11 @@ spec:
           gnetId: 2842
           revision: 14
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/15038
+        External-dns:
+          gnetId: 15038
+          revision: 1
+          datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/15308
         etcd-cluster-overview:
           gnetId: 15308

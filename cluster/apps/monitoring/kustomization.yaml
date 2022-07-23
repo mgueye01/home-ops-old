@@ -5,7 +5,7 @@ resources:
   - uptimerobot-heartbeat
   - uptimerobot
   - thanos
-  - promtail
+  # - promtail
   - grafana
   - loki
   - kube-prometheus-stack
