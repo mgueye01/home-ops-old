@@ -48,3 +48,5 @@ spec:
         cpu: 15m
       limits:
         memory: 105Mi
+    serviceMonitor:
+      enabled: true
