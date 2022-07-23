@@ -66,7 +66,7 @@ spec:
         storage_config:
           aws:
             insecure: false
-            s3: https://${SECRET_MINIO_ACCESS_KEY}:${SECRET_MINIO_SECRET_KEY}@${SECRET_MINIO_ENDPOINT}/loki
+            s3: http://${SECRET_MINIO_ACCESS_KEY}:${SECRET_MINIO_SECRET_KEY}@${SECRET_MINIO_ENDPOINT}/loki
             s3forcepathstyle: true
           boltdb_shipper:
             active_index_directory: /data/loki/index
