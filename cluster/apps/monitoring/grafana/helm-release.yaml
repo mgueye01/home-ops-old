@@ -75,7 +75,7 @@ spec:
             type: prometheus
             access: proxy
             url: http://thanos-query:9090/
-            # isDefault: true
+            isDefault: true
           - name: Loki
             type: loki
             access: proxy
@@ -163,6 +163,9 @@ spec:
         VPA-Recommendations:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/vpa-recommendations.json
           datasource: Prometheus
+        Kubernetes-events-dashboard.:
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/kubernetes-events-dashboard.json
+          datasource: Loki
     sidecar:
       dashboards:
         enabled: true
