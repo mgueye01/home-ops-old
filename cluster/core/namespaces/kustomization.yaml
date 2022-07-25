@@ -18,6 +18,5 @@ resources:
   - starboard-system.yaml
   - flux-system.yaml
   - kube-system.yaml
-  - velero.yaml
   - security.yaml
   - hosted.yaml
