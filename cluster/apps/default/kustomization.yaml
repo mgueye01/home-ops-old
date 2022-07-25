@@ -9,3 +9,4 @@ resources:
   - ghost
   - homer
   - kopia
+  - echo-server
