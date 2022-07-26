@@ -17,39 +17,39 @@ spec:
         namespace: flux-system
       interval: 1h
   values:
-    # expose:
-    #   tls:
-    #     # The ingress controller has a default certificate so we don't need to configure it
-    #     certSource: none
-    #   ingress:
-    #     annotations:
-    #       kubernetes.io/ingress.class: nginx
-    #       external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-    #       external-dns/is-public: "true"
-    #     hosts:
-    #       core: harbor.${SECRET_DOMAIN}
-    # externalURL: https://harbor.${SECRET_DOMAIN}
-    logLevel: info
     expose:
-      type: ingress
+      tls:
+        # The ingress controller has a default certificate so we don't need to configure it
+        certSource: none
       ingress:
-        hosts:
-          core: harbor.${SECRET_DOMAIN}
-          # notary:
         annotations:
+          kubernetes.io/ingress.class: nginx
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          kubernetes.io/ingress.class: nginx
-          ingress.kubernetes.io/ssl-redirect: "true"
-          ingress.kubernetes.io/proxy-body-size: "0"
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-      tls:
-        certSource: secret
-        secret:
-          secretName: harbor-tls
+        hosts:
+          core: harbor.${SECRET_DOMAIN}
     externalURL: https://harbor.${SECRET_DOMAIN}
+    # logLevel: info
+    # expose:
+    #   type: ingress
+    #   ingress:
+    #     hosts:
+    #       core: harbor.${SECRET_DOMAIN}
+    #       # notary:
+    #     annotations:
+    #       external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    #       external-dns/is-public: "true"
+    #       cert-manager.io/cluster-issuer: letsencrypt-production
+    #       kubernetes.io/ingress.class: nginx
+    #       ingress.kubernetes.io/ssl-redirect: "true"
+    #       ingress.kubernetes.io/proxy-body-size: "0"
+    #       nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    #       nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    #   tls:
+    #     certSource: secret
+    #     secret:
+    #       secretName: harbor-tls
+    # externalURL: https://harbor.${SECRET_DOMAIN}
     trivy:
       enabled: true
     chartmuseum:
@@ -63,41 +63,6 @@ spec:
       serviceMonitor:
         enabled: true
     harborAdminPassword: "${SECRET_HARBOR_ADMIN_PASSWORD}"
-    # portal:
-    #   image:
-    #     repository: liupeng0518/harbor-portal
-    #     tag: v2.3.4
-    # core:
-    #   image:
-    #     repository: liupeng0518/harbor-core
-    #     tag: v2.3.4
-    # jobservice:
-    #   image:
-    #     repository: liupeng0518/harbor-jobservice
-    #     tag: v2.3.4
-    # registry:
-    #   registry:
-    #     image:
-    #       repository: liupeng0518/registry-photon
-    #       tag: v2.3.4
-    #   controller:
-    #     image:
-    #       repository: liupeng0518/harbor-registryctl
-    #       tag: v2.3.4
-    # database:
-    #   internal:
-    #     image:
-    #       repository: cocl666/harbor-db
-    #       tag: v2.2.2
-    # redis:
-    #   internal:
-    #     image:
-    #       repository: liupeng0518/redis-photon
-    #       tag: v2.3.4
-    # exporter:
-    #   image:
-    #     repository: liupeng0518/harbor-exporter
-    #     tag: v2.3.4
 
     persistence:
       enabled: true
