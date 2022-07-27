@@ -41,10 +41,10 @@ spec:
       ingressClassResource:
         default: true
       config:
-        use-forwarded-headers: "true"
+        # use-forwarded-headers: "true"
         proxy-buffers-number: "8"
         proxy-buffer-size: "16k"
-        use-http2: "true"
+        # use-http2: "true"
         # client-header-timeout: 120
         # client-body-buffer-size: "100M"
         # client_max_body_size: 100M
