@@ -41,10 +41,10 @@ spec:
       ingressClassResource:
         default: true
       config:
-        # use-forwarded-headers: "true"
+        use-forwarded-headers: "true"
         proxy-buffers-number: "8"
         proxy-buffer-size: "16k"
-        # use-http2: "true"
+        use-http2: "true"
         # client-header-timeout: 120
         # client-body-buffer-size: "100M"
         # client_max_body_size: 100M
@@ -56,7 +56,7 @@ spec:
         # hsts-max-age: "31449600"
         # keep-alive: 120
         # keep-alive-requests: 10000
-        # # proxy-body-size: "100M"
+        proxy-body-size: '0'
         ssl-protocols: "TLSv1.3 TLSv1.2"
       metrics:
         enabled: true
