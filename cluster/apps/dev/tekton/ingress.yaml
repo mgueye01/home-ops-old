@@ -8,14 +8,14 @@ metadata:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app
   annotations:
-    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_PUBLIC_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
     external-dns/is-public: "true"
     nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
     nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
 spec:
   ingressClassName: nginx
   rules:
-    - host: &host "tekton-dashboard.${SECRET_PUBLIC_DOMAIN}"
+    - host: &host "tekton-dashboard.${SECRET_DOMAIN}"
       http:
         paths:
           - backend:
