@@ -50,4 +50,4 @@ spec:
       DRONE_GITEA_CLIENT_SECRET: ${SECRET_DRONE_GITEA_CLIENT_SECRET}
     persistentVolume:
       enabled: true
-      storageClass: ceph-block
+      storageClass: ceph-block-retain
