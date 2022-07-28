@@ -23,7 +23,7 @@ spec:
         externalIP: ${GITLAB_LB_IP}
 
       ingress:
-        class: internal
+        class: nginx
         annotations:
           nginx.ingress.kubernetes.io/enable-global-auth: 'false'
           cert-manager.io/cluster-issuer: letsencrypt-production
