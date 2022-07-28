@@ -32,7 +32,7 @@ spec:
         configureCertmanager: false
         # TLS is enabled by default
         tls:
-          enabled: true
+          enabled: false
       kas:
         enabled: false
       pages:
