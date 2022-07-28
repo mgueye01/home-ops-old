@@ -32,7 +32,7 @@ spec:
         configureCertmanager: false
         # TLS is enabled by default
         tls:
-          enabled: false
+          enabled: true
       kas:
         enabled: false
       pages:
@@ -69,10 +69,10 @@ spec:
             cpu: 1800m
       webservice:
         minReplicas: 1
-        maxReplicas: 1
+        maxReplicas: 2
       sidekiq:
         minReplicas: 1
-        maxReplicas: 1
+        maxReplicas: 2
         resources:
           requests:
             cpu: 80m
@@ -81,7 +81,7 @@ spec:
             cpu: 1800m
       gitlab-shell:
         minReplicas: 1
-        maxReplicas: 1
+        maxReplicas: 2
     # Disable things we handle by ourselves
     certmanager:
       install: false
