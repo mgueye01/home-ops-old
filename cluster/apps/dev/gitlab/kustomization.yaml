@@ -1,9 +1,8 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: gitlab
 resources:
-  - gitea
-  - drone
+  - _namespace.yaml
+  - helm-release.yaml
   - buildkit
-  - tekton
-  - gitlab
