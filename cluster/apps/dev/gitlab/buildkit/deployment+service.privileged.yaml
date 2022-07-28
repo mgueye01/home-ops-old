@@ -5,7 +5,7 @@ metadata:
   labels:
     app: buildkitd
   name: buildkitd
-  namespace: dev
+  namespace: gitlab
 spec:
   replicas: 1
   selector:
@@ -74,7 +74,7 @@ metadata:
   labels:
     app: buildkitd
   name: buildkitd
-  namespace: dev
+  namespace: gitlab
 spec:
   ports:
     - port: 1234
