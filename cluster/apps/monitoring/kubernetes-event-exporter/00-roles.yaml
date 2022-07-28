@@ -11,7 +11,7 @@ metadata:
   name: kube-event-reader-role
 rules:
   - apiGroups: [""]
-    resources: ["events"]
+    resources: ["events", "helmrepositories", "helmcharts", "gitrepositories", "kustomizations", "pods"]
     verbs: ["get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
