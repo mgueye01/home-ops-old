@@ -5,129 +5,27 @@ metadata:
   name: gitlab
   namespace: gitlab
 spec:
+  releaseName: gitlab
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://charts.gitlab.io
       chart: gitlab
-      version: 6.2.0
+      version: 5.7.0
       sourceRef:
         kind: HelmRepository
-        name: gitlab
+        name: gitlab-charts
         namespace: flux-system
       interval: 5m
   values:
     global:
       edition: ce
+      gitlabVersion: 14.7
       hosts:
         domain: ${SECRET_DOMAIN}
         externalIP: ${GITLAB_LB_IP}
 
+      ## https://docs.gitlab.com/charts/charts/globals#configure-ingress-settings
       ingress:
-        hosts:
-          - host: &host "gitlab.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-            secretName: webservice-tls
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
-          # nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-          # nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
-        configureCertmanager: false
-        # TLS is enabled by default
-        # tls:
-        #   enabled: false
-      kas:
         enabled: false
-      pages:
-        enabled: true
-      # email:
-      #   display_name: 'GitLab'
-      #   from: 'gitlab@${SECRET_DOMAIN}'
-      #   reply_to: 'noreply@${SECRET_DOMAIN}'
-      # smtp:
-      #   enabled: true
-      #   address: 'mailserver.mailserver'
-      #   port: 25
-      #   tls: false
-      #   authentication: ''
-      # appConfig:
-      #   omniauth:
-      #     enabled: true
-      #     autoSignInWithProvider: []
-      #     syncProfileFromProvider: [openid_connect]
-      #     allowSingleSignOn: [openid_connect]
-      #     allowBypassTwoFactor: [openid_connect]
-      #     syncProfileAttributes: [email]
-      #     blockAutoCreatedUsers: false
-      #     providers:
-      #       - secret: authelia-oauth2
-    # Reduce memory usage
-    gitlab:
-      gitaly:
-        resources:
-          requests:
-            cpu: 80m
-            memory: 340M
-          limits:
-            cpu: 1800m
-      webservice:
-        minReplicas: 1
-        maxReplicas: 2
-      sidekiq:
-        minReplicas: 1
-        maxReplicas: 2
-        resources:
-          requests:
-            cpu: 80m
-            memory: 340M
-          limits:
-            cpu: 1800m
-      gitlab-shell:
-        minReplicas: 1
-        maxReplicas: 2
-    # Disable things we handle by ourselves
-    certmanager:
-      install: false
-    nginx-ingress:
-      enabled: false
-    prometheus:
-      install: false
-    grafana:
-      enabled: false
-    gitlab-runner:
-      runners:
-        nodeSelector:
-          beta.kubernetes.io/arch: amd64
-  postRenderers:
-    - kustomize:
-        patches:
-          - patch: |-
-              apiVersion: apps/v1
-              kind: Deployment
-              metadata:
-                name: dummy-app
-              spec:
-                template:
-                  spec:
-                    nodeSelector:
-                      beta.kubernetes.io/arch: amd64
-            target:
-              kind: Deployment
-          - patch: |-
-              apiVersion: apps/v1
-              kind: StatefulSet
-              metadata:
-                name: dummy-app
-              spec:
-                template:
-                  spec:
-                    nodeSelector:
-                      beta.kubernetes.io/arch: amd64
-            target:
-              kind: StatefulSet
+      psql:
