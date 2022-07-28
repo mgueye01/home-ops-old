@@ -23,25 +23,16 @@ spec:
         externalIP: ${GITLAB_LB_IP}
 
       ingress:
-        hosts:
-          - host: &host "gitlab.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-            secretName: webservice-tls
+        class: internal
         annotations:
+          nginx.ingress.kubernetes.io/enable-global-auth: 'false'
           cert-manager.io/cluster-issuer: letsencrypt-production
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
-          # nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-          # nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+        # Wildcard is configured by default
         configureCertmanager: false
         # TLS is enabled by default
-        # tls:
-        #   enabled: false
+        tls:
+          enabled: false
       kas:
         enabled: false
       pages:
