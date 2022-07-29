@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: drone/drone
-      tag: 2.12.1
+      tag: 2.9.1
     updateStrategy:
       type: Recreate
     ingress:
@@ -40,8 +40,6 @@ spec:
       DRONE_SERVER_HOST: dr.${SECRET_DOMAIN}
       DRONE_SERVER_PROTO: https
       DRONE_GIT_ALWAYS_AUTH: true
-      DRONE_SERVER_PROXY_HOST: drone.drone.svc
-      DRONE_SERVER_PROXY_PROTO: http
       DRONE_GITEA_SERVER: https://git.${SECRET_DOMAIN}
       DRONE_USER_CREATE: username:tapha,admin:true
       DRONE_LOGS_TEXT: true

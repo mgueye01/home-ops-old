@@ -20,9 +20,6 @@ spec:
     rbac:
       buildNamespaces:
         - drone
-    image:
-      repository: drone/drone-runner-kube
-      tag: 1.0.0-rc.3
     env:
       DRONE_RPC_HOST: drone
       DRONE_RPC_PROTO: http
