@@ -5,4 +5,4 @@ namespace: gitlab
 resources:
   - _namespace.yaml
   - helm-release.yaml
-  - buildkit
+  # - buildkit
