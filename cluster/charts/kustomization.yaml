@@ -35,3 +35,4 @@ resources:
   - giantswarm-charts.yaml
   - emqx-charts.yaml
   - home-emqx.yaml
+  - gitlab-charts.yaml
