@@ -22,6 +22,9 @@ spec:
       tag: 2.9.1
     updateStrategy:
       type: Recreate
+    service:
+      type: ClusterIP
+      port: 80
     ingress:
       enabled: true
       annotations:

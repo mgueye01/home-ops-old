@@ -148,6 +148,11 @@ spec:
           gnetId: 11312
           revision: 8
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/14314
+        nginx-ingress:
+          gnetId: 14314
+          revision: 2
+          datasource: Prometheus
         Synology-nas-overview:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/synology-nas-overview_rev8.json
           datasource: Prometheus
