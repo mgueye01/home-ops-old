@@ -18,6 +18,7 @@ sonarr:
           - 1B018E0C53EC825085DD911102E2CA36 # Release Sources (Streaming Service)
           - 71899E6C303A07AF0E4746EFF9873532 # P2P Groups + Repack/Proper
 
+radarr:
   - base_url: http://radarr
     api_key: ${RADARR_APIKEY}
     delete_old_custom_formats: true
