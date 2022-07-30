@@ -9,5 +9,5 @@ resources:
   - lidarr
   - prowlarr
   - overseerr
-  - trash-updater
+  - recyclarr
   - plex-meta-manager
