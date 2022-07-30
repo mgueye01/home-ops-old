@@ -5,4 +5,4 @@ resources:
   - deployment.yaml
   - ingress.yaml
   - service.yaml
-  - regcred.sops.yaml
+  # - regcred.sops.yaml
