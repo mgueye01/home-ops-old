@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: regcred
+    namespace: flux-system
+type: kubernetes.io/dockerconfigjson
+data:
+    .dockerconfigjson: ENC[AES256_GCM,data:FcBIymxFJUhv4u0cX86AgWwbqBZ9EoJ4g3QjjF8QbzTkk9Htx/UVL/wg1X4FJph0goP2zgnbqhOq81KSi+wuCgaAyAAXgLmdIRhY8j8Vs7qgOEl2OpXiWz1RwtCVuP7cEAp12iHYCTWuUcKzLtUkzjEFY83MO3XA7H+VVSkUTr5SAscPw04Ioq0cnuAertx8Phrq24jSq6yr7H87bdGy93tj/KDKZBKhs6RCvaDHIqIoUBbdPBw6KGv4jTOtVEVdorySYBuYXA==,iv:eWdv0MRQ9iHHh4+RVkL5wNlf63JAY/7+CKQ0SdQ0GoE=,tag:LsTp9K8eZ+ShqGe1QaylNg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1ufv6l98ntd5t4tulqs9rmkjdtuytvt7ptj4uvjdhqaff93fpdf7s5rr4uk
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1Q3VQTW1oRnpUMk9qVnlu
+            WlJnWTFjQUtKS1lhOUJQNmpTYzNDTGtDaVEwCnVYL1FxOW50ZDRXVmFtWEs0dXRR
+            WGZEUGx3d29NYWpOL01KNDhzZ2FUMHcKLS0tIGZXVEcvOFVJbitRdWF6UC9mM2RB
+            UjhUay9RcmdBa3VhS2V6Y2ZuMjdYY2cKmJYXIH1ke2N5oya+8swBxr7DOzELw9mE
+            i5XOvOrVVozCIy8tLSF5mFma2X76O5E6wi3AazVJpVHnRfR3o53ugg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-07-30T00:38:40Z"
+    mac: ENC[AES256_GCM,data:rcictx3jDxGW77SkVUKWKEJ985ucdqZi/R0e1ECY4EYlk1bonZDO5nXlCaI8w2bkMHDgjwNeyMEXqyMsmpZ3A7TTtS44blwuH6HgLFMzrlx8vDAznraSEkzZbYbxDrtyHQAT7BR4+8x8ElqZ0sVYnVgcXFQdqosucFXmRGo3cH8=,iv:6l673FDQEhDYRuiEOx9dlntfUFP9j9uRPS3+PcYR5bc=,tag:sopHIHK+fEtPnwvCVqqLUQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1

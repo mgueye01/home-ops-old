@@ -7,3 +7,5 @@ metadata:
 spec:
   image: harbor.mgueye01.com/mgueye01/blog
   interval: 1m0s
+  secretRef:
+    name: regcred
