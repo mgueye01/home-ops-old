@@ -2,10 +2,10 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: regcred
-    namespace: flux-system
+    namespace: default
 type: kubernetes.io/dockerconfigjson
 data:
-    .dockerconfigjson: ENC[AES256_GCM,data:FcBIymxFJUhv4u0cX86AgWwbqBZ9EoJ4g3QjjF8QbzTkk9Htx/UVL/wg1X4FJph0goP2zgnbqhOq81KSi+wuCgaAyAAXgLmdIRhY8j8Vs7qgOEl2OpXiWz1RwtCVuP7cEAp12iHYCTWuUcKzLtUkzjEFY83MO3XA7H+VVSkUTr5SAscPw04Ioq0cnuAertx8Phrq24jSq6yr7H87bdGy93tj/KDKZBKhs6RCvaDHIqIoUBbdPBw6KGv4jTOtVEVdorySYBuYXA==,iv:eWdv0MRQ9iHHh4+RVkL5wNlf63JAY/7+CKQ0SdQ0GoE=,tag:LsTp9K8eZ+ShqGe1QaylNg==,type:str]
+    .dockerconfigjson: ENC[AES256_GCM,data:Ze8ju1a6j42rL8el8l4pbeG/pKi4erGaJIwXOQksR5ygZk1aaJS6J3l7oP74F6A6A8Z38cN7PAG16lOVf94vdcCC+4F8zGxZSyfbB6Mq5xyQ1JG4QcevvnPs5a4K+wxaproKn9wwXj5asqXKOX/UYzUGH3hErPeclY4CU9kB7lMe9vPsdbUAs5El2Fe8Evcwq2RKwLkyoA==,iv:5muFz3lMd3LEaiNp+d21eJh8FJ84K6XbUctNNymIPDw=,tag:uSLCMlQnhj/aiXlZFKixiQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -21,8 +21,8 @@ sops:
             UjhUay9RcmdBa3VhS2V6Y2ZuMjdYY2cKmJYXIH1ke2N5oya+8swBxr7DOzELw9mE
             i5XOvOrVVozCIy8tLSF5mFma2X76O5E6wi3AazVJpVHnRfR3o53ugg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-07-30T00:38:40Z"
-    mac: ENC[AES256_GCM,data:rcictx3jDxGW77SkVUKWKEJ985ucdqZi/R0e1ECY4EYlk1bonZDO5nXlCaI8w2bkMHDgjwNeyMEXqyMsmpZ3A7TTtS44blwuH6HgLFMzrlx8vDAznraSEkzZbYbxDrtyHQAT7BR4+8x8ElqZ0sVYnVgcXFQdqosucFXmRGo3cH8=,iv:6l673FDQEhDYRuiEOx9dlntfUFP9j9uRPS3+PcYR5bc=,tag:sopHIHK+fEtPnwvCVqqLUQ==,type:str]
+    lastmodified: "2022-07-30T01:01:18Z"
+    mac: ENC[AES256_GCM,data:1Ya2eTTc3ctAFSOXYxsws/oaXqwhksDd6/tNvTc+fb61TKQU/EXxLG7kHDA1A1hei3p33/oevxCOrW2+wdeKL/G/j3OFXMFuMGdvg0nMgLKZNIjcSYl0+/YYgeA/1wj1OSuiqO9KAolaS+Rlh925B4dPGKT85sBJACnn3wGIlH4=,iv:mF5k/BSoahBaCcwnA5OolEcou1LQ8ynhs7IawuySIq0=,tag:lDkFLrxgfeVVrwpdSTXJdg==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.1
