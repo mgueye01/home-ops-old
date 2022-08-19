@@ -37,7 +37,7 @@ spec:
       kas:
         enabled: false
       pages:
-        enabled: true
+        enabled: false
       # email:
       #   display_name: 'GitLab'
       #   from: 'gitlab@${SECRET_DOMAIN}'
