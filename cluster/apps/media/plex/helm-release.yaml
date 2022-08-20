@@ -137,10 +137,10 @@ spec:
     resources:
       requests:
         cpu: 20m
-        memory: 2000Mi
+        memory: 200Mi
         gpu.intel.com/i915: 1
       limits:
-        memory: 10000Mi
+        memory: 1000Mi
         gpu.intel.com/i915: 1
     podAnnotations:
       backup.velero.io/backup-volumes: config
