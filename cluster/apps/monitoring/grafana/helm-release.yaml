@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: grafana
-      version: 6.32.17
+      version: 6.32.15
 
       sourceRef:
         kind: HelmRepository
@@ -155,8 +155,8 @@ spec:
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/16718
         oom-restarts:
-          gnetId: 16718
-          revision: 1
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/oom-and-restarts_rev1.json
+          datasource: Prometheus
         Synology-nas-overview:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/synology-nas-overview_rev8.json
           datasource: Prometheus
