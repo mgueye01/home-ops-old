@@ -153,11 +153,10 @@ spec:
           gnetId: 14314
           revision: 2
           datasource: Prometheus
-        # # Ref: https://grafana.com/grafana/dashboards/16718
-        # oom-restarts:
-        #   gnetId: 16718
-        #   revision: 1
-        #   datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/16718
+        oom-restarts:
+          gnetId: 16718
+          revision: 1
         Synology-nas-overview:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/synology-nas-overview_rev8.json
           datasource: Prometheus
