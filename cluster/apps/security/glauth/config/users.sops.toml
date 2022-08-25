@@ -1,25 +1,20 @@
-[[users]]
-    name = "search"
-    uidnumber = 5000
-    primarygroup = 6500
-    passbcrypt = ""
-    [[users.capabilities]]
-        action = "search"
-        object = "*"
-[[users]]
-    name = "tapha"
-    mail = "mgueye01@gmail.com"
-    givenname = "Tapha"
-    sn = "Gueye"
-    uidnumber = 5001
-    primarygroup = 6502
-    othergroups = [ 6501 ]
-    passbcrypt = "243261243132244744505445342e696959594b697444784b564c7a6465775a65484b55784279626e43724c4d42507445687744634b774a644a612f57"
-[[users]]
-    name = "christina"
-    mail = "capagny@gmail.com"
-    givenname = "Christina"
-    sn = "Apagny"
-    uidnumber = 5002
-    primarygroup = 6502
-    passbcrypt = "243261243132246d696f446952326870765a74424b47436c546c6b48754b715743526e4d6c4670694a4f774450414a35316d4468764e5148434d6e53"
+{
+    "data": "ENC[AES256_GCM,data:EsLmOPFgxknccGdBYWuMRma2LIpYXl0bB2ZBc/kUs6CQ7AQVe7fQ4w8WTcd523Hq7Lkcz8oUWYqPomSYweVE41aPZsQc2K3AtCoF6hQuOY38QdegFUMAl1rNtK+LgyFKLDNtxPaRm1Fx26hHSCvKHNTYXGG40iyNDHO3ebxqj9vd79EbELw9JUgx5IsyDTj59ubut4xAt7qqTFgHoZ3D+4lGHQTqWzxXXFqUll0KSYCW10Ru7WKksimMp3Xu4BwYf+hwLLN0/vloyos4hKTwStSSfZM5WJIjkmSnwFACjAXDUkWhgnbRAiJCkDNkck5eFP/Drz6i4LDPgrfJ5ap8+elh6caLIBwyoGrkNTaqjGsBLbx/C9fN16js9EqwDnftSQvsEOP5VdOSDuTCo43epwFnpLYyml92LNPu9y1kYBsq7HaYnkVXvPiKLBoI+WdUEWFMYZiTv/gl6/W16WhqUaxfD3r72dSQMht18UWsu0fupDGsPFo+GLESSscZz8S7dEHK6WhmasxD8gJ+Rq1KwkHKxpuqZ/2axRNeTPh84RtVlmJKkWHE61tKtvUXiQxeN1c1ZOpAIuWZUfPR+726CDCBcVWsCmWRQySCEtydRJbo8N3uSij/RxE0qmruEMNjrTscyaizSf+bJ5tYsaQL5W1E7q6crN3cSkzB+2eLGNf7BAbVqM9W0qssjT7hMCSuz7bon2hjo3tD3IbQRmEg6TqQFSAclTdqAE3Kkszguzn74IQHrHWUmuwErx05kkRsCASsRnQOFEc6J9rB7vSpRD1IdaDAFLr0QTm/nbJTWPlyQtj0UXcijrEGwWus+XuLsnbn4Y/tz6BjYp3GW3xPyvk6ZRddcvMCqfh9jU+i7s6i5TGmyQ3nQ+f1rmcDJ3aT0IEDd6l0XPFljUQIdTH8peJpN24sRqC2tiIYcroGzz14IR96ET6pZPJHJGCIIoaaw8Z63Z81TJDQXS9qr34JqYVrTLck6m5HxVAY5K1ab5smMsK2eCVjwcaZZqHVHOclNqZh7bOZKcRLaA==,iv:ATLsl4hoA1/8RvxqNBw5Rbofp+aDlDh8+7wh8dfv4/I=,tag:f/WQEX7Z0kPu0KgsGCwxhg==,type:str]",
+    "sops": {
+        "kms": null,
+        "gcp_kms": null,
+        "azure_kv": null,
+        "hc_vault": null,
+        "age": [
+            {
+                "recipient": "age1ufv6l98ntd5t4tulqs9rmkjdtuytvt7ptj4uvjdhqaff93fpdf7s5rr4uk",
+                "enc": "-----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA3QzFMYWZXMVE2K2xKTWJ1\nSGpnYzVTNlRrTmQxOGFlL0FWYWlSZVp5TVE4Ck5TZ1lyaGNXa2x2Q2NVVEVwK3hH\nYjd4MlR3ditMUENBdGVKa05wa2xOOFUKLS0tIEJEQjRhcStJSGN1bWljMnQvL1FL\nMUgvQXFrN2dPRDdLbGRaeVd2L0JSRncKVkMQM752JletnomthgO8o1p3pAOnn8Bf\ncnhzo7UNi9ELTZJCts01qEybQyk+H9XjSbqZ20WATjCp0NMnvUM0IA==\n-----END AGE ENCRYPTED FILE-----\n"
+            }
+        ],
+        "lastmodified": "2022-08-25T23:02:50Z",
+        "mac": "ENC[AES256_GCM,data:1G/l37mW7pP9GQsAeAu3HbzlA3rhYzEQRvYo+v8sG151w4OhgJTo70KQfRGlRiLn0YmVnVqZM3Hs+fxJ3i6p4Fn8ICfOTdnYwKmW+iWjN/WZac7JX1OCIfhulaBVA0/OtBkZD4aOsV4HVQzDlch5LRjIGhzy2OrfqXM7n4RVa0o=,iv:9546na9gJce70piK8t2BTZak5EeoQr4rUVuD0d/Bzek=,tag:7Pj0t/sAxCqPHdMoZNwInQ==,type:str]",
+        "pgp": null,
+        "unencrypted_suffix": "_unencrypted",
+        "version": "3.7.1"
+    }
+}
