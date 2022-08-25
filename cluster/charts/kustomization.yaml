@@ -37,3 +37,4 @@ resources:
   - home-emqx.yaml
   - gitlab-charts.yaml
   - bjw-s-charts.yaml
+  - lwolf-charts.yaml
