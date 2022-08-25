@@ -13,3 +13,4 @@ resources:
   - harbor
   - media
   - cert-manager
+  - security
