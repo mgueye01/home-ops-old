@@ -6,7 +6,7 @@ Thumbs.db
 # k8s
 kubeconfig
 # vscode-sops
-.decrypted~*.yaml
+.decrypted~*
 .config.env
 # Ansible
 xanmanning.k3s*
