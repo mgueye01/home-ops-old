@@ -8,3 +8,4 @@ resources:
   - kured
   - intel-gpu-plugin
   - node-feature-discovery
+  - kube-cleanup-operator
