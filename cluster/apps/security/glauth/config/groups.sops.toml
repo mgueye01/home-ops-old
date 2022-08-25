@@ -1,9 +1,20 @@
-[[groups]]
-    name = "svcaccts"
-    gidnumber = 6500
-[[groups]]
-    name = "admins"
-    gidnumber = 6501
-[[groups]]
-    name = "people"
-    gidnumber = 6502
+{
+    "data": "ENC[AES256_GCM,data:3LrENHWohtB1mZ1DH3OsLpvSwSQTtNybK1p6a6eFdQlepfQj65l9omXKyr3LcFG3Zcik//i9/RE+c014HiwK44zOlZyKRFm6jhmARgD3h70P6dCsprZcpSaE/pVdg6IYIgsRzro2Ah9/sT5foswHYgtoxOwtz+ApsgAUnSKSxaKt6zP62BSt0yQIx55lYRFLQ9ivQX1B16xoTFMixqU=,iv:CbAB3mf3AOLj4kvDKu+zGBADtrd7oPhKJT8091+/jUo=,tag:vrINdnP+Xgwe1jjQ+Xq8fw==,type:str]",
+    "sops": {
+        "kms": null,
+        "gcp_kms": null,
+        "azure_kv": null,
+        "hc_vault": null,
+        "age": [
+            {
+                "recipient": "age1ufv6l98ntd5t4tulqs9rmkjdtuytvt7ptj4uvjdhqaff93fpdf7s5rr4uk",
+                "enc": "-----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBMejJkQkF2bmw2U0VsckpN\nUW9icUhJdjcxbFRKdmkvaFV2UFFmdlI2dDNrCnZHam1aaHhrMGd0elJuUWs2RXNh\nUWFkak5takhkSVF3VWhNRmRGWWlGTW8KLS0tIHFZbGZZdmJIQ25TMUc5MXdVY0hU\nMUt1T3lvcW5yZWZBQXFiMWNZV2YxaTgKTdq2RU4DqjC5S5V1+NR+MaKmaOAba104\n9DPKGcSH0eQcNTjHOYSkl3S9uS+MAvWqnSe7t8va6/Lm19WuTuJI2w==\n-----END AGE ENCRYPTED FILE-----\n"
+            }
+        ],
+        "lastmodified": "2022-08-25T22:10:55Z",
+        "mac": "ENC[AES256_GCM,data:ElKfFcHTkokA5LB6CLm+t0E1csGSUa23KAl2R3owiyDKrX3khee2sFuoK1lpctmQDYfFbfgq/2upTbaeDI1IS8dP/XIBAmFT2JUZSWhVRcjfIegFS9SzeXjs61P3mGNSiYye1sLxLIPzF3NXpr/QUQOEU2HTtZwSVS6ID2hs1MQ=,iv:iedxjnQoFe7/0NYJgTe1V5+WoY4WAVU/sjsVTcpSlXk=,tag:2NvmrIgiROk1I26kEekFGQ==,type:str]",
+        "pgp": null,
+        "unencrypted_suffix": "_unencrypted",
+        "version": "3.7.1"
+    }
+}

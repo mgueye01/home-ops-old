@@ -1,13 +1,20 @@
-debug = true
-[ldap]
-    enabled = true
-    listen = "0.0.0.0:389"
-[ldaps]
-    enabled = false
-[api]
-    enabled = true
-    tls = false
-    listen = "0.0.0.0:5555"
-[backend]
-    datastore = "config"
-    baseDN = "dc=home,dc=arpa"
+{
+    "data": "ENC[AES256_GCM,data:qauonTw21Roflbh+P1TsELAbsChltUNfU7CfYFe3qYQwBrsbKN20uKb8ejIoAeIOz/pSwrFKlwe53zglyUv7o1oh8dYUf3cHfkzPkmXXDWkLuGnb896rYJiYjGzMfmNvNkQPWO42t5oKTDctbKOg4qQONQohjQ+rc7Gzj2NNmyDivyLrc/7f0admuji9p7Bc/gZsN6uTttPFI71PmB9wnODbd+IdMfqUyUjmpz+1BHUdKxAdnzk6FamY3w11ctGKu6ciAgBtBHayTRRQpU1dG5SkNvWdQDJ8fGQ4oR/xO4afvlHYdmw=,iv:sJQ5Tgpc6bW94Y2GjdWfzaHm/OEn4clRRg9BVIe/6Wk=,tag:6oRtKlt3W6aTQYOddPeamw==,type:str]",
+    "sops": {
+        "kms": null,
+        "gcp_kms": null,
+        "azure_kv": null,
+        "hc_vault": null,
+        "age": [
+            {
+                "recipient": "age1ufv6l98ntd5t4tulqs9rmkjdtuytvt7ptj4uvjdhqaff93fpdf7s5rr4uk",
+                "enc": "-----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvNFZ2V1E1NEFhRmVKcnQr\ncTFFN2haYlQyRG1nTXNhbmtkWm9taUhwZjN3CkZEY3FObGNOWHR1cGVkWS9IL1JV\nK1NoeWhmaWZMNDluVkRFZHRLWGpzTUEKLS0tIDh0K2NhZG1rQUUzNHZueDNIRDM0\ncmxIejRKYno0aUVQWkN4bUFIbXVZYVkK83NuAU3PXjaMICmzyxsv3RBl0MPrcYa1\npxrtvKC9Q8pvdlJToqTjJ6lQTb5Y52IR8QerDzTL45evrz3LI8XaaA==\n-----END AGE ENCRYPTED FILE-----\n"
+            }
+        ],
+        "lastmodified": "2022-08-25T22:13:22Z",
+        "mac": "ENC[AES256_GCM,data:Z84WlANOih8s23SQB1KnIRcz6iXDEQh7rwNRJ9sU1QU8BVR07xrcmVgl3TlYtpmUc/dmpzP30rAO04LGPi2Pv4maP4HgAKO6rEnvqG1UuzkpN7cGmYl3F7iE9DuiSFyOAz1AcyuDPpp8Jium4+BBy9d20x+FcDDGCCSOtBDwo1Q=,iv:73Nf5dW4+bVUoKMyKL7rkX3DbpCVVvANPYGriF/VLiQ=,tag:xtQ07fQMKJd6XOsuXSjnOA==,type:str]",
+        "pgp": null,
+        "unencrypted_suffix": "_unencrypted",
+        "version": "3.7.1"
+    }
+}
