@@ -33,7 +33,7 @@ spec:
       replicas: 3
       strategy: RollingUpdate
     image:
-      repository: authelia/authelia:4.36.4
+      repository: authelia/authelia
       tag: 4.36.5
     envFrom:
       - secretRef:
