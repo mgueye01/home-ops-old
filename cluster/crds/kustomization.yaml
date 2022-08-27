@@ -3,9 +3,9 @@ kind: Kustomization
 resources:
   - cert-manager
   - rook-ceph
-  # - kyverno
+  - cloudnative-pg
   - kube-prometheus-stack
   - external-dns
-  - external-snapshotter
+  # - external-snapshotter
   - starboard
   - metallb
