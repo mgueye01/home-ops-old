@@ -26,9 +26,9 @@ spec:
       imageRegistry: public.ecr.aws
       storageClass: ceph-block
     auth:
-      enabled: false
+      enabled: true
       sentinel: false
-      # existingSecret: *app
+      existingSecret: *app
     sentinel:
       enabled: true
       masterSet: redis-master
