@@ -38,3 +38,4 @@ resources:
   - gitlab-charts.yaml
   - bjw-s-charts.yaml
   - lwolf-charts.yaml
+  - cloudnative-pg-charts.yaml
