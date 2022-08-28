@@ -136,7 +136,7 @@ spec:
       storage:
         postgres:
           enabled: true
-          host: postgres-rw.database
+          host: postgresql.database
 
       notifier:
         smtp:
