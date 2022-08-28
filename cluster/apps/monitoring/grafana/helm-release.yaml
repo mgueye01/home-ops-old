@@ -37,7 +37,7 @@ spec:
     adminPassword: "${SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
       auth:
-        signout_redirect_url: "https://auth.${SECRET_DOMAIN}/logout"
+        signout_redirect_url: "https://login.${SECRET_DOMAIN}/logout"
         oauth_auto_login: false
       auth.basic:
         enabled: false
