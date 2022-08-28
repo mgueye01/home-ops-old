@@ -48,9 +48,9 @@ spec:
         client_secret: "${SECRET_GRAFANA_OAUTH_CLIENT_SECRET}"
         scopes: "openid profile email groups"
         empty_scopes: false
-        auth_url: "https://auth.${SECRET_DOMAIN}/api/oidc/authorization"
-        token_url: "https://auth.${SECRET_DOMAIN}/api/oidc/token"
-        api_url: "https://auth.${SECRET_DOMAIN}/api/oidc/userinfo"
+        auth_url: "https://login.${SECRET_DOMAIN}/api/oidc/authorization"
+        token_url: "https://login.${SECRET_DOMAIN}/api/oidc/token"
+        api_url: "https://login.${SECRET_DOMAIN}/api/oidc/userinfo"
         login_attribute_path: preferred_username
         groups_attribute_path: groups
         name_attribute_path: name
