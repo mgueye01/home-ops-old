@@ -58,10 +58,3 @@ identity_providers:
         scopes: ["openid", "profile", "groups", "email"]
         redirect_uris: ["https://harbor.${SECRET_DOMAIN}/c/oidc/callback"]
         userinfo_signing_algorithm: none
-      - id: minio
-        secret: "${SECRET_MINIO_OAUTH_CLIENT_SECRET}"
-        public: false
-        authorization_policy: two_factor
-        scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["http://192.168.0.18:9001/oauth_callback"]
-        userinfo_signing_algorithm: none
