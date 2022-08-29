@@ -51,3 +51,10 @@ identity_providers:
         scopes: ["openid", "profile", "groups", "email"]
         redirect_uris: ["https://git.${SECRET_DOMAIN}/user/oauth2/authelia/callback"]
         userinfo_signing_algorithm: none
+      - id: harbor
+        secret: "${SECRET_HARBOR_OAUTH_CLIENT_SECRET}"
+        public: false
+        authorization_policy: two_factor
+        scopes: ["openid", "profile", "groups", "email"]
+        redirect_uris: ["https://harbor.${SECRET_DOMAIN}/c/oidc/callback"]
+        userinfo_signing_algorithm: none
