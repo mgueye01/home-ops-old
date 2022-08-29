@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: drone/drone
-      tag: 2.9.1
+      tag: 2.12.1
     updateStrategy:
       type: Recreate
     service:
@@ -41,11 +41,13 @@ spec:
         - hosts:
             - dr.${SECRET_DOMAIN}
     env:
+      DRONE_DATABASE_DRIVER: postgres
+      DRONE_DATABASE_DATASOURCE: postgres://postgres:${DRONE_POSTGRESQL_PASSWORD}@postgresql.drone.svc/postgres?sslmode=disable
       DRONE_SERVER_HOST: dr.${SECRET_DOMAIN}
       DRONE_SERVER_PROTO: https
       DRONE_GIT_ALWAYS_AUTH: true
       DRONE_GITEA_SERVER: https://git.${SECRET_DOMAIN}
-      DRONE_USER_CREATE: username:tapha,admin:true
+      DRONE_USER_CREATE: username:context,admin:true
       DRONE_LOGS_TEXT: true
       DRONE_LOGS_PRETTY: true
       DRONE_LOGS_COLOR: true
@@ -53,5 +55,5 @@ spec:
       DRONE_GITEA_CLIENT_ID: edb1cf51-a55e-418b-9d98-70ab3ab7acc5
       DRONE_GITEA_CLIENT_SECRET: ${SECRET_DRONE_GITEA_CLIENT_SECRET}
     persistentVolume:
-      enabled: true
+      enabled: false
       storageClass: ceph-block-retain

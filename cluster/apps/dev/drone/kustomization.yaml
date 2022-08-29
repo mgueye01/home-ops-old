@@ -6,3 +6,5 @@ resources:
   - drone-secrets.yaml
   - drone.yaml
   - limit-range.yaml
+patchesStrategicMerge:
+  - patches/postgres.yaml
