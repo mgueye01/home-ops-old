@@ -29,27 +29,7 @@ spec:
         hosts:
           core: harbor.${SECRET_DOMAIN}
     externalURL: https://harbor.${SECRET_DOMAIN}
-    # logLevel: info
-    # expose:
-    #   type: ingress
-    #   ingress:
-    #     hosts:
-    #       core: harbor.${SECRET_DOMAIN}
-    #       # notary:
-    #     annotations:
-    #       external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-    #       external-dns/is-public: "true"
-    #       cert-manager.io/cluster-issuer: letsencrypt-production
-    #       kubernetes.io/ingress.class: nginx
-    #       ingress.kubernetes.io/ssl-redirect: "true"
-    #       ingress.kubernetes.io/proxy-body-size: "0"
-    #       nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    #       nginx.ingress.kubernetes.io/proxy-body-size: "0"
-    #   tls:
-    #     certSource: secret
-    #     secret:
-    #       secretName: harbor-tls
-    # externalURL: https://harbor.${SECRET_DOMAIN}
+
     trivy:
       enabled: true
     chartmuseum:

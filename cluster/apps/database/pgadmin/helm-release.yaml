@@ -34,8 +34,7 @@ spec:
       annotations:
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         external-dns/is-public: "true"
-        # traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        # traefik.ingress.kubernetes.io/router.middlewares: networking-buffering-medium@kubernetescrd
+        auth.home.arpa/enabled: "true"
       hosts:
         - host: "pgadmin.${SECRET_DOMAIN}"
           paths:

@@ -134,11 +134,6 @@ spec:
           gnetId: 13502
           revision: 10
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/9628
-        postgres:
-          gnetId: 9628
-          revision: 7
-          datasource: Prometheus
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
           datasource: Prometheus

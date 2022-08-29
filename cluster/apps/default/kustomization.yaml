@@ -9,4 +9,3 @@ resources:
   - homer
   - kopia
   - echo-server
-  - smtp-relay

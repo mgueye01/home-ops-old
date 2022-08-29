@@ -5,5 +5,4 @@ resources:
   - gitea
   - drone
   - buildkit
-  # - tekton
   - gitlab
