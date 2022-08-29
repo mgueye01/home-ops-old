@@ -42,7 +42,7 @@ spec:
             - dr.${SECRET_DOMAIN}
     env:
       DRONE_DATABASE_DRIVER: postgres
-      DRONE_DATABASE_DATASOURCE: postgres://postgres:${DRONE_POSTGRESQL_PASSWORD}@postgres-rw.database/postgres?sslmode=disable
+      DRONE_DATABASE_DATASOURCE: postgres://postgres:${SECRET_DRONE_POSTGRESQL_PASSWORD}@postgres-rw.database/postgres?sslmode=disable
       DRONE_SERVER_HOST: dr.${SECRET_DOMAIN}
       DRONE_SERVER_PROTO: https
       DRONE_GIT_ALWAYS_AUTH: true

@@ -7,6 +7,6 @@ resources:
   - drone-secrets.yaml
   - drone.yaml
   - limit-range.yaml
-  - secret.sops.yaml
-patchesStrategicMerge:
-  - patches/postgres.yaml
+  # - secret.sops.yaml
+# patchesStrategicMerge:
+#   - patches/postgres.yaml
