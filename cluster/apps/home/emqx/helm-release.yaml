@@ -23,7 +23,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: public.ecr.aws/emqx/emqx
+      repository: emqx/emqx
+      ref: 4.3.5
     replicaCount: 1
     recreatePods: true
     emqxConfig:
