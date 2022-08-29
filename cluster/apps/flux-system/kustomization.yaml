@@ -4,4 +4,4 @@ resources:
   - monitoring
   - notifications
   - webhook
-  - regcred.sops.yaml
+  # - regcred.sops.yaml
