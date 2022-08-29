@@ -63,5 +63,5 @@ identity_providers:
         public: false
         authorization_policy: two_factor
         scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["http://192.168.0.18:9001/oidc/callback"]
+        redirect_uris: ["http://192.168.0.18:9001/oauth_callback"]
         userinfo_signing_algorithm: none
