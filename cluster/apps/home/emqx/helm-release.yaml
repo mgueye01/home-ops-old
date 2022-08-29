@@ -30,7 +30,7 @@ spec:
     recreatePods: true
     emqxConfig:
       EMQX_ALLOW_ANONYMOUS: "false"
-      EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
+      # EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
     emqxAclConfig: >
       {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
       {allow, {ipaddr, "127.0.0.1"}, pubsub, ["$SYS/#", "#"]}.
@@ -91,7 +91,7 @@ spec:
               topologyKey: kubernetes.io/hostname
     resources:
       requests:
-        cpu: 10m
+        cpu: 50m
         memory: 150Mi
       limits:
         memory: 512Mi
