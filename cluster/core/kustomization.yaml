@@ -8,6 +8,6 @@ resources:
   - system-upgrade
   - rook-ceph
   - synology-csi
-  - starboard-system
+  # - starboard-system
   - kyverno
   - cilium
