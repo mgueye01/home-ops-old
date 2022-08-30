@@ -6,4 +6,4 @@ resources:
   - node-red
   - zwavejs2mqtt
   - paperless
-  # - mealie
+  - mealie
