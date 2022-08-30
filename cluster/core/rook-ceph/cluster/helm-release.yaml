@@ -20,11 +20,11 @@ spec:
   values:
     toolbox:
       enabled: false
-    # placement:
-    #   all:
-    #     tolerations:
-    #       - key: node-role.kubernetes.io/master
-    #         operator: Exists
+    placement:
+      all:
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
     monitoring:
       enabled: true
       createPrometheusRules: true
@@ -35,13 +35,13 @@ spec:
       bdev_async_discard = true
 
     cephClusterSpec:
-      # placement:
-      #   all:
-      #     tolerations:
-      #       - effect: NoSchedule
-      #         operator: Exists
-      #       - effect: NoExecute
-      #         operator: Exists
+      placement:
+        all:
+          tolerations:
+            - effect: NoSchedule
+              operator: Exists
+            - effect: NoExecute
+              operator: Exists
       resources:
         mgr:
           requests:

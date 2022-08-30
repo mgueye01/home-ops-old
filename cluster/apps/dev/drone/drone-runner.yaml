@@ -27,3 +27,10 @@ spec:
       DRONE_RPC_SECRET: ${SECRET_DRONE_RPC_SECRET}
       DRONE_SECRET_PLUGIN_ENDPOINT: http://drone-secrets-drone-kubernetes-secrets:3000
       DRONE_SECRET_PLUGIN_TOKEN: ${SECRET_DRONE_SECRET_EXPORTER_KEY}
+    resources:
+      requests:
+        cpu: 10m
+        memory: 379M
+      limits:
+        cpu: 73m
+        memory: 1218M
