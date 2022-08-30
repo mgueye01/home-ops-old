@@ -27,7 +27,7 @@ spec:
             operator: Exists
     monitoring:
       enabled: true
-      # createPrometheusRules: true
+      createPrometheusRules: true
 
     # configOverride: |
     #   [global]
