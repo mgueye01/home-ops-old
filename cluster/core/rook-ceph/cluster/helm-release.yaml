@@ -45,7 +45,7 @@ spec:
       resources:
         mgr:
           requests:
-            cpu: "125m"
+            cpu: "80m"
             memory: "549M"
           limits:
             memory: "1219M"
@@ -57,13 +57,13 @@ spec:
             memory: "1059M"
         osd:
           requests:
-            cpu: "442m"
+            cpu: "200m"
             memory: "2678M"
           limits:
             memory: "5944M"
         prepareosd:
           requests:
-            cpu: "250m"
+            cpu: "20m"
             memory: "50Mi"
           limits:
             memory: "200Mi"
@@ -81,13 +81,13 @@ spec:
             memory: "64M"
         logcollector:
           requests:
-            cpu: "100m"
+            cpu: "10m"
             memory: "100M"
           limits:
             memory: "1G"
         cleanup:
           requests:
-            cpu: "250m"
+            cpu: "200m"
             memory: "100M"
           limits:
             memory: "1G"
