@@ -5,7 +5,7 @@ resources:
   - kube-system
   - networking
   - system-upgrade
-  - monitoring
+  # - monitoring
   - flux-system
   # - home
   - database
