@@ -52,7 +52,7 @@ services:
         subtitle: "Indexer manager/proxy"
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/prowlarr.png"
         url: "https://prowlarr.${SECRET_DOMAIN}"
-      # - name: Calibre
-      #   logo: "https://home.${SECRET_DOMAIN}/assets/data/calibre/android-chrome-maskable-512x512.png"
-      #   url: "https://calibre.${SECRET_DOMAIN}"
-      #   subtitle: Book collection manager
+      - name: Navidrome
+        logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/navidrome.png"
+        url: "https://navidrome.${SECRET_DOMAIN}"
+        subtitle: Music streamer

@@ -78,7 +78,7 @@ services:
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/mealie.png"
         url: "https://mealie.${SECRET_DOMAIN}"
         subtitle: Receipts manager
-      # - name: Calibre Web
-      #   logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/calibre.png"
-      #   url: "https://calibre-web.${SECRET_DOMAIN}"
-      #   subtitle: Book collection manager
+      # - name: Navidrome
+      #   logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/navidrome.png"
+      #   url: "https://navidrome.${SECRET_DOMAIN}"
+      #   subtitle: Music streamer
