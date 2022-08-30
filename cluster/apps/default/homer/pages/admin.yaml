@@ -73,7 +73,7 @@ services:
         url: "https://node-red.${SECRET_DOMAIN}"
         subtitle: Node-RED is low-code programming for event-driven applications
       - name: EMQX
-        logo: "https://home.${SECRET_DOMAIN}/assets/data/emqx/android-chrome-maskable-512x512.png"
+        logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/emq-light.png"
         url: "https://emqx.${SECRET_DOMAIN}"
         subtitle: MQTT message broker
       # - name: ESPHome
