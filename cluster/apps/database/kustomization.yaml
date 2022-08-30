@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - postgres
   - redis
-  - phpmyadmin
+  # - phpmyadmin
   - mysql
   # - pgadmin

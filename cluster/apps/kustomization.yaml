@@ -10,7 +10,7 @@ resources:
   # - home
   - database
   # - dev
-  # - harbor
+  - harbor
   # - media
   - cert-manager
   - security
