@@ -4,11 +4,11 @@ kind: Kustomization
 resources:
   - tautulli
   - plex
-  - radarr
-  - sonarr
-  - lidarr
-  - prowlarr
-  - overseerr
-  - recyclarr
+  # - radarr
+  # - sonarr
+  # - lidarr
+  # - prowlarr
+  # - overseerr
+  # - recyclarr
   - plex-meta-manager
-  - navidrome
+  # - navidrome
