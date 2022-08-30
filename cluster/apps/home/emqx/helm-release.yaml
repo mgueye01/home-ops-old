@@ -45,7 +45,7 @@ spec:
         ingressClassName: nginx
         path: /
         hosts:
-          - &host "emqx.${SECRET_CLUSTER_DOMAIN}"
+          - &host "emqx.${SECRET_DOMAIN}"
         tls:
           - hosts:
               - *host
