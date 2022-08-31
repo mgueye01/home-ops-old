@@ -1,77 +1,92 @@
 ---
 version: "3"
 
-x-preconditions: &preconditions
-  - &has-app
-    sh: kubectl get deploy,sts -A | awk '/{{.APP}}\s/{print $1}' | grep .
-    msg: "App '{{.APP}}' not found"
-  - &has-cronjob
-    sh: kubectl get cronjob -n {{.NAMESPACE}} {{.APP}}-snapshot
-    msg: "CronJob '{{.APP}}-snapshot' in namespace '{{.NAMESPACE}}' not found"
-  - &has-volume
-    sh: kubectl get pvc -n {{.NAMESPACE}} {{.VOLUME}}
-    msg: "PersistentVolumeClaim '{{.VOLUME}}' in namespace '{{.NAMESPACE}}' not found"
-  - &has-restore-job
-    msg: "File '{{.PROJECT_DIR}}/hack/restore-job.yaml' not found"
-    sh: "test -f {{.PROJECT_DIR}}/hack/restore-job.yaml"
+vars:
+  NAMESPACE: '{{ .NAMESPACE | default "default" }}'
+  KOPIA_NAMESPACE: '{{ .KOPIA_NAMESPACE | default "default" }}'
+  TS: '{{ now | date "20060102150405" }}'
+  TIMEOUT: '{{ .TIMEOUT | default "1m" }}'
 
-x-vars: &vars
-  NAMESPACE:
-    sh: kubectl get deploy,sts -A | awk '/{{.APP}}\s/{print $1}'
-  NAME:
-    sh: kubectl get deploy,sts -n {{.NAMESPACE}} | awk '/{{.APP}}\s/{print $1}'
-  VOLUME:
-    sh: kubectl get pvc -n {{.NAMESPACE}} --no-headers -l "app.kubernetes.io/name={{.APP}}" | awk '{print $1}'
-  SNAPSHOT: '{{.SNAPSHOT | default "latest"}}'
-  TS: '{{now | date "20060102150405"}}'
+x-preconditions:
+  - &has-cronjob
+    sh: kubectl get cronjob -n {{.NAMESPACE}} {{.PVC}}-snapshot
+    msg: "CronJob '{{.PVC}}-snapshot' in namespace '{{.NAMESPACE}}' not found"
+  - &has-pvc
+    sh: kubectl get pvc -n {{.NAMESPACE}} {{.PVC}}
+    msg: "PersistentVolumeClaim '{{.PVC}}' in namespace '{{.NAMESPACE}}' not found"
+  - &has-restore-job
+    msg: "File '{{.RESTORE_JOB_FILENAME}}' not found"
+    sh: "test -f {{.RESTORE_JOB_FILENAME}}"
+  - &has-kopia-deployment
+    msg: "deployment/kopia in namespace/{{.KOPIA_NAMESPACE }} not found"
+    sh: kubectl -n {{.KOPIA_NAMESPACE }} get deployment kopia
 
 tasks:
   list:
-    desc: List all existing snapshots for an app (task snapshot:list APP=plex [KOPIA_NAMESPACE=<namespace>])
-    cmds:
-      - kubectl -n {{.KOPIA_NAMESPACE | default "default"}} exec -it deployment/kopia -- kopia snapshot list /data/{{.NAMESPACE}}/{{.APP}} {{.CLI_ARGS}}
-    vars: *vars
+    desc: List all existing snapshots for an app (task snapshot:list PVC=plex-config [NAMESPACE=<namespace> KOPIA_NAMESPACE=<namespace>])
+    # vars: *vars
     preconditions:
-      - sh: kubectl -n {{.KOPIA_NAMESPACE | default "default"}} get deployment kopia
-        msg: |
-          deployment/kopia in namespace/{{.KOPIA_NAMESPACE | default "default"}} not found
+      - *has-kopia-deployment
+    cmds:
+      - kubectl -n {{.KOPIA_NAMESPACE }} exec -it deployment/kopia -- kopia snapshot list /data/{{.NAMESPACE}}/{{.PVC}} {{.CLI_ARGS}}
 
   create:
-    desc: Spawn a job to create a snapshot for an app (task snapshot:create APP=plex [TIMEOUT=<timeout>])
+    desc: Create a job to snapshot a PVC (ex. task snapshot:create PVC=plex-config [NAMESPACE=<namespace>])
+    vars:
+      SNAPSHOT_JOB_NAME: '{{.PVC}}-snapshot-{{.TS}}'
+      SNAPSHOT_JOB_SELECTOR: "job-name={{.SNAPSHOT_JOB_NAME}}"
+    preconditions:
+      - *has-cronjob
+      - *has-pvc
     cmds:
+      - defer: kubectl -n {{.NAMESPACE}} delete job {{.SNAPSHOT_JOB_NAME}}
       - |
-        kubectl -n {{.NAMESPACE}} create job --from=cronjob/{{.APP}}-snapshot {{.APP}}-snapshot-{{.TS}} --dry-run=client --output yaml \
+        kubectl -n {{.NAMESPACE}} create job --from=cronjob/{{.PVC}}-snapshot {{.SNAPSHOT_JOB_NAME}} --dry-run=client --output yaml \
           | yq eval "del(.spec.template.spec.initContainers)" - \
           | kubectl apply -f -
       - sleep 2
-      - kubectl -n {{.NAMESPACE}} wait pod --for condition=ready --selector=job-name={{.APP}}-snapshot-{{.TS}} --timeout={{.TIMEOUT | default "1m"}}
-      - kubectl -n {{.NAMESPACE}} logs --selector=job-name={{.APP}}-snapshot-{{.TS}} -f
-      - kubectl -n {{.NAMESPACE}} delete job {{.APP}}-snapshot-{{.TS}}
-    vars: *vars
-    preconditions: *preconditions
+      - kubectl -n {{.NAMESPACE}} wait pod --for condition=ready --selector={{.SNAPSHOT_JOB_SELECTOR}} --timeout={{.TIMEOUT}}
+      - kubectl -n {{.NAMESPACE}} logs -f job/{{.SNAPSHOT_JOB_NAME}} -c backup
+
+  create_all:
+    desc: Run `task snapshot:create` for all PVC's that have snapshots enabled
+    cmds:
+      - |
+        kubectl get pvc --all-namespaces --no-headers=true --selector="snapshot.home.arpa/enabled=true" \
+          | awk "{print \$1,\$2}" \
+          | xargs -L1 sh -c 'task snapshot:create NAMESPACE=$0 PVC=$1'
 
   restore:
-    desc: Spawn a job to restore an app from a snapshot (task snapshot:restore APP=plex [SNAPSHOT=(latest|<snapshot-id>) KOPIA_NAMESPACE=<namespace> TIMEOUT=<timeout>])
-    cmds:
-      - flux -n {{.NAMESPACE}} suspend helmrelease {{.APP}}
-      - kubectl -n {{.NAMESPACE}} scale {{.NAME}} --replicas 0
-      - kubectl -n {{.NAMESPACE}} wait pod --for delete --selector="app.kubernetes.io/name={{.APP}}" --timeout=2m
-      - envsubst < <(cat ./hack/restore-job.yaml) | kubectl apply -f -
-      - sleep 2
-      - kubectl -n {{.NAMESPACE}} wait job --for condition=complete {{.APP}}-restore-snapshot --timeout={{.TIMEOUT | default "60m"}}
-      - flux -n {{.NAMESPACE}} resume helmrelease {{.APP}}
-      - kubectl -n {{.NAMESPACE}} logs job/{{.APP}}-restore-snapshot
-      - kubectl -n {{.NAMESPACE}} delete job {{.APP}}-restore-snapshot
-    vars: *vars
+    desc: Spawn a job to restore an app from a snapshot (task snapshot:restore APP=plex [SNAPSHOT=(latest|<snapshot-id>) NAMESPACE=<namespace> KOPIA_NAMESPACE=<namespace> TIMEOUT=<timeout>])
+    vars:
+      SNAPSHOT: '{{.SNAPSHOT | default "latest"}}'
+      RESTORE_JOB_FILENAME: '{{.PROJECT_DIR}}/hack/restore-job.yaml'
+      RESTORE_JOB_NAME: '{{.PVC}}-snapshot-restore-{{.TS}}'
+      RESTORE_JOB_SELECTOR: "job-name={{.RESTORE_JOB_NAME}}"
+      APP_SELECTOR: "app.kubernetes.io/name={{.APP}}"
+      NAME:
+        sh: kubectl get deploy,sts -n {{.NAMESPACE}} --selector="{{.APP_SELECTOR}}" --no-headers | awk '{print $1}'
     env:
-      APP: "{{.APP}}"
+      NAS_ADDRESS: "{{.NAS_ADDRESS}}"
       NAMESPACE: "{{.NAMESPACE}}"
-      VOLUME: "{{.VOLUME}}"
+      PVC: "{{.PVC}}"
+      RESTORE_JOB_NAME: "{{.RESTORE_JOB_NAME}}"
       SNAPSHOT:
         sh: |
           if [[ {{.SNAPSHOT}} == "latest" ]]; then
-            kubectl exec deployment/kopia -n {{.KOPIA_NAMESPACE | default "default"}} -- kopia snapshot list /data/{{.NAMESPACE}}/{{.APP}} --json | jq --raw-output '.[-1] | .id'
+            kubectl exec deployment/kopia -n {{.KOPIA_NAMESPACE }} -- kopia snapshot list /data/{{.NAMESPACE}}/{{.PVC}} --json | jq --raw-output '.[-1] | .id'
           else
             echo {{.SNAPSHOT}}
           fi
-    preconditions: *preconditions
+    preconditions:
+      - *has-restore-job
+    cmds:
+      - defer: flux -n {{.NAMESPACE}} resume helmrelease {{.APP}}
+      - defer: kubectl -n {{.NAMESPACE}} delete job {{.RESTORE_JOB_NAME}}
+      - flux -n {{.NAMESPACE}} suspend helmrelease {{.APP}}
+      - kubectl -n {{.NAMESPACE}} scale {{.NAME}} --replicas 0
+      - kubectl -n {{.NAMESPACE}} wait pod --for delete --selector="{{.APP_SELECTOR}}" --timeout=2m
+      - envsubst < <(cat {{.RESTORE_JOB_FILENAME}}) | kubectl apply -f -
+      - sleep 2
+      - kubectl -n {{.NAMESPACE}} wait job/{{.RESTORE_JOB_NAME}} --for condition=complete --timeout={{.TIMEOUT}}
+      - kubectl -n {{.NAMESPACE}} logs job/{{.RESTORE_JOB_NAME}} -c restore

@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ${APP}-restore-snapshot
+  name: ${RESTORE_JOB_NAME}
   namespace: ${NAMESPACE}
 spec:
   ttlSecondsAfterFinished: 3600
@@ -12,7 +12,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: restore
-          image: ghcr.io/onedr0p/kopia:0.11.3@sha256:2ae9ede0edac68c09d517abd71fa12c96efcf19f27ce7ffca968cebb10ed0e2d
+          image: ghcr.io/onedr0p/kopia:0.11.3@sha256:72406602c99357951cb7284abbf88699081d60f6cffd22baddd8a6a2afe919f5
           env:
             - name: KOPIA_PASSWORD
               value: "none"
@@ -21,22 +21,22 @@ spec:
             - -c
             - |-
               shopt -s dotglob
-              printf "\e[1;32m%-6s\e[m\n" "[01/04] Connect to repo ..."      && kopia repo connect filesystem --path=/snapshots --override-hostname=cluster --override-username=root
-              printf "\e[1;32m%-6s\e[m\n" "[02/04] Remove previous data ..." && rm -rf /data/${NAMESPACE}/${APP}/*
-              printf "\e[1;32m%-6s\e[m\n" "[03/04] Restore snapshot ..."     && kopia snap restore "${SNAPSHOT}" /data/${NAMESPACE}/${APP}
-              printf "\e[1;32m%-6s\e[m\n" "[04/04] Disconnect from repo ..." && kopia repo disconnect
+              printf "\e[1;32m%-6s\e[m\n" "[01/03] Connect to repo ..."      && kopia repo connect filesystem --path=/snapshots --override-hostname=cluster --override-username=root
+              printf "\e[1;32m%-6s\e[m\n" "[02/03] Remove previous data ..." && rm -rf /data/${NAMESPACE}/${PVC}/*
+              printf "\e[1;32m%-6s\e[m\n" "[03/03] Restore snapshot ..."     && kopia snap restore "${SNAPSHOT}" /data/${NAMESPACE}/${PVC}
+              printf "\e[1;32m%-6s\e[m\n" "[09/09] Disconnect from repo ..." && kopia repo disconnect
           volumeMounts:
-            - name: ${APP}-data
-              mountPath: /data/${NAMESPACE}/${APP}
+            - name: appdata
+              mountPath: /data/${NAMESPACE}/${PVC}
             - name: snapshots
               mountPath: /snapshots
           securityContext:
             privileged: true
       volumes:
-        - name: ${APP}-data
+        - name: appdata
           persistentVolumeClaim:
-            claimName: ${VOLUME}
+            claimName: ${PVC}
         - name: snapshots
           nfs:
-            server: "${NAS_ADDR}"
-            path: /volume1/CLOUDNATIVE1/Backups/kopia
+            server: ${NAS_ADDR}
+            path: "/volume1/CLOUDNATIVE1/Backups/kopia"
