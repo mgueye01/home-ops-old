@@ -5,3 +5,6 @@ homelab-k8s-1.yaml
 homelab-k8s-2.yaml
 homelab-k8s-3.yaml
 talosconfig
+homelab-k8s1.yaml
+homelab-k8s2.yaml
+homelab-k8s3.yaml

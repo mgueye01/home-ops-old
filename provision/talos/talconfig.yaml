@@ -10,7 +10,7 @@ clusterSvcNets:
 cniConfig:
   name: custom
   urls:
-    - https://raw.githubusercontent.com/mgueye01/homelab/main/provision/talos/cni/install.yaml
+    - https://raw.githubusercontent.com/mgueye01/homelab/main/provision/integrations/cilium-quick-install/quick-install.yaml
 nodes:
   - hostname: master1
     ipAddress: 192.168.10.11
@@ -147,6 +147,10 @@ controlPlane:
         ca:
           crt: ${etcdCert}
           key: ${etcdCertKey}
+      proxy:
+        disabled: true
+        extraArgs:
+          feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
       secret: ${clusterSecret}
       serviceAccount:
         key: ${k8sServiceAccountKey}

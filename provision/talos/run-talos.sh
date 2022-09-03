@@ -12,9 +12,9 @@ talosctl apply-config --insecure --nodes 192.168.10.12 --file clusterconfig/home
 talosctl apply-config --insecure --nodes 192.168.10.13 --file clusterconfig/homelab-master3.yaml
 
 echo Applying worker..
-talosctl apply-config --insecure --nodes 192.168.10.21 --file clusterconfig/homelab-k8s-1.yaml
-talosctl apply-config --insecure --nodes 192.168.10.22 --file clusterconfig/homelab-k8s-2.yaml
-talosctl apply-config --insecure --nodes 192.168.10.23 --file clusterconfig/homelab-k8s-3.yaml
+talosctl apply-config --insecure --nodes 192.168.10.21 --file clusterconfig/homelab-k8s1.yaml
+talosctl apply-config --insecure --nodes 192.168.10.22 --file clusterconfig/homelab-k8s2.yaml
+talosctl apply-config --insecure --nodes 192.168.10.23 --file clusterconfig/homelab-k8s3.yaml
 
 echo Sleep..
 sleep 120

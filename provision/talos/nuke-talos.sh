@@ -1,16 +1,14 @@
-#!/usr/bin/env bash
-cd ~/homelab/provision/talos
+#!/bin/bash
 
-export TALOSCONFIG=~/homelab/talos/clusterconfig/talosconfig
+# Reset the worker nodes first since the path to them is through the control plane nodes
+talosctl reset --graceful=false --reboot -n 192.168.10.21 -e 192.168.10.21
+talosctl reset --graceful=false --reboot -n 192.168.10.22 -e 192.168.10.22
+talosctl reset --graceful=false --reboot -n 192.168.10.23 -e 192.168.10.23
 
-talosctl config node "192.168.10.11"; talosctl config endpoint 192.168.10.11 192.168.10.12 192.168.10.13 192.168.10.250
+echo "Waiting for workers to reset... ^C to stop here"
+sleep 5
 
-echo Applying master..
-talosctl reset --graceful=false -n 192.168.10.11 --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --reboot
-talosctl reset --graceful=false -n 192.168.10.12 --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --reboot
-talosctl reset --graceful=false -n 192.168.10.13 --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --reboot
-
-echo Applying worker..
-talosctl reset --graceful=false -n 192.168.10.21 --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --reboot
-talosctl reset --graceful=false -n 192.168.10.22 --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --reboot
-talosctl reset --graceful=false -n 192.168.10.23 --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --reboot
+# Reset the control plane nodes
+talosctl reset --graceful=false --reboot -n 192.168.10.11 -e 192.168.10.11
+talosctl reset --graceful=false --reboot -n 192.168.10.12 -e 192.168.10.12
+talosctl reset --graceful=false --reboot -n 192.168.10.13 -e 192.168.10.13
