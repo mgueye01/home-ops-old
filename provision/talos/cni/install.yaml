@@ -343,7 +343,7 @@ data:
   cgroup-root: /run/cilium/cgroupv2
   cilium-endpoint-gc-interval: 5m0s
   cluster-id: "1"
-  cluster-name: homelab-talos-0
+  cluster-name: homelab
   custom-cni-conf: "false"
   debug: "false"
   disable-cnp-status-updates: "true"

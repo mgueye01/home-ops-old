@@ -81,7 +81,7 @@ nodes:
           - 192.168.10.250
           - master3
           - homelab.cluster.local
-  - hostname: k8s-1
+  - hostname: k8s1
     ipAddress: 192.168.10.21
     controlPlane: false
     installDisk: /dev/nvme0n1
@@ -95,7 +95,7 @@ nodes:
               routes:
                 - gateway: 192.168.10.1
                   network: 0.0.0.0/0
-  - hostname: k8s-2
+  - hostname: k8s2
     ipAddress: 192.168.10.22
     controlPlane: false
     installDisk: /dev/nvme0n1
@@ -109,7 +109,7 @@ nodes:
               routes:
                 - gateway: 192.168.10.1
                   network: 0.0.0.0/0
-  - hostname: k8s-3
+  - hostname: k8s3
     ipAddress: 192.168.10.23
     controlPlane: false
     installDisk: /dev/nvme0n1
