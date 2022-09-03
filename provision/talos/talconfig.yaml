@@ -1,0 +1,178 @@
+clusterName: homelab
+talosVersion: v1.0.6
+kubernetesVersion: v1.23.6
+endpoint: https://192.168.10.250:6443
+domain: homelab.local
+clusterPodNets:
+  - 10.244.0.0/16
+clusterSvcNets:
+  - 10.96.0.0/12
+cniConfig:
+  name: custom
+  urls:
+    - https://raw.githubusercontent.com/mgueye01/homelab/main/provision/talos/cni/install.yaml
+nodes:
+  - hostname: master1
+    ipAddress: 192.168.10.11
+    controlPlane: true
+    installDisk: /dev/mmcblk0
+    disableSearchDomain: true
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
+    networkInterfaces:
+      - interface: eth0
+        addresses:
+          - 192.168.10.11/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.10.1
+        mtu: 1500
+    configPatches:
+      - op: add
+        path: /cluster/apiServer/certSANs
+        value:
+          - 192.168.10.250
+          - master1
+          - homelab.cluster.local
+  - hostname: master2
+    ipAddress: 192.168.10.12
+    controlPlane: true
+    installDisk: /dev/mmcblk0
+    disableSearchDomain: true
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
+    networkInterfaces:
+      - interface: eth0
+        addresses:
+          - 192.168.10.12/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.10.1
+        mtu: 1500
+    configPatches:
+      - op: add
+        path: /cluster/apiServer/certSANs
+        value:
+          - 192.168.10.250
+          - master2
+          - homelab.cluster.local
+  - hostname: master3
+    ipAddress: 192.168.10.13
+    controlPlane: true
+    installDisk: /dev/mmcblk0
+    disableSearchDomain: true
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
+    networkInterfaces:
+      - interface: eth0
+        addresses:
+          - 192.168.10.13/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.10.1
+        mtu: 1500
+    configPatches:
+      - op: add
+        path: /cluster/apiServer/certSANs
+        value:
+          - 192.168.10.250
+          - master3
+          - homelab.cluster.local
+  - hostname: k8s-1
+    ipAddress: 192.168.10.21
+    controlPlane: false
+    installDisk: /dev/nvme0n1
+    inlinePatch:
+      machine:
+        network:
+          interfaces:
+            - addresses:
+                - 192.168.10.21/24
+              interface: eth0
+              routes:
+                - gateway: 192.168.10.1
+                  network: 0.0.0.0/0
+  - hostname: k8s-2
+    ipAddress: 192.168.10.22
+    controlPlane: false
+    installDisk: /dev/nvme0n1
+    inlinePatch:
+      machine:
+        network:
+          interfaces:
+            - addresses:
+                - 192.168.10.22/24
+              interface: eth0
+              routes:
+                - gateway: 192.168.10.1
+                  network: 0.0.0.0/0
+  - hostname: k8s-3
+    ipAddress: 192.168.10.23
+    controlPlane: false
+    installDisk: /dev/nvme0n1
+    inlinePatch:
+      machine:
+        network:
+          interfaces:
+            - addresses:
+                - 192.168.10.23/24
+              interface: eth0
+              routes:
+                - gateway: 192.168.10.1
+                  network: 0.0.0.0/0
+controlPlane:
+  configPatches:
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+        rotate-server-certificates: "true"
+    - op: add
+      path: /machine/install/extraKernelArgs
+      value:
+        - talos.logging.kernel=udp://10.45.0.2:6050/
+  inlinePatch:
+    cluster:
+      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      aggregatorCA:
+        crt: ${k8sAggregatorCert}
+        key: ${k8sAggregatorCertKey}
+      ca:
+        crt: ${clusterCert}
+        key: ${clusterCertKey}
+      etcd:
+        ca:
+          crt: ${etcdCert}
+          key: ${etcdCertKey}
+      secret: ${clusterSecret}
+      serviceAccount:
+        key: ${k8sServiceAccountKey}
+      token: ${clusterToken}
+    machine:
+      ca:
+        crt: ${machineCert}
+        key: ${machineCertKey}
+      token: ${machineToken}
+worker:
+  configPatches:
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+        rotate-server-certificates: "true"
+  inlinePatch:
+    cluster:
+      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      ca:
+        crt: ${clusterCert}
+        key: ${clusterCertKey}
+      secret: ${clusterSecret}
+      token: ${clusterToken}
+    machine:
+      ca:
+        crt: ${machineCert}
+        key: ${machineCertKey}
+      token: ${machineToken}
