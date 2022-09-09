@@ -2,7 +2,7 @@
 cd ~/homelab/provision/talos
 talhelper genconfig
 
-export TALOSCONFIG=~/homelab/talos/clusterconfig/talosconfig
+export TALOSCONFIG=~/homelab/provision/talos/clusterconfig/talosconfig
 
 talosctl config node "192.168.10.11"; talosctl config endpoint 192.168.10.11 192.168.10.12 192.168.10.13 192.168.10.250
 
