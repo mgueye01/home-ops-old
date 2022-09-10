@@ -117,13 +117,13 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "k8s-3"
+          - name: "k8s3"
             devices:
               - name: "sda"
-          - name: "k8s-2"
+          - name: "k8s2"
             devices:
               - name: "sda"
-          - name: "k8s-1"
+          - name: "k8s1"
             devices:
               - name: "sda"
     cephBlockPools:
