@@ -19,5 +19,3 @@ resources:
   - flux-system.yaml
   - kube-system.yaml
   - security.yaml
-  - hosted.yaml
-  - mailserver.yaml

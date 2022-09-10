@@ -29,12 +29,23 @@ spec:
       enabled: true
       createPrometheusRules: true
 
-    # configOverride: |
-    #   [global]
-    #   bdev_enable_discard = true
-    #   bdev_async_discard = true
+    configOverride: |
+      [global]
+      bdev_enable_discard = true
+      bdev_async_discard = true
+      bluefs_buffered_io = false
 
     cephClusterSpec:
+      cephVersion:
+        # renovate: docker-image
+        image: quay.io/ceph/ceph:v17.2.3
+
+      network:
+        provider: host
+      TODO(rook-ceph): Enable compression on next rebuild
+      connections:
+        compression:
+          enabled: true
       placement:
         all:
           tolerations:
@@ -111,6 +122,7 @@ spec:
         tls:
           - hosts:
               - *host
+
       storage:
         useAllNodes: false
         useAllDevices: false
@@ -126,6 +138,11 @@ spec:
           - name: "k8s1"
             devices:
               - name: "sda"
+
+    cephBlockPoolsVolumeSnapshotClass:
+      enabled: true
+      name: csi-rbdplugin-snapclass
+
     cephBlockPools:
       - name: ceph-blockpool
         spec:
@@ -149,35 +166,35 @@ spec:
             csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
             csi.storage.k8s.io/fstype: ext4
     cephFileSystems: []
-    # cephObjectStores: []
-    cephObjectStores:
-      - name: ceph-objectstore
-        spec:
-          metadataPool:
-            failureDomain: host
-            replicated:
-              size: 3
-          dataPool:
-            failureDomain: host
-            erasureCoded:
-              dataChunks: 2
-              codingChunks: 1
-          preservePoolsOnDelete: true
-          gateway:
-            port: 80
-            resources:
-              requests:
-                cpu: 100m
-                memory: 1Gi
-              limits:
-                memory: 2Gi
-            instances: 1
-          healthCheck:
-            bucket:
-              interval: 60s
-        storageClass:
-          enabled: true
-          name: ceph-bucket
-          reclaimPolicy: Delete
-          # parameters:
-          #   region: us-east-1
+    cephObjectStores: []
+    # cephObjectStores:
+    #   - name: ceph-objectstore
+    #     spec:
+    #       metadataPool:
+    #         failureDomain: host
+    #         replicated:
+    #           size: 3
+    #       dataPool:
+    #         failureDomain: host
+    #         erasureCoded:
+    #           dataChunks: 2
+    #           codingChunks: 1
+    #       preservePoolsOnDelete: true
+    #       gateway:
+    #         port: 80
+    #         resources:
+    #           requests:
+    #             cpu: 100m
+    #             memory: 1Gi
+    #           limits:
+    #             memory: 2Gi
+    #         instances: 1
+    #       healthCheck:
+    #         bucket:
+    #           interval: 60s
+    #     storageClass:
+    #       enabled: true
+    #       name: ceph-bucket
+    #       reclaimPolicy: Delete
+    #       # parameters:
+    #       #   region: us-east-1
