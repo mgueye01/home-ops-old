@@ -5,7 +5,7 @@ resources:
   - metallb-system.yaml
   - networking.yaml
   - monitoring-namespace.yaml
-  - rook-ceph.yaml
+  # - rook-ceph.yaml
   - tools.yaml
   - home.yaml
   - trilio.yaml
