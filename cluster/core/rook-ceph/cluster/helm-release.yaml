@@ -42,7 +42,6 @@ spec:
 
       network:
         provider: host
-      TODO(rook-ceph): Enable compression on next rebuild
       connections:
         compression:
           enabled: true

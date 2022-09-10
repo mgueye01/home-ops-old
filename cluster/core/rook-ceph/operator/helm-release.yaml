@@ -27,7 +27,7 @@ spec:
 
   values:
     crds:
-      enabled: false
+      enabled: true
 
     csi:
       kubeletDirPath: /var/lib/kubelet
