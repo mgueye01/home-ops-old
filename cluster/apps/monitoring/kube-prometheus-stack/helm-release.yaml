@@ -191,14 +191,14 @@ spec:
         - 192.168.10.11
         - 192.168.10.12
         - 192.168.10.13
-      # service:
-      #   enabled: true
-      #   port: 10259
-      #   targetPort: 10259
-      # serviceMonitor:
-      #   enabled: true
-      #   https: true
-      #   insecureSkipVerify: true
+      service:
+        enabled: true
+        port: 10259
+        targetPort: 10259
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
     kubeProxy:
       enabled: true
       endpoints:
