@@ -2,80 +2,67 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: plex
+  name: &app plex
   namespace: media
 spec:
-  releaseName: plex
   interval: 15m
   chart:
     spec:
-      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
       chart: app-template
       version: 0.1.1
-      interval: 15m
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  dependsOn:
+    - name: intel-gpu-plugin
+      namespace: kube-system
+    - name: node-feature-discovery
+      namespace: kube-system
   values:
     image:
-      repository: plexinc/pms-docker
-      pullPolicy: IfNotPresent
-      tag: 1.28.2.6151-914ddd2b3
-    strategy:
-      type: Recreate
+      repository: ghcr.io/onedr0p/plex
+      tag: 1.28.2.6151-914ddd2b3@sha256:0b1c10bda8403bb984eb8ae77ec19dd5abdaacc57e2ec42be4316f9dafec6977
     env:
       TZ: "${TIMEZONE}"
     service:
       main:
-        enabled: true
-        primary: true
         type: LoadBalancer
-        loadBalancerIP: ${SVC_PLEX_ADDR}
+        externalIPs: ["${SVC_PLEX_ADDR}"]
         externalTrafficPolicy: Local
-        annotations:
-          metallb.universe.tf/allow-shared-ip: plex
         ports:
           http:
             port: 32400
-    hostNetwork: false
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: "nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
           external-dns.home.arpa/enabled: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            location = / {
+              if ($http_x_plex_device = ""){
+                return 301 $scheme://$host/web/index.html;
+              }
+            }
         hosts:
-          - host: "plex.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "plex.${SECRET_DOMAIN}"
-            secretName: plex-tls
-    persistence:
-      config:
-        enabled: true
-        existingClaim: plex-config-v1
-      transcode:
-        enabled: true
-        type: emptyDir
-        medium: Memory
-
-      nfs-nas-media:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDR}
-            path: /volume1/video
-        mountPath: /data
-        readOnly: false
-
+              - *host
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
@@ -85,11 +72,34 @@ spec:
         - 44
         - 109
         - 100
+    persistence:
+      config:
+        enabled: true
+        existingClaim: plex-config-v1
+      media:
+        enabled: true
+        type: nfs
+        server: ${NAS_ADDR}
+        path: /volume1/video
+        mountPath: /media
+        readOnly: true
+      transcode:
+        enabled: true
+        type: emptyDir
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/custom-intel-gpu
+                  operator: In
+                  values:
+                    - "true"
     resources:
       requests:
-        cpu: 20m
+        gpu.intel.com/i915: 1
+        cpu: 100m
         memory: 200Mi
-        gpu.intel.com/i915: 1
       limits:
-        memory: 1000Mi
         gpu.intel.com/i915: 1
+        memory: 1000Mi
