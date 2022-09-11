@@ -33,7 +33,6 @@ spec:
       [global]
       bdev_enable_discard = true
       bdev_async_discard = true
-      bluefs_buffered_io = false
 
     cephClusterSpec:
       cephVersion:
@@ -42,9 +41,6 @@ spec:
 
       network:
         provider: host
-      connections:
-        compression:
-          enabled: true
       placement:
         all:
           tolerations:
@@ -138,9 +134,9 @@ spec:
             devices:
               - name: "sda"
 
-    cephBlockPoolsVolumeSnapshotClass:
-      enabled: true
-      name: csi-rbdplugin-snapclass
+    # cephBlockPoolsVolumeSnapshotClass:
+    #   enabled: true
+    #   name: csi-rbdplugin-snapclass
 
     cephBlockPools:
       - name: ceph-blockpool
