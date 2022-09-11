@@ -5,5 +5,5 @@ resources:
   # renovate: registryUrl=https://kyverno.github.io/kyverno/ chart=kyverno
   - github.com/kyverno/kyverno//config/crds?ref=kyverno-chart-v2.5.3
   - helm-release.yaml
-  # - policiesg
+  - policies
   - rbac.yaml
