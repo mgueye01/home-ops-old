@@ -184,9 +184,9 @@ spec:
         Blackbox-exporter:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/blackbox-exporter.json
           datasource: Prometheus
-        Starboard-dashboard:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/k8s-addons-starboard-operator.json
-          datasource: Prometheus
+        # Starboard-dashboard:
+        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/k8s-addons-starboard-operator.json
+        #   datasource: Prometheus
         VPA-Recommendations:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/vpa-recommendations.json
           datasource: Prometheus
