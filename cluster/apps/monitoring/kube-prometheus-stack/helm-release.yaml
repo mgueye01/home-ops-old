@@ -172,7 +172,7 @@ spec:
     kubeApiServer:
       enabled: true
     kubeControllerManager:
-      enabled: false
+      enabled: true
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
@@ -186,7 +186,7 @@ spec:
         https: true
         insecureSkipVerify: true
     kubeScheduler:
-      enabled: false
+      enabled: true
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
@@ -200,13 +200,13 @@ spec:
         https: true
         insecureSkipVerify: true
     kubeProxy:
-      enabled: false
+      enabled: true
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
         - 192.168.10.13
     kubeEtcd:
-      enabled: false
+      enabled: true
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
