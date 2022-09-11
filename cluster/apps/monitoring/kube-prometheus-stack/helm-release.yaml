@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: 38.0.0
+      version: 39.12.1
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -172,7 +172,7 @@ spec:
     kubeApiServer:
       enabled: true
     kubeControllerManager:
-      enabled: true
+      enabled: false
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
@@ -186,7 +186,7 @@ spec:
         https: true
         insecureSkipVerify: true
     kubeScheduler:
-      enabled: true
+      enabled: false
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
@@ -200,13 +200,13 @@ spec:
         https: true
         insecureSkipVerify: true
     kubeProxy:
-      enabled: true
+      enabled: false
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
         - 192.168.10.13
     kubeEtcd:
-      enabled: true
+      enabled: false
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
