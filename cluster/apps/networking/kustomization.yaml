@@ -4,4 +4,4 @@ resources:
   - wildcard-certificate
   - external-dns
   - ingress-nginx
-  - adguard
+  # - adguard
