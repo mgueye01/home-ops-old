@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: rook-ceph
-      version: v1.9.10
+      version: v1.10.1
       sourceRef:
         kind: HelmRepository
         name: rook-ceph-charts
@@ -27,23 +27,23 @@ spec:
 
   values:
     crds:
-      enabled: true
+      enabled: false
 
-    csi:
-      kubeletDirPath: /var/lib/kubelet
-      enableCSIHostNetwork: true
-      pluginTolerations:
-        - effect: "NoExecute"
-          operator: "Exists"
-        - effect: "NoSchedule"
-          operator: "Exists"
+    # csi:
+    #   kubeletDirPath: /var/lib/kubelet
+    #   enableCSIHostNetwork: true
+    #   pluginTolerations:
+    #     - effect: "NoExecute"
+    #       operator: "Exists"
+    #     - effect: "NoSchedule"
+    #       operator: "Exists"
 
     monitoring:
       enabled: true
 
     resources:
       requests:
-        cpu: 50m
-        memory: 200M
+        cpu: 10m
+        memory: 128M
       limits:
-        memory: 453M
+        memory: 256M
