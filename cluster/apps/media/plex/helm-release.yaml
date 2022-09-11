@@ -26,15 +26,6 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    initContainers:
-      update-volume-permission:
-        image: busybox
-        command: ["sh", "-c", "chown -R 1000:1000 /config"]
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        securityContext:
-          runAsUser: 0
     image:
       repository: ghcr.io/onedr0p/plex
       tag: 1.28.2.6151-914ddd2b3@sha256:0b1c10bda8403bb984eb8ae77ec19dd5abdaacc57e2ec42be4316f9dafec6977
@@ -42,9 +33,9 @@ spec:
       strategy: Recreate
     env:
       TZ: "${TIMEZONE}"
-      ADVERTISE_IP: "https://plex.${SECRET_DOMAIN}:443/,http://${SVC_PLEX_ADDR}:32400/"
-      PLEX_CLAIM: "${SECRET_PLEX_TOKEN}"
-      PLEX_PREFERENCE_1: "FriendlyName=k8s-plex"
+      # ADVERTISE_IP: "https://plex.${SECRET_DOMAIN}:443/,http://${SVC_PLEX_ADDR}:32400/"
+      # PLEX_CLAIM: "${SECRET_PLEX_TOKEN}"
+      # PLEX_PREFERENCE_1: "FriendlyName=k8s-plex"
     podSecurityContext:
       runAsUser: 1000
       runAsGroup: 1000
@@ -103,15 +94,15 @@ spec:
         mountPath: /data
         readOnly: false
 
-      backup:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDR}
-            path: /volume1/CLOUDNATIVE1/Backups/plex
-        mountPath: /config/backup
-        readOnly: false
+      # backup:
+      #   enabled: true
+      #   type: custom
+      #   volumeSpec:
+      #     nfs:
+      #       server: ${NAS_ADDR}
+      #       path: /volume1/CLOUDNATIVE1/Backups/plex
+      #   mountPath: /config/backup
+      #   readOnly: false
 
     resources:
       requests:
@@ -121,22 +112,3 @@ spec:
       limits:
         memory: 1000Mi
         gpu.intel.com/i915: 1
-
-    # addons:
-    #   promtail:
-    #     enabled: true
-    #     image:
-    #       repository: grafana/promtail
-    #       tag: 2.5.0
-    #     loki: http://loki.monitoring:3100/loki/api/v1/push
-    #     logs:
-    #       - name: promtail/plex
-    #         path: "/config/Library/Application Support/Plex Media Server/Logs/*.log"
-    #       - name: promtail/plex/plugins
-    #         path: "/config/Library/Application Support/Plex Media Server/Logs/PMS Plugin Logs/*.log"
-    #     volumeMounts:
-    #       - name: config
-    #         mountPath: /config
-    #         readOnly: true
-    #     securityContext:
-    #       runAsUser: 0
