@@ -9,9 +9,9 @@ resources:
   - monitoring
   - flux-system
   # - home
-  # - database
+  - database
   # - dev
   # - harbor
   # - media
-  # - cert-manager
-  # - security
+  - cert-manager
+  - security
