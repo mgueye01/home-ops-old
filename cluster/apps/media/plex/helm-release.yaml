@@ -32,6 +32,7 @@ spec:
       tag: 1.28.2.6151-914ddd2b3@sha256:0b1c10bda8403bb984eb8ae77ec19dd5abdaacc57e2ec42be4316f9dafec6977
     env:
       TZ: "${TIMEZONE}"
+      PLEX_PREFERENCE_1: "FriendlyName=k8s-plex"
     service:
       main:
         type: LoadBalancer
@@ -64,14 +65,15 @@ spec:
           - hosts:
               - *host
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 44
         - 109
         - 100
+        - 65539
     persistence:
       config:
         enabled: true
