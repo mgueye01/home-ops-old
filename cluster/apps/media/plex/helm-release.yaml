@@ -49,13 +49,8 @@ spec:
           external-dns.home.arpa/enabled: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/hostname: "plex.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            location = / {
-              if ($http_x_plex_device = ""){
-                return 301 $scheme://$host/web/index.html;
-              }
-            }
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
@@ -65,10 +60,6 @@ spec:
           - hosts:
               - *host
     podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
-      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 44
         - 109
@@ -84,7 +75,7 @@ spec:
         server: ${NAS_ADDR}
         path: /volume1/video
         mountPath: /media
-        readOnly: true
+        readOnly: false
       transcode:
         enabled: true
         type: emptyDir
