@@ -15,7 +15,7 @@ spec:
         name: project-calico-charts
         namespace: flux-system
   install:
-    createNamespace: false
+    createNamespace: true
     crds: CreateReplace
     remediation:
       retries: 5
