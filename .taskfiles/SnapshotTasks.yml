@@ -33,7 +33,7 @@ tasks:
   create:
     desc: Create a job to snapshot a PVC (ex. task snapshot:create PVC=plex-config [NAMESPACE=<namespace>])
     vars:
-      SNAPSHOT_JOB_NAME: '{{.PVC}}-snapshot-{{.TS}}'
+      SNAPSHOT_JOB_NAME: "{{.PVC}}-snapshot-{{.TS}}"
       SNAPSHOT_JOB_SELECTOR: "job-name={{.SNAPSHOT_JOB_NAME}}"
     preconditions:
       - *has-cronjob
@@ -60,8 +60,8 @@ tasks:
     desc: Spawn a job to restore an app from a snapshot (task snapshot:restore APP=plex [SNAPSHOT=(latest|<snapshot-id>) NAMESPACE=<namespace> KOPIA_NAMESPACE=<namespace> TIMEOUT=<timeout>])
     vars:
       SNAPSHOT: '{{.SNAPSHOT | default "latest"}}'
-      RESTORE_JOB_FILENAME: '{{.PROJECT_DIR}}/hack/restore-job.yaml'
-      RESTORE_JOB_NAME: '{{.PVC}}-snapshot-restore-{{.TS}}'
+      RESTORE_JOB_FILENAME: "{{.PROJECT_DIR}}/hack/restore-job.yaml"
+      RESTORE_JOB_NAME: "{{.PVC}}-snapshot-restore-{{.TS}}"
       RESTORE_JOB_SELECTOR: "job-name={{.RESTORE_JOB_NAME}}"
       APP_SELECTOR: "app.kubernetes.io/name={{.APP}}"
       NAME:

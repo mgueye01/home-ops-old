@@ -13,6 +13,7 @@ env:
 
 includes:
   ansible: .taskfiles/ansible.yml
+  cluster: .taskfiles/ClusterTasks.yml
   flux: .taskfiles/flux.yml
   format: .taskfiles/format.yml
   lint: .taskfiles/lint.yml
@@ -22,7 +23,6 @@ includes:
   toolbox: .taskfiles/RookTasks.yml
 
 tasks:
-
   kubeconfig:
     desc: Remotely fetch kubeconfig from Kubernetes
     cmds:
