@@ -7,7 +7,7 @@ resources:
   - kube-system
   - metallb-system
   - system-upgrade
-  # - rook-ceph
+  - rook-ceph
   # - synology-csi
   # - starboard-system
   - kyverno

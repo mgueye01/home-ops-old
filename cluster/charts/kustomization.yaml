@@ -39,3 +39,4 @@ resources:
   - bjw-s-charts.yaml
   - lwolf-charts.yaml
   - cloudnative-pg-charts.yaml
+  - project-calico-charts.yaml
