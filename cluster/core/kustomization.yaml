@@ -5,8 +5,8 @@ resources:
   - cert-manager
   - kube-system
   - metallb-system
-  # - system-upgrade
-  - rook-ceph
+  - system-upgrade
+  # - rook-ceph
   # - synology-csi
   # - starboard-system
   - kyverno
