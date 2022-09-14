@@ -32,7 +32,9 @@ spec:
       tag: 1.28.2.6151-914ddd2b3@sha256:0b1c10bda8403bb984eb8ae77ec19dd5abdaacc57e2ec42be4316f9dafec6977
     env:
       TZ: "${TIMEZONE}"
+      ADVERTISE_IP: "http://${SVC_PLEX_ADDR}:32400,https://{{ .Release.Name }}.${SECRET_DOMAIN}:443"
       PLEX_PREFERENCE_1: "FriendlyName=k8s-plex"
+      HOSTNAME: "plex"
     service:
       main:
         type: LoadBalancer
