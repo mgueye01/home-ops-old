@@ -34,6 +34,7 @@ spec:
       TZ: "${TIMEZONE}"
       ADVERTISE_IP: "http://${SVC_PLEX_ADDR}:32400,https://{{ .Release.Name }}.${SECRET_DOMAIN}:443"
       PLEX_PREFERENCE_1: "FriendlyName=k8s-plex"
+      PLEX_CLAIM: "${SECRET_PLEX_TOKEN}"
       HOSTNAME: "plex"
     service:
       main:
