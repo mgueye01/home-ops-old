@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - tautulli
   - plex
+  - plex-trakt-sync
   - radarr
   - sonarr
   - lidarr

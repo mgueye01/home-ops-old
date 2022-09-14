@@ -5,7 +5,7 @@ resources:
   - metrics-server
   - reloader
   - descheduler
-  # - kured
+  - kured
   - intel-gpu-plugin
   - node-feature-discovery
   - kube-cleanup-operator
