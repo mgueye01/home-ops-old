@@ -41,6 +41,7 @@ spec:
         oauth_auto_login: false
       auth.basic:
         enabled: false
+        disable_login_form: true
       auth.generic_oauth:
         enabled: true
         name: Authelia
@@ -72,8 +73,6 @@ spec:
         mode: console
       grafana_net:
         url: https://grafana.net
-      # auth.basic:
-      #   disable_login_form: false
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
@@ -105,11 +104,11 @@ spec:
             url: http://loki-stack:3100
     dashboards:
       default:
-        # Ref: https://grafana.com/grafana/dashboards/2842
-        ceph-cluster:
-          gnetId: 2842
-          revision: 14
-          datasource: Prometheus
+        # # Ref: https://grafana.com/grafana/dashboards/2842
+        # ceph-cluster:
+        #   gnetId: 2842
+        #   revision: 14
+        #   datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/15038
         External-dns:
           gnetId: 15038
