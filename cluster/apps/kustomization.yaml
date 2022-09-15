@@ -7,7 +7,7 @@ resources:
   # - networking
   # - system-upgrade
   # - monitoring
-  # - flux-system
+  - flux-system
   # - home
   # - database
   # - dev

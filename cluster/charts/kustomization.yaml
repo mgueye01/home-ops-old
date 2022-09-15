@@ -40,3 +40,4 @@ resources:
   - lwolf-charts.yaml
   - cloudnative-pg-charts.yaml
   - project-calico-charts.yaml
+  - k8s-gateway.yaml
