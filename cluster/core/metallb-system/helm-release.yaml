@@ -35,8 +35,9 @@ spec:
           operator: Exists
 
     prometheus:
-      enabled: true
-      prometheusRule:
+      namespace: monitoring
+      serviceAccount: kube-prometheus-stack-prometheus
+      podMonitor:
         enabled: true
-      serviceMonitor:
+      prometheusRule:
         enabled: true
