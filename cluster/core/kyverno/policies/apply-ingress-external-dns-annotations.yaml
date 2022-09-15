@@ -21,7 +21,7 @@ spec:
           - resources:
               kinds: ["Ingress"]
               annotations:
-                external-dns.home.arpa/enabled: "true"
+                external-dns/is-public: "true"
       mutate:
         patchStrategicMerge:
           metadata:
