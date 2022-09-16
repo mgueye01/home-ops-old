@@ -11,8 +11,8 @@ spec:
       template:
         spec:
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
+            runAsUser: 568
+            runAsGroup: 568
           containers:
             - name: plex-media-manager
               image: meisnate12/plex-meta-manager:v1.17.3
