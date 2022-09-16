@@ -60,7 +60,7 @@ spec:
       main:
         ports:
           http:
-            port: 80
+            port: 9091
           metrics:
             enabled: true
             port: 8080
@@ -103,7 +103,7 @@ spec:
         memory: 100Mi
 
     topologySpreadConstraints:
-      - maxSkew: 1
+      - maxSkew: 2
         topologyKey: kubernetes.io/hostname
         whenUnsatisfiable: DoNotSchedule
         labelSelector:
