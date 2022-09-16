@@ -4,11 +4,11 @@ kind: Kustomization
 resources:
   - namespaces.yaml
   - cert-manager
-  # - kube-system
+  - kube-system
   - metallb-system
-  # - system-upgrade
+  - system-upgrade
   - rook-ceph
   # # - synology-csi
   # # - starboard-system
-  # - kyverno
+  - kyverno
   # # - cilium
