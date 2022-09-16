@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - resources.yaml
   - snapshot-cronjob-controller.yaml
-  # - apply-ingress-auth-annotations.yaml
+  - apply-ingress-auth-annotations.yaml
   - apply-ingress-external-dns-annotations.yaml
