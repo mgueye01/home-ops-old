@@ -54,7 +54,7 @@ spec:
       DRONE_RPC_SECRET: ${SECRET_DRONE_RPC_SECRET}
       DRONE_GITEA_CLIENT_ID: 636213ce-1e6b-4a7b-b631-ef228e82925a
       DRONE_GITEA_CLIENT_SECRET: ${SECRET_DRONE_GITEA_CLIENT_SECRET}
-      DRONE_LOGS_DEBUG: true
+      # DRONE_LOGS_DEBUG: true
     persistentVolume:
       enabled: false
       storageClass: ceph-block-retain
