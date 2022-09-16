@@ -3,9 +3,9 @@ kind: Kustomization
 resources:
   - namespaces.yaml
   # - default
-  # - kube-system
+  - kube-system
   - networking
-  # - system-upgrade
+  - system-upgrade
   # - monitoring
   - flux-system
   # - home
@@ -14,4 +14,4 @@ resources:
   # - harbor
   # - media
   # - cert-manager
-  # - security
+  - security
