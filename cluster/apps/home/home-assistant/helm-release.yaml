@@ -45,13 +45,13 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-          - host: "hash.${SECRET_DOMAIN}"
+          - host: "hass.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "hash.${SECRET_DOMAIN}"
+              - "hass.${SECRET_DOMAIN}"
     probes:
       liveness:
         enabled: false
@@ -89,13 +89,13 @@ spec:
             external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
             external-dns/is-public: "true"
           hosts:
-            - host: "hash-config.${SECRET_DOMAIN}"
+            - host: "hass-config.${SECRET_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix
           tls:
             - hosts:
-                - "hash-config.${SECRET_DOMAIN}"
+                - "hass-config.${SECRET_DOMAIN}"
         volumeMounts:
           - name: config
             mountPath: /config
