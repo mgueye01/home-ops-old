@@ -191,9 +191,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "uniqueValues"
-          ],
+          "calcs": ["uniqueValues"],
           "fields": "/^pod$/",
           "limit": 50,
           "values": true

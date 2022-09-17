@@ -1,28 +1,28 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: regcred
-    namespace: default
+  name: regcred
+  namespace: default
 type: kubernetes.io/dockerconfigjson
 data:
-    .dockerconfigjson: ENC[AES256_GCM,data:jst1fmiIa8gulY1m70ydWBHcsa6pVoAOLtXrpMP5jDJ/H6kww36S5G+J88Sd4X0G3V9RRa2ztCI19jcmETO+JdgE/vK4En8AuLvpjv5FP1FbFUykcdux0Rc4/BtjekeluSttGV77eAerFiD9NtqDgVwWa+UJoXQqDqTMb7JnA/j2vPIzQfRjhtHxq7OVXnNT5EubfqJ0ciCb2QN8pCiHUD4EKgEc5FDAyH4ESCNWFu3hf41D,iv:KYJpAtUnM3mKEuKtS+ShmjKbn36Cb4aUALsvis0urYg=,tag:DdWqBu04qG7bUB1RrH/58w==,type:str]
+  .dockerconfigjson: ENC[AES256_GCM,data:jst1fmiIa8gulY1m70ydWBHcsa6pVoAOLtXrpMP5jDJ/H6kww36S5G+J88Sd4X0G3V9RRa2ztCI19jcmETO+JdgE/vK4En8AuLvpjv5FP1FbFUykcdux0Rc4/BtjekeluSttGV77eAerFiD9NtqDgVwWa+UJoXQqDqTMb7JnA/j2vPIzQfRjhtHxq7OVXnNT5EubfqJ0ciCb2QN8pCiHUD4EKgEc5FDAyH4ESCNWFu3hf41D,iv:KYJpAtUnM3mKEuKtS+ShmjKbn36Cb4aUALsvis0urYg=,tag:DdWqBu04qG7bUB1RrH/58w==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1ufv6l98ntd5t4tulqs9rmkjdtuytvt7ptj4uvjdhqaff93fpdf7s5rr4uk
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBjZndlMGZNS29oV0hNQnFQ
-            bVVqSS9CVWwvSFZSc2tqVnNLbXM3SDdmWEJzCm1HN0lRRUoxUnp3by9ORFNzN2Iy
-            dmZ6OTdsUXBJQnBJb0twcDYrbFUwT1kKLS0tIExxRFN5N0xBbFdtNUszN2lIYm9t
-            ekMvZ1JpQ1ovL2RCeHRESHpOdEtUcmsKUy2xEnr7NRU2IBWS1BQWQKRsijFLAdpU
-            hsEJOGODNCrf7PfYzBq4vv8TU2kKeRUOxbPCrXBrqfqdhdrknQu3wA==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-08-30T10:25:21Z"
-    mac: ENC[AES256_GCM,data:srnwZsukVvyCIZtyapSAtjBMp7TNT53yiNKP85G6TaBlaeNku1hnpIFWoTNwjLWJek+syciNi6gboDkCVLxKffzUq4sxP7RNcN0vwU3eHufnG2CsnEYLT5YPJZenl4lpLcOWn/KZ4FGklktnj9/qdiKoYNW1ABzjr8wEF4CpLVE=,iv:4Ia0KtiKP4+lPEHAPG/qBQUr0aiLB29hfL21QSh+JH0=,tag:pgzf7tJLzmEd+C4pF3MXTQ==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.7.1
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1ufv6l98ntd5t4tulqs9rmkjdtuytvt7ptj4uvjdhqaff93fpdf7s5rr4uk
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBjZndlMGZNS29oV0hNQnFQ
+        bVVqSS9CVWwvSFZSc2tqVnNLbXM3SDdmWEJzCm1HN0lRRUoxUnp3by9ORFNzN2Iy
+        dmZ6OTdsUXBJQnBJb0twcDYrbFUwT1kKLS0tIExxRFN5N0xBbFdtNUszN2lIYm9t
+        ekMvZ1JpQ1ovL2RCeHRESHpOdEtUcmsKUy2xEnr7NRU2IBWS1BQWQKRsijFLAdpU
+        hsEJOGODNCrf7PfYzBq4vv8TU2kKeRUOxbPCrXBrqfqdhdrknQu3wA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2022-08-30T10:25:21Z"
+  mac: ENC[AES256_GCM,data:srnwZsukVvyCIZtyapSAtjBMp7TNT53yiNKP85G6TaBlaeNku1hnpIFWoTNwjLWJek+syciNi6gboDkCVLxKffzUq4sxP7RNcN0vwU3eHufnG2CsnEYLT5YPJZenl4lpLcOWn/KZ4FGklktnj9/qdiKoYNW1ABzjr8wEF4CpLVE=,iv:4Ia0KtiKP4+lPEHAPG/qBQUr0aiLB29hfL21QSh+JH0=,tag:pgzf7tJLzmEd+C4pF3MXTQ==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.1

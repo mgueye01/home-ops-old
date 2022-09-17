@@ -111,9 +111,7 @@
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -187,9 +185,7 @@
       "options": {
         "footer": {
           "fields": "",
-          "reducer": [
-            "sum"
-          ],
+          "reducer": ["sum"],
           "show": false
         },
         "showHeader": true,
@@ -260,9 +256,7 @@
           "options": {
             "fields": {
               "group": {
-                "aggregations": [
-                  "lastNotNull"
-                ],
+                "aggregations": ["lastNotNull"],
                 "operation": "groupby"
               },
               "job": {
@@ -270,9 +264,7 @@
                 "operation": "groupby"
               },
               "namespace": {
-                "aggregations": [
-                  "lastNotNull"
-                ],
+                "aggregations": ["lastNotNull"],
                 "operation": "groupby"
               },
               "removed_release": {
@@ -280,9 +272,7 @@
                 "operation": "groupby"
               },
               "resource": {
-                "aggregations": [
-                  "lastNotNull"
-                ],
+                "aggregations": ["lastNotNull"],
                 "operation": "groupby"
               },
               "version": {
@@ -1210,10 +1200,7 @@
   "refresh": "30s",
   "schemaVersion": 35,
   "style": "dark",
-  "tags": [
-    "Kubernetes",
-    "Prometheus"
-  ],
+  "tags": ["Kubernetes", "Prometheus"],
   "templating": {
     "list": [
       {
