@@ -338,23 +338,23 @@ spec:
       # - '||example.org^ # block'
       # - '||example.org^$ctag=~device_phone' # block for all, except device_phone tag (https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#ctag)
       # - '@@||example.org^ # unblock'
-      dhcp:
-        enabled: false
-        interface_name: ""
-        local_domain_name: ""
-        dhcpv4:
-          gateway_ip: ""
-          subnet_mask: ""
-          range_start: ""
-          range_end: ""
-          lease_duration: 86400
-          icmp_timeout_msec: 1000
-          options: []
-        dhcpv6:
-          range_start: ""
-          lease_duration: 86400
-          ra_slaac_only: false
-          ra_allow_slaac: false
+      # dhcp:
+      #   enabled: false
+      #   interface_name: ""
+      #   local_domain_name: ""
+      #   dhcpv4:
+      #     gateway_ip: ""
+      #     subnet_mask: ""
+      #     range_start: ""
+      #     range_end: ""
+      #     lease_duration: 86400
+      #     icmp_timeout_msec: 1000
+      #     options: []
+      #   dhcpv6:
+      #     range_start: ""
+      #     lease_duration: 86400
+      #     ra_slaac_only: false
+      #     ra_allow_slaac: false
       clients:
         runtime_sources:
           whois: true
@@ -366,7 +366,7 @@ spec:
         - name: IoT
           tags: []
           ids:
-          - 192.168.20.0/24
+          - 192.168.10.0/24
           blocked_services: []
           upstreams: []
           use_global_settings: true
