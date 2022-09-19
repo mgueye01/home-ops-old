@@ -6,7 +6,7 @@ resources:
   - config-pvc.yaml
 namespace: media
 configMapGenerator:
-  - name: plex-meta-manager-cm
+  - name: pmm-config
     files:
       - config.yaml
       - movies.yaml
