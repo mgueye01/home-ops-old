@@ -9,7 +9,11 @@ configMapGenerator:
   - name: pmm-config
     files:
       - config.yaml
+  - name: movie-config
+    files:
       - movies.yaml
+  - name: tv-config
+    files:
       - tv.yaml
 generatorOptions:
   disableNameSuffixHash: true
