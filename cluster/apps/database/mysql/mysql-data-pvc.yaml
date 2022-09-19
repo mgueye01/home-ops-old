@@ -7,8 +7,8 @@ metadata:
   labels:
     app.kubernetes.io/name: &name ghost-mysql
     app.kubernetes.io/instance: *name
-    policy.home.arpa/snapshot: "false"
-    snapshot.home.arpa/ignoreAffinity: "true"
+    policy.home.arpa/snapshot: "true"
+    # snapshot.home.arpa/ignoreAffinity: "true"
 spec:
   accessModes:
     - ReadWriteOnce
