@@ -5,7 +5,7 @@ metadata:
   name: ghost-config
   namespace: default
   labels:
-    app.kubernetes.io/name: &name ghost-config
+    app.kubernetes.io/name: &name ghost
     app.kubernetes.io/instance: *name
     policy.home.arpa/snapshot: "true"
 spec:
