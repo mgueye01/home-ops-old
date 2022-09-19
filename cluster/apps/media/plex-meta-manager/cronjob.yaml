@@ -10,9 +10,9 @@ spec:
     spec:
       template:
         spec:
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
+          # securityContext:
+          #   runAsUser: 1000
+          #   runAsGroup: 1000
           containers:
             - name: plex-media-manager
               image: meisnate12/plex-meta-manager:v1.17.3
@@ -27,8 +27,6 @@ spec:
                   value: "true"
                 - name: TZ
                   value: ${TIMEZONE}
-              securityContext:
-                privileged: true
               resources:
                 limits:
                   cpu: 1000m
