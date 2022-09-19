@@ -11,7 +11,6 @@ spec:
       template:
         spec:
           securityContext:
-            privileged: true
             runAsUser: 1000
             runAsGroup: 1000
           containers:
@@ -28,6 +27,8 @@ spec:
                   value: "true"
                 - name: TZ
                   value: ${TIMEZONE}
+              securityContext:
+                privileged: true
               resources:
                 limits:
                   cpu: 1000m
