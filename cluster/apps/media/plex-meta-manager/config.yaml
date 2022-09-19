@@ -11,7 +11,7 @@ libraries:
     metadata_path:
       - file: config/Series.yml
       - git: meisnate12/ShowCharts
-      - git: meisnate12/Networksg
+      - git: meisnate12/Networks
   Disney:
     metadata_path:
       - file: config/Disney.yml
