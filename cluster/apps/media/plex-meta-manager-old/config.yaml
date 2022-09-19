@@ -1,44 +1,39 @@
----
 libraries:
   Films:
     metadata_path:
-      - file: config/movies.yaml
+      - file: config/Films.yml
+      - git: Speedmod/Movies/Collections
+      - git: Speedmod/Movies/Holiday
+      - git: MMagTech/Movies
+      - git: meisnate12/Studios
+      - git: meisnate12/MovieCharts
   Series:
     metadata_path:
-      - file: config/tv.yaml
+      - file: config/Series.yml
+      - git: meisnate12/ShowCharts
+      - git: meisnate12/Networksg
   Disney:
     metadata_path:
       - file: config/Disney.yml
       - git: meisnate12/AnimeCharts
 settings:
-  cache: true
+  cache: false
   cache_expiration: 60
   asset_directory: config/assets
   asset_folders: true
-  asset_depth: 0
-  create_asset_folders: false
-  dimensional_asset_rename: false
-  download_url_assets: false
-  show_missing_season_assets: false
+  assets_for_all: false
   sync_mode: append
-  minimum_items: 1
-  default_collection_order:
-  delete_below_minimum: true
-  delete_not_scheduled: false
-  run_again_delay: 2
-  missing_only_released: false
-  only_filter_missing: false
   show_unmanaged: true
   show_filtered: false
-  show_options: false
   show_missing: true
-  show_missing_assets: true
   save_missing: true
-  tvdb_language: eng
-  ignore_ids:
-  ignore_imdb_ids:
-  playlist_sync_to_user: all
-  verify_ssl: true
+  run_again_delay: 2
+  missing_only_released: false
+  create_asset_folders: false
+  collection_minimum: 1
+  delete_below_minimum: false
+  tvdb_language: default
+  show_missing_assets: true
 plex:
   url: http://plex.media:32400
   token: ${SECRET_PLEX_TOKEN_1}
@@ -52,37 +47,33 @@ tmdb:
 tautulli:
   url: http://tautulli.media:8181
   apikey: ${SECRET_TAUTULLI_API_KEY}
-omdb:
-  apikey: OMDB_API_KEY
 radarr:
   url: http://radarr.media:7878
   token: ${SECRET_RADARR_API_KEY}
-  add_missing: false
   root_folder_path: /media
-  monitor: false
-  availability: cinemas
-  quality_profile: HD - 720p/1080p/2160P
-  tag: pmm
-  add_existing: false
+  monitor: true
+  availability: announced
+  quality_profile: HD - 720p/1080p/2160p
+  version: v3
+  add: false
+  tag:
   search: false
-  radarr_path:
-  plex_path:
+  add_existing: false
 sonarr:
   url: http://sonarr.media:8989
   token: ${SECRET_SONARR_API_KEY}
-  add_missing: false
-  add_existing: false
+  version: v3
+  add: false
   root_folder_path: /media
-  monitor: pilot
+  monitor: all
   quality_profile: HD - 720p/1080p/2160p
   language_profile: English
   series_type: standard
   season_folder: true
-  tag: pmm
-  search: true
+  tag:
+  search: false
   cutoff_search: false
-  sonarr_path:
-  plex_path:
+  add_existing: false
 trakt:
   client_id: ${SECRET_TRAKT_PMM_CLIENT_ID}
   client_secret: ${SECRET_TRAKT_PMM_CLIENT_SECRET}

@@ -15,13 +15,22 @@ spec:
             runAsGroup: 1000
           containers:
             - name: plex-media-manager
-              image: meisnate12/plex-meta-manager:latest
+              image: meisnate12/plex-meta-manager:v1.17.3
               imagePullPolicy: IfNotPresent
               args: ["--run", "--read-only-config"]
+              env:
+                - name: PMM_CONFIG
+                  value: /config/config.yaml
+                - name: PMM_RUN
+                  value: "True"
+                - name: PMM_READ_ONLY_CONFIG
+                  value: "true"
+                - name: TZ
+                  value: ${TIMEZONE}
               resources:
                 limits:
-                  cpu: 100m
-                  memory: 256Mi
+                  cpu: 1000m
+                  memory: 2Gi
                 requests:
                   cpu: 100m
                   memory: 125Mi
@@ -29,25 +38,13 @@ spec:
                 - name: config
                   mountPath: /config
                 - name: pmm-config
-                  mountPath: /config/config.yml
-                  subPath: config.yml
-                - name: movie-config
-                  mountPath: /config/movies.yaml
-                  subPath: movies.yaml
-                - name: tv-config
-                  mountPath: /config/tv.yaml
-                  subPath: tv.yaml
+                  mountPath: /config/config.yaml
+                  subPath: config.yaml
           volumes:
             - name: config
               persistentVolumeClaim:
-                claimName: plex-media-manager
+                claimName: plex-meta-manager-config-v1
             - configMap:
-                name: pmm-config
+                name: plex-meta-manager-cm
               name: pmm-config
-            - configMap:
-                name: movie-config
-              name: movie-config
-            - configMap:
-                name: tv-config
-              name: tv-config
           restartPolicy: OnFailure

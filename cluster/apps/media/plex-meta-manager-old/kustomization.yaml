@@ -9,8 +9,6 @@ configMapGenerator:
   - name: plex-meta-manager-cm
     files:
       - config.yaml
-      - movies.yaml
-      - tv.yaml
 generatorOptions:
   disableNameSuffixHash: true
 #  annotations:
