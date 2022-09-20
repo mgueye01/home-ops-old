@@ -6,4 +6,3 @@ resources:
   - config-1-pvc.yaml
   - helm-release.yaml
   - config-sync.yaml
-  - pvc.yaml
