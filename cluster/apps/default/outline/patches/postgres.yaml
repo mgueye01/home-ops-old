@@ -15,7 +15,8 @@ spec:
           - name: POSTGRES_DB
             value: *app
         envFrom:
-          - secretRef:
-              name: *app
-          - secretRef:
-              name: POSTGRES_SUPER_PASS
+          - name: POSTGRES_SUPER_PASS
+            valueFrom:
+              secretKeyRef:
+                name: *app
+                key: POSTGRES_SUPER_PASS
