@@ -235,12 +235,12 @@ spec:
         replicas: 1
         replicaExternalLabelName: "replica"
         podAntiAffinity: hard
-        retentionSize: "4GB"
+        retentionSize: "2GB"
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
-        retention: 2d
+        retention: 1d
         enableAdminAPI: true
         walCompression: true
         storageSpec:
