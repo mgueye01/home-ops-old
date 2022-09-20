@@ -17,8 +17,5 @@ spec:
           - name: POSTGRES_SUPER_PASS
             valueFrom:
               secretKeyRef:
-                name: postgres-superuser
-                key: password
-        envFrom:
-          - secretRef:
-              name: *app
+                name: *app
+                key: OSTGRES_SUPER_PASS
