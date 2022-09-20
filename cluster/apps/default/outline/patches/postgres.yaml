@@ -14,7 +14,6 @@ spec:
             value: postgres-rw.database
           - name: POSTGRES_DB
             value: *app
-        envFrom:
           - name: POSTGRES_SUPER_PASS
             valueFrom:
               secretKeyRef:
