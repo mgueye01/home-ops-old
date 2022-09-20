@@ -177,28 +177,12 @@ spec:
         - 192.168.10.11
         - 192.168.10.12
         - 192.168.10.13
-      # service:
-      #   enabled: true
-      #   port: 10257
-      #   targetPort: 10257
-      # serviceMonitor:
-      #   enabled: true
-      #   https: true
-      #   insecureSkipVerify: true
     kubeScheduler:
       enabled: true
       endpoints:
         - 192.168.10.11
         - 192.168.10.12
         - 192.168.10.13
-      # service:
-      #   enabled: true
-      #   port: 10259
-      #   targetPort: 10259
-      # serviceMonitor:
-      #   enabled: true
-      #   https: true
-      #   insecureSkipVerify: true
     kubeProxy:
       enabled: true
       endpoints:
@@ -222,8 +206,6 @@ spec:
         ingressClassName: "nginx"
         annotations:
           auth.home.arpa/enabled: "true"
-          # nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-          # nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
@@ -278,9 +260,9 @@ spec:
         resources:
           requests:
             cpu: 200m
-            memory: 2000Mi
+            memory: 3000Mi
           limits:
-            memory: 4000Mi
+            memory: 6000Mi
         additionalScrapeConfigs:
           - honor_timestamps: true
             job_name: minio-job
