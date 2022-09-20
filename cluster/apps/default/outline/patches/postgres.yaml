@@ -18,4 +18,4 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: *app
-                key: OSTGRES_SUPER_PASS
+                key: POSTGRES_SUPER_PASS
