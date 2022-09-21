@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         namespace: flux-system
         name: kured
-      # renovate: registryUrl=https://weaveworks.github.io/kured
+      # renovate: registryUrl=https://kubereboot.github.io/charts
       chart: kured
       version: 3.0.1
   interval: 1h
