@@ -10,17 +10,11 @@ spec:
       labels:
         app: event-exporter
         version: v1
-      annotations:
-        prometheus.io/scrape: 'true'
-        prometheus.io/port: '2112'
-        prometheus.io/path: '/metrics'
     spec:
       serviceAccountName: event-exporter
       containers:
         - name: event-exporter
-          # The good practice would be to pin the version. This is just a reference so that we don't
-          # have to update this file in each release.
-          image: ghcr.io/resmoio/kubernetes-event-exporter:latest
+          image: ghcr.io/opsgenie/kubernetes-event-exporter:v0.11
           imagePullPolicy: IfNotPresent
           args:
             - -conf=/data/config.yaml
