@@ -13,7 +13,7 @@ spec:
         name: kured
       # renovate: registryUrl=https://kubereboot.github.io/charts
       chart: kured
-      version: 3.0.1
+      version: 4.0.2
   interval: 1h
   values:
     image:
