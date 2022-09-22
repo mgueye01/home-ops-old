@@ -102,7 +102,7 @@ spec:
           - hosts:
               - *host
       alertmanagerSpec:
-        replicas: 1
+        replicas: 3
         podAntiAffinity: hard
         storage:
           volumeClaimTemplate:
@@ -235,7 +235,7 @@ spec:
         replicas: 1
         replicaExternalLabelName: "replica"
         podAntiAffinity: hard
-        retentionSize: "2GB"
+        retentionSize: "6GB"
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
@@ -253,7 +253,7 @@ spec:
         thanos:
           image: quay.io/thanos/thanos:v0.28.0
           # renovate: datasource=docker depName=quay.io/thanos/thanos
-          version: "v0.27.0"
+          version: "v0.28.0"
           objectStorageConfig:
             name: thanos-objstore
             key: objstore.yml
@@ -272,7 +272,7 @@ spec:
             static_configs:
               - targets:
                   - "192.168.0.18:9000"
-          - job_name: node
+          - job_name: nas
             static_configs:
               - targets: ["192.168.0.18:9100"]
           - job_name: "snmp-exporter"
