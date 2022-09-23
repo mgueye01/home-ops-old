@@ -19,3 +19,6 @@ spec:
               secretKeyRef:
                 name: *app
                 key: POSTGRES_SUPER_PASS
+        envFrom:
+          - secretRef:
+              name: *app
