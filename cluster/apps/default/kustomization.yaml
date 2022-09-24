@@ -10,4 +10,4 @@ resources:
   - kopia
   - echo-server
   - excalidraw
-  # - outline
+  - outline
