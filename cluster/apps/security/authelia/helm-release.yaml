@@ -35,6 +35,9 @@ spec:
     controller:
       replicas: 3
       strategy: RollingUpdate
+      rollingUpdate:
+      maxSurge: 0        # how many pods we can add at a time
+      maxUnavailable: 1
 
     podSecurityContext:
       runAsUser: 568
@@ -101,11 +104,6 @@ spec:
         memory: 10Mi
       limits:
         memory: 100Mi
-
-    updateStrategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxUnavailable: 1
 
     topologySpreadConstraints:
       - maxSkew: 2
