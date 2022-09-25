@@ -33,7 +33,7 @@ spec:
 
   values:
     controller:
-      replicas: 3
+      replicas: 2
       strategy: RollingUpdate
       rollingUpdate:
       maxSurge: 0        # how many pods we can add at a time
@@ -111,4 +111,4 @@ spec:
         whenUnsatisfiable: DoNotSchedule
         labelSelector:
           matchLabels:
-            app.kubernetes.io/name: authelia
+            app.kubernetes.io/name: *app
