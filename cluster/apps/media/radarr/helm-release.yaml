@@ -31,7 +31,7 @@ spec:
         pmb.home.arpa/backup-claim: &claimName "radarr-config-v1"
     image:
       repository: ghcr.io/k8s-at-home/radarr-develop
-      tag: v4.2.3.6575
+      tag: v4.2.4.6635
     env:
       TZ: "${TIMEZONE}"
     ingress:
