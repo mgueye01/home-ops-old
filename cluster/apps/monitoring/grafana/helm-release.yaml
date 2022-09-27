@@ -168,6 +168,11 @@ spec:
           gnetId: 14314
           revision: 2
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/14314
+        Kubernetes-Events-Dashboard:
+          gnetId: 16967
+          revision: 1
+          datasource: Loki
         # Ref: https://grafana.com/grafana/dashboards/16718
         oom-restarts:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/oom-and-restarts_rev1.json
