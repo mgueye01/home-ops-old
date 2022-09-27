@@ -102,7 +102,7 @@ spec:
       enabled: true
       architecture: standalone
     postgresql:
-      enabled: true
+      enabled: false
       postgresqlUsername: paperless
       postgresqlPassword: ${SECRET_PAPERLESS_POSTGRES_PASSWORD}
       postgresqlDatabase: paperless

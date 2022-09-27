@@ -7,3 +7,5 @@ resources:
   - media-pvc.yaml
   - gotenberg-helm-release.yaml
   - tika-helm-release.yaml
+  - patches/postgres.yaml
+  - secret.sops.yaml
