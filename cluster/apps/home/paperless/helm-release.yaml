@@ -34,7 +34,7 @@ spec:
       PAPERLESS_OCR_LANGUAGE: fra+eng
       PAPERLESS_TIME_ZONE: "${TIMEZONE}"
       PAPERLESS_CONSUMER_POLLING: "60"
-      PAPERLESS_REDIS: "redis://redis-headless.database:6379"
+      PAPERLESS_REDIS: "redis://localhost:6379"
       PAPERLESS_DBNAME: paperless
       PAPERLESS_DBUSER: paperless
       PAPERLESS_DBPASS: "${SECRET_PAPERLESS_POSTGRES_PASSWORD}"
@@ -103,20 +103,12 @@ spec:
         cpu: 1500m
         memory: 3000M
 
-    redis:
-      enabled: false
-      architecture: standalone
-    postgresql:
-      enabled: false
-      postgresqlUsername: paperless
-      postgresqlPassword: ${SECRET_PAPERLESS_POSTGRES_PASSWORD}
-      postgresqlDatabase: paperless
-      persistence:
-        enabled: true
-      resources:
-        requests:
-          cpu: 15m
-          memory: 105M
-        limits:
-          cpu: 15m
-          memory: 105M
+    additionalContainers:
+      - name: broker
+        image: redis:7.0
+        imagePullPolicy: IfNotPresent
+
+        resources:
+          requests:
+            cpu: 11m
+            memory: 32M
