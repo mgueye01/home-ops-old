@@ -17,3 +17,4 @@ resources:
   - pushgateway
   - intel-gpu-exporter
   - arm-exporter
+  - smartctl-exporter
