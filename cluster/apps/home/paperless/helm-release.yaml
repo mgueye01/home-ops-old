@@ -34,7 +34,7 @@ spec:
       PAPERLESS_OCR_LANGUAGE: fra+eng
       PAPERLESS_TIME_ZONE: "${TIMEZONE}"
       PAPERLESS_CONSUMER_POLLING: "60"
-      PAPERLESS_REDIS: "redis://paperless-redis-master"
+      PAPERLESS_REDIS: "redis.database.svc.cluster.local"
       PAPERLESS_DBNAME: paperless
       PAPERLESS_DBUSER: paperless
       PAPERLESS_DBPASS: "${SECRET_PAPERLESS_POSTGRES_PASSWORD}"
@@ -104,7 +104,7 @@ spec:
         memory: 3000M
 
     redis:
-      enabled: true
+      enabled: false
       architecture: standalone
     postgresql:
       enabled: false
