@@ -38,7 +38,7 @@ spec:
       PAPERLESS_DBNAME: paperless
       PAPERLESS_DBUSER: paperless
       PAPERLESS_DBPASS: "${SECRET_PAPERLESS_POSTGRES_PASSWORD}"
-      PAPERLESS_DBHOST: paperless-postgresql.home.svc.cluster.local
+      PAPERLESS_DBHOST: postgres-rw.database
       PAPERLESS_DBPORT: 5432
       PAPERLESS_DBSSLMODE: disable
       PAPERLESS_CONSUMER_RECURSIVE: true
