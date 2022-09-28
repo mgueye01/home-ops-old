@@ -195,6 +195,34 @@ spec:
         Kubernetes-events-dashboard.:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/kubernetes-events-dashboard.json
           datasource: Loki
+      thanos:
+        bucket-replicate:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/v0.28.0/examples/dashboards/bucket-replicate.json
+          datasource: Prometheus
+        compact:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/v0.28.0/examples/dashboards/compact.json
+          datasource: Prometheus
+        overview:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/v0.28.0/examples/dashboards/overview.json
+          datasource: Prometheus
+        query:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/v0.28.0/examples/dashboards/query.json
+          datasource: Prometheus
+        query-frontend:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/v0.28.0/examples/dashboards/query-frontend.json
+          datasource: Prometheus
+        receive:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/v0.28.0/examples/dashboards/receive.json
+          datasource: Prometheus
+        rule:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/v0.28.0/examples/dashboards/rule.json
+          datasource: Prometheus
+        sidecar:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/v0.28.0/examples/dashboards/sidecar.json
+          datasource: Prometheus
+        store:
+          url: https://raw.githubusercontent.com/thanos-io/thanos/v0.28.0/examples/dashboards/store.json
+          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
