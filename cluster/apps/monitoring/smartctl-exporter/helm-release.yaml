@@ -34,3 +34,13 @@ spec:
       enabled: true
     prometheusRules:
       enabled: false
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node-role.kubernetes.io/worker
+              operator: In
+              values:
+                - "true"
