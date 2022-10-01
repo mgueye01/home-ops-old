@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: grafana
-      version: 6.40.0
+      version: 6.39.0
 
       sourceRef:
         kind: HelmRepository
@@ -111,12 +111,6 @@ spec:
             url: http://loki-stack:3100
     dashboards:
       default:
-        # # Ref: https://grafana.com/grafana/dashboards/2842
-        # ceph-cluster:
-        #   gnetId: 2842
-        #   revision: 14
-        #   datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/15038
         External-dns:
           gnetId: 15038
           revision: 1
