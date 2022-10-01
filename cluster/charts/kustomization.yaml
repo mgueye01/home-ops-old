@@ -41,3 +41,4 @@ resources:
   - cloudnative-pg-charts.yaml
   - project-calico-charts.yaml
   - k8s-gateway.yaml
+  - portainer-charts.yaml
