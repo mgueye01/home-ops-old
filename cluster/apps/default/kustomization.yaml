@@ -11,4 +11,4 @@ resources:
   - echo-server
   - excalidraw
   - outline
-  - portainer
+  # - portainer
