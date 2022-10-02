@@ -11,3 +11,4 @@ resources:
   - echo-server
   - excalidraw
   - outline
+  - minio
