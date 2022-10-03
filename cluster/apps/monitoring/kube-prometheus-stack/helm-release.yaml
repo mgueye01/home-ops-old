@@ -264,22 +264,22 @@ spec:
           limits:
             memory: 6000Mi
         additionalScrapeConfigs:
-          - honor_timestamps: true
-            job_name: minio-nas
-            metrics_path: /minio/v2/metrics/cluster
-            scheme: http
-            bearer_token: ${SECRET_MINIO_TOKEN}
-            static_configs:
-              - targets:
-                  - "192.168.0.18:9000"
-          - honor_timestamps: true
-            job_name: minio
-            metrics_path: /minio/v2/metrics/cluster
-            scheme: http
-            bearer_token: ${SECRET_MINIO_TOKEN}
-            static_configs:
-              - targets:
-                  - "s3.mgueye01.com"
+          # - honor_timestamps: true
+          #   job_name: minio-nas
+          #   metrics_path: /minio/v2/metrics/cluster
+          #   scheme: http
+          #   bearer_token: ${SECRET_MINIO_TOKEN}
+          #   static_configs:
+          #     - targets:
+          #         - "192.168.0.18:9000"
+          # - honor_timestamps: true
+          #   job_name: minio
+          #   metrics_path: /minio/v2/metrics/cluster
+          #   scheme: http
+          #   bearer_token: ${SECRET_MINIO_TOKEN}
+          #   static_configs:
+          #     - targets:
+          #         - "s3.mgueye01.com"
           - job_name: "snmp-exporter"
             static_configs:
               - targets: ["192.168.0.18"]
