@@ -1,6 +1,11 @@
+---
 ignore: |
+  charts/
+  .terraform/
+  .vscode/
+  .taskfiles/
+  Taskfile.yml
   *.sops.*
-  gotk-components.yaml
 extends: default
 rules:
   truthy:

@@ -1,0 +1,38 @@
+{
+    "packageRules": [
+      {
+        "description": "Auto merge container digests",
+        "matchDatasources": ["docker"],
+        "automerge": true,
+        "automergeType": "branch",
+        "requiredStatusChecks": null,
+        "matchUpdateTypes": ["minor", "patch", "digest"],
+        "matchPackagePatterns": ["ghcr.io/onedr0p", "ghcr.io/jr0dd"]
+      },
+      {
+        "description": "Auto merge GitHub Actions",
+        "matchManagers": ["github-actions"],
+        "automerge": true,
+        "automergeType": "branch",
+        "requiredStatusChecks": null,
+        "matchUpdateTypes": ["minor", "patch"]
+      },
+      {
+        "description": "Auto merge Helm charts",
+        "matchDatasources": ["helm"],
+        "automerge": true,
+        "automergeType": "branch",
+        "requiredStatusChecks": null,
+        "matchUpdateTypes": ["minor", "patch"],
+        "matchPackageNames": ["grafana", "kube-prometheus-stack", "thanos", "postgresql"]
+      },
+      {
+        "description": "Auto merge Pre-Commit Hooks",
+        "matchManagers": ["pre-commit"],
+        "automerge": true,
+        "automergeType": "branch",
+        "requiredStatusChecks": null,
+        "matchUpdateTypes": ["minor", "patch"]
+      }
+        ]
+}

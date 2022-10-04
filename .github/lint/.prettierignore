@@ -1,3 +1,8 @@
+charts/
+docs/
+.private/
+.terraform/
+.vscode/
 *.sops.*
 gotk-components.yaml
-main.yml
+.github/renovate/

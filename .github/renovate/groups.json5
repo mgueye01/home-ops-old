@@ -1,0 +1,73 @@
+{
+    "packageRules": [
+      {
+        "description": "Rook-Ceph image and chart",
+        "groupName": "Rook Ceph",
+        "matchPackagePatterns": ["rook.ceph"],
+        "matchDatasources": ["docker", "helm"],
+        "group": { "commitMessageTopic": "{{{groupName}}} group" },
+        "separateMinorPatch": true
+      },
+      {
+        "description": "External Snapshotter image and kustomization",
+        "groupName": "External Snapshotter",
+        "matchPackagePatterns": ["external-snapshotter", "snapshot-controller"],
+        "matchDatasources": ["docker", "github-tags"],
+        "group": { "commitMessageTopic": "{{{groupName}}} group" },
+        "separateMinorPatch": true
+      },
+      {
+        "description": "Thanos image and chart - versions do not match",
+        "groupName": "Thanos",
+        "matchPackagePatterns": ["thanos"],
+        "matchDatasources": ["docker", "github-releases", "helm"],
+        "matchUpdateTypes": ["minor", "patch"],
+        "group": { "commitMessageTopic": "{{{groupName}}} group" },
+        "separateMinorPatch": false
+      },
+      {
+        "description": "Cert-Manager chart & CRDs",
+        "groupName": "Cert-Manager",
+        "matchPackagePatterns": ["cert-manager"],
+        "matchDatasources": ["helm", "docker"],
+        "matchUpdateTypes": ["minor", "patch"],
+        "group": { "commitMessageTopic": "{{{groupName}}} group" },
+        "separateMinorPatch": false
+      },
+      {
+        "description": "KPS chart and CRDs",
+        "groupName": "Kube Prometheus Stack",
+        "matchPackagePatterns": ["kube-prometheus-stack"],
+        "matchDatasources": ["helm"],
+        "matchUpdateTypes": ["minor", "patch"],
+        "group": { "commitMessageTopic": "{{{groupName}}} group" },
+        "separateMinorPatch": false
+      },
+      {
+        "description": "MinIO image & chart",
+        "groupName": "MinIO",
+        "matchPackagePatterns": ["minio"],
+        "matchDatasources": ["helm", "docker"],
+        "matchUpdateTypes": ["minor", "patch"],
+        "group": { "commitMessageTopic": "{{{groupName}}} group" },
+        "separateMinorPatch": false
+      },
+      {
+        "description": "System Upgrade Controller image and CRDs",
+        "groupName": "System Upgrade Controller",
+        "matchPackagePatterns": ["system-upgrade-controller"],
+        "matchDatasources": ["docker"],
+        "matchUpdateTypes": ["minor", "patch"],
+        "group": { "commitMessageTopic": "{{{groupName}}} group" },
+        "separateMinorPatch": false
+      },
+      {
+        "description": "Node Feature Discovery kustomization (for CRDs) and chart",
+        "groupName": "Node Feature Discovery",
+        "matchPackagePatterns": ["node-feature-discovery"],
+        "matchDatasources": ["helm", "github-tags"],
+        "group": { "commitMessageTopic": "{{{groupName}}} group" },
+        "separateMinorPatch": true
+      }
+    ]
+  }
