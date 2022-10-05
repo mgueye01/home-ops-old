@@ -9,7 +9,7 @@ on: # yamllint disable-line rule:truthy
         required: false
       logLevel:
         description: "Log-Level"
-        default: "debug"
+        default: "info"
         required: false
   schedule:
     - cron: "0 */4 * * *"
@@ -21,7 +21,7 @@ on: # yamllint disable-line rule:truthy
       - ".github/renovate/**.json5"
 
 env:
-  LOG_LEVEL: debug
+  LOG_LEVEL: info
   RENOVATE_DRY_RUN: false
   RENOVATE_CONFIG_FILE: .github/renovate.json5
 
