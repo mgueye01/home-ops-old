@@ -6,7 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30m
-  # renovate: datasource=github-releases
   url: https://github.com/aquasecurity/starboard.git
   ref:
     tag: v0.15.4

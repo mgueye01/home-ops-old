@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.rook.io/release
       chart: rook-ceph-cluster
       version: v1.10.2
       sourceRef:
@@ -36,7 +35,6 @@ spec:
 
     cephClusterSpec:
       cephVersion:
-        # renovate: docker-image
         image: quay.io/ceph/ceph:v17.2.4
 
       network:

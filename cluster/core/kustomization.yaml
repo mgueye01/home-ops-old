@@ -8,7 +8,5 @@ resources:
   - metallb-system
   - system-upgrade
   - rook-ceph
-  # # - synology-csi
-  # # - starboard-system
   - kyverno
   # # - cilium
