@@ -28,7 +28,7 @@ spec:
       s3Credentials:
         accessKeyId:
           name: postgres-minio
-          key: SECRET_MINIO_ACCESS_KEY
+          key: MINIO_ACCESS_KEY
         secretAccessKey:
           name: postgres-minio
-          key: SECRET_MINIO_SECRET_KEY
+          key: MINIO_SECRET_KEY
