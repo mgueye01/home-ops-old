@@ -8,6 +8,7 @@ resources:
   - scheduled-backup.yaml
 configMapGenerator:
   - name: cloudnative-pg-dashboard
+    namespace: database
     files:
       - cloudnative-pg-dashboard.json=https://raw.githubusercontent.com/cloudnative-pg/charts/main/charts/cnpg-sandbox/dashboard.json
 generatorOptions:
