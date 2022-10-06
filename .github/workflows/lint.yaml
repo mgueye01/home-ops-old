@@ -40,7 +40,6 @@ jobs:
                 fromJSON('
                   [
                     "ACTION_ACTIONLINT",
-                    "COPYPASTE_JSCPD",
                     "KUBERNETES_KUBEVAL",
                     "MARKDOWN_MARKDOWNLINT",
                     "REPOSITORY_GIT_DIFF",
