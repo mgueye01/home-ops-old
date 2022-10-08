@@ -32,3 +32,4 @@ spec:
         secretAccessKey:
           name: postgres-minio
           key: MINIO_SECRET_KEY
+  logLevel: debug
