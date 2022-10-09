@@ -22,7 +22,7 @@ services:
       #   subtitle: Real-time multi-device file synchronization
       - name: Minio
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/minio.png"
-        url: "http://dschaton.local:9001"
+        url: "http://minio.${SECRET_DOMAIN}"
         subtitle: S3 compatible datastore
       - name: Thanos
         logo: "https://home.${SECRET_DOMAIN}/assets/data/icons/thanos.png"
