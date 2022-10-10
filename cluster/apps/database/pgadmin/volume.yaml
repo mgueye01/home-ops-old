@@ -5,7 +5,9 @@ metadata:
   name: pgadmin-config
   namespace: database
   labels:
-    k10.kasten.io/backup: "true"
+    app.kubernetes.io/name: &name pgadmin
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce
