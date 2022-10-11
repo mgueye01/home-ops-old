@@ -39,3 +39,6 @@ configMapGenerator:
 
   - name: ceph-cluster-dashboard
     files: [dashboards/ceph-cluster_rev14.json]
+
+  - name: Kubernetes-cluster-monitoring
+    files: [dashboards/cluster-monitoring.json]

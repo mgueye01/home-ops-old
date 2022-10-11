@@ -26,16 +26,16 @@ resources:
   - fairwinds-charts.yaml
   - drone-charts.yaml
   - harbor-charts.yaml
-  - aqua-charts.yaml
+  # - aqua-charts.yaml
   - kyverno-charts.yaml
-  - cilium-charts.yaml
+  # - cilium-charts.yaml
   - tika-charts.yaml
   - kurt108-charts.yaml
-  - uptimerobot-operator-charts.yaml
+  # - uptimerobot-operator-charts.yaml
   - giantswarm-charts.yaml
   - emqx-charts.yaml
   - home-emqx.yaml
-  - gitlab-charts.yaml
+  # - gitlab-charts.yaml
   - bjw-s-charts.yaml
   - lwolf-charts.yaml
   - cloudnative-pg-charts.yaml
