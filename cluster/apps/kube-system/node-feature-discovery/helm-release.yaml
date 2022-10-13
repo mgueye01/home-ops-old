@@ -54,6 +54,12 @@ spec:
                     class: ["02"]
                     vendor: ["0658"]
                     device: ["0200"]
+            - name: "zigbee"
+              matchOn:
+                - usbId:
+                    class: ["ff"]
+                    vendor: ["10c4"]
+                    device: ["ea60"]
             - name: intel-gpu
               matchOn:
                 - pciId:
