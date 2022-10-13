@@ -63,9 +63,10 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        mountPath: /dev/ttyUSB0
         hostPath: /dev/serial/by-id/usb-Silicon_Labs_Sonoff_Zigbee_3.0_USB_Dongle_Plus_0001-if00-port0
-        hostPathType: CharDevice
+    podSecurityContext:
+      supplementalGroups:
+        - 20 # dialout for /dev/ttyUSB0
     nodeSelector:
       feature.node.kubernetes.io/custom-zigbee: "true"
     resources:
