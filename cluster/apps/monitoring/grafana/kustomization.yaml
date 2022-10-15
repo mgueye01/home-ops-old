@@ -27,6 +27,8 @@ configMapGenerator:
   - name: dashboards-k8s-views-pods
     files: [dashboards/k8s-views-pods.json]
 
+  - name: enviro
+    files: [dashboards/evironement-dashboard.json]
   #################################################
   # System / Addons Dashboards
   #################################################

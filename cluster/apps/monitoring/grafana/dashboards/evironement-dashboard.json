@@ -1,0 +1,2179 @@
+{
+"annotations": {
+  "list": [
+    {
+      "builtIn": 1,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "enable": true,
+      "hide": true,
+      "iconColor": "rgba(0, 211, 255, 1)",
+      "limit": 100,
+      "name": "Annotations & Alerts",
+      "showIn": 0,
+      "target": {
+        "limit": 100,
+        "matchAny": false,
+        "tags": [],
+        "type": "dashboard"
+      },
+      "type": "dashboard"
+    }
+  ]
+},
+"description": "Pimoroni Enviroplus dashboard",
+"editable": true,
+"fiscalYearStartMonth": 0,
+"gnetId": 11605,
+"graphTooltip": 0,
+"id": 71,
+"links": [],
+"liveNow": false,
+"panels": [
+  {
+    "collapsed": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "gridPos": {
+      "h": 1,
+      "w": 24,
+      "x": 0,
+      "y": 0
+    },
+    "id": 17,
+    "panels": [],
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "refId": "A"
+      }
+    ],
+    "title": "Current measurements",
+    "type": "row"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "decimals": 1,
+        "mappings": [
+          {
+            "options": {
+              "match": "null",
+              "result": {
+                "text": "Cold"
+              }
+            },
+            "type": "special"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "#5794F2",
+              "value": null
+            },
+            {
+              "color": "blue",
+              "value": 0
+            },
+            {
+              "color": "green",
+              "value": 20
+            },
+            {
+              "color": "#EAB839",
+              "value": 30
+            },
+            {
+              "color": "red",
+              "value": 35
+            }
+          ]
+        },
+        "unit": "celsius"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 6,
+      "w": 3,
+      "x": 0,
+      "y": 1
+    },
+    "id": 8,
+    "links": [],
+    "maxDataPoints": 100,
+    "options": {
+      "colorMode": "background",
+      "fieldOptions": {
+        "calcs": [
+          "lastNotNull"
+        ]
+      },
+      "graphMode": "area",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.2.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "editorMode": "code",
+        "expr": "temperature{group=\"environment\", location=~\"[[location]]\"} -5",
+        "legendFormat": "{{location}}",
+        "range": true,
+        "refId": "A"
+      }
+    ],
+    "title": "Current Temperature",
+    "transparent": true,
+    "type": "stat"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "decimals": 1,
+        "mappings": [
+          {
+            "options": {
+              "match": "null",
+              "result": {
+                "text": "N/A"
+              }
+            },
+            "type": "special"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "#FF9830",
+              "value": null
+            },
+            {
+              "color": "#EAB839",
+              "value": 30
+            },
+            {
+              "color": "#56A64B",
+              "value": 40
+            },
+            {
+              "color": "#FF780A",
+              "value": 60
+            },
+            {
+              "color": "red",
+              "value": 70
+            }
+          ]
+        },
+        "unit": "humidity"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 6,
+      "w": 3,
+      "x": 3,
+      "y": 1
+    },
+    "id": 11,
+    "links": [],
+    "maxDataPoints": 100,
+    "options": {
+      "colorMode": "background",
+      "fieldOptions": {
+        "calcs": [
+          "lastNotNull"
+        ]
+      },
+      "graphMode": "area",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.2.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "humidity{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "{{location}}",
+        "refId": "A"
+      }
+    ],
+    "title": "Humidity",
+    "transparent": true,
+    "type": "stat"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "mappings": [
+          {
+            "options": {
+              "from": 980,
+              "result": {
+                "color": "green",
+                "text": "80% Rain chance"
+              },
+              "to": 990
+            },
+            "type": "range"
+          },
+          {
+            "options": {
+              "from": 990,
+              "result": {
+                "color": "green",
+                "text": "70% Rain chance"
+              },
+              "to": 994
+            },
+            "type": "range"
+          },
+          {
+            "options": {
+              "from": 994,
+              "result": {
+                "color": "green",
+                "text": "60% Rain chance"
+              },
+              "to": 998
+            },
+            "type": "range"
+          },
+          {
+            "options": {
+              "from": 998,
+              "result": {
+                "color": "green",
+                "text": "50% Rain chance"
+              },
+              "to": 1002
+            },
+            "type": "range"
+          },
+          {
+            "options": {
+              "from": 1002,
+              "result": {
+                "color": "green",
+                "text": "40% Rain chance"
+              },
+              "to": 1007
+            },
+            "type": "range"
+          },
+          {
+            "options": {
+              "from": 1007,
+              "result": {
+                "color": "green",
+                "text": "30% Rain chance"
+              },
+              "to": 1011
+            },
+            "type": "range"
+          },
+          {
+            "options": {
+              "from": 1011,
+              "result": {
+                "color": "green",
+                "text": "20% Rain chance"
+              },
+              "to": 1016
+            },
+            "type": "range"
+          },
+          {
+            "options": {
+              "from": 1016,
+              "result": {
+                "color": "green",
+                "text": "10% Rain chance"
+              },
+              "to": 1020
+            },
+            "type": "range"
+          },
+          {
+            "options": {
+              "from": 1020,
+              "result": {
+                "color": "green",
+                "text": "5% Rain chance"
+              },
+              "to": 1100
+            },
+            "type": "range"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "blue",
+              "value": 980
+            },
+            {
+              "color": "#EAB839",
+              "value": 1000
+            },
+            {
+              "color": "green",
+              "value": 1020
+            }
+          ]
+        },
+        "unit": "pressurehpa"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 6,
+      "w": 3,
+      "x": 6,
+      "y": 1
+    },
+    "id": 22,
+    "links": [],
+    "maxDataPoints": 100,
+    "options": {
+      "colorMode": "background",
+      "fieldOptions": {
+        "calcs": [
+          "lastNotNull"
+        ]
+      },
+      "graphMode": "area",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.2.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "pressure{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "{{location}}",
+        "refId": "A"
+      }
+    ],
+    "title": "Pressure",
+    "transparent": true,
+    "type": "stat"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "decimals": 0,
+        "mappings": [
+          {
+            "options": {
+              "match": "null",
+              "result": {
+                "text": "N/A"
+              }
+            },
+            "type": "special"
+          }
+        ],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "rgb(0, 0, 0)",
+              "value": null
+            },
+            {
+              "color": "orange",
+              "value": 30
+            },
+            {
+              "color": "super-light-blue",
+              "value": 500
+            }
+          ]
+        },
+        "unit": "lux"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 6,
+      "w": 3,
+      "x": 9,
+      "y": 1
+    },
+    "id": 25,
+    "links": [],
+    "maxDataPoints": 100,
+    "options": {
+      "colorMode": "background",
+      "fieldOptions": {
+        "calcs": [
+          "lastNotNull"
+        ]
+      },
+      "graphMode": "area",
+      "justifyMode": "auto",
+      "orientation": "horizontal",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.2.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "lux{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "{{location}}",
+        "refId": "A"
+      }
+    ],
+    "title": "Light",
+    "transparent": true,
+    "type": "stat"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "description": "PM1.0 ug/m3 (ultrafine particles)\nPM2.5 ug/m3 (combustion particles, organic compounds, metals)\nPM10 ug/m3  (dust, pollen, mould spores)",
+    "fieldConfig": {
+      "defaults": {
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "orange",
+              "value": 30
+            },
+            {
+              "color": "red",
+              "value": 40
+            },
+            {
+              "color": "rgb(5, 5, 5)",
+              "value": 50
+            }
+          ]
+        },
+        "unit": "conμgm3"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 6,
+      "w": 12,
+      "x": 12,
+      "y": 1
+    },
+    "id": 32,
+    "options": {
+      "colorMode": "background",
+      "graphMode": "area",
+      "justifyMode": "auto",
+      "orientation": "vertical",
+      "reduceOptions": {
+        "calcs": [
+          "lastNotNull"
+        ],
+        "fields": "",
+        "values": false
+      },
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.2.0",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "PM1{group=\"environment\", location=~\"[[location]]\"}",
+        "interval": "",
+        "legendFormat": "pm1_{{location}} (ultrafine particles)",
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "PM25{group=\"environment\", location=~\"[[location]]\"} - PM1{group=\"environment\", location=~\"[[location]]\"}",
+        "interval": "",
+        "legendFormat": "pm2.5_{{location}} (combustion particles, organic compounds, metals)",
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "PM10{group=\"environment\", location=~\"Vught\"} - PM25{group=\"environment\", location=~\"Vught\"}",
+        "interval": "",
+        "legendFormat": "pm10_{{location}} (dust, pollen, mould spores)",
+        "refId": "C"
+      }
+    ],
+    "title": "Particles",
+    "transparent": true,
+    "type": "stat"
+  },
+  {
+    "collapsed": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "gridPos": {
+      "h": 1,
+      "w": 24,
+      "x": 0,
+      "y": 7
+    },
+    "id": 19,
+    "panels": [],
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "refId": "A"
+      }
+    ],
+    "title": "Historical measurements",
+    "type": "row"
+  },
+  {
+    "aliasColors": {},
+    "bars": false,
+    "dashLength": 10,
+    "dashes": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "decimals": 1,
+    "fieldConfig": {
+      "defaults": {
+        "links": []
+      },
+      "overrides": []
+    },
+    "fill": 1,
+    "fillGradient": 2,
+    "gridPos": {
+      "h": 11,
+      "w": 6,
+      "x": 0,
+      "y": 8
+    },
+    "hiddenSeries": false,
+    "id": 2,
+    "legend": {
+      "alignAsTable": true,
+      "avg": true,
+      "current": true,
+      "max": true,
+      "min": true,
+      "rightSide": false,
+      "show": true,
+      "total": false,
+      "values": true
+    },
+    "lines": true,
+    "linewidth": 1,
+    "nullPointMode": "null",
+    "options": {
+      "alertThreshold": true
+    },
+    "percentage": false,
+    "pluginVersion": "9.2.0",
+    "pointradius": 2,
+    "points": false,
+    "renderer": "flot",
+    "seriesOverrides": [],
+    "spaceLength": 10,
+    "stack": false,
+    "steppedLine": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "editorMode": "code",
+        "expr": "temperature{group=\"environment\", location=~\"[[location]]\"} -5",
+        "legendFormat": "temperature_raw_{{location}}",
+        "range": true,
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "editorMode": "code",
+        "expr": "avg_over_time(temperature{group=\"environment\", location=~\"[[location]]\"}[15m]) -5",
+        "legendFormat": "temperature_smooth_{{location}}",
+        "range": true,
+        "refId": "C"
+      }
+    ],
+    "thresholds": [
+      {
+        "colorMode": "critical",
+        "fill": true,
+        "line": true,
+        "op": "gt",
+        "value": 40,
+        "yaxis": "left"
+      }
+    ],
+    "timeRegions": [],
+    "title": "Temperature",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "transparent": true,
+    "type": "graph",
+    "xaxis": {
+      "mode": "time",
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "decimals": 1,
+        "format": "celsius",
+        "logBase": 1,
+        "show": true
+      },
+      {
+        "format": "pressurehpa",
+        "logBase": 1,
+        "show": false
+      }
+    ],
+    "yaxis": {
+      "align": false
+    }
+  },
+  {
+    "aliasColors": {},
+    "bars": false,
+    "dashLength": 10,
+    "dashes": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "decimals": 1,
+    "fieldConfig": {
+      "defaults": {
+        "links": []
+      },
+      "overrides": []
+    },
+    "fill": 1,
+    "fillGradient": 0,
+    "gridPos": {
+      "h": 11,
+      "w": 6,
+      "x": 6,
+      "y": 8
+    },
+    "hiddenSeries": false,
+    "id": 4,
+    "legend": {
+      "alignAsTable": true,
+      "avg": true,
+      "current": true,
+      "max": true,
+      "min": true,
+      "show": true,
+      "total": false,
+      "values": true
+    },
+    "lines": true,
+    "linewidth": 1,
+    "nullPointMode": "null",
+    "options": {
+      "alertThreshold": true
+    },
+    "percentage": false,
+    "pluginVersion": "9.2.0",
+    "pointradius": 2,
+    "points": false,
+    "renderer": "flot",
+    "seriesOverrides": [],
+    "spaceLength": 10,
+    "stack": false,
+    "steppedLine": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "pressure{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "pressure_{{location}}",
+        "refId": "A"
+      }
+    ],
+    "thresholds": [],
+    "timeRegions": [],
+    "title": "Pressure",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "transparent": true,
+    "type": "graph",
+    "xaxis": {
+      "mode": "time",
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "format": "pressurehpa",
+        "label": "",
+        "logBase": 1,
+        "show": true
+      },
+      {
+        "format": "short",
+        "label": "",
+        "logBase": 1,
+        "show": false
+      }
+    ],
+    "yaxis": {
+      "align": false
+    }
+  },
+  {
+    "aliasColors": {},
+    "bars": false,
+    "dashLength": 10,
+    "dashes": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "decimals": 1,
+    "description": "PM1.0 ug/m3 (ultrafine particles)\nPM2.5 ug/m3 (combustion particles, organic compounds, metals)\nPM10 ug/m3  (dust, pollen, mould spores)",
+    "fieldConfig": {
+      "defaults": {
+        "links": []
+      },
+      "overrides": []
+    },
+    "fill": 1,
+    "fillGradient": 2,
+    "gridPos": {
+      "h": 11,
+      "w": 6,
+      "x": 12,
+      "y": 8
+    },
+    "hiddenSeries": false,
+    "id": 26,
+    "legend": {
+      "alignAsTable": true,
+      "avg": true,
+      "current": true,
+      "max": true,
+      "min": true,
+      "rightSide": false,
+      "show": true,
+      "total": false,
+      "values": true
+    },
+    "lines": true,
+    "linewidth": 1,
+    "nullPointMode": "null",
+    "options": {
+      "alertThreshold": true
+    },
+    "percentage": false,
+    "pluginVersion": "9.2.0",
+    "pointradius": 2,
+    "points": false,
+    "renderer": "flot",
+    "seriesOverrides": [],
+    "spaceLength": 10,
+    "stack": false,
+    "steppedLine": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "PM1{group=\"environment\", location=~\"[[location]]\"}",
+        "interval": "",
+        "legendFormat": "pm1_{{location}} (ultrafine particles)",
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "PM25{group=\"environment\", location=~\"[[location]]\"} - PM1{group=\"environment\", location=~\"[[location]]\"}",
+        "interval": "",
+        "legendFormat": "pm2.5_{{location}} (combustion particles, organic compounds, metals)",
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "PM10{group=\"environment\", location=~\"[[location]]\"} - PM25{group=\"environment\", location=~\"[[location]]\"}",
+        "interval": "",
+        "legendFormat": "pm10_{{location}} (dust, pollen, mould spores)",
+        "refId": "C"
+      }
+    ],
+    "thresholds": [
+      {
+        "colorMode": "critical",
+        "fill": true,
+        "line": true,
+        "op": "gt",
+        "value": 40,
+        "yaxis": "left"
+      }
+    ],
+    "timeRegions": [],
+    "title": "Particles",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "transparent": true,
+    "type": "graph",
+    "xaxis": {
+      "mode": "time",
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "$$hashKey": "object:270",
+        "decimals": 1,
+        "format": "conμgm3",
+        "logBase": 1,
+        "show": true
+      },
+      {
+        "$$hashKey": "object:271",
+        "format": "pressurehpa",
+        "logBase": 1,
+        "show": false
+      }
+    ],
+    "yaxis": {
+      "align": false
+    }
+  },
+  {
+    "aliasColors": {},
+    "bars": false,
+    "dashLength": 10,
+    "dashes": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "description": "NH3 -> Ammonia, \nOxidising -> Nitrogen Dioxide,\nReducing -> Carbon Monoxide",
+    "fieldConfig": {
+      "defaults": {
+        "links": []
+      },
+      "overrides": []
+    },
+    "fill": 1,
+    "fillGradient": 1,
+    "gridPos": {
+      "h": 11,
+      "w": 6,
+      "x": 18,
+      "y": 8
+    },
+    "hiddenSeries": false,
+    "id": 10,
+    "legend": {
+      "alignAsTable": true,
+      "avg": true,
+      "current": true,
+      "max": true,
+      "min": true,
+      "show": true,
+      "total": false,
+      "values": true
+    },
+    "lines": true,
+    "linewidth": 1,
+    "nullPointMode": "null",
+    "options": {
+      "alertThreshold": true
+    },
+    "percentage": false,
+    "pluginVersion": "9.2.0",
+    "pointradius": 2,
+    "points": false,
+    "renderer": "flot",
+    "seriesOverrides": [],
+    "spaceLength": 10,
+    "stack": false,
+    "steppedLine": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "NH3{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "nh3_{{location}}",
+        "refId": "A"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "oxidising{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "oxidising_{{location}}",
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "reducing{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "reducing_{{location}}",
+        "refId": "C"
+      }
+    ],
+    "thresholds": [],
+    "timeRegions": [],
+    "title": "Gas (NH3, Oxidising, Reducing)",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "transparent": true,
+    "type": "graph",
+    "xaxis": {
+      "mode": "time",
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "format": "ohm",
+        "label": "",
+        "logBase": 2,
+        "show": true
+      },
+      {
+        "format": "short",
+        "logBase": 1,
+        "show": false
+      }
+    ],
+    "yaxis": {
+      "align": false
+    }
+  },
+  {
+    "aliasColors": {
+      "humidity{group=\"environment\",instance=\"localhost:8000\",job=\"prometheus\"}": "blue"
+    },
+    "bars": false,
+    "dashLength": 10,
+    "dashes": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "description": "A value (from zero to a couple of thousand) for the proximity, with larger numbers being closer proximity and vice versa.",
+    "fieldConfig": {
+      "defaults": {
+        "links": []
+      },
+      "overrides": []
+    },
+    "fill": 1,
+    "fillGradient": 0,
+    "gridPos": {
+      "h": 8,
+      "w": 6,
+      "x": 0,
+      "y": 19
+    },
+    "hiddenSeries": false,
+    "id": 12,
+    "legend": {
+      "alignAsTable": true,
+      "avg": true,
+      "current": true,
+      "max": true,
+      "min": true,
+      "show": true,
+      "total": false,
+      "values": true
+    },
+    "lines": true,
+    "linewidth": 1,
+    "nullPointMode": "null",
+    "options": {
+      "alertThreshold": true
+    },
+    "percentage": false,
+    "pluginVersion": "9.2.0",
+    "pointradius": 2,
+    "points": false,
+    "renderer": "flot",
+    "seriesOverrides": [],
+    "spaceLength": 10,
+    "stack": false,
+    "steppedLine": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "proximity{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "proximity_{{location}}",
+        "refId": "A"
+      }
+    ],
+    "thresholds": [],
+    "timeRegions": [],
+    "title": "Proximity",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "transparent": true,
+    "type": "graph",
+    "xaxis": {
+      "mode": "time",
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "format": "none",
+        "logBase": 1,
+        "show": true
+      },
+      {
+        "format": "short",
+        "logBase": 1,
+        "show": true
+      }
+    ],
+    "yaxis": {
+      "align": false
+    }
+  },
+  {
+    "aliasColors": {},
+    "bars": false,
+    "dashLength": 10,
+    "dashes": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "decimals": 1,
+    "fieldConfig": {
+      "defaults": {
+        "links": []
+      },
+      "overrides": []
+    },
+    "fill": 1,
+    "fillGradient": 0,
+    "gridPos": {
+      "h": 8,
+      "w": 6,
+      "x": 6,
+      "y": 19
+    },
+    "hiddenSeries": false,
+    "id": 6,
+    "legend": {
+      "alignAsTable": true,
+      "avg": true,
+      "current": true,
+      "max": true,
+      "min": true,
+      "show": true,
+      "total": false,
+      "values": true
+    },
+    "lines": true,
+    "linewidth": 1,
+    "nullPointMode": "null",
+    "options": {
+      "alertThreshold": true
+    },
+    "percentage": false,
+    "pluginVersion": "9.2.0",
+    "pointradius": 2,
+    "points": false,
+    "renderer": "flot",
+    "seriesOverrides": [],
+    "spaceLength": 10,
+    "stack": false,
+    "steppedLine": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "humidity{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "humidity_{{location}}",
+        "refId": "A"
+      }
+    ],
+    "thresholds": [
+      {
+        "colorMode": "critical",
+        "fill": true,
+        "line": true,
+        "op": "gt",
+        "value": 60,
+        "yaxis": "left"
+      }
+    ],
+    "timeRegions": [],
+    "title": "Humidity",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "transparent": true,
+    "type": "graph",
+    "xaxis": {
+      "mode": "time",
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "format": "humidity",
+        "label": "",
+        "logBase": 1,
+        "show": true
+      },
+      {
+        "format": "short",
+        "logBase": 1,
+        "show": false
+      }
+    ],
+    "yaxis": {
+      "align": false
+    }
+  },
+  {
+    "aliasColors": {},
+    "bars": false,
+    "dashLength": 10,
+    "dashes": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "description": "A value (from zero to a couple of thousand) for the proximity, with larger numbers being closer proximity and vice versa.",
+    "fieldConfig": {
+      "defaults": {
+        "links": []
+      },
+      "overrides": []
+    },
+    "fill": 1,
+    "fillGradient": 0,
+    "gridPos": {
+      "h": 8,
+      "w": 6,
+      "x": 12,
+      "y": 19
+    },
+    "hiddenSeries": false,
+    "id": 13,
+    "legend": {
+      "alignAsTable": true,
+      "avg": true,
+      "current": true,
+      "max": true,
+      "min": true,
+      "show": true,
+      "total": false,
+      "values": true
+    },
+    "lines": true,
+    "linewidth": 1,
+    "nullPointMode": "null",
+    "options": {
+      "alertThreshold": true
+    },
+    "percentage": false,
+    "pluginVersion": "9.2.0",
+    "pointradius": 2,
+    "points": false,
+    "renderer": "flot",
+    "seriesOverrides": [],
+    "spaceLength": 10,
+    "stack": false,
+    "steppedLine": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "lux{group=\"environment\", location=~\"[[location]]\"}",
+        "legendFormat": "lux_{{location}}",
+        "refId": "A"
+      }
+    ],
+    "thresholds": [],
+    "timeRegions": [],
+    "title": "Light",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "transparent": true,
+    "type": "graph",
+    "xaxis": {
+      "mode": "time",
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "format": "lux",
+        "logBase": 1,
+        "show": true
+      },
+      {
+        "format": "short",
+        "logBase": 1,
+        "show": true
+      }
+    ],
+    "yaxis": {
+      "align": false
+    }
+  },
+  {
+    "collapsed": true,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "gridPos": {
+      "h": 1,
+      "w": 24,
+      "x": 0,
+      "y": 27
+    },
+    "id": 31,
+    "panels": [],
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "refId": "A"
+      }
+    ],
+    "title": "Particulate Matter",
+    "type": "row"
+  },
+  {
+    "cards": {},
+    "color": {
+      "cardColor": "#b4ff00",
+      "colorScale": "sqrt",
+      "colorScheme": "interpolateSpectral",
+      "exponent": 0.5,
+      "mode": "spectrum"
+    },
+    "dataFormat": "tsbuckets",
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "scaleDistribution": {
+            "type": "linear"
+          }
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 8,
+      "x": 0,
+      "y": 28
+    },
+    "heatmap": {},
+    "hideZeroBuckets": false,
+    "highlightCards": true,
+    "id": 27,
+    "legend": {
+      "show": true
+    },
+    "options": {
+      "calculate": false,
+      "calculation": {},
+      "cellGap": 2,
+      "cellValues": {},
+      "color": {
+        "exponent": 0.5,
+        "fill": "#b4ff00",
+        "mode": "scheme",
+        "reverse": false,
+        "scale": "exponential",
+        "scheme": "Spectral",
+        "steps": 128
+      },
+      "exemplars": {
+        "color": "rgba(255,0,255,0.7)"
+      },
+      "filterValues": {
+        "le": 1e-9
+      },
+      "legend": {
+        "show": true
+      },
+      "rowsFrame": {
+        "layout": "ge"
+      },
+      "showValue": "never",
+      "tooltip": {
+        "show": true,
+        "yHistogram": true
+      },
+      "yAxis": {
+        "axisPlacement": "left",
+        "reverse": false,
+        "unit": "conμgm3"
+      }
+    },
+    "pluginVersion": "9.2.0",
+    "reverseYBuckets": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "rate(pm1_measurements_bucket{location=~\"[[location]]\"}[1h])",
+        "format": "heatmap",
+        "instant": false,
+        "interval": "",
+        "intervalFactor": 10,
+        "legendFormat": "{{le}}",
+        "refId": "A"
+      }
+    ],
+    "title": "PM1 - Heatmap",
+    "tooltip": {
+      "show": true,
+      "showHistogram": true
+    },
+    "transparent": true,
+    "type": "heatmap",
+    "xAxis": {
+      "show": true
+    },
+    "xBucketSize": "5m",
+    "yAxis": {
+      "format": "conμgm3",
+      "logBase": 1,
+      "show": true
+    },
+    "yBucketBound": "upper",
+    "yBucketNumber": 11
+  },
+  {
+    "cards": {},
+    "color": {
+      "cardColor": "#b4ff00",
+      "colorScale": "sqrt",
+      "colorScheme": "interpolateSpectral",
+      "exponent": 0.5,
+      "mode": "spectrum"
+    },
+    "dataFormat": "tsbuckets",
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "scaleDistribution": {
+            "type": "linear"
+          }
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 8,
+      "x": 8,
+      "y": 28
+    },
+    "heatmap": {},
+    "hideZeroBuckets": false,
+    "highlightCards": true,
+    "id": 28,
+    "legend": {
+      "show": true
+    },
+    "options": {
+      "calculate": false,
+      "calculation": {},
+      "cellGap": 2,
+      "cellValues": {},
+      "color": {
+        "exponent": 0.5,
+        "fill": "#b4ff00",
+        "mode": "scheme",
+        "reverse": false,
+        "scale": "exponential",
+        "scheme": "Spectral",
+        "steps": 128
+      },
+      "exemplars": {
+        "color": "rgba(255,0,255,0.7)"
+      },
+      "filterValues": {
+        "le": 1e-9
+      },
+      "legend": {
+        "show": true
+      },
+      "rowsFrame": {
+        "layout": "ge"
+      },
+      "showValue": "never",
+      "tooltip": {
+        "show": true,
+        "yHistogram": true
+      },
+      "yAxis": {
+        "axisPlacement": "left",
+        "reverse": false,
+        "unit": "conμgm3"
+      }
+    },
+    "pluginVersion": "9.2.0",
+    "reverseYBuckets": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "rate(pm25_measurements_bucket{location=~\"[[location]]\"}[1h])",
+        "format": "heatmap",
+        "instant": false,
+        "interval": "",
+        "intervalFactor": 10,
+        "legendFormat": "{{le}}",
+        "refId": "A"
+      }
+    ],
+    "title": "PM2.5 - Heatmap",
+    "tooltip": {
+      "show": true,
+      "showHistogram": true
+    },
+    "transparent": true,
+    "type": "heatmap",
+    "xAxis": {
+      "show": true
+    },
+    "xBucketSize": "5m",
+    "yAxis": {
+      "format": "conμgm3",
+      "logBase": 1,
+      "show": true
+    },
+    "yBucketBound": "upper",
+    "yBucketNumber": 11
+  },
+  {
+    "cards": {},
+    "color": {
+      "cardColor": "#b4ff00",
+      "colorScale": "sqrt",
+      "colorScheme": "interpolateSpectral",
+      "exponent": 0.5,
+      "mode": "spectrum"
+    },
+    "dataFormat": "tsbuckets",
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "scaleDistribution": {
+            "type": "linear"
+          }
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 8,
+      "x": 16,
+      "y": 28
+    },
+    "heatmap": {},
+    "hideZeroBuckets": false,
+    "highlightCards": true,
+    "id": 29,
+    "legend": {
+      "show": true
+    },
+    "options": {
+      "calculate": false,
+      "calculation": {},
+      "cellGap": 2,
+      "cellValues": {},
+      "color": {
+        "exponent": 0.5,
+        "fill": "#b4ff00",
+        "mode": "scheme",
+        "reverse": false,
+        "scale": "exponential",
+        "scheme": "Spectral",
+        "steps": 128
+      },
+      "exemplars": {
+        "color": "rgba(255,0,255,0.7)"
+      },
+      "filterValues": {
+        "le": 1e-9
+      },
+      "legend": {
+        "show": true
+      },
+      "rowsFrame": {
+        "layout": "ge"
+      },
+      "showValue": "never",
+      "tooltip": {
+        "show": true,
+        "yHistogram": true
+      },
+      "yAxis": {
+        "axisPlacement": "left",
+        "reverse": false,
+        "unit": "conμgm3"
+      }
+    },
+    "pluginVersion": "9.2.0",
+    "reverseYBuckets": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "rate(pm10_measurements_bucket{location=~\"[[location]]\"}[1h])",
+        "format": "heatmap",
+        "instant": false,
+        "interval": "",
+        "intervalFactor": 10,
+        "legendFormat": "{{le}}",
+        "refId": "A"
+      }
+    ],
+    "title": "PM10 - Heatmap",
+    "tooltip": {
+      "show": true,
+      "showHistogram": true
+    },
+    "transparent": true,
+    "type": "heatmap",
+    "xAxis": {
+      "show": true
+    },
+    "xBucketSize": "5m",
+    "yAxis": {
+      "format": "conμgm3",
+      "logBase": 1,
+      "show": true
+    },
+    "yBucketBound": "upper",
+    "yBucketNumber": 11
+  },
+  {
+    "collapsed": false,
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "gridPos": {
+      "h": 1,
+      "w": 24,
+      "x": 0,
+      "y": 37
+    },
+    "id": 21,
+    "panels": [],
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "refId": "A"
+      }
+    ],
+    "title": "Gasses - Heatmaps",
+    "type": "row"
+  },
+  {
+    "cards": {},
+    "color": {
+      "cardColor": "#b4ff00",
+      "colorScale": "sqrt",
+      "colorScheme": "interpolateSpectral",
+      "exponent": 0.5,
+      "mode": "spectrum"
+    },
+    "dataFormat": "tsbuckets",
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "scaleDistribution": {
+            "type": "linear"
+          }
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 8,
+      "x": 0,
+      "y": 38
+    },
+    "heatmap": {},
+    "hideZeroBuckets": false,
+    "highlightCards": true,
+    "id": 15,
+    "legend": {
+      "show": true
+    },
+    "options": {
+      "calculate": false,
+      "calculation": {},
+      "cellGap": 2,
+      "cellValues": {},
+      "color": {
+        "exponent": 0.5,
+        "fill": "#b4ff00",
+        "mode": "scheme",
+        "reverse": false,
+        "scale": "exponential",
+        "scheme": "Spectral",
+        "steps": 128
+      },
+      "exemplars": {
+        "color": "rgba(255,0,255,0.7)"
+      },
+      "filterValues": {
+        "le": 1e-9
+      },
+      "legend": {
+        "show": true
+      },
+      "rowsFrame": {
+        "layout": "ge"
+      },
+      "showValue": "never",
+      "tooltip": {
+        "show": true,
+        "yHistogram": true
+      },
+      "yAxis": {
+        "axisPlacement": "left",
+        "reverse": false,
+        "unit": "ohm"
+      }
+    },
+    "pluginVersion": "9.2.0",
+    "reverseYBuckets": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "rate(oxidising_measurements_bucket{location=~\"[[location]]\"}[1h])",
+        "format": "heatmap",
+        "instant": false,
+        "interval": "",
+        "intervalFactor": 10,
+        "legendFormat": "{{le}}",
+        "refId": "A"
+      }
+    ],
+    "title": "Oxidising - Heatmap",
+    "tooltip": {
+      "show": true,
+      "showHistogram": true
+    },
+    "transparent": true,
+    "type": "heatmap",
+    "xAxis": {
+      "show": true
+    },
+    "xBucketSize": "5m",
+    "yAxis": {
+      "format": "ohm",
+      "logBase": 1,
+      "show": true
+    },
+    "yBucketBound": "upper",
+    "yBucketNumber": 11
+  },
+  {
+    "cards": {},
+    "color": {
+      "cardColor": "#b4ff00",
+      "colorScale": "sqrt",
+      "colorScheme": "interpolateSpectral",
+      "exponent": 0.5,
+      "mode": "spectrum"
+    },
+    "dataFormat": "tsbuckets",
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "scaleDistribution": {
+            "type": "linear"
+          }
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 8,
+      "x": 8,
+      "y": 38
+    },
+    "heatmap": {},
+    "hideZeroBuckets": false,
+    "highlightCards": true,
+    "id": 23,
+    "legend": {
+      "show": true
+    },
+    "options": {
+      "calculate": false,
+      "calculation": {},
+      "cellGap": 2,
+      "cellValues": {},
+      "color": {
+        "exponent": 0.5,
+        "fill": "#b4ff00",
+        "mode": "scheme",
+        "reverse": false,
+        "scale": "exponential",
+        "scheme": "Spectral",
+        "steps": 128
+      },
+      "exemplars": {
+        "color": "rgba(255,0,255,0.7)"
+      },
+      "filterValues": {
+        "le": 1e-9
+      },
+      "legend": {
+        "show": true
+      },
+      "rowsFrame": {
+        "layout": "ge"
+      },
+      "showValue": "never",
+      "tooltip": {
+        "show": true,
+        "yHistogram": true
+      },
+      "yAxis": {
+        "axisPlacement": "left",
+        "decimals": 1,
+        "reverse": false,
+        "unit": "ohm"
+      }
+    },
+    "pluginVersion": "9.2.0",
+    "reverseYBuckets": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "rate(reducing_measurements_bucket{location=~\"[[location]]\"}[1h])",
+        "format": "heatmap",
+        "instant": false,
+        "interval": "",
+        "intervalFactor": 10,
+        "legendFormat": "{{le}}",
+        "refId": "A"
+      }
+    ],
+    "title": "Reducing - Heatmap",
+    "tooltip": {
+      "show": true,
+      "showHistogram": true
+    },
+    "transparent": true,
+    "type": "heatmap",
+    "xAxis": {
+      "show": true
+    },
+    "xBucketSize": "5m",
+    "yAxis": {
+      "decimals": 1,
+      "format": "ohm",
+      "logBase": 1,
+      "show": true
+    },
+    "yBucketBound": "upper",
+    "yBucketNumber": 11
+  },
+  {
+    "cards": {},
+    "color": {
+      "cardColor": "#b4ff00",
+      "colorScale": "sqrt",
+      "colorScheme": "interpolateSpectral",
+      "exponent": 0.5,
+      "mode": "spectrum"
+    },
+    "dataFormat": "tsbuckets",
+    "datasource": {
+      "type": "prometheus",
+      "uid": "PBFA97CFB590B2093"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "scaleDistribution": {
+            "type": "linear"
+          }
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 9,
+      "w": 8,
+      "x": 16,
+      "y": 38
+    },
+    "heatmap": {},
+    "hideZeroBuckets": false,
+    "highlightCards": true,
+    "id": 24,
+    "legend": {
+      "show": true
+    },
+    "options": {
+      "calculate": false,
+      "calculation": {},
+      "cellGap": 2,
+      "cellValues": {},
+      "color": {
+        "exponent": 0.5,
+        "fill": "#b4ff00",
+        "mode": "scheme",
+        "reverse": false,
+        "scale": "exponential",
+        "scheme": "Spectral",
+        "steps": 128
+      },
+      "exemplars": {
+        "color": "rgba(255,0,255,0.7)"
+      },
+      "filterValues": {
+        "le": 1e-9
+      },
+      "legend": {
+        "show": true
+      },
+      "rowsFrame": {
+        "layout": "auto"
+      },
+      "showValue": "never",
+      "tooltip": {
+        "show": true,
+        "yHistogram": true
+      },
+      "yAxis": {
+        "axisPlacement": "left",
+        "decimals": 1,
+        "reverse": false,
+        "unit": "ohm"
+      }
+    },
+    "pluginVersion": "9.2.0",
+    "reverseYBuckets": false,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "expr": "rate(nh3_measurements_bucket{location=~\"[[location]]\"}[1h])",
+        "format": "heatmap",
+        "instant": false,
+        "interval": "",
+        "intervalFactor": 10,
+        "legendFormat": "{{le}}",
+        "refId": "A"
+      }
+    ],
+    "title": "NH3 - Heatmap",
+    "tooltip": {
+      "show": true,
+      "showHistogram": true
+    },
+    "transparent": true,
+    "type": "heatmap",
+    "xAxis": {
+      "show": true
+    },
+    "xBucketSize": "5m",
+    "yAxis": {
+      "decimals": 1,
+      "format": "ohm",
+      "logBase": 1,
+      "show": true
+    },
+    "yBucketBound": "auto",
+    "yBucketNumber": 11
+  }
+],
+"refresh": "10s",
+"schemaVersion": 37,
+"style": "dark",
+"tags": [],
+"templating": {
+  "list": [
+    {
+      "allValue": "",
+      "current": {
+        "selected": true,
+        "text": "Home",
+        "value": "Home"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "definition": "temperature",
+      "hide": 0,
+      "includeAll": false,
+      "label": "location",
+      "multi": false,
+      "name": "location",
+      "options": [],
+      "query": {
+        "query": "temperature",
+        "refId": "Prometheus-location-Variable-Query"
+      },
+      "refresh": 1,
+      "regex": "/.*location=\"([^\"]*).*/",
+      "skipUrlSync": false,
+      "sort": 1,
+      "tagValuesQuery": "",
+      "tagsQuery": "",
+      "type": "query",
+      "useTags": false
+    }
+  ]
+},
+"time": {
+  "from": "now-1h",
+  "to": "now"
+},
+"timepicker": {
+  "refresh_intervals": [
+    "10s",
+    "30s",
+    "1m",
+    "5m",
+    "15m",
+    "30m",
+    "1h",
+    "2h",
+    "1d"
+  ]
+},
+"timezone": "",
+"title": "Environment",
+"uid": "tv5PdqzRz",
+"version": 1,
+"weekStart": ""
+}
