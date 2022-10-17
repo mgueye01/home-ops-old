@@ -51,7 +51,7 @@ spec:
       enabled: true
       existingClaim: gitea-config-v1
     signing:
-      enabled: true
+      enabled: false
       gpgHome: /data/git/.gnupg
     gitea:
       config:
