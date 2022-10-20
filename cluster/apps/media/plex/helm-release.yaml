@@ -29,7 +29,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/plex
-      tag: 1.29.1.6316-f4cdfea9c@sha256:a183b480b10419fdbc820cfd0a04a9ce1a15825d57e6b8d86ad038461c456809
+      tag: 1.29.1.6316-f4cdfea9c@sha256:091c0d98ecb81712712b46aad5ae259df8070759964505702770fc7ebb62e4c3
     env:
       TZ: "${TIMEZONE}"
       ADVERTISE_IP: "http://${SVC_PLEX_ADDR}:32400,https://{{ .Release.Name }}.${SECRET_DOMAIN}:443"
