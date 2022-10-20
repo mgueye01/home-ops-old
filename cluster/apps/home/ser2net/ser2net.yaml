@@ -49,7 +49,7 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: config
-              mountPath: /etc/ser2net/ser2net.yaml
+              mountPath: /etc/ser2net/
               # subPath: ser2net.yaml
               readOnly: true
             - name: usb-rfxcom
