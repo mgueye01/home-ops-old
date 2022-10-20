@@ -5,7 +5,7 @@ metadata:
   name: ser2net-rfxcom-config
   namespace: home
 data:
-  ser2net.conf: |
+  ser2net.yaml: |
     3001:raw:0:/dev/ttyUSB0:38400 8DATABITS NONE 1STOPBIT
 
 ---
