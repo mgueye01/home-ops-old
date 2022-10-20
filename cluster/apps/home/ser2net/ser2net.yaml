@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: ser2net
-          image: jippi/docker-ser2net
+          image: jippi/ser2net:latest
           resources:
             requests:
               memory: 50Mi
