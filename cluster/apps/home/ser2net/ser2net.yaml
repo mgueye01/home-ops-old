@@ -50,7 +50,7 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /etc/ser2net/ser2net.yaml
-              subPath: ser2net.yaml
+              # subPath: ser2net.yaml
               readOnly: true
             - name: usb-rfxcom
               mountPath: /dev/ttyUSB0
