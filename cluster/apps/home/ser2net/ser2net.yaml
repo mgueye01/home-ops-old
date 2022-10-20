@@ -26,7 +26,7 @@ data:
 
       connection: &my-console
             accepter: telnet(rfc2217),mux,certauth(),ssl,tcp,3001
-            connector: serialdev,/dev/ttyUSB0,115200N81
+            connector: 3001:raw:0:/dev/ttyUSB0:38400 8DATABITS NONE 1STOPBIT
             options:
                     banner: *banner
 
