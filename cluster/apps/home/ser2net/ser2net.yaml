@@ -5,30 +5,8 @@ metadata:
   name: ser2net-rfxcom-config
   namespace: home
 data:
-  ser2net.yaml: |
-      %YAML 1.1
-      ---
-
-      define: &banner Connected to port \N(\d)\r\n
-
-      default:
-            name: local
-            value: true
-            class: serialdev
-
-      default:
-            name: mdns
-            value: true
-
-      default:
-            name: mdns-sysattrs
-            value: true
-
-      connection: &my-console
-            accepter: telnet(rfc2217),mux,certauth(),ssl,tcp,3001
-            connector: 3001:raw:0:/dev/ttyUSB0:38400 8DATABITS NONE 1STOPBIT
-            options:
-                    banner: *banner
+  ser2net.conf: |
+    3001:raw:0:/dev/ttyUSB0:38400 8DATABITS NONE 1STOPBIT
 
 ---
 kind: Deployment
@@ -55,7 +33,7 @@ spec:
     spec:
       containers:
         - name: ser2net
-          image: jippi/ser2net:latest
+          image: tapha/ser2net
           resources:
             requests:
               memory: 50Mi
@@ -71,8 +49,8 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: config
-              mountPath: /etc/ser2net/
-              # subPath: ser2net.yaml
+              mountPath: /etc/ser2net.conf
+              subPath: ser2net.conf
               readOnly: true
             - name: usb-rfxcom
               mountPath: /dev/ttyUSB0
