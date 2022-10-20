@@ -6,7 +6,29 @@ metadata:
   namespace: home
 data:
   ser2net.yaml: |
-    3001:raw:0:/dev/ttyUSB0:38400 8DATABITS NONE 1STOPBIT
+      %YAML 1.1
+      ---
+
+      define: &banner Connected to port \N(\d)\r\n
+
+      default:
+            name: local
+            value: true
+            class: serialdev
+
+      default:
+            name: mdns
+            value: true
+
+      default:
+            name: mdns-sysattrs
+            value: true
+
+      connection: &my-console
+            accepter: telnet(rfc2217),mux,certauth(),ssl,tcp,3001
+            connector: serialdev,/dev/ttyUSB0,115200N81
+            options:
+                    banner: *banner
 
 ---
 kind: Deployment
