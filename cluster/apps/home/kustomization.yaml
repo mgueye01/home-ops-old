@@ -9,4 +9,4 @@ resources:
   - zigbee2mqtt-exporter
   - paperless
   - mealie
-  - ser2sock
+  - ser2net

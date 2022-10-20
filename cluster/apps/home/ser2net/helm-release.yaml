@@ -8,11 +8,11 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: ser2sock
-      version: 5.4.2
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
       interval: 5m
   values:
@@ -24,6 +24,11 @@ spec:
       LISTENER_PORT: 10000
       BAUD_RATE: 115200
       SERIAL_DEVICE: "/dev/ttyUSB0"
+    service:
+      main:
+        ports:
+          http:
+            port: 10000
     securityContext:
       privileged: true
     tolerations:
