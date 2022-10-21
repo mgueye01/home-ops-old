@@ -52,7 +52,7 @@ spec:
     harborAdminPassword: "${SECRET_HARBOR_ADMIN_PASSWORD}"
     exporter:
       image:
-        repository: ghcr.io/octohelm/harbor/harbor-exporter
+        repository: bitnami/harbor-exporter
 
     persistence:
       enabled: true
