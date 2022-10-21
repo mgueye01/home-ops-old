@@ -50,9 +50,6 @@ spec:
       serviceMonitor:
         enabled: true
     harborAdminPassword: "${SECRET_HARBOR_ADMIN_PASSWORD}"
-    exporter:
-      image:
-        repository: bitnami/harbor-exporter
 
     persistence:
       enabled: true
