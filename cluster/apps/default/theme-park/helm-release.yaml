@@ -23,8 +23,8 @@ spec:
       replicas: 1
       strategy: RollingUpdate
     image:
-      repository: ghcr.io/k8s-at-home/theme-park
-      tag: v1.13.1
+      repository: ghcr.io/onedr0p/theme-park
+      tag: 1.13.1@sha256:0916d776425b39d7804ab883ebfa57ec4bd9781d4f4cafb8f4eb13685728d38d
     service:
       main:
         ports:
