@@ -20,10 +20,10 @@ spec:
       namespace: home
   values:
     image:
-      repository: ghcr.io/k8s-at-home/node-red
-      tag: v3.0.2
+      repository: docker.io/nodered/node-red
+      tag: 3.0.2
     env:
-      TZ: "Europe/Paris"
+      TZ: "${TIMEZONE}"
       NODE_RED_ENABLE_PROJECTS: "true"
       NODE_RED_ENABLE_SAFE_MODE: "false"
     service:

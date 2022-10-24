@@ -30,8 +30,9 @@ spec:
 
     service:
       main:
-        port:
-          port: 3000
+        ports:
+          http:
+            port: 3000
 
       dns:
         enabled: true
@@ -112,8 +113,9 @@ spec:
 
     service:
       main:
-        port:
-          port: 3000
+        ports:
+          http:
+            port: 3000
 
       dns:
         enabled: true
