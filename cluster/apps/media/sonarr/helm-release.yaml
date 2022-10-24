@@ -8,22 +8,27 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: sonarr
-      version: 16.3.2
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
       interval: 5m
   install:
     createNamespace: true
   values:
     image:
-      repository: ghcr.io/k8s-at-home/sonarr-develop
-      tag: v3.0.9.1555
+      repository: ghcr.io/onedr0p/sonarr-develop
+      tag: 4.0.0.141@sha256:8f78f4e7dfbc30b911844b9da40db1e8492eaf802a0d2f0f44a93df17ffa1ace
     env:
       TZ: "${TIMEZONE}"
+      SONARR__PORT: &port 8989
+    service:
+      main:
+        ports:
+          http:
+            port: *port
     ingress:
       main:
         enabled: true
