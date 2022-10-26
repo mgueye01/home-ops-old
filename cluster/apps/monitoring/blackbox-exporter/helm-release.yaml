@@ -106,3 +106,9 @@ spec:
           annotations:
             description: |-
               The host {{"{{ $labels.target }}"}} is currently unreachable
+    pspEnabled: false
+    securityContext:
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        add: ["NET_RAW"]
