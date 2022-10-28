@@ -98,9 +98,6 @@ spec:
             external-dns/is-public: "true"
           hosts:
             - "hubble.${SECRET_DOMAIN}"
-          tls:
-            - hosts:
-                - *host
 
     # -- Configure BGP
     bgp:
