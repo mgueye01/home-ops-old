@@ -10,7 +10,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: Helm
 spec:
-  interval: 15m
+  interval: 5m
   chart:
     spec:
       chart: cilium
@@ -19,8 +19,9 @@ spec:
         kind: HelmRepository
         name: cilium-charts
         namespace: flux-system
-      interval: 15m
+      interval: 5m
   install:
+    createNamespace: true
     remediation: # perform remediation when helm install fails
       retries: 3
   upgrade:
@@ -38,48 +39,43 @@ spec:
     localRedirectPolicy: true
 
     kubeProxyReplacement: "strict"
-    # kubeProxyReplacementHealthzBindAddr: ""
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 
-    nativeRoutingCIDR: ${CONFIG_K8S_POD_CIDR}
+    ipv4NativeRoutingCIDR: ${CONFIG_K8S_POD_CIDR}
 
-    k8sServiceHost: "192.168.10.250"
+    k8sServiceHost: ${192.168.10.250}
     k8sServicePort: 6443
 
     loadBalancer:
       algorithm: "maglev"
       mode: "dsr"
 
+    # change these for host routing
     tunnel: "disabled"
 
     autoDirectNodeRoutes: true
 
     endpointRoutes:
-      enabled: true
+      enabled: false
+    ##
 
     ipam:
       mode: "kubernetes"
 
-    prometheus:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-
     operator:
       rollOutPods: true
-      prometheus:
-        enabled: true
-        serviceMonitor:
-          enabled: true
 
     containerRuntime:
       integration: containerd
 
+    bpf:
+      masquerade: true
+
     hubble:
       enabled: true
+      serviceMonitor:
+        enabled: true
       metrics:
-        serviceMonitor:
-          enabled: true
         enabled:
           - dns:query;ignoreAAAA
           - drop
@@ -102,11 +98,23 @@ spec:
             external-dns/is-public: "true"
           hosts:
             - "hubble.${SECRET_DOMAIN}"
+          tls:
+            - hosts:
+                - *host
 
+    # -- Configure BGP
     bgp:
+      # -- Enable BGP support inside Cilium; embeds a new ConfigMap for BGP inside
+      # cilium-agent and cilium-operator
       enabled: false
       announce:
+        # -- Enable allocation and announcement of service LoadBalancer IPs
         loadbalancerIP: true
+        # -- Enable announcement of node pod CIDR
+        podCIDR: false
 
     externalIPs:
       enabled: false
+
+    securityContext:
+      privileged: true
