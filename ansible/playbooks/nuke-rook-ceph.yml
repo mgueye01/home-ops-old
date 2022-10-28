@@ -15,6 +15,10 @@
           ansible.builtin.file:
             state: absent
             path: /var/lib/rook
+        - name: Remove /dev/ceph-*
+          ansible.builtin.file:
+            state: absent
+            path: /dev/ceph-*
         - name: Zap the drives
           ansible.builtin.shell: |-
             sgdisk --zap-all {{ item }} || true
