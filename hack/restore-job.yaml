@@ -12,7 +12,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: restore
-          image: ghcr.io/onedr0p/kopia:0.11.3@sha256:72406602c99357951cb7284abbf88699081d60f6cffd22baddd8a6a2afe919f5
+          image: ghcr.io/onedr0p/kopia:0.12.1@sha256:e333295b519ce586e7c050c970b2255d87bdb2979298ff87ebdb1113e381ba3b
           env:
             - name: KOPIA_PASSWORD
               value: "none"
@@ -38,5 +38,5 @@ spec:
             claimName: ${PVC}
         - name: snapshots
           nfs:
-            server: ${NAS_ADDR}
+            server: "192.168.0.18"
             path: "/volume1/CLOUDNATIVE1/Backups/kopia"

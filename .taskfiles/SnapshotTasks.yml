@@ -67,7 +67,7 @@ tasks:
       NAME:
         sh: kubectl get deploy,sts -n {{.NAMESPACE}} --selector="{{.APP_SELECTOR}}" --no-headers | awk '{print $1}'
     env:
-      NAS_ADDRESS: "{{.NAS_ADDRESS}}"
+      NAS_ADDRESS: "{{.NAS_ADDR}}"
       NAMESPACE: "{{.NAMESPACE}}"
       PVC: "{{.PVC}}"
       RESTORE_JOB_NAME: "{{.RESTORE_JOB_NAME}}"
