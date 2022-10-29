@@ -25,7 +25,7 @@ spec:
       tag: 4.0.0.142@sha256:59909855434bf7a8fb3d54607b4064fbae6262627bd847e6194e3785fc03191f
     env:
       TZ: "${TIMEZONE}"
-      SONARR__PORT: &port 80
+      SONARR__PORT: &port 8989
       SONARR__INSTANCE_NAME: Sonarr
       SONARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
       SONARR__LOG_LEVEL: info
