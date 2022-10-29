@@ -3,10 +3,10 @@ kind: Kustomization
 resources:
   - namespaces.yaml
   # - default
-  # - kube-system
+  - kube-system
   - networking
   - system-upgrade
-  # - monitoring
+  - monitoring
   - flux-system
   # - home
   # - database
