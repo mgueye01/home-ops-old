@@ -8,7 +8,7 @@ resources:
   - system-upgrade
   - monitoring
   - flux-system
-  # - home
+  - home
   - database
   # - dev
   # - harbor
