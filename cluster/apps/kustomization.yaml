@@ -12,6 +12,6 @@ resources:
   - database
   # - dev
   # - harbor
-  # - media
+  - media
   - cert-manager
   - security
