@@ -13,5 +13,5 @@ resources:
   # - dev
   # - harbor
   # - media
-  # - cert-manager
+  - cert-manager
   - security
