@@ -9,7 +9,7 @@ resources:
   - monitoring
   - flux-system
   # - home
-  # - database
+  - database
   # - dev
   # - harbor
   # - media
