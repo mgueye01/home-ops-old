@@ -7,23 +7,14 @@ metadata:
   labels:
     k3s-upgrade: server
 spec:
-  # renovate: datasource=github-releases repos=k3s-io/k3s
-  version: v1.25.3+k3s1
+  # renovate: datasource=github-releases depName=k3s-io/k3s
+  version: "v1.25.3+k3s1"
   serviceAccountName: system-upgrade
   concurrency: 1
   cordon: true
   nodeSelector:
     matchExpressions:
-      - key: node-role.kubernetes.io/master
-        operator: In
-        values:
-          - "true"
-      - key: k3s-upgrade
-        operator: Exists
-      - key: k3s-upgrade
-        operator: In
-        values:
-          - "true"
+      - {key: node-role.kubernetes.io/control-plane, operator: Exists}
   tolerations:
     - key: "node-role.kubernetes.io/control-plane"
       operator: "Exists"
