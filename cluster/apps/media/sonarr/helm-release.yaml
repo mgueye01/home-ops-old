@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: sonarr
+  name: &app sonarr
   namespace: media
 spec:
   interval: 5m
@@ -18,6 +18,8 @@ spec:
   install:
     createNamespace: true
   values:
+    global:
+      nameOverride: *app
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
       tag: 4.0.0.142@sha256:59909855434bf7a8fb3d54607b4064fbae6262627bd847e6194e3785fc03191f
