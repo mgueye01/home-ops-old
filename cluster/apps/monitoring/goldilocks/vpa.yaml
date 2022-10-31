@@ -17,6 +17,9 @@ spec:
       interval: 30m
   timeout: 20m
   values:
+    image:
+      repository: k8s.gcr.io/autoscaling/vpa-recommender
+      tag: 0.12.0
     recommender:
       enabled: true
 
