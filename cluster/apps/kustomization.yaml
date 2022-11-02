@@ -10,8 +10,8 @@ resources:
   - flux-system
   - home
   - database
-  # - dev
-  # - harbor
+  - dev
+  - harbor
   - media
   - cert-manager
   - security
