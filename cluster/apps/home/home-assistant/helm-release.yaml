@@ -38,8 +38,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalIPs:
-          - "${SVC_HOME_ASSISTANT_ADDR}"
+        externalIPs: ["${SVC_HOME_ASSISTANT_ADDR}"]
         externalTrafficPolicy: Local
         ports:
           http:
@@ -74,7 +73,7 @@ spec:
       secret.reloader.stakater.com/reload: "home-assistant"
     addons:
       codeserver:
-        enabled: true
+        enabled: false
         image:
           repository: codercom/code-server
           tag: 4.8.1
