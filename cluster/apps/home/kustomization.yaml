@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - emqx
   - home-assistant
+  - home-assistant-code
   - node-red
   - zwavejs2mqtt
   - zigbee2mqtt
