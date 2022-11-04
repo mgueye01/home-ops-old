@@ -33,7 +33,7 @@ resources:
   - giantswarm-charts.yaml
   - emqx-charts.yaml
   - home-emqx.yaml
-  # - gitlab-charts.yaml
+  - gitlab-charts.yaml
   - bjw-s-charts.yaml
   - lwolf-charts.yaml
   - cloudnative-pg-charts.yaml
