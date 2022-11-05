@@ -21,6 +21,14 @@ spec:
       hosts:
         domain: ${SECRET_DOMAIN}
         externalIP: ${GITLAB_LB_IP}
+      psql:
+        host: postgres-rw.database.svc.cluster.local
+        database: gitlab
+        username: gitlab
+        password:
+          useSecret: true
+          secret: gitlab
+          key: POSTGRES_PASS
 
       ingress:
         class: nginx
@@ -60,6 +68,8 @@ spec:
       #     providers:
       #       - secret: authelia-oauth2
     # Reduce memory usage
+    postgresql:
+      install: false
     gitlab:
       gitaly:
         resources:
