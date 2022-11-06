@@ -4,8 +4,8 @@ kind: Kustomization
 namespace: gitlab
 resources:
   - _namespace.yaml
-#   - helm-release.yaml
-#   - secret.sops.yaml
+  - helm-release.yaml
+  - secret.sops.yaml
 #   # - buildkit
-# patchesStrategicMerge:
-#   - patches/postgres.yaml
+patchesStrategicMerge:
+  - patches/postgres.yaml
