@@ -13,12 +13,12 @@ spec:
         name: kured
       # renovate: registryUrl=https://kubereboot.github.io/charts
       chart: kured
-      version: 4.0.4
+      version: 4.1.0
   interval: 1h
   values:
     image:
       repository: raspbernetes/kured
-      tag: 1.10.2
+      tag: 1.11.0
     updateStrategy: RollingUpdate
     configuration:
       timeZone: "${TIMEZONE}"
