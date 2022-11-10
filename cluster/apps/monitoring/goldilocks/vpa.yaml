@@ -42,7 +42,9 @@ spec:
         pod-label-prefix: "pod_label_"
         container-name-label: name
         container-pod-name-label: pod
-        metric-for-pod-labels: "kube_pod_labels{job=\"kube-state-metrics\"}[1d]"
+        metric-for-pod-labels: "kube_pod_labels{job=\"kube-state-metrics\"}[8d]"
+        kube-api-burst: "20"
+        kube-api-qps: "10"
 
     updater:
       enabled: false
