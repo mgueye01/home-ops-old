@@ -43,7 +43,7 @@ spec:
         container-name-label: name
         container-pod-name-label: pod
         # metric-for-pod-labels: "kube_pod_labels{job=\"kube-state-metrics\"}[8d]"
-        metric-for-pod-label: "up{job=\"kubernetes-pods\"}"
+        metric-for-pod-labels: "up{job=\"kubernetes-pods\"}"
         history-length: "8d"
         history-resolution: "1h"
 
