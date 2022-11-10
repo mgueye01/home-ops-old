@@ -114,6 +114,7 @@ spec:
     kube-state-metrics:
       metricLabelsAllowlist:
         - "persistentvolumeclaims=[*]"
+        - "pods=[*]"
       prometheus:
         monitor:
           enabled: true
