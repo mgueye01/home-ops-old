@@ -35,8 +35,8 @@ spec:
     envFrom:
       - secretRef:
           name: *app
-    # hostNetwork: true
-    # dnsPolicy: ClusterFirstWithHostNet
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
     service:
       main:
         ports:
