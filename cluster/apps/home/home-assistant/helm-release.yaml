@@ -26,8 +26,8 @@ spec:
       namespace: home
   values:
     image:
-      repository: ghcr.io/onedr0p/home-assistant
-      tag: 2022.11.2@sha256:0ce6dc41c6943fe5eefbb0292ed9077dadda4fdaa615a82a6af8ad57c8c279fd
+      repository: homeassistant/home-assistant
+      tag: '2022.11'
     env:
       TZ: "${TIMEZONE}"
       POSTGRES_HOST: postgres-rw.database.svc.cluster.local
