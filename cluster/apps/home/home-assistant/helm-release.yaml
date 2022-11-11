@@ -91,6 +91,14 @@ spec:
     #   fsGroupChangePolicy: "OnRootMismatch"
     #   supplementalGroups:
     #     - 100
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
+      fsGroupChangePolicy: "OnRootMismatch"
+    securityContext:
+      privileged: true
+
     addons:
       codeserver:
         enabled: true
