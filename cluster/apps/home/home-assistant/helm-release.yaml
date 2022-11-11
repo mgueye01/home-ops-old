@@ -129,14 +129,14 @@ spec:
       limits:
         memory: 800Mi
     nodeSelector:
-      feature.node.kubernetes.io/usb-ff_0403_6001: "true"
+      feature.node.kubernetes.io/usb-ff_0403_6001.present: "true"
     # affinity:
     #   nodeAffinity:
     #     requiredDuringSchedulingIgnoredDuringExecution:
     #       nodeSelectorTerms:
     #         - matchExpressions:
     #               - {
-    #                 key: "feature.node.kubernetes.io/custom-usb-ff_0403_6001",
+    #                 key: "feature.node.kubernetes.io/usb-ff_0403_6001",
     #                 operator: In,
     #                 values: ["true"],
     #                 }
