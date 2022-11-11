@@ -20,7 +20,7 @@ spec:
       isDefault: false
       image:
         repository: grafana/loki
-        tag: 2.6.1
+        tag: 2.7.0
         pullPolicy: IfNotPresent
       replicas: 3
       persistence:
