@@ -28,8 +28,8 @@ spec:
     image:
       repository: homeassistant/home-assistant
       tag: '2022.11.2'
-    hostNetwork: true
-    dnsPolicy: ClusterFirstWithHostNet
+    # hostNetwork: true
+    # dnsPolicy: ClusterFirstWithHostNet
 
     env:
       TZ: "${TIMEZONE}"
@@ -41,11 +41,14 @@ spec:
 
     service:
       main:
+        type: LoadBalancer
+        externalIPs:
+          - ${SVC_HOME_ASSISTANT_ADDR}
+        externalTrafficPolicy: Local
         ports:
           http:
             port: 8123
 
-        # externalTrafficPolicy: Local
     ingress:
       main:
         enabled: true
@@ -81,13 +84,13 @@ spec:
 
     podAnnotations:
       secret.reloader.stakater.com/reload: *app
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 100
+    # podSecurityContext:
+    #   runAsUser: 568
+    #   runAsGroup: 568
+    #   fsGroup: 568
+    #   fsGroupChangePolicy: "OnRootMismatch"
+    #   supplementalGroups:
+    #     - 100
     addons:
       codeserver:
         enabled: true
