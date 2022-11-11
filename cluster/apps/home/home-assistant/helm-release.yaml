@@ -28,8 +28,8 @@ spec:
     image:
       repository: homeassistant/home-assistant
       tag: '2022.11.2'
-    # hostNetwork: true
-    # dnsPolicy: ClusterFirstWithHostNet
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
 
     env:
       TZ: "${TIMEZONE}"
@@ -45,7 +45,7 @@ spec:
           http:
             port: 8123
 
-        externalTrafficPolicy: Local
+        # externalTrafficPolicy: Local
     ingress:
       main:
         enabled: true
