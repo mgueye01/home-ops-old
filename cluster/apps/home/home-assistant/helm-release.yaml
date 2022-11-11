@@ -44,20 +44,7 @@ spec:
         ports:
           http:
             port: 8123
-      mdns:
-        enabled: true
-        type: LoadBalancer
-        ports:
-          mdns-tcp:
-            enabled: true
-            port: 5353
-            protocol: TCP
-            targetPort: 5353
-          mdns-udp:
-            enabled: true
-            port: 5353
-            protocol: UDP
-            targetPort: 5353
+
         externalTrafficPolicy: Local
     ingress:
       main:
@@ -85,6 +72,12 @@ spec:
       config:
         enabled: true
         existingClaim: home-assistant-config-v1
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A12UEDE-if00-port0
+        hostPathType: CharDevice
+        mountPath: /dev/ttyUSB0
 
     podAnnotations:
       secret.reloader.stakater.com/reload: *app
@@ -135,3 +128,15 @@ spec:
         memory: 100Mi
       limits:
         memory: 800Mi
+    nodeSelector:
+      feature.node.kubernetes.io/custom-usb-ff_0403_6001: "true"
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #         - matchExpressions:
+    #               - {
+    #                 key: "feature.node.kubernetes.io/custom-usb-ff_0403_6001",
+    #                 operator: In,
+    #                 values: ["true"],
+    #                 }
