@@ -107,7 +107,7 @@ spec:
           tls:
             - secretName: "{{ .Release.Name }}-code-tls"
               hosts:
-                - "{{ .Release.Name }}-code.${CLUSTER_DOMAIN}"
+                - "{{ .Release.Name }}-code.${SECRET_DOMAIN}"
 
         volumeMounts:
           - name: config
