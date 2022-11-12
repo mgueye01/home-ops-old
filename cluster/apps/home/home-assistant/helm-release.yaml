@@ -41,18 +41,16 @@ spec:
 
     service:
       main:
-        # type: LoadBalancer
-        # externalIPs:
-        #   - ${SVC_HOME_ASSISTANT_ADDR}
-        # externalTrafficPolicy: Local
+        type: LoadBalancer
+        externalIPs:
+          - ${SVC_HOME_ASSISTANT_ADDR}
+        externalTrafficPolicy: Local
         ports:
           http:
             port: 8123
       mdns:
         enabled: true
         type: LoadBalancer
-        externalIPs:
-          - ${SVC_HOME_ASSISTANT_ADDR}
         ports:
           mdns-tcp:
             enabled: true
