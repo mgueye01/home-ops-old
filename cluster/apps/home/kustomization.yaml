@@ -11,4 +11,4 @@ resources:
   - paperless
   - mealie
   - esphome
-  # - ser2net
+  - appdaemon

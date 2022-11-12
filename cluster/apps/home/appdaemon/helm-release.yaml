@@ -100,7 +100,7 @@ spec:
             external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
             external-dns/is-public: "true"
           hosts:
-            - host: "{{ .Release.Name }}-code.${CLUSTER_DOMAIN}"
+            - host: "{{ .Release.Name }}-code.${SECRET_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix
