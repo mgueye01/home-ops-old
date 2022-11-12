@@ -110,7 +110,7 @@ spec:
 
     addons:
       codeserver:
-        enabled: true
+        enabled: false
         image:
           repository: codercom/code-server
           tag: 4.8.3
