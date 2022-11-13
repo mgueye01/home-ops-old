@@ -36,7 +36,7 @@ spec:
       replicas: 2
       strategy: RollingUpdate
       rollingUpdate:
-      maxSurge: 0        # how many pods we can add at a time
+      maxSurge: 0 # how many pods we can add at a time
       maxUnavailable: 1
 
     podSecurityContext:

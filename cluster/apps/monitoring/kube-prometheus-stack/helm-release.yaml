@@ -286,19 +286,19 @@ spec:
                 target_label: instance
               - target_label: __address__
                 replacement: 192.168.0.18:9116 # The SNMP exporter's real hostname:port.
-          - job_name: 'node'
+          - job_name: "node"
             scrape_interval: 10s
             dns_sd_configs:
               - names:
-                  - 'arm_exporter'
-                type: 'A'
+                  - "arm_exporter"
+                type: "A"
                 port: 9243
           - job_name: environment
             static_configs:
-              - targets: ['192.168.0.94:8000']
+              - targets: ["192.168.0.94:8000"]
                 labels:
-                  group: 'environment'
-                  location: 'Home'
+                  group: "environment"
+                  location: "Home"
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
