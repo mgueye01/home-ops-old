@@ -48,9 +48,9 @@ spec:
           - hosts:
               - "node-red.${SECRET_DOMAIN}"
     podSecurityContext:
-      runAsUser: 0
-      runAsGroup: 0
-      fsGroup: 0
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
