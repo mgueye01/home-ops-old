@@ -21,19 +21,19 @@ spec:
       hosts:
         domain: ${SECRET_DOMAIN}
         externalIP: ${GITLAB_LB_IP}
-      psql:
-        host: postgres-rw.database.svc.cluster.local
-        database: gitlab
-        username: postgres
-        password:
-          useSecret: true
-          secret: gitlab
-          key: POSTGRES_PASS
-      minio:
-        name: http://minio.default-svc.gitlab.svc:9000
-        bucket: gitlab-registry-storage
-        accesskey: ${SECRET_GITLAB_ACCESS_KEY}
-        secretkey: ${SECRET_GITLAB_SECRET_KEY}
+      # psql:
+      #   host: postgres-rw.database.svc.cluster.local
+      #   database: gitlab
+      #   username: postgres
+      #   password:
+      #     useSecret: true
+      #     secret: gitlab
+      #     key: POSTGRES_PASS
+      # minio:
+      #   name: http://minio.default-svc.gitlab.svc:9000
+      #   bucket: gitlab-registry-storage
+      #   accesskey: ${SECRET_GITLAB_ACCESS_KEY}
+      #   secretkey: ${SECRET_GITLAB_SECRET_KEY}
       ingress:
         class: nginx
         annotations:
