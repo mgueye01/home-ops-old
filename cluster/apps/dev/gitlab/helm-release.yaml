@@ -29,11 +29,11 @@ spec:
           useSecret: true
           secret: gitlab
           key: POSTGRES_PASS
-      s3:
+      minio:
+        name: http://minio.default-svc.gitlab.svc:9000
         bucket: gitlab-registry-storage
         accesskey: ${SECRET_GITLAB_ACCESS_KEY}
         secretkey: ${SECRET_GITLAB_SECRET_KEY}
-        regionendpoint: minio.default:9000"
       ingress:
         class: nginx
         annotations:
