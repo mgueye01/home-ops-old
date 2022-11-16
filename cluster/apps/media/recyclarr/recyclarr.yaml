@@ -62,9 +62,11 @@ sonarr:
         quality_profiles:
           - name: Any
             reset_unmatched_scores: true
-          - name: HD
+          - name: HD-1080p
             reset_unmatched_scores: true
           - name: SD
+            reset_unmatched_scores: true
+          - name: Ultra-HD
             reset_unmatched_scores: true
 radarr:
   - base_url: http://radarr:7878
