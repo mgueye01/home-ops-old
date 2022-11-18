@@ -61,6 +61,11 @@ spec:
           address: vector-aggregator:6010
           version: "2"
     service:
-      enabled: false
+      enabled: true
     securityContext:
       privileged: true
+    tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      - effect: NoExecute
+        operator: Exists

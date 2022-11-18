@@ -8,7 +8,7 @@ resources:
   # - ghost
   - homer
   - kopia
-  - echo-server
+  # - echo-server
   - excalidraw
   - outline
   - minio
