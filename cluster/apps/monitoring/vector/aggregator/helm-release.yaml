@@ -5,7 +5,7 @@ metadata:
   name: vector-aggregator
   namespace: monitoring
 spec:
-  interval: 10m
+  interval: 15m
   chart:
     spec:
       chart: vector
@@ -15,6 +15,7 @@ spec:
         name: vector-charts
         namespace: flux-system
   install:
+    createNamespace: true
     remediation:
       retries: 5
   upgrade:
@@ -22,11 +23,13 @@ spec:
       retries: 5
   dependsOn:
     - name: loki
+      namespace: monitoring
   values:
     image:
       repository: timberio/vector
       tag: 0.25.1-debian
     role: Stateless-Aggregator
+    replicas: 3
     customConfig:
       data_dir: /vector-data-dir
       api:
@@ -40,8 +43,6 @@ spec:
           type: vector
           address: 0.0.0.0:6010
           version: "2"
-        vector_metrics:
-          type: internal_metrics
       transforms:
         kubernetes_logs_remap:
           type: remap
@@ -85,11 +86,6 @@ spec:
               {{`{{ kubernetes.pod_namespace }}`}}
             node: >-
               {{`{{ kubernetes.pod_node_name }}`}}
-        prom_exporter:
-          type: prometheus_exporter
-          inputs:
-            - vector_metrics
-          address: 0.0.0.0:9090
     service:
       enabled: true
       type: LoadBalancer
