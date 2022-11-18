@@ -134,8 +134,18 @@ spec:
         size: 10Gi
         storageClass: ceph-block
     monitoring:
+      dashboards:
+        enabled: true
+        annotations:
+          grafana_folder: loki
+        labels:
+          grafana_dashboard: "1"
+      rules:
+        enabled: true
+      alerts:
+        enabled: true
       serviceMonitor:
-        enabled: false
+        enabled: true
         metricsInstance:
           enabled: false
       selfMonitoring:

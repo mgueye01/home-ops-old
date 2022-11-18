@@ -2,8 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # - botkube
-  # - uptimerobot-heartbeat
   - thanos
   - grafana
   - loki
@@ -18,3 +16,4 @@ resources:
   - intel-gpu-exporter
   - arm-exporter
   - smartctl-exporter
+  - vector
