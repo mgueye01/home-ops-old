@@ -16,4 +16,4 @@ resources:
   - intel-gpu-exporter
   - arm-exporter
   - smartctl-exporter
-  # - vector
+  - vector
