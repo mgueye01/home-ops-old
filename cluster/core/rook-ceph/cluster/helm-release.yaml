@@ -213,7 +213,7 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 1Gi
+                memory: 800Mi
               limits:
                 memory: 2Gi
             instances: 1
