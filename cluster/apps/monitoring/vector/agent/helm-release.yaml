@@ -60,6 +60,11 @@ spec:
             - kubernetes_logs
           address: vector-aggregator:6010
           version: "2"
+        prom_exporter:
+          type: prometheus_exporter
+          inputs:
+            - vector_metrics
+          address: 0.0.0.0:9090
     service:
       enabled: true
     securityContext:
