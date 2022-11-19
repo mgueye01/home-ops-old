@@ -35,8 +35,23 @@ spec:
           type: vector
           address: 0.0.0.0:6010
           version: "2"
+        udmp_logs:
+          address: 0.0.0.0:6100
+          type: syslog
+          mode: "udp"
+          max_length: 102_400
         vector_metrics:
           type: internal_metrics
+      # Transforms
+      transforms:
+
+        udmp_logs_xform:
+          type: "remap"
+          inputs:
+            - "udmp_logs"
+          source: |-
+            .timestamp=null
+
       sinks:
         loki_journal:
           type: loki
@@ -83,6 +98,27 @@ spec:
           inputs:
             - vector_metrics
           address: 0.0.0.0:9090
+
+        loki_udmp:
+          type: loki
+          inputs:
+            - udmp_logs_xform
+          endpoint: http://loki-gateway:80
+          batch:
+            max_bytes: 1048576
+          out_of_order_action: rewrite_timestamp
+          remove_label_fields: true
+          remove_timestamp: true
+          encoding:
+            codec: json
+          labels:
+            hostname: udmpro
+            app: >-
+              {{`"{{ appname }}"`}}
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: vector-aggregator
+
     service:
       enabled: true
       type: LoadBalancer
