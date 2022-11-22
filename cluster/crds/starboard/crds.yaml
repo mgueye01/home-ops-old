@@ -8,7 +8,7 @@ spec:
   interval: 30m
   url: https://github.com/aquasecurity/starboard.git
   ref:
-    tag: v0.15.4
+    tag: v0.15.11
   ignore: |
     # exclude all
     /*
