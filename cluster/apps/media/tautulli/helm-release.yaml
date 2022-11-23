@@ -23,8 +23,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/k8s-at-home/tautulli
-      tag: v2.10.5
+      repository: ghcr.io/onedr0p/tautulli
+      tag: 2.10.5@sha256:332043b56e60c9d1f58fe3c4360f0cf26e6f5c3f544e35a6c457d1a7f31f028e
     controller:
       enabled: true
       replicas: 1
@@ -42,6 +42,11 @@ spec:
       config:
         enabled: true
         existingClaim: tautulli-config
+    service:
+      main:
+        ports:
+          http:
+            port: 8181
     ingress:
       main:
         enabled: true
