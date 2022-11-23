@@ -56,14 +56,23 @@ spec:
         tls:
           - hosts:
               - *host
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       config:
         enabled: true
         existingClaim: overseerr-config-v1
         mountPath: /app/config
+      cache:
+        enabled: true
+        type: emptyDir
+        mountPath: /app/.next/cache
     resources:
       requests:
         cpu: 10m
-        memory: 150Mi
+        memory: 250Mi
       limits:
-        memory: 300Mi
+        memory: 1000Mi
