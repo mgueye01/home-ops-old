@@ -4,5 +4,5 @@ resources:
   - wildcard-certificate
   - external-dns
   - ingress-nginx
-  # - k8s-gateway
+  - k8s-gateway
   - adguard
