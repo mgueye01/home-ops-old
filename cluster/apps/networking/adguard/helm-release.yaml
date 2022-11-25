@@ -80,68 +80,68 @@ spec:
         memory: 400Mi
     podAnnotations:
       configmap.reloader.stakater.com/reload: adguard-home-config
-# ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: adguard-home-1
-#   namespace: networking
-# spec:
-#   interval: 5m
-#   chart:
-#     spec:
-#       chart: adguard-home
-#       version: 5.5.2
-#       sourceRef:
-#         kind: HelmRepository
-#         name: k8s-at-home-charts
-#         namespace: flux-system
-#       interval: 5m
-#   values:
-#     image:
-#       repository: adguard/adguardhome
-#       tag: v0.107.16
-#       pullPolicy: Always
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: adguard-home-1
+  namespace: networking
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: adguard-home
+      version: 5.5.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: adguard/adguardhome
+      tag: v0.107.16
+      pullPolicy: Always
 
-#     persistence:
-#       config:
-#         enabled: true
-#         existingClaim: adguard-1-config-pvc
+    persistence:
+      config:
+        enabled: true
+        existingClaim: adguard-1-config-pvc
 
-#     env:
-#       TZ: "${TIMEZONE}"
+    env:
+      TZ: "${TIMEZONE}"
 
-#     service:
-#       main:
-#         port:
-#           port: 3000
+    service:
+      main:
+        port:
+          port: 3000
 
-#       dns:
-#         enabled: true
-#         type: LoadBalancer
-#         loadBalancerIP: ${SVC_ADGUARD_ADDRESS_2}
-#         externalTrafficPolicy: Local
-#         ports:
-#           tcp:
-#             enabled: true
-#             port: 53
-#             protocol: TCP
-#             targetPort: 53
-#           udp:
-#             enabled: true
-#             port: 53
-#             protocol: UDP
-#             targetPort: 53
+      dns:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: ${SVC_ADGUARD_ADDRESS_2}
+        externalTrafficPolicy: Local
+        ports:
+          tcp:
+            enabled: true
+            port: 53
+            protocol: TCP
+            targetPort: 53
+          udp:
+            enabled: true
+            port: 53
+            protocol: UDP
+            targetPort: 53
 
-#     ingress:
-#       main:
-#         enabled: false
+    ingress:
+      main:
+        enabled: false
 
-#     # nodeSelector:
-#     #   node-role.kubernetes.io/worker: "true"
-#     resources:
-#       requests:
-#         memory: 100Mi
-#         cpu: 20m
-#       limits:
-#         memory: 400Mi
+    # nodeSelector:
+    #   node-role.kubernetes.io/worker: "true"
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 20m
+      limits:
+        memory: 400Mi
