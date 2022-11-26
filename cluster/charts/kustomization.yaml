@@ -41,3 +41,4 @@ resources:
   - k8s-gateway.yaml
   - dysnix-charts.yaml
   - vector-charts.yaml
+  - weave-gitops-charts.yaml

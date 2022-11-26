@@ -13,3 +13,4 @@ resources:
   - outline
   - minio
   - miniflux
+  - weave-gitops
