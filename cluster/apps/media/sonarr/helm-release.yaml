@@ -22,7 +22,7 @@ spec:
       nameOverride: *app
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.178@sha256:4ee8f74f2ab6607de18ef5c44921389a77047fa62d93fa8c25f443e6cd7dd232
+      tag: 4.0.0.178@sha256:371b722e647d82a6543fa1e30d9c62c053ffefac876d1ab9b05a33bc387f9337
     env:
       TZ: "${TIMEZONE}"
       SONARR__PORT: &port 8989
