@@ -55,7 +55,6 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: "{{ .Release.Name }}-tls"
 
     persistence:
       config:
