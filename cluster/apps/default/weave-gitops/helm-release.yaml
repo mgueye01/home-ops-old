@@ -26,12 +26,12 @@ spec:
     adminUser:
       create: true
       username: admin
-    oidcSecret:
-      create: true
-      clientID: weave-gitops
-      clientSecret: "${SECRET_WEAVEGITOPS_OAUTH_CLIENT_SECRET}"
-      issuerURL: "https://login.${SECRET_DOMAIN}"
-      redirectURL: "https://gitops.${SECRET_DOMAIN}/oauth2/callback"
+    # oidcSecret:
+    #   create: true
+    #   clientID: weave-gitops
+    #   clientSecret: "${SECRET_WEAVEGITOPS_OAUTH_CLIENT_SECRET}"
+    #   issuerURL: "https://login.${SECRET_DOMAIN}"
+    #   redirectURL: "https://gitops.${SECRET_DOMAIN}/oauth2/callback"
     ingress:
       enabled: true
       className: nginx
