@@ -55,7 +55,10 @@ spec:
 
     metrics:
       enabled: false
-
+    persistence:
+      enabled: true
+      storageClass: ceph-block
+      size: 100Mi
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
