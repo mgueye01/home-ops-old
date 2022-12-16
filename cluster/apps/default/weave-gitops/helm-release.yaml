@@ -25,13 +25,26 @@ spec:
     replicaCount: 3
     adminUser:
       create: true
-      username: admin
+      username: &admin_user admin
     # oidcSecret:
     #   create: true
     #   clientID: weave-gitops
     #   clientSecret: "${SECRET_WEAVEGITOPS_OAUTH_CLIENT_SECRET}"
     #   issuerURL: "https://login.${SECRET_DOMAIN}"
     #   redirectURL: "https://gitops.${SECRET_DOMAIN}/oauth2/callback"
+    rbac:
+      create: true
+      impersonationResourceNames:
+        - *admin_user
+      additionalRules:
+        - apiGroups:
+            - "infra.contrib.fluxcd.io"
+          resources:
+            - "terraforms"
+          verbs:
+            - "get"
+            - "list"
+            - "patch"
     ingress:
       enabled: true
       className: nginx
