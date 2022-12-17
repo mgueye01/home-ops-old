@@ -42,3 +42,4 @@ resources:
   - dysnix-charts.yaml
   - vector-charts.yaml
   - weave-gitops-charts.yaml
+  - external-secrets.yaml
