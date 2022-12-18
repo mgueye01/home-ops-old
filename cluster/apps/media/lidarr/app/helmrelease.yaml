@@ -5,7 +5,7 @@ metadata:
   name: lidarr
   namespace: media
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: app-template
@@ -14,18 +14,34 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  dependsOn:
+    - name: onepassword-connect
+      namespace: external-secrets
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/onedr0p/lidarr
-      tag: 1.0.2.2592@sha256:1ce91061aeb75f3a6443f325e06872b9b3e88fcaee85abc950f0c67cdc14910e
+      repository: ghcr.io/onedr0p/lidarr-develop
+      tag: 1.1.1.2762@sha256:bdc206db6d9684e854662910a1b3548af17c468eba3a8e6066503554d8988eb2
     env:
       TZ: "${TIMEZONE}"
       LIDARR__INSTANCE_NAME: Lidarr
-      LIDARR__PORT: &port 8686
+      LIDARR__PORT: &port 80
       LIDARR__LOG_LEVEL: info
+    envFrom:
+      - secretRef:
+          name: lidarr-secret
     service:
       main:
         ports:
@@ -36,16 +52,12 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          external-dns/is-public: "true"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          auth.home.arpa/enabled: "true"
-          cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_PUBLIC_DOMAIN}/css/base/lidarr/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/lidarr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "lidarr.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -59,25 +71,15 @@ spec:
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
-    metrics:
-      enabled: true
-      serviceMonitor:
-        interval: 5m
-        scrapeTimeout: 1m
-      prometheusRule:
-        enabled: false
-      exporter:
-        image:
-          repository: ghcr.io/onedr0p/exportarr
-          tag: v1.1.0
-        env:
-          port: 9794
-          additionalMetrics: true
-          unknownQueueItems: true
+    volumeClaimTemplates:
+      - name: config
+        mountPath: /config
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        storageClass: ceph-block
+        labels:
+          snapshot.home.arpa/enabled: "true"
     persistence:
-      config:
-        enabled: true
-        existingClaim: lidarr-config-v1
       media:
         enabled: true
         type: nfs
@@ -101,6 +103,6 @@ spec:
     resources:
       requests:
         cpu: 10m
-        memory: 150Mi
+        memory: 250Mi
       limits:
         memory: 1000Mi
