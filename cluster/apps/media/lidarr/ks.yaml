@@ -9,7 +9,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-onepassword-connect
-    - name: cluster-apps-rook-ceph-cluster
+    - name: rook-ceph-cluster
     - name: cluster-apps-volsync-app
   path: ./cluster/apps/media/lidarr/app
   prune: true
