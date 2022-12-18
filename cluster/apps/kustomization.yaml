@@ -16,4 +16,4 @@ resources:
   - cert-manager
   - security
   - external-secrets
-  - volsync
+  # - volsync
