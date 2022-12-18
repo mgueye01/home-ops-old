@@ -9,3 +9,4 @@ resources:
   - intel-gpu-plugin
   - node-feature-discovery
   - kube-cleanup-operator
+  - ./snapshot-controller/ks.yaml

@@ -44,3 +44,4 @@ resources:
   - weave-gitops-charts.yaml
   - external-secrets.yaml
   - backube.yaml
+  - piraeus.yaml
