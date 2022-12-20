@@ -51,7 +51,7 @@ spec:
 
     image:
       repository: ghcr.io/authelia/authelia
-      tag: 4.37.3
+      tag: 4.37.4
 
     enableServiceLinks: false
 
