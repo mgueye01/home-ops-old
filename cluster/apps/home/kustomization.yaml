@@ -6,7 +6,7 @@ resources:
   - home-assistant-code
   - node-red
   - zwavejs2mqtt
-  - zigbee2mqtt
+  # - zigbee2mqtt
   # - zigbee2mqtt-exporter
   - paperless
   - mealie
