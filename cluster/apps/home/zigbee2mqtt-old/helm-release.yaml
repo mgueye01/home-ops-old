@@ -1,0 +1,78 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app zigbee2mqtt
+  namespace: home
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  dependsOn:
+    - name: emqx
+      namespace: home
+  values:
+    image:
+      repository: ghcr.io/koenkk/zigbee2mqtt
+      tag: latest-dev@sha256:2921b7faff3e34102456abcf0c103482ce37040c47594f3a968141fd45397794
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          auth.home.arpa/enabled: "true"
+          external-dns/is-public: "true"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    securityContext:
+      privileged: true
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *app
+    persistence:
+      config:
+        enabled: true
+        existingClaim: zigbee2mqtt-config-v1
+        mountPath: "/data"
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/serial/by-id/usb-Silicon_Labs_Sonoff_Zigbee_3.0_USB_Dongle_Plus_0001-if00-port0
+        hostPathType: CharDevice
+    podSecurityContext:
+      supplementalGroups:
+        - 20 # dialout for /dev/ttyUSB0
+    nodeSelector:
+      feature.node.kubernetes.io/custom-zigbee: "true"
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        memory: 500Mi
