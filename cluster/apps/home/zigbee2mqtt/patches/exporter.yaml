@@ -16,7 +16,7 @@ spec:
           - name: LOG_MQTT_MESSAGE
             value: "True"
           - name: MQTT_ADDRESS
-            value: emqx.default.svc.cluster.local
+            value: emqx.home.svc.cluster.local
           - name: MQTT_TOPIC
             value: "zigbee2mqtt/#"
           - name: MQTT_V5_PROTOCOL
@@ -24,16 +24,22 @@ spec:
           - name: MQTT_USERNAME
             valueFrom:
               secretKeyRef:
-                name: emqx-secret
-                key: user_1_username
+                name: zigbee2mqtt-secrets
+                key: mqtt_user
           - name: MQTT_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: emqx-secret
-                key: user_1_password
+                name: zigbee2mqtt-secrets
+                key: mqtt_password
           - name: PROMETHEUS_PORT
             value: "80"
           - name: PROMETHEUS_PREFIX
             value: zigbee2mqtt_
           - name: ZIGBEE2MQTT_AVAILABILITY
             value: "True"
+        resources:
+          requests:
+            cpu: 10m
+            memory: 50Mi
+          limits:
+            memory: 200Mi
