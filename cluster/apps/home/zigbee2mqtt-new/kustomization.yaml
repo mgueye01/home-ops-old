@@ -9,8 +9,8 @@ resources:
   - ./externalsecret.yaml
   - ./replicationsource.yaml
 commonLabels:
-  app.kubernetes.io/name: zigbee2mqtt
-  app.kubernetes.io/instance: zigbee2mqtt
+  app.kubernetes.io/name: zigbee2mqtt-2
+  app.kubernetes.io/instance: zigbee2mqtt-2
 patchesStrategicMerge:
   - patches/env.yaml
   - patches/exporter.yaml
