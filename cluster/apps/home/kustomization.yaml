@@ -7,6 +7,7 @@ resources:
   - node-red
   - zwavejs2mqtt
   - zigbee2mqtt
+  - zigbee2mqtt-new
   # - zigbee2mqtt-exporter
   - paperless
   - mealie
