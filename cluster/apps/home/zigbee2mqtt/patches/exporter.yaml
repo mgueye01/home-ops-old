@@ -32,7 +32,7 @@ spec:
                 name: zigbee2mqtt-secrets
                 key: mqtt_password
           - name: PROMETHEUS_PORT
-            value: "80"
+            value: "9000"
           - name: PROMETHEUS_PREFIX
             value: zigbee2mqtt_
           - name: ZIGBEE2MQTT_AVAILABILITY
