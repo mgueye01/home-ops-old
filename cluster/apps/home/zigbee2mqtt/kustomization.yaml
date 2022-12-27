@@ -1,9 +1,16 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: home
 resources:
-  - config-pvc.yaml
-  - helm-release.yaml
-  - secret.sops.yaml
+  - ./helmrelease.yaml
+  - ./pvc.yaml
+  - ./prometheusrule.yaml
+  - ./externalsecret.yaml
+  - ./replicationsource.yaml
+commonLabels:
+  app.kubernetes.io/name: zigbee2mqtt-2
+  app.kubernetes.io/instance: zigbee2mqtt-2
 patchesStrategicMerge:
   - patches/env.yaml
+  - patches/exporter.yaml
