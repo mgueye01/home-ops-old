@@ -102,25 +102,25 @@ spec:
           enabled: true
           mailer_type: smtp
           host: smtp.eu.mailgun.org:587
-        openid:
-          ENABLE_OPENID_SIGNIN: false
-          ENABLE_OPENID_SIGNUP: true
-          WHITELISTED_URIS: "login.${SECRET_DOMAIN}"
         webhook:
           ALLOWED_HOST_LIST: drone.drone.svc
+      #   openid:
+      #     ENABLE_OPENID_SIGNIN: false
+      #     ENABLE_OPENID_SIGNUP: true
+      #     WHITELISTED_URIS: "login.${SECRET_DOMAIN}"
+      # oauth:
+      #   - name: authelia
+      #     provider: openidConnect
+      #     key: gitea
+      #     secret: "${SECRET_GITEA_OAUTH_CLIENT_SECRET}"
+      #     autoDiscoverUrl: "https://login.${SECRET_DOMAIN}/.well-known/openid-configuration"
+      #     groupClaimName: groups
+      #     adminGroup: admins
+      #     restrictedGroup: people
       metrics:
         enabled: true
         serviceMonitor:
           enabled: true
-      oauth:
-        - name: authelia
-          provider: openidConnect
-          key: gitea
-          secret: "${SECRET_GITEA_OAUTH_CLIENT_SECRET}"
-          autoDiscoverUrl: "https://login.${SECRET_DOMAIN}/.well-known/openid-configuration"
-          groupClaimName: groups
-          adminGroup: admins
-          restrictedGroup: people
   valuesFrom:
     - targetPath: gitea.admin.email
       kind: Secret
