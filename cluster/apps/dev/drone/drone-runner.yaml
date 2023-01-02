@@ -20,7 +20,7 @@ spec:
       buildNamespaces:
         - drone
     env:
-      DRONE_RPC_HOST: drone
+      DRONE_RPC_HOST: drone.drone.svc
       DRONE_RPC_PROTO: http
       DRONE_NAMESPACE_DEFAULT: drone
       DRONE_RPC_SECRET: ${SECRET_DRONE_RPC_SECRET}
