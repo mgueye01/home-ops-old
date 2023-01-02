@@ -74,7 +74,7 @@ spec:
         admin:
           DISABLE_REGULAR_ORG_CREATION: true
         ui:
-          DEFAULT_THEME: arc-green
+          THEMES: auto,gitea,arc-green,github,github-dark,github-auto,gitea-modern
         repository:
           DEFAULT_BRANCH: main
           DEFAULT_PRIVATE: true
