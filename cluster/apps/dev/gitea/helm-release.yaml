@@ -96,7 +96,7 @@ spec:
           REQUIRE_SIGNIN_VIEW: true
           DEFAULT_KEEP_EMAIL_PRIVATE: true
           DEFAULT_ALLOW_CREATE_ORGANIZATION: false
-          DEFAULT_USER_IS_RESTRICTED: true
+          # DEFAULT_USER_IS_RESTRICTED: true
         cron:
           ENABLED: true
         attachment:
