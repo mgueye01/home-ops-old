@@ -43,7 +43,8 @@ spec:
       DRONE_DATABASE_DRIVER: postgres
       DRONE_DATABASE_DATASOURCE: postgres://postgres:${SECRET_DRONE_POSTGRESQL_PASSWORD}@postgres-rw.database/postgres?sslmode=disable
       DRONE_SERVER_HOST: drone.${SECRET_DOMAIN}
-      DRONE_SERVER_PROXY_HOST: drone.drone.svc
+      DRONE_SERVER_PROXY_HOST: drone.drone.svc:8080
+      DRONE_SERVER_PROXY_PROTO: http
       DRONE_SERVER_PROTO: https
       DRONE_GIT_ALWAYS_AUTH: true
       DRONE_GITEA_SERVER: https://git.${SECRET_DOMAIN}
