@@ -2,13 +2,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # - blog
+  - blog
   - littlelink
   - theme-park
-  # - ghost
+  - ghost
   - homer
   - kopia
-  # - echo-server
+  - echo-server
   - excalidraw
   - outline
   - minio
