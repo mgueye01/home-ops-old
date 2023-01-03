@@ -79,7 +79,11 @@ spec:
           DEFAULT_BRANCH: main
           DEFAULT_PRIVATE: true
         database:
-          DB_TYPE: sqlite3
+          DB_TYPE: postgres
+          HOST: ${POSTGRES_HOST}
+          NAME: gitea
+          SCHEMA: public
+          SSL_MODE: disable
         service:
           DISABLE_REGISTRATION: true
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
@@ -104,19 +108,19 @@ spec:
           host: smtp.eu.mailgun.org:587
         webhook:
           ALLOWED_HOST_LIST: drone.drone.svc
-      #   openid:
-      #     ENABLE_OPENID_SIGNIN: false
-      #     ENABLE_OPENID_SIGNUP: true
-      #     WHITELISTED_URIS: "login.${SECRET_DOMAIN}"
-      # oauth:
-      #   - name: authelia
-      #     provider: openidConnect
-      #     key: gitea
-      #     secret: "${SECRET_GITEA_OAUTH_CLIENT_SECRET}"
-      #     autoDiscoverUrl: "https://login.${SECRET_DOMAIN}/.well-known/openid-configuration"
-      #     groupClaimName: groups
-      #     adminGroup: admins
-      #     restrictedGroup: people
+        openid:
+          ENABLE_OPENID_SIGNIN: false
+          ENABLE_OPENID_SIGNUP: true
+          WHITELISTED_URIS: "login.${SECRET_DOMAIN}"
+      oauth:
+        - name: authelia
+          provider: openidConnect
+          key: gitea
+          secret: "${SECRET_GITEA_OAUTH_CLIENT_SECRET}"
+          autoDiscoverUrl: "https://login.${SECRET_DOMAIN}/.well-known/openid-configuration"
+          groupClaimName: groups
+          adminGroup: admins
+          restrictedGroup: people
       metrics:
         enabled: true
         serviceMonitor:
@@ -162,3 +166,44 @@ spec:
       kind: Secret
       name: gitea-config
       valuesKey: smtp_user
+    - targetPath: gitea.config.database.PASSWD
+      kind: Secret
+      name: gitea-config
+      valuesKey: dbPassword
+    - targetPath: gitea.config.database.USER
+      kind: Secret
+      name: gitea-config
+      valuesKey: dbUser
+  postRenderers:
+    - kustomize:
+        patchesStrategicMerge:
+          - kind: StatefulSet
+            apiVersion: apps/v1
+            metadata:
+              name: gitea
+            spec:
+              template:
+                spec:
+                  initContainers:
+                    - name: init-db
+                      image: ghcr.io/onedr0p/postgres-initdb:14.6
+                      env:
+                        - name: POSTGRES_HOST
+                          value: ${POSTGRES_HOST}
+                        - name: POSTGRES_DB
+                          value: gitea
+                        - name: POSTGRES_SUPER_PASS
+                          valueFrom:
+                            secretKeyRef:
+                              name: postgres-superuser
+                              key: password
+                        - name: POSTGRES_USER
+                          valueFrom:
+                            secretKeyRef:
+                              name: gitea-config
+                              key: dbUser
+                        - name: POSTGRES_PASS
+                          valueFrom:
+                            secretKeyRef:
+                              name: gitea-config
+                              key: dbPassword
