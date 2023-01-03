@@ -112,7 +112,7 @@ spec:
           mailer_type: smtp
           host: smtp.eu.mailgun.org:587
         webhook:
-          ALLOWED_HOST_LIST: drone.drone.svc:8080, drone.mgueye01.com
+          ALLOWED_HOST_LIST: drone.drone.svc, drone.mgueye01.com
         openid:
           ENABLE_OPENID_SIGNIN: false
           ENABLE_OPENID_SIGNUP: true
