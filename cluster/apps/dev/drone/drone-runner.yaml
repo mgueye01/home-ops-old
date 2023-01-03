@@ -20,11 +20,11 @@ spec:
       buildNamespaces:
         - drone
     env:
-      DRONE_RPC_HOST: drone
+      DRONE_RPC_HOST: drone.drone.svc:8080
       DRONE_RPC_PROTO: http
       DRONE_NAMESPACE_DEFAULT: drone
       DRONE_RPC_SECRET: ${SECRET_DRONE_RPC_SECRET}
-      DRONE_SECRET_PLUGIN_ENDPOINT: http://drone-secrets-drone-kubernetes-secrets:3000
+      DRONE_SECRET_PLUGIN_ENDPOINT: http://drone-kubernetes-secrets.drone.svc:3000
       DRONE_SECRET_PLUGIN_TOKEN: ${SECRET_DRONE_SECRET_EXPORTER_KEY}
     resources:
       requests:
