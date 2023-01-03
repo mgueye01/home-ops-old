@@ -80,7 +80,7 @@ spec:
           DEFAULT_PRIVATE: true
         database:
           DB_TYPE: postgres
-          HOST: ${POSTGRES_HOST}
+          HOST: postgres-rw.database
           NAME: gitea
           SCHEMA: public
           SSL_MODE: disable
@@ -189,7 +189,7 @@ spec:
                       image: ghcr.io/onedr0p/postgres-initdb:14.6
                       env:
                         - name: POSTGRES_HOST
-                          value: ${POSTGRES_HOST}
+                          value: postgres-rw.database
                         - name: POSTGRES_DB
                           value: gitea
                         - name: POSTGRES_SUPER_PASS
