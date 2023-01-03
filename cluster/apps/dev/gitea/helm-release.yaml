@@ -32,6 +32,11 @@ spec:
       capabilities:
         add:
           - SYS_CHROOT
+    service:
+      ssh:
+        type: LoadBalancer
+        port: 22
+        loadBalancerIP: ${SVC_GITEA_ADDRESS}
     ingress:
       enabled: true
       ingressClassName: "nginx"
