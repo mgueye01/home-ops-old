@@ -174,28 +174,16 @@ spec:
       enabled: true
     kubeControllerManager:
       enabled: true
-      endpoints:
-        - 192.168.10.11
-        - 192.168.10.12
-        - 192.168.10.13
+      endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
     kubeScheduler:
       enabled: true
-      endpoints:
-        - 192.168.10.11
-        - 192.168.10.12
-        - 192.168.10.13
+      endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
     kubeProxy:
       enabled: true
-      endpoints:
-        - 192.168.10.11
-        - 192.168.10.12
-        - 192.168.10.13
+      endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
     kubeEtcd:
       enabled: true
-      endpoints:
-        - 192.168.10.11
-        - 192.168.10.12
-        - 192.168.10.13
+      endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
       service:
         enabled: true
         port: 2381
@@ -241,7 +229,7 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
-        retention: 2d
+        retention: 6h
         enableAdminAPI: true
         walCompression: true
         storageSpec:
