@@ -8,7 +8,7 @@ resources:
   - zwavejs2mqtt
   - zigbee2mqtt
   # - zigbee2mqtt-exporter
-  - paperless
-  - mealie
+  # - paperless
+  # - mealie
   - esphome
-  - appdaemon
+  # - appdaemon

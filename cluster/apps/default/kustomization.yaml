@@ -5,12 +5,12 @@ resources:
   # - blog
   - littlelink
   - theme-park
-  - ghost
-  - homer
+  # - ghost
+  # - homer
   - kopia
-  - echo-server
-  - excalidraw
-  - outline
+  # - echo-server
+  # - excalidraw
+  # - outline
   - minio
-  - miniflux
-  - weave-gitops
+  # - miniflux
+  # - weave-gitops
