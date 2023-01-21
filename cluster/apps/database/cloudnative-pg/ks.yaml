@@ -33,7 +33,7 @@ spec:
     - name: cluster-apps-cloudnative-pg
     # - name: cluster-apps-kyverno
     # - name: cluster-apps-minio
-    - name: cluster-apps-external-secrets-stores
+    - name: cluster-apps-external-secrets
   path: ./cluster/apps/database/cloudnative-pg/cluster
   prune: true
   sourceRef:
