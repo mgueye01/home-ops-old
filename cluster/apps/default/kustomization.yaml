@@ -6,11 +6,11 @@ resources:
   - littlelink
   - theme-park
   # - ghost
-  # - homer
+  - homer
   - kopia
   # - echo-server
-  # - excalidraw
-  # - outline
+  - excalidraw
+  - outline
   - minio
   # - miniflux
   # - weave-gitops
