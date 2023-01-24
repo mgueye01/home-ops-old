@@ -61,15 +61,23 @@ spec:
       runAsGroup: 1000
       fsGroup: 1000
       fsGroupChangePolicy: "OnRootMismatch"
-    persistence:
-      config:
-        enabled: true
-        existingClaim: overseerr-config-v1
+    # persistence:
+    #   config:
+    #     enabled: true
+    #     existingClaim: overseerr-config-v1
+    #     mountPath: /app/config
+    #   cache:
+    #     enabled: true
+    #     type: emptyDir
+    #     mountPath: /app/.next/cache
+    volumeClaimTemplates:
+      - name: config
         mountPath: /app/config
-      cache:
-        enabled: true
-        type: emptyDir
-        mountPath: /app/.next/cache
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: ceph-block
+        labels:
+          snapshot.home.arpa/enabled: "true"
     resources:
       requests:
         cpu: 10m

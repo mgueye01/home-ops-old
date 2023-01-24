@@ -20,6 +20,8 @@ includes:
   terraform: .taskfiles/terraform.yml
   snapshot: .taskfiles/SnapshotTasks.yml
   toolbox: .taskfiles/RookTasks.yml
+  vs: .taskfiles/VolSync/Tasks.yml
+  es: .taskfiles/ExternalSecrets/Tasks.yml
 
 tasks:
   kubeconfig:
