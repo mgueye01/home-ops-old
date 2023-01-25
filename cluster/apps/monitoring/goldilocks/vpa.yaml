@@ -47,6 +47,6 @@ spec:
         kube-api-qps: "20"
 
     updater:
-      enabled: false
+      enabled: true
     admissionController:
-      enabled: false
+      enabled: true

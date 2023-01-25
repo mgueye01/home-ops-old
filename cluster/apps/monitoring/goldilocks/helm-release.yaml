@@ -32,11 +32,15 @@ spec:
         limits:
           cpu: 80m
           memory: 150M
-    flags:
-      on-by-default: "true"
-      exclude-namespaces: "kube-system"
+      flags:
+        on-by-default: "true"
+        exclude-namespaces: "kube-system"
+      rbac:
+        create: true
+      servviceAccount:
+        create: true
     dashboard:
-      enabled: true
+      enabled: false
       replicaCount: 1
       ingress:
         enabled: true
