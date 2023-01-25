@@ -34,7 +34,7 @@ spec:
           memory: 150M
       flags:
         on-by-default: "true"
-        exclude-namespaces: "kube-system"
+        exclude-namespaces: "kube-system,rook-ceph"
       rbac:
         create: true
       servviceAccount:
