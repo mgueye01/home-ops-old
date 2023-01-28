@@ -14,5 +14,5 @@ resources:
   - outline
   - minio
   # - miniflux
-  # - weave-gitops
+  - weave-gitops
   - kubernetes-schemas/ks.yaml
