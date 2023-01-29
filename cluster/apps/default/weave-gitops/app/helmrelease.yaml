@@ -47,6 +47,8 @@ spec:
     ingress:
       enabled: true
       className: nginx
+      annotations:
+        external-dns/is-public: "true"
       hosts:
         - host: &host "gitops.${SECRET_DOMAIN}"
           paths:
