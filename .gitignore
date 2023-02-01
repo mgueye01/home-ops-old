@@ -17,3 +17,4 @@ terraform.tfstate*
 linkerd-ingress.yaml
 rook-wipe.sh
 megalinter-reports/
+provision/terraform/proxmox/*
