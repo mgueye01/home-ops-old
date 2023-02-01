@@ -50,7 +50,7 @@ spec:
       enabled: true
       image:
         repository: k8s.gcr.io/autoscaling/vpa-updater
-        tag: 0.12.0
+        tag: 0.13.0
     admissionController:
       enabled: true
       image:
