@@ -7,5 +7,5 @@ resources:
   - kube-system
   - metallb-system
   - rook-ceph
-  - kyverno
+  - kyverno/ks.yaml
   # - cilium
