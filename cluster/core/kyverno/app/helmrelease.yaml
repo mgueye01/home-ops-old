@@ -9,7 +9,7 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: kyverno
+      chart: kyverno-charts
       version: 2.7.0
       sourceRef:
         kind: HelmRepository
