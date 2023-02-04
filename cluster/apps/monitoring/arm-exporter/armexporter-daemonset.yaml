@@ -33,7 +33,7 @@ spec:
           name: arm-exporter
           resources:
             limits:
-              cpu: 100m
+              cpu: 150m
               memory: 100Mi
             requests:
               cpu: 50m
@@ -55,7 +55,7 @@ spec:
               name: https
           resources:
             limits:
-              cpu: 20m
+              cpu: 50m
               memory: 40Mi
             requests:
               cpu: 10m
