@@ -239,7 +239,7 @@ spec:
               storageClassName: "ceph-block"
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 20Gi
         thanos:
           image: quay.io/thanos/thanos:v0.30.2
           # renovate: datasource=docker depName=quay.io/thanos/thanos
