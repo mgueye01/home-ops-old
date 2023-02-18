@@ -6,5 +6,5 @@ resources:
   - cloudnative-pg/ks.yaml
   - redis
   # - phpmyadmin
-  - mysql
+  # - mysql
   - pgadmin
