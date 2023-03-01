@@ -205,6 +205,27 @@ spec:
         Kubernetes-events-dashboard.:
           url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/kubernetes-events-dashboard.json
           datasource: Loki
+        flux-logs:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/logs.json
+          datasource: Prometheus
+        kubernetes-api-server:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
+          datasource: Prometheus
+        kubernetes-coredns:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
+          datasource: Prometheus
+        kubernetes-global:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
+          datasource: Prometheus
+        kubernetes-namespaces:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
+          datasource: Prometheus
+        kubernetes-nodes:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
+          datasource: Prometheus
+        kubernetes-pods:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
+          datasource: Prometheus
       thanos:
         bucket-replicate:
           url: https://raw.githubusercontent.com/thanos-io/thanos/v0.30.2/examples/dashboards/bucket-replicate.json
@@ -260,13 +281,13 @@ spec:
       enabled: true
       ingressClassName: "nginx"
       annotations:
-        auth.home.arpa/enabled: "true"
+        # auth.home.arpa/enabled: "true"
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-        external-dns/is-public: "true"
-        nginx.ingress.kubernetes.io/affinity: "cookie"
-        nginx.ingress.kubernetes.io/session-cookie-name: "grafana"
-        nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
-        nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+        # external-dns/is-public: "true"
+        # nginx.ingress.kubernetes.io/affinity: "cookie"
+        # nginx.ingress.kubernetes.io/session-cookie-name: "grafana"
+        # nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+        # nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
       hosts:
         - "grafana.${SECRET_DOMAIN}"
       tls:
