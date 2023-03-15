@@ -54,5 +54,5 @@ spec:
     admissionController:
       enabled: true
       image:
-        repository: k8s.gcr.io/autoscaling/vpa-admission-controller
+        repository: registry.k8s.io/autoscaling/vpa-admission-controller
         tag: 0.13.0
