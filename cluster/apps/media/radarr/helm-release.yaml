@@ -26,11 +26,12 @@ spec:
     global:
       nameOverride: *app
     controller:
-      labels:
-        pmb.home.arpa/backup-claim: &claimName "radarr-config-v1"
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/k8s-at-home/radarr-develop
-      tag: v4.3.0.6671
+      repository: ghcr.io/onedr0p/radarr-develop
+      tag: 4.4.2.6956@sha256:900277ef469bcb21cf24963c39b17e0f1a5e64a445b8a9d6ee80750807911339
     env:
       TZ: "${TIMEZONE}"
     ingress:
@@ -68,14 +69,14 @@ spec:
         scrapeTimeout: 1m
       prometheusRule:
         enabled: false
-      exporter:
-        image:
-          repository: ghcr.io/onedr0p/exportarr
-          tag: v1.2.0
-        env:
-          port: 9794
-          additionalMetrics: true
-          unknownQueueItems: true
+      # exporter:
+      #   image:
+      #     repository: ghcr.io/onedr0p/exportarr
+      #     tag: v1.2.0
+      #   env:
+      #     port: 9794
+      #     additionalMetrics: true
+      #     unknownQueueItems: true
     persistence:
       config:
         enabled: true
