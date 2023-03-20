@@ -8,23 +8,24 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: radarr
-      version: 16.3.2
+      chart: app-template
+      version: 1.3.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  maxHistory: 3
   install:
     createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
+    cleanupOnFail: true
     remediation:
-      retries: 5
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
-    global:
-      nameOverride: *app
     controller:
       type: statefulset
       annotations:
@@ -34,6 +35,35 @@ spec:
       tag: 4.4.2.6956@sha256:900277ef469bcb21cf24963c39b17e0f1a5e64a445b8a9d6ee80750807911339
     env:
       TZ: "${TIMEZONE}"
+      PUSHOVER_DEBUG: "false"
+      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+      RADARR__INSTANCE_NAME: Radarr
+      RADARR__PORT: &port 80
+      RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
+      RADARR__LOG_LEVEL: info
+    envFrom:
+      - secretRef:
+          name: radarr-secret
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /ping
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
     ingress:
       main:
         enabled: true
@@ -48,7 +78,7 @@ spec:
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/radarr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "radarr.${SECRET_DOMAIN}"
+          - host: *host
             paths:
               - path: /
                 pathType: Prefix
@@ -60,27 +90,14 @@ spec:
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 100
-    metrics:
-      enabled: true
-      serviceMonitor:
-        interval: 5m
-        scrapeTimeout: 1m
-      prometheusRule:
-        enabled: false
-      # exporter:
-      #   image:
-      #     repository: ghcr.io/onedr0p/exportarr
-      #     tag: v1.2.0
-      #   env:
-      #     port: 9794
-      #     additionalMetrics: true
-      #     unknownQueueItems: true
+      supplementalGroups: [10000]
+    volumeClaimTemplates:
+      - name: config
+        mountPath: /config
+        accessMode: ReadWriteOnce
+        size: 15Gi
+        storageClass: ceph-block
     persistence:
-      config:
-        enabled: true
-        existingClaim: *claimName
       media:
         enabled: true
         type: custom
@@ -106,6 +123,14 @@ spec:
             path: /volume1/CLOUDNATIVE1/Backups/radarr
         mountPath: /config/Backups
         readOnly: false
+      scripts:
+        enabled: true
+        type: configMap
+        name: radarr-configmap
+        subPath: pushover-notify.sh
+        mountPath: /scripts/pushover-notify.sh
+        defaultMode: 0775
+        readOnly: true
     resources:
       requests:
         cpu: 10m

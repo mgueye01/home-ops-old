@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   # - tautulli
   - plex
-  - radarr
+  - ./radarr/ks.yaml
   - sonarr
   - lidarr
   - prowlarr
