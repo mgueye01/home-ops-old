@@ -36,10 +36,10 @@ spec:
     env:
       TZ: "${TIMEZONE}"
       PUSHOVER_DEBUG: "false"
-      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.g-eye.io"
       RADARR__INSTANCE_NAME: Radarr
       RADARR__PORT: &port 80
-      RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
+      RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.g-eye.io"
       RADARR__LOG_LEVEL: info
     envFrom:
       - secretRef:
@@ -71,7 +71,7 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/radarr/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.g-eye.io/css/base/radarr/nord.css"></head>';
             sub_filter_once on;
         hosts:
           - host: *host
@@ -97,19 +97,19 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: "${NAS_ADDR}"
+        server: 192.168.0.18
         path: /volume1/video/Movie
         mountPath: /media
       downloads:
         enabled: true
         type: nfs
-        server: "${NAS_ADDR}"
+        server: 192.168.0.18
         path: /volume1/downloads/complete
         mountPath: /downloads
       backup:
         enabled: true
         type: nfs
-        server: "${NAS_ADDR}"
+        server: 192.168.0.18
         path: /volume1/CLOUDNATIVE1/Backups/radarr
         mountPath: /config/Backups
         readOnly: false
