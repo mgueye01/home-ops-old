@@ -101,19 +101,19 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: ${NAS_ADDR}
+        server: 192.168.0.18
         path: /volume1/video/Movie
         mountPath: /media
       downloads:
         enabled: true
         type: nfs
-        server: ${NAS_ADDR}
+        server: 192.168.0.18
         path: /volume1/downloads/complete
         mountPath: /downloads
       backup:
         enabled: true
         type: nfs
-        server: ${NAS_ADDR}
+        server: 192.168.0.18
         path: /volume1/CLOUDNATIVE1/Backups/radarr
         mountPath: /config/Backups
         readOnly: false
