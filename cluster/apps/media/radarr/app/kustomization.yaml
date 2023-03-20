@@ -14,7 +14,7 @@ configMapGenerator:
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
-    substitution.flux.home.arpa/enabled: enabled
+    substitution.flux.home.arpa/enabled: "true"
 labels:
   - pairs:
       app.kubernetes.io/name: radarr
