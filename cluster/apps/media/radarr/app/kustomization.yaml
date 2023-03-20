@@ -13,8 +13,6 @@ configMapGenerator:
       - ./scripts/pushover-notify.sh
 generatorOptions:
   disableNameSuffixHash: true
-  annotations:
-    substitution.flux.home.arpa/enabled: "true"
 labels:
   - pairs:
       app.kubernetes.io/name: radarr
