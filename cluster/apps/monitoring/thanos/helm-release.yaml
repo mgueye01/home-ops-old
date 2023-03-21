@@ -16,14 +16,26 @@ spec:
         name: bitnami-charts
         namespace: flux-system
       interval: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
-    # image:
-    #   registry: public.ecr.aws
-    #   repository: bitnami/thanos
+    image:
+      registry: quay.io
+      repository: thanos/thanos
+      tag: v0.30.2
     query:
       enabled: true
-      replicaLabels:
-        - replica
+      replicaCount: 3
+      replicaLabel: ["__replica__"]
       dnsDiscovery:
         sidecarsService: kube-prometheus-stack-thanos-discovery
         sidecarsNamespace: monitoring
@@ -32,8 +44,6 @@ spec:
         pathType: Prefix
         ingressClassName: "nginx"
         annotations:
-          # nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
-          # nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
           auth.home.arpa/enabled: "true"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
@@ -49,6 +59,12 @@ spec:
       enabled: true
     compactor:
       enabled: true
+      extraFlags:
+        - --compact.concurrency=4
+        - --delete-delay=30m
+      retentionResolutionRaw: 14d
+      retentionResolution5m: 14d
+      retentionResolution1h: 14d
       persistence:
         enabled: false
         storageClass: "ceph-block"
@@ -59,7 +75,22 @@ spec:
         enabled: true
         size: 5Gi
     ruler:
-      enabled: false
+      enabled: true
+      replicaCount: 3
+      replicaLabel: __replica__
+      alertmanagers: ["http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093"]
+      extraFlags: ["--web.prefix-header=X-Forwarded-Prefix"]
+      config: |-
+        groups:
+          - name: PrometheusWatcher
+            rules:
+              - alert: PrometheusDown
+                annotations:
+                  summary: A Prometheus has disappeared from Prometheus target discovery
+                expr: absent(up{job="kube-prometheus-stack-prometheus"})
+                for: 5m
+                labels:
+                  severity: critical
     metrics:
       enabled: true
       serviceMonitor:
