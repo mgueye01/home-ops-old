@@ -45,8 +45,8 @@ spec:
         signout_redirect_url: "https://login.${SECRET_DOMAIN}/logout"
         oauth_auto_login: false
       auth.basic:
-        enabled: false
-        disable_login_form: true
+        enabled: true
+        disable_login_form: false
       auth.generic_oauth:
         enabled: true
         name: Authelia
