@@ -181,7 +181,7 @@ spec:
       enabled: true
       endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
     kubeProxy:
-      enabled: true
+      enabled: false
       endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
     kubeEtcd:
       enabled: true
@@ -224,7 +224,7 @@ spec:
       #         - *host
       prometheusSpec:
         replicas: 1
-        replicaExternalLabelName: "replica"
+        replicaExternalLabelName: __replica__
         podAntiAffinity: hard
         retentionSize: "3GB"
         ruleSelectorNilUsesHelmValues: false
