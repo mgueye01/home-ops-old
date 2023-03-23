@@ -6,7 +6,7 @@ namespace: home
 resources:
   # - ./externalsecret.yaml
   - ./helm-release.yaml
-  - ./volsync.yaml
+  # - ./volsync.yaml
   - ./home-assistant.sops.yaml
   - ./config-pvc.yaml
   - ./code-server.sops.yaml
