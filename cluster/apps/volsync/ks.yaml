@@ -9,7 +9,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-snapshot-controller
-  path: ./cluster/apps/volsync/volsync/app
+  path: ./cluster/apps/volsync/app
   prune: true
   sourceRef:
     kind: GitRepository
