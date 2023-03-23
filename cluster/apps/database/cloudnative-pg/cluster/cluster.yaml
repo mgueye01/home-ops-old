@@ -18,7 +18,7 @@ spec:
     name: cloudnative-pg-secret
   bootstrap:
     recovery:
-      source: &active-cluster postgres-v3
+      source: &previous-cluster postgres-v2
   # bootstrap:
   #   initdb:
   #     # set up 'default' db/owner
@@ -52,7 +52,7 @@ spec:
           key: aws-secret-access-key
   # externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-    - name: *active-cluster
+    - name: *previous-cluster
       barmanObjectStore:
         wal:
           compression: bzip2
