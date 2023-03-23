@@ -18,7 +18,7 @@ spec:
     name: cloudnative-pg-secret
   bootstrap:
     recovery:
-      source: &active-cluster postgres-v2
+      source: &active-cluster postgres-v3
   # bootstrap:
   #   initdb:
   #     # set up 'default' db/owner
