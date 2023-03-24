@@ -8,7 +8,7 @@ metadata:
   annotations:
     kyverno.io/ignore: "true"
 spec:
-  instances: 2
+  instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:14.7
   primaryUpdateStrategy: unsupervised
   storage:
@@ -16,9 +16,9 @@ spec:
     storageClass: local-path
   superuserSecret:
     name: cloudnative-pg-secret
-  bootstrap:
-    recovery:
-      source: &previous-cluster postgres-v2
+  # bootstrap:
+  #   recovery:
+  #     source: &previous-cluster postgres-v3
   # bootstrap:
   #   initdb:
   #     # set up 'default' db/owner
@@ -42,7 +42,7 @@ spec:
         jobs: 4
       destinationPath: s3://postgresql/
       endpointURL: http://minio.default.svc.cluster.local:9000
-      serverName: postgres-v3
+      serverName: postgres-v4
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -52,7 +52,8 @@ spec:
           key: aws-secret-access-key
   # externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-    - name: *previous-cluster
+    # - name: *previous-cluster
+    - name: postgres
       barmanObjectStore:
         wal:
           compression: bzip2
