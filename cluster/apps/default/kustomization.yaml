@@ -4,15 +4,15 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   # - blog
-  - littlelink
-  - theme-park
+  # - littlelink
+  # - theme-park
   # - ghost
-  - homer
+  # - homer
   # - kopia
   # - echo-server
-  - excalidraw
-  - outline
+  # - excalidraw
+  # - outline
   - minio
   # - miniflux
-  - weave-gitops/ks.yaml
+  # - weave-gitops/ks.yaml
   - kubernetes-schemas/ks.yaml
