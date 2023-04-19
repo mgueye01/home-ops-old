@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
-      tag: latest-dev@sha256:9f4f759be0d47a180390f0a6d912267962fbad420b389c62ffd2bc23b16b45b5
+      tag: latest-dev@sha256:cfc1cf9de1ae068bf8fea4e6f9d8f242d4875a5f478cdaf6a345945d44bdb7c0
     envFrom:
       - secretRef:
           name: *app
