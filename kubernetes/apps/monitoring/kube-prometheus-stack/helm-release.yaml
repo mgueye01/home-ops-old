@@ -1,0 +1,306 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: 45.19.0
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    alertmanager:
+      config:
+        global:
+          resolve_timeout: 5m
+        receivers:
+          - name: "null"
+          - name: "pushover"
+            pushover_configs:
+              - token: "${SECRET_PUSHOVER_ALERT_MANAGER_APIKEY}"
+                user_key: "${SECRET_PUSHOVER_USERKEY}"
+                send_resolved: true
+                html: true
+                sound: gamelan
+                priority: |-
+                  {{ if eq .Status "firing" }}1{{ else }}0{{ end }}
+                url_title: View in Alert Manager
+                title: |-
+                  [{{ .Status | toUpper -}}
+                  {{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{- end -}}
+                  ] {{ .CommonLabels.alertname }}
+                message: |-
+                  {{- range .Alerts }}
+                    {{- if ne .Labels.severity "" }}
+                      <b>Severity:</b> <i>{{ .Labels.severity }}</i>
+                    {{- else }}
+                      <b>Severity:</b> <i>N/A</i>
+                    {{- end }}
+                    {{- if ne .Annotations.description "" }}
+                      <b>Description:</b> <i>{{ .Annotations.description }}</i>
+                    {{- else if ne .Annotations.summary "" }}
+                      <b>Summary:</b> <i>{{ .Annotations.summary }}</i>
+                    {{- else if ne .Annotations.message "" }}
+                      <b>Message:</b> <i>{{ .Annotations.message }}</i>
+                    {{- else }}
+                      <b>Description:</b> <i>N/A</i>
+                    {{- end }}
+                    {{- if gt (len .Labels.SortedPairs) 0 }}
+                      <b>Details:</b>
+                      {{- range .Labels.SortedPairs }}
+                        • <b>{{ .Name }}:</b> <i>{{ .Value }}</i>
+                      {{- end }}
+                    {{- end }}
+                  {{- end }}
+        route:
+          group_by: ["alertname", "job"]
+          group_wait: 45s
+          group_interval: 10m
+          repeat_interval: 12h
+          receiver: "pushover"
+          routes:
+            # - receiver: "robusta"
+            - receiver: "null"
+              matchers:
+                - alertname =~ "InfoInhibitor|Watchdog"
+            - receiver: "pushover"
+              matchers:
+                - severity = "critical"
+              continue: true
+        inhibit_rules:
+          - source_matchers:
+              - severity = "critical"
+            target_matchers:
+              - severity = "warning"
+            equal: ["alertname", "namespace"]
+      ingress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "nginx"
+        annotations:
+          # nginx.ingress.kubernetes.io/auth-url: "http://authelia.networking.svc.cluster.local/api/verify"
+          # nginx.ingress.kubernetes.io/auth-signin: "https://login.${SECRET_DOMAIN}"
+          auth.home.arpa/enabled: "true"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
+        hosts:
+          - &host "alert-manager.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+      alertmanagerSpec:
+        replicas: 3
+        podAntiAffinity: hard
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "ceph-block"
+              resources:
+                requests:
+                  storage: 1Gi
+    kube-state-metrics:
+      metricLabelsAllowlist:
+        - "persistentvolumeclaims=[*]"
+        - "pods=[*]"
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: kubernetes_node
+      collectors:
+        - verticalpodautoscalers
+        - certificatesigningrequests
+        - configmaps
+        - cronjobs
+        - daemonsets
+        - deployments
+        - endpoints
+        - horizontalpodautoscalers
+        - ingresses
+        - jobs
+        - limitranges
+        - mutatingwebhookconfigurations
+        - namespaces
+        - networkpolicies
+        - nodes
+        - persistentvolumeclaims
+        - persistentvolumes
+        - poddisruptionbudgets
+        - pods
+        - replicasets
+        - replicationcontrollers
+        - resourcequotas
+        - secrets
+        - services
+        - statefulsets
+        - storageclasses
+        - validatingwebhookconfigurations
+        - volumeattachments
+    grafana:
+      enabled: false
+      forceDeployDashboards: true
+      sidecar:
+        dashboards:
+          multicluster:
+            etcd:
+              enabled: true
+    kubelet:
+      enabled: true
+      serviceMonitor:
+        metricRelabelings:
+          - action: replace
+            sourceLabels:
+              - node
+            targetLabel: instance
+    kubeApiServer:
+      enabled: true
+    kubeControllerManager:
+      enabled: true
+      endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
+    kubeScheduler:
+      enabled: true
+      endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
+    kubeProxy:
+      enabled: false
+      endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
+    kubeEtcd:
+      enabled: true
+      endpoints: ["192.168.10.11", "192.168.10.12", "192.168.10.13"]
+      service:
+        enabled: true
+        port: 2381
+        targetPort: 2381
+    prometheus:
+      ingress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "nginx"
+        annotations:
+          auth.home.arpa/enabled: "true"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "false"
+        hosts:
+          - &host "prometheus.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+      thanosService:
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
+      # thanosIngress:
+      #   enabled: true
+      #   pathType: Prefix
+      #   ingressClassName: "nginx"
+      #   annotations:
+      #     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      #     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+      #     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+      #     external-dns/is-public: "true"
+      #   hosts:
+      #     - &host "thanos-sidecar.${SECRET_DOMAIN}"
+      #   tls:
+      #     - hosts:
+      #         - *host
+      prometheusSpec:
+        replicas: 1
+        replicaExternalLabelName: __replica__
+        podAntiAffinity: hard
+        retentionSize: "3GB"
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        retention: 2h
+        enableAdminAPI: true
+        walCompression: true
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "ceph-block"
+              resources:
+                requests:
+                  storage: 20Gi
+        thanos:
+          image: quay.io/thanos/thanos:v0.30.2
+          # renovate: datasource=docker depName=quay.io/thanos/thanos
+          version: "v0.30.2"
+          objectStorageConfig:
+            name: thanos-objstore
+            key: objstore.yml
+        resources:
+          requests:
+            cpu: 200m
+            memory: 3000Mi
+          limits:
+            memory: 6000Mi
+        additionalScrapeConfigs:
+          - honor_timestamps: true
+            job_name: minio-nas
+            metrics_path: /minio/v2/metrics/cluster
+            scheme: http
+            bearer_token: ${SECRET_MINIO_TOKEN}
+            static_configs:
+              - targets:
+                  - "192.168.0.18:9000"
+          - job_name: "snmp-exporter"
+            static_configs:
+              - targets: ["192.168.0.18"]
+            metrics_path: /snmp
+            params:
+              module: [synology]
+            relabel_configs:
+              - source_labels: [__address__]
+                target_label: __param_target
+              - source_labels: [__param_target]
+                target_label: instance
+              - target_label: __address__
+                replacement: 192.168.0.18:9116 # The SNMP exporter's real hostname:port.
+          - job_name: "node"
+            scrape_interval: 10s
+            dns_sd_configs:
+              - names:
+                  - "arm_exporter"
+                type: "A"
+                port: 9243
+          - job_name: environment
+            static_configs:
+              - targets: ["192.168.0.94:8000"]
+                labels:
+                  group: "environment"
+                  location: "Home"
+    prometheus-node-exporter:
+      fullnameOverride: node-exporter
+      extraArgs:
+        - "--collector.textfile.directory=/var/lib/node_exporter/textfile_collector"
+        - "--collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)"
+        - "--collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$"
+      extraHostVolumeMounts:
+        - name: textfiles
+          hostPath: /var/lib/node_exporter/textfile_collector
+          mountPath: /var/lib/node_exporter/textfile_collector
+          readOnly: false
+          mountPropagation: HostToContainer
+    prometheusOperator:
+      configReloaderCpu: 0
