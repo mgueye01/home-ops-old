@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dev
+  name: default
   labels:
+    kustomize.toolkit.fluxcd.io/prune: disabled
     goldilocks.fairwinds.com/enabled: "true"
-    triliovault.trilio.io/backup: "true"
