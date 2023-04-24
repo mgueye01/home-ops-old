@@ -3,18 +3,18 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./namespace.yaml
-  - thanos
-  - grafana
-  - loki/ks.yaml
-  - kube-prometheus-stack
-  - unifi-poller
-  - node-problem-detector
-  - karma
-  - kubernetes-event-exporter
-  - blackbox-exporter
-  - goldilocks
-  - pushgateway
-  - intel-gpu-exporter
-  - arm-exporter
-  - smartctl-exporter
-  - vector
+  # - thanos
+  # - grafana
+  # - loki/ks.yaml
+  # - kube-prometheus-stack
+  # - unifi-poller
+  # - node-problem-detector
+  # - karma
+  # - kubernetes-event-exporter
+  # - blackbox-exporter
+  # - goldilocks
+  # - pushgateway
+  # - intel-gpu-exporter
+  # - arm-exporter
+  # - smartctl-exporter
+  # - vector

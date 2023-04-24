@@ -5,5 +5,5 @@ resources:
   - namespace.yaml
   # - gitea
   # - drone
-  - buildkit
+  # - buildkit
   # - gitlab
