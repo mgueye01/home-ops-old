@@ -2,57 +2,46 @@
 version: "3"
 
 tasks:
-  sync:
-    desc: Sync flux-system with the Git Repository
+  gr-sync:
+    desc: Sync all Flux GitRepositories
     cmds:
-      - git push
-      - flux reconcile source git flux-system
-    silent: false
+      - |
+        kubectl get gitrepositories --all-namespaces --no-headers | awk '{print $1, $2}' \
+          | xargs -P 4 -L 1 bash -c \
+            'kubectl -n $0 annotate gitrepository/$1 reconcile.fluxcd.io/requestedAt=$(date +%s) --field-manager=flux-client-side-apply --overwrite'
 
-  sapps:
-    desc: Sync apps kustomization with the Git Repository, and display kustomization list
+  ks-sync:
+    desc: Sync all Flux Kustomizations
     cmds:
-      - task flux:sync
-      - flux reconcile kustomization apps && task flux:k
-    silent: false
+      - |
+        kubectl get kustomization --all-namespaces --no-headers | awk '{print $1, $2}' \
+          | xargs -P 4 -L 1 bash -c \
+            'kubectl -n $0 annotate kustomization/$1 reconcile.fluxcd.io/requestedAt="$(date +%s)" --field-manager=flux-client-side-apply --overwrite'
 
-  sall:
-    desc: Sync apps kustomization with the Git Repository, and display kustomization list
+  hr-sync:
+    desc: Sync all Flux HelmReleases
     cmds:
-      - task flux:sync
-      - flux reconcile kustomization flux-system
-      - flux reconcile kustomization operators
-      - flux reconcile kustomization infrastructure
-      - flux reconcile kustomization apps
-      - task flux:k
-    silent: false
+      - |
+        kubectl get helmreleases --all-namespaces --no-headers | awk '{print $1, $2}' \
+          | xargs -P 4 -L 1 bash -c \
+            'kubectl -n $0 annotate helmrelease/$1 reconcile.fluxcd.io/requestedAt="$(date +%s)" --overwrite'
 
-  hr:
-    desc: List all Helm Releases
+  tf-sync:
+    desc: Sync Flux Terraforms
     cmds:
-      - flux get hr -A  | grep --colour -e "^" -e False
-    silent: true
-
-  hs:
-    desc: List all Helm sources
+      - |
+        kubectl get terraforms --all-namespaces --no-headers | awk '{print $1, $2}' \
+          | xargs -P 4 -L 1 bash -c \
+            'kubectl -n $0 annotate terraform/$1 reconcile.fluxcd.io/requestedAt="$(date +%s)" --overwrite'
+  hr-suspend:
+    desc: Suspend all Flux HelmReleases
     cmds:
-      - flux get sources helm -A
-    silent: true
-
-  hc:
-    desc: List all Helm charts
+      - |
+        flux get helmrelease --all-namespaces --no-header | awk '{print $1, $2}' \
+          | xargs -L 1 bash -c 'flux -n $0 suspend helmrelease $1'
+  hr-resume:
+    desc: Resume all Flux HelmReleases
     cmds:
-      - flux get sources chart -A
-    silent: true
-
-  k:
-    desc: List all Kustomizations
-    cmds:
-      - flux get kustomizations -A
-    silent: true
-
-  hr-restart:
-    desc: Restart all failed Helm Releases
-    cmds:
-      - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs  bash -c 'flux suspend hr $0 -n $1'
-      - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs  bash -c 'flux resume hr $0 -n $1'
+      - |
+        flux get helmrelease --all-namespaces --no-header | awk '{print $1, $2}' \
+          | xargs -L 1 bash -c 'flux -n $0 resume helmrelease $1'
