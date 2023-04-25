@@ -6,7 +6,7 @@ resources:
   - thanos
   - grafana
   - loki/ks.yaml
-  - kube-prometheus-stack
+  - ./kube-prometheus-stack/ks.yaml
   - unifi-poller
   - node-problem-detector
   - karma
