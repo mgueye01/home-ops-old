@@ -15,6 +15,6 @@ resources:
   - goldilocks
   - pushgateway
   - intel-gpu-exporter
-  - arm-exporter
+  # - arm-exporter
   - smartctl-exporter
   - vector
