@@ -31,7 +31,7 @@ spec:
   wait: false
   sourceRef:
     kind: GitRepository
-    name: flux-cluster
+    name: home-ops-kubernetes
   decryption:
     provider: sops
     secretRef:
