@@ -141,7 +141,7 @@ spec:
           gnetId: 13502
           revision: 10
           datasource: Prometheus
-        flux-cluster:
+        home-ops-kubernetes:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
           datasource: Prometheus
         flux-control-plane:
