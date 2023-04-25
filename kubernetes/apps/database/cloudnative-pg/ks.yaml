@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: ./cluster/apps/database/cloudnative-pg/app
+  path: ./kubernetes/apps/database/cloudnative-pg/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -35,7 +35,7 @@ spec:
     # - name: cluster-apps-kyverno
     # - name: cluster-apps-minio
     - name: cluster-apps-external-secrets
-  path: ./cluster/apps/database/cloudnative-pg/cluster
+  path: ./kubernetes/apps/database/cloudnative-pg/cluster
   prune: true
   sourceRef:
     kind: GitRepository

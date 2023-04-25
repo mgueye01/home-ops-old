@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-external-secrets
     - name: cluster-apps-volsync
-  path: ./cluster/apps/media/radarr/app
+  path: ./kubernetes/apps/media/radarr/app
   prune: true
   sourceRef:
     kind: GitRepository

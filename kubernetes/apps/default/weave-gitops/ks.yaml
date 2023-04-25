@@ -10,7 +10,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets
-  path: ./cluster/apps/default/weave-gitops/app
+  path: ./kubernetes/apps/default/weave-gitops/app
   prune: true
   sourceRef:
     kind: GitRepository

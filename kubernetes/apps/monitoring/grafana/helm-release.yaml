@@ -148,10 +148,10 @@ spec:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
           datasource: Prometheus
         k8s-dashboard:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/k8s-for-prometheus-dashboard.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/k8s-for-prometheus-dashboard.json
           datasource: Prometheus
         k8s-node-exporter-dashboard:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/node-exporter-for-prometheus.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/node-exporter-for-prometheus.json
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/11315
         unifi-client-insights:
@@ -185,25 +185,25 @@ spec:
           datasource: Loki
         # Ref: https://grafana.com/grafana/dashboards/16718
         oom-restarts:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/oom-and-restarts_rev1.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/oom-and-restarts_rev1.json
           datasource: Prometheus
         Synology-nas-overview:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/synology-nas-overview_rev8.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/synology-nas-overview_rev8.json
           datasource: Prometheus
         Synology-nas-details:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/synology-nas-details_rev9.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/synology-nas-details_rev9.json
           datasource: Prometheus
         Blackbox-exporter:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/blackbox-exporter.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/blackbox-exporter.json
           datasource: Prometheus
         # Starboard-dashboard:
-        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/k8s-addons-starboard-operator.json
+        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/k8s-addons-starboard-operator.json
         #   datasource: Prometheus
         VPA-Recommendations:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/vpa-recommendations.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/vpa-recommendations.json
           datasource: Prometheus
         Kubernetes-events-dashboard.:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/cluster/apps/monitoring/grafana/dashboards/kubernetes-events-dashboard.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/kubernetes-events-dashboard.json
           datasource: Loki
         flux-logs:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/logs.json
