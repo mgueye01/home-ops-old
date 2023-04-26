@@ -19,3 +19,4 @@ rook-wipe.sh
 megalinter-reports/
 provision/terraform/proxmox/*
 provision/talos/*
+wipe-rook.yaml
