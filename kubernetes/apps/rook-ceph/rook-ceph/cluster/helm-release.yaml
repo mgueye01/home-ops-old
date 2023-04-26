@@ -27,7 +27,7 @@ spec:
             operator: Exists
     monitoring:
       enabled: true
-      createPrometheusRules: false
+      createPrometheusRules: true
 
     configOverride: |
       [global]
@@ -35,11 +35,9 @@ spec:
       bdev_async_discard = true
 
     cephClusterSpec:
-      # cephVersion:
-      #   image: quay.io/ceph/ceph:v17.2.5
-
       network:
         provider: host
+
       placement:
         all:
           tolerations:
@@ -96,6 +94,9 @@ spec:
             memory: "100M"
           limits:
             memory: "1G"
+
+      crashCollector:
+        disable: false
 
       mgr:
         count: 1
