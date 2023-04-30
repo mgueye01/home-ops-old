@@ -47,8 +47,6 @@ spec:
             port: 53
             targetPort: 1053
             protocol: UDP
-      annotations:
-        metallb.universe.tf/loadBalancerIPs: "${SVC_K8S_GATEWAY_ADDR}"
     serviceMonitor:
       main:
         enabled: true
