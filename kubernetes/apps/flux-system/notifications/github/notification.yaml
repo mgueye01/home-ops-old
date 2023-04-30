@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   type: github
-  address: https://github.com/mgueye01/homelab
+  address: https://github.com/mgueye01/home-ops
   secretRef:
     name: github-token
 ---

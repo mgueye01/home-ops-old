@@ -5,8 +5,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - blog
-  # - littlelink
-  # - theme-park
+  - littlelink
+  - theme-park
   # - ghost
   # - homer
   # - kopia
