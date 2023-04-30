@@ -26,6 +26,34 @@ spec:
       retries: 5
     crds: CreateReplace
   values:
+    fullnameOverride: prometheus
+    defaultRules:
+      create: true
+      rules:
+        alertmanager: true
+        etcd: true
+        configReloaders: true
+        general: true
+        k8s: true
+        kubeApiserver: true
+        kubeApiserverAvailability: true
+        kubeApiserverSlos: true
+        kubelet: true
+        kubeProxy: false
+        kubePrometheusGeneral: true
+        kubePrometheusNodeRecording: true
+        kubernetesApps: true
+        kubernetesResources: true
+        kubernetesStorage: true
+        kubernetesSystem: true
+        kubeScheduler: false
+        kubeStateMetrics: true
+        network: true
+        node: true
+        nodeExporterAlerting: true
+        nodeExporterRecording: true
+        prometheus: true
+        prometheusOperator: true
     alertmanager:
       config:
         global:
@@ -193,7 +221,7 @@ spec:
             regex: (apiserver_response_sizes_bucket|apiserver_watch_events_sizes_bucket)
             action: drop
     kubeControllerManager:
-      enabled: true
+      enabled: false
       endpoints: &cp
         - 192.168.10.11
         - 192.168.10.12
@@ -205,7 +233,7 @@ spec:
             regex: "(apiserver_audit|apiserver_client|apiserver_delegated|apiserver_envelope|apiserver_storage|apiserver_webhooks|attachdetach_controller|authenticated_user|authentication|cronjob_controller|disabled_metric|endpoint_slice|ephemeral_volume|garbagecollector_controller|get_token|go|hidden_metric|job_controller|kubernetes_build|kubernetes_feature|leader_election|node_collector|node_ipam|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|pv_collector|registered_metric|replicaset_controller|rest_client|retroactive_storageclass|root_ca|running_managed|scrape_duration|scrape_samples|scrape_series|service_controller|storage_count|storage_operation|ttl_after|volume_operation|workqueue)_(.+)"
             action: keep
     kubeEtcd:
-      enabled: true
+      enabled: false
       endpoints: *cp
     kubeProxy:
       enabled: false # Disabled because eBPF
@@ -305,19 +333,6 @@ spec:
                 target_label: instance
               - target_label: __address__
                 replacement: 192.168.0.18:9116 # The SNMP exporter's real hostname:port.
-          # - job_name: "node"
-          #   scrape_interval: 10s
-          #   dns_sd_configs:
-          #     - names:
-          #         - "arm_exporter"
-          #       type: "A"
-          #       port: 9243
-          # - job_name: environment
-          #   static_configs:
-          #     - targets: ["192.168.0.94:8000"]
-          #       labels:
-          #         group: "environment"
-          #         location: "Home"
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:

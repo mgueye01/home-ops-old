@@ -37,8 +37,8 @@ spec:
       dns:
         enabled: true
         type: LoadBalancer
-        annotations:
-          metallb.universe.tf/allow-shared-ip: "${SVC_ADGUARD_ADDRESS}"
+        # annotations:
+        #   metallb.universe.tf/allow-shared-ip: "${SVC_ADGUARD_ADDRESS}"
         loadBalancerIP: ${SVC_ADGUARD_ADDRESS}
         externalTrafficPolicy: Local
         ports:
