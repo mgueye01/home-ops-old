@@ -280,15 +280,17 @@ spec:
       #     - hosts:
       #         - *host
       prometheusSpec:
+        externalLabels:
+          cluster: home-ops
         replicas: 1
         replicaExternalLabelName: __replica__ # must match with thanos value `.query.replicaLabel[0]`
         podAntiAffinity: hard
-        retentionSize: "3GB"
+        retentionSize: "6GB"
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
-        retention: 2h
+        retention: 2d
         enableAdminAPI: true
         walCompression: true
         storageSpec:
