@@ -31,7 +31,7 @@ spec:
       repository: ghcr.io/sct/overseerr
       tag: 1.32.5
     env:
-      TZ: "${TIMEZONE}"
+      TZ: Europe/Paris
       LOG_LEVEL: "info"
       PORT: &port 80
     service:
@@ -45,14 +45,14 @@ spec:
         ingressClassName: "nginx"
         annotations:
           auth.home.arpa/enabled: "false"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "ipv4.g-eye.io"
           external-dns/is-public: "false"
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/overseerr/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.g-eye.io/css/base/overseerr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "requests.${SECRET_DOMAIN}"
+          - host: &host "requests.g-eye.io"
             paths:
               - path: /
                 pathType: Prefix
