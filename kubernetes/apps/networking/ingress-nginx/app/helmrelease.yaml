@@ -32,6 +32,8 @@ spec:
       service:
         externalIPs: ["192.168.10.60"]
         externalTrafficPolicy: Local
+      publishService:
+        enabled: true
       ingressClassResource:
         default: true
       config:

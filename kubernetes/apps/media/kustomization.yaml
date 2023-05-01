@@ -9,7 +9,7 @@ resources:
   - sonarr
   - lidarr
   - prowlarr
-  - overseerr
+  - ./overseerr/ks.yaml
   - recyclarr
   - plex-meta-manager
   - navidrome
