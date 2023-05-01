@@ -13,7 +13,5 @@ configMapGenerator:
       - ./scripts/pushover-notify.sh
 generatorOptions:
   disableNameSuffixHash: true
-labels:
-  - pairs:
-      app.kubernetes.io/name: radarr
-      app.kubernetes.io/instance: radarr
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
