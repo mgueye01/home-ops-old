@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - tautulli
-  - plex
+  - ./plex/ks.yaml
   - ./radarr/ks.yaml
   - sonarr
   - lidarr
