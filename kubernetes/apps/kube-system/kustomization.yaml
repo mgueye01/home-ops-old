@@ -6,7 +6,7 @@ resources:
   - metrics-server
   - reloader
   - descheduler
-  - intel-gpu-plugin
+  - ./intel-device-plugin/ks.yaml
   - node-feature-discovery
   - kube-cleanup-operator
   - ./snapshot-controller/ks.yaml

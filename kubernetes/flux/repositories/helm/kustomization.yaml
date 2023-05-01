@@ -37,7 +37,6 @@ resources:
   - ./bjw-s-charts.yaml
   - ./lwolf-charts.yaml
   - ./cloudnative-pg-charts.yaml
-  # - project-calico-charts.yaml
   - ./k8s-gateway.yaml
   - ./dysnix-charts.yaml
   - ./vector-charts.yaml
@@ -45,3 +44,4 @@ resources:
   - ./external-secrets.yaml
   - ./backube.yaml
   - ./piraeus.yaml
+  - ./intel.yaml
