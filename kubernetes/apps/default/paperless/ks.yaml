@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-cloudnative-pg
     - name: cluster-apps-external-secrets
-  path: ./kubernetes/apps/home/paperless/app
+  path: ./kubernetes/apps/default/paperless/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -18,7 +18,7 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: paperless
-      namespace: home
+      namespace: default
   interval: 15m
   retryInterval: 1m
   timeout: 5m
