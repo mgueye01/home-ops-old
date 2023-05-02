@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-cloudnative-pg
-    - name: cluster-apps-external-secrets-stores
+    - name: cluster-apps-external-secrets
   path: ./kubernetes/apps/home/paperless/app
   prune: true
   sourceRef:
