@@ -36,12 +36,12 @@ spec:
       TZ: Europe/Paris
     service:
       main:
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        loadBalancerIP: 192.168.10.68
         ports:
           http:
             port: 32400
-        annotations:
-          metallb.universe.tf/allow-shared-ip: plex
-          metallb.universe.tf/loadBalancerIPs: 192.168.10.68
     ingress:
       main:
         enabled: true
