@@ -34,6 +34,10 @@ spec:
       tag: 1.32.0.6973-a787c5a8e@sha256:970a7f3226b6d9e3dcda12134647b465a4f14115c03d52751264d603a8f621e5
     env:
       TZ: Europe/Paris
+      ADVERTISE_IP: "http://${SVC_PLEX_ADDR}:32400,https://{{ .Release.Name }}.${SECRET_DOMAIN}:443"
+      PLEX_PREFERENCE_1: "FriendlyName=k8s-plex"
+      PLEX_CLAIM: "${SECRET_PLEX_TOKEN}"
+      HOSTNAME: "plex"
     service:
       main:
         type: LoadBalancer
@@ -49,8 +53,8 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: ipv4.g-eye.io
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-          external-dns.home.arpa/enabled: "true"
-          external-dns.alpha.kubernetes.io/hostname: "plex.g-eye.io"
+          # external-dns.home.arpa/enabled: "true"
+          # external-dns.alpha.kubernetes.io/hostname: "plex.g-eye.io"
           external-dns/is-public: "true"
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
