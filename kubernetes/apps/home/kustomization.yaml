@@ -9,7 +9,7 @@ resources:
   # - zwavejs2mqtt
   # - zigbee2mqtt
   # - zigbee2mqtt-exporter
-  # - paperless
+  - ./paperless/ks.yaml
   # - mealie
   # - esphome
   # - appdaemon
