@@ -12,7 +12,7 @@ resources:
   - karma
   - kubernetes-event-exporter
   - blackbox-exporter
-  - goldilocks
+  # - goldilocks
   - pushgateway
   # - intel-gpu-exporter
   - smartctl-exporter
