@@ -286,7 +286,7 @@ spec:
       prometheusSpec:
         externalLabels:
           cluster: home-ops
-        replicas: 1
+        replicas: 3
         replicaExternalLabelName: __replica__ # must match with thanos value `.query.replicaLabel[0]`
         podAntiAffinity: hard
         retentionSize: "6GB"
