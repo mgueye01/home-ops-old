@@ -24,7 +24,7 @@ spec:
     remediation:
       retries: 5
   values:
-    replicas: 3
+    replicas: 1
     rbac:
       pspEnabled: false
     env:
