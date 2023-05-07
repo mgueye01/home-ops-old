@@ -20,40 +20,16 @@ spec:
     createNamespace: true
     crds: CreateReplace
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
     remediation:
-      retries: 5
+      remediateLastFailure: true
+      retries: 3
+      strategy: rollback
+    cleanupOnFail: true
     crds: CreateReplace
+    force: true
   values:
-    # fullnameOverride: prometheus
-    # defaultRules:
-    #   create: true
-    #   rules:
-    #     alertmanager: true
-    #     etcd: true
-    #     configReloaders: true
-    #     general: true
-    #     k8s: true
-    #     kubeApiserver: true
-    #     kubeApiserverAvailability: true
-    #     kubeApiserverSlos: true
-    #     kubelet: true
-    #     kubeProxy: false
-    #     kubePrometheusGeneral: true
-    #     kubePrometheusNodeRecording: true
-    #     kubernetesApps: true
-    #     kubernetesResources: true
-    #     kubernetesStorage: true
-    #     kubernetesSystem: true
-    #     kubeScheduler: false
-    #     kubeStateMetrics: true
-    #     network: true
-    #     node: true
-    #     nodeExporterAlerting: true
-    #     nodeExporterRecording: true
-    #     prometheus: true
-    #     prometheusOperator: true
     alertmanager:
       config:
         global:
@@ -194,17 +170,25 @@ spec:
           multicluster:
             etcd:
               enabled: true
+    # kubelet:
+    #   enabled: true
+    #   serviceMonitor:
+    #     metricRelabelings:
+    #       # Remove duplicate metrics
+    #       - sourceLabels: ["__name__"]
+    #         regex: "(apiserver_audit|apiserver_client|apiserver_delegated|apiserver_envelope|apiserver_storage|apiserver_webhooks|authentication_token|cadvisor_version|container_blkio|container_cpu|container_fs|container_last|container_memory|container_network|container_oom|container_processes|container|csi_operations|disabled_metric|get_token|go|hidden_metric|kubelet_certificate|kubelet_cgroup|kubelet_container|kubelet_containers|kubelet_cpu|kubelet_device|kubelet_graceful|kubelet_http|kubelet_lifecycle|kubelet_managed|kubelet_node|kubelet_pleg|kubelet_pod|kubelet_run|kubelet_running|kubelet_runtime|kubelet_server|kubelet_started|kubelet_volume|kubernetes_build|kubernetes_feature|machine_cpu|machine_memory|machine_nvm|machine_scrape|node_namespace|plugin_manager|prober_probe|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|registered_metric|rest_client|scrape_duration|scrape_samples|scrape_series|storage_operation|volume_manager|volume_operation|workqueue)_(.+)"
+    #         action: keep
+    #       - sourceLabels: ["node"]
+    #         targetLabel: instance
+    #         action: replace
     kubelet:
       enabled: true
       serviceMonitor:
         metricRelabelings:
-          # Remove duplicate metrics
-          - sourceLabels: ["__name__"]
-            regex: "(apiserver_audit|apiserver_client|apiserver_delegated|apiserver_envelope|apiserver_storage|apiserver_webhooks|authentication_token|cadvisor_version|container_blkio|container_cpu|container_fs|container_last|container_memory|container_network|container_oom|container_processes|container|csi_operations|disabled_metric|get_token|go|hidden_metric|kubelet_certificate|kubelet_cgroup|kubelet_container|kubelet_containers|kubelet_cpu|kubelet_device|kubelet_graceful|kubelet_http|kubelet_lifecycle|kubelet_managed|kubelet_node|kubelet_pleg|kubelet_pod|kubelet_run|kubelet_running|kubelet_runtime|kubelet_server|kubelet_started|kubelet_volume|kubernetes_build|kubernetes_feature|machine_cpu|machine_memory|machine_nvm|machine_scrape|node_namespace|plugin_manager|prober_probe|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|registered_metric|rest_client|scrape_duration|scrape_samples|scrape_series|storage_operation|volume_manager|volume_operation|workqueue)_(.+)"
-            action: keep
-          - sourceLabels: ["node"]
+          - action: replace
+            sourceLabels:
+              - node
             targetLabel: instance
-            action: replace
     kubeApiServer:
       enabled: true
       serviceMonitor:
