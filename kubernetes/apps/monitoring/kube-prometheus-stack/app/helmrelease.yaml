@@ -182,7 +182,7 @@ spec:
     #         targetLabel: instance
     #         action: replace
     kubelet:
-      enabled: true
+      enabled: false
       serviceMonitor:
         metricRelabelings:
           - action: replace
