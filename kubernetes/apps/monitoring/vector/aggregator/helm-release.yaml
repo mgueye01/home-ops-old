@@ -84,10 +84,31 @@ spec:
             - vector_metrics
           address: 0.0.0.0:9090
     service:
-      enabled: true
-      type: LoadBalancer
-      loadBalancerIP: '${LB_VECTOR_AGGREGATOR}'
-      externalTrafficPolicy: Local
+      main:
+        type: LoadBalancer
+        loadBalancerIP: '${LB_VECTOR_AGGREGATOR}'
+        externalTrafficPolicy: Local
+        ports:
+          # http:
+          #   port: 8686
+          # kubernetes-logs:
+          #   enabled: true
+          #   port: 6000
+          # vyos-logs:
+          #   enabled: true
+          #   port: 6002
+          # journald-logs:
+          #   enabled: true
+          #   port: 6001
+          talos-kernel:
+            enabled: true
+            port: 6050
+            protocol: UDP
+          talos-service:
+            enabled: true
+            port: 6051
+            protocol: UDP
+
     podMonitor:
       enabled: true
       jobLabel: vector-aggregator
