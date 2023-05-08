@@ -171,7 +171,7 @@ spec:
             etcd:
               enabled: true
     kubelet:
-      enabled: true
+      enabled: false
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate metrics
