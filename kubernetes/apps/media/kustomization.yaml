@@ -3,13 +3,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./namespace.yaml
-  - tautulli
-  - ./plex/ks.yaml
-  - ./radarr/ks.yaml
-  - sonarr
-  - lidarr
-  - prowlarr
-  - ./overseerr/ks.yaml
-  - recyclarr
-  - plex-meta-manager
-  - navidrome
+  # - tautulli
+  # - ./plex/ks.yaml
+  # - ./radarr/ks.yaml
+  # - sonarr
+  # - lidarr
+  # - prowlarr
+  # - ./overseerr/ks.yaml
+  # - recyclarr
+  # - plex-meta-manager
+  # - navidrome
