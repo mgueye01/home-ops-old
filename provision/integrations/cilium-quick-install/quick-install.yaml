@@ -551,7 +551,7 @@ spec:
                   key: custom-cni-conf
                   optional: true
             - name: KUBERNETES_SERVICE_HOST
-              value: "192.168.10.250"
+              value: "home-ops.g-eye.tech"
             - name: KUBERNETES_SERVICE_PORT
               value: "6443"
           lifecycle:
