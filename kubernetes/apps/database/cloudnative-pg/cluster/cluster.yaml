@@ -42,7 +42,7 @@ spec:
         jobs: 4
       destinationPath: s3://postgresql/
       endpointURL: http://minio.default.svc.cluster.local:9000
-      serverName: postgres-v4
+      serverName: postgres-v1
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
