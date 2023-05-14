@@ -55,7 +55,6 @@ k3s_server_manifests_urls:
     filename: custom-prometheus-scrapeconfigs.yaml
   - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.65.1/example/prometheus-operator-crd/monitoring.coreos.com_prometheusagents.yaml
     filename: custom-prometheus-prometheusagents.yaml
-
 # (list) A flat list of templates to deploy on the primary control plane
 # /var/lib/rancher/k3s/server/manifests
 # k3s_server_manifests_templates:

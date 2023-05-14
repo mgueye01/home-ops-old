@@ -86,7 +86,7 @@ spec:
     service:
       enabled: true
       type: LoadBalancer
-      loadBalancerIP: '${LB_VECTOR_AGGREGATOR}'
+      loadBalancerIP: "${LB_VECTOR_AGGREGATOR}"
       externalTrafficPolicy: Local
 
     podMonitor:

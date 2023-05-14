@@ -2,12 +2,12 @@
 version: "3"
 
 x-task-vars: &task-vars
-  rsrc: '{{.rsrc}}'
-  controller: '{{.controller}}'
-  namespace: '{{.namespace}}'
-  claim: '{{.claim}}'
-  ts: '{{.ts}}'
-  kustomization: '{{.kustomization}}'
+  rsrc: "{{.rsrc}}"
+  controller: "{{.controller}}"
+  namespace: "{{.namespace}}"
+  claim: "{{.claim}}"
+  ts: "{{.ts}}"
+  kustomization: "{{.kustomization}}"
 
 vars:
   destinationTemplate: "{{.ROOT_DIR}}/.taskfiles/VolSync/ReplicationDestination.tmpl.yaml"
@@ -17,7 +17,6 @@ vars:
   ts: '{{now | date "150405"}}'
 
 tasks:
-
   list:
     desc: List all snapshots taken by restic for a given ReplicationSource (ex. task vs:list rsrc=plex [namespace=default])
     silent: true

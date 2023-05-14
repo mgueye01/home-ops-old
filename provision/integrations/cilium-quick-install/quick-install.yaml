@@ -1,27 +1,483 @@
----
-# Source: cilium/templates/cilium-agent/serviceaccount.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: "cilium"
-  namespace: kube-system
   annotations:
     meta.helm.sh/release-name: cilium
     meta.helm.sh/release-namespace: kube-system
   labels:
     app.kubernetes.io/managed-by: Helm
+  name: cilium
+  namespace: kube-system
 ---
-# Source: cilium/templates/cilium-operator/serviceaccount.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: "cilium-operator"
-  namespace: kube-system
   annotations:
     meta.helm.sh/release-name: cilium
     meta.helm.sh/release-namespace: kube-system
   labels:
     app.kubernetes.io/managed-by: Helm
+  name: cilium-operator
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: hubble-relay
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: hubble-ui
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cilium
+  name: cilium-config-agent
+  namespace: kube-system
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - get
+      - list
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cilium
+  name: cilium
+rules:
+  - apiGroups:
+      - networking.k8s.io
+    resources:
+      - networkpolicies
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - discovery.k8s.io
+    resources:
+      - endpointslices
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+      - services
+      - pods
+      - endpoints
+      - nodes
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - apiextensions.k8s.io
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - list
+      - watch
+      - get
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumloadbalancerippools
+      - ciliumbgppeeringpolicies
+      - ciliumclusterwideenvoyconfigs
+      - ciliumclusterwidenetworkpolicies
+      - ciliumegressgatewaypolicies
+      - ciliumendpoints
+      - ciliumendpointslices
+      - ciliumenvoyconfigs
+      - ciliumidentities
+      - ciliumlocalredirectpolicies
+      - ciliumnetworkpolicies
+      - ciliumnodes
+      - ciliumnodeconfigs
+    verbs:
+      - list
+      - watch
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumidentities
+      - ciliumendpoints
+      - ciliumnodes
+    verbs:
+      - create
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumidentities
+    verbs:
+      - update
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumendpoints
+    verbs:
+      - delete
+      - get
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumnodes
+      - ciliumnodes/status
+    verbs:
+      - get
+      - update
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumnetworkpolicies/status
+      - ciliumclusterwidenetworkpolicies/status
+      - ciliumendpoints/status
+      - ciliumendpoints
+    verbs:
+      - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cilium
+  name: cilium-operator
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - get
+      - list
+      - watch
+      - delete
+  - apiGroups:
+      - ""
+    resources:
+      - nodes
+    verbs:
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - nodes
+      - nodes/status
+    verbs:
+      - patch
+  - apiGroups:
+      - discovery.k8s.io
+    resources:
+      - endpointslices
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - services/status
+    verbs:
+      - update
+      - patch
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - services
+      - endpoints
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumnetworkpolicies
+      - ciliumclusterwidenetworkpolicies
+    verbs:
+      - create
+      - update
+      - deletecollection
+      - patch
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumnetworkpolicies/status
+      - ciliumclusterwidenetworkpolicies/status
+    verbs:
+      - patch
+      - update
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumendpoints
+      - ciliumidentities
+    verbs:
+      - delete
+      - list
+      - watch
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumidentities
+    verbs:
+      - update
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumnodes
+    verbs:
+      - create
+      - update
+      - get
+      - list
+      - watch
+      - delete
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumnodes/status
+    verbs:
+      - update
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumendpointslices
+      - ciliumenvoyconfigs
+    verbs:
+      - create
+      - update
+      - get
+      - list
+      - watch
+      - delete
+      - patch
+  - apiGroups:
+      - apiextensions.k8s.io
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - create
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - apiextensions.k8s.io
+    resourceNames:
+      - ciliumloadbalancerippools.cilium.io
+      - ciliumbgppeeringpolicies.cilium.io
+      - ciliumclusterwideenvoyconfigs.cilium.io
+      - ciliumclusterwidenetworkpolicies.cilium.io
+      - ciliumegressgatewaypolicies.cilium.io
+      - ciliumendpoints.cilium.io
+      - ciliumendpointslices.cilium.io
+      - ciliumenvoyconfigs.cilium.io
+      - ciliumexternalworkloads.cilium.io
+      - ciliumidentities.cilium.io
+      - ciliumlocalredirectpolicies.cilium.io
+      - ciliumnetworkpolicies.cilium.io
+      - ciliumnodes.cilium.io
+      - ciliumnodeconfigs.cilium.io
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - update
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumloadbalancerippools
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumloadbalancerippools/status
+    verbs:
+      - patch
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs:
+      - create
+      - get
+      - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cilium
+  name: hubble-ui
+rules:
+  - apiGroups:
+      - networking.k8s.io
+    resources:
+      - networkpolicies
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - componentstatuses
+      - endpoints
+      - namespaces
+      - nodes
+      - pods
+      - services
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - apiextensions.k8s.io
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - cilium.io
+    resources:
+      - "*"
+    verbs:
+      - get
+      - list
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cilium
+  name: cilium-config-agent
+  namespace: kube-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: cilium-config-agent
+subjects:
+  - kind: ServiceAccount
+    name: cilium
+    namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cilium
+  name: cilium
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cilium
+subjects:
+  - kind: ServiceAccount
+    name: cilium
+    namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cilium
+  name: cilium-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cilium-operator
+subjects:
+  - kind: ServiceAccount
+    name: cilium-operator
+    namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: cilium
+  name: hubble-ui
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: hubble-ui
+subjects:
+  - kind: ServiceAccount
+    name: hubble-ui
+    namespace: kube-system
 ---
 # Source: cilium/templates/cilium-configmap.yaml
 apiVersion: v1
@@ -161,270 +617,6 @@ data:
   cgroup-root: "/run/cilium/cgroupv2"
   enable-k8s-terminating-endpoint: "true"
 ---
-# Source: cilium/templates/cilium-agent/clusterrole.yaml
-
-
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/rbac.authorization.k8s.io/clusterrole_v1.json
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: cilium
-  annotations:
-    meta.helm.sh/release-name: cilium
-    meta.helm.sh/release-namespace: kube-system
-  labels:
-    app.kubernetes.io/managed-by: Helm
-rules:
-  - apiGroups:
-      - networking.k8s.io
-    resources:
-      - networkpolicies
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - discovery.k8s.io
-    resources:
-      - endpointslices
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - namespaces
-      - services
-      - nodes
-      - endpoints
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - pods
-      - pods/finalizers
-    verbs:
-      - get
-      - list
-      - watch
-      - update
-      - delete
-  - apiGroups:
-      - ""
-    resources:
-      - nodes
-    verbs:
-      - get
-      - list
-      - watch
-      - update
-  - apiGroups:
-      - ""
-    resources:
-      - nodes
-      - nodes/status
-    verbs:
-      - patch
-  - apiGroups:
-      - apiextensions.k8s.io
-    resources:
-      - customresourcedefinitions
-    verbs:
-      # Deprecated for removal in v1.10
-      - create
-      - list
-      - watch
-      - update
-
-      # This is used when validating policies in preflight. This will need to stay
-      # until we figure out how to avoid "get" inside the preflight, and then
-      # should be removed ideally.
-      - get
-  - apiGroups:
-      - cilium.io
-    resources:
-      - ciliumnetworkpolicies
-      - ciliumnetworkpolicies/status
-      - ciliumnetworkpolicies/finalizers
-      - ciliumclusterwidenetworkpolicies
-      - ciliumclusterwidenetworkpolicies/status
-      - ciliumclusterwidenetworkpolicies/finalizers
-      - ciliumendpoints
-      - ciliumendpoints/status
-      - ciliumendpoints/finalizers
-      - ciliumnodes
-      - ciliumnodes/status
-      - ciliumnodes/finalizers
-      - ciliumidentities
-      - ciliumidentities/finalizers
-      - ciliumlocalredirectpolicies
-      - ciliumlocalredirectpolicies/status
-      - ciliumlocalredirectpolicies/finalizers
-      - ciliumegressnatpolicies
-      - ciliumendpointslices
-    verbs:
-      - "*"
----
-# Source: cilium/templates/cilium-operator/clusterrole.yaml
-
-
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/rbac.authorization.k8s.io/clusterrole_v1.json
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: cilium-operator
-  annotations:
-    meta.helm.sh/release-name: cilium
-    meta.helm.sh/release-namespace: kube-system
-  labels:
-    app.kubernetes.io/managed-by: Helm
-rules:
-  - apiGroups:
-      - ""
-    resources:
-      # to automatically delete [core|kube]dns pods so that are starting to being
-      # managed by Cilium
-      - pods
-    verbs:
-      - get
-      - list
-      - watch
-      - delete
-  - apiGroups:
-      - discovery.k8s.io
-    resources:
-      - endpointslices
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - services
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      # to perform LB IP allocation for BGP
-      - services/status
-    verbs:
-      - update
-  - apiGroups:
-      - ""
-    resources:
-      # to perform the translation of a CNP that contains `ToGroup` to its endpoints
-      - services
-      - endpoints
-      # to check apiserver connectivity
-      - namespaces
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - cilium.io
-    resources:
-      - ciliumnetworkpolicies
-      - ciliumnetworkpolicies/status
-      - ciliumnetworkpolicies/finalizers
-      - ciliumclusterwidenetworkpolicies
-      - ciliumclusterwidenetworkpolicies/status
-      - ciliumclusterwidenetworkpolicies/finalizers
-      - ciliumendpoints
-      - ciliumendpoints/status
-      - ciliumendpoints/finalizers
-      - ciliumnodes
-      - ciliumnodes/status
-      - ciliumnodes/finalizers
-      - ciliumidentities
-      - ciliumendpointslices
-      - ciliumidentities/status
-      - ciliumidentities/finalizers
-      - ciliumlocalredirectpolicies
-      - ciliumlocalredirectpolicies/status
-      - ciliumlocalredirectpolicies/finalizers
-    verbs:
-      - "*"
-  - apiGroups:
-      - apiextensions.k8s.io
-    resources:
-      - customresourcedefinitions
-    verbs:
-      - create
-      - get
-      - list
-      - update
-      - watch
-  # For cilium-operator running in HA mode.
-  #
-  # Cilium operator running in HA mode requires the use of ResourceLock for Leader Election
-  # between multiple running instances.
-  # The preferred way of doing this is to use LeasesResourceLock as edits to Leases are less
-  # common and fewer objects in the cluster watch "all Leases".
-  - apiGroups:
-      - coordination.k8s.io
-    resources:
-      - leases
-    verbs:
-      - create
-      - get
-      - update
----
-# Source: cilium/templates/cilium-agent/clusterrolebinding.yaml
-
-
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/rbac.authorization.k8s.io/clusterrolebinding_v1.json
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: cilium
-  annotations:
-    meta.helm.sh/release-name: cilium
-    meta.helm.sh/release-namespace: kube-system
-  labels:
-    app.kubernetes.io/managed-by: Helm
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cilium
-subjects:
-  - kind: ServiceAccount
-    name: "cilium"
-    namespace: kube-system
----
-# Source: cilium/templates/cilium-operator/clusterrolebinding.yaml
-
-
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/rbac.authorization.k8s.io/clusterrolebinding_v1.json
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: cilium-operator
-  annotations:
-    meta.helm.sh/release-name: cilium
-    meta.helm.sh/release-namespace: kube-system
-  labels:
-    app.kubernetes.io/managed-by: Helm
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cilium-operator
-subjects:
-  - kind: ServiceAccount
-    name: "cilium-operator"
-    namespace: kube-system
----
-# Source: cilium/templates/cilium-agent/daemonset.yaml
-
-
 # yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/apps/daemonset_v1.json
 apiVersion: apps/v1
 kind: DaemonSet
@@ -717,8 +909,6 @@ spec:
             name: cilium-config
 ---
 # Source: cilium/templates/cilium-operator/deployment.yaml
-
-
 # yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/apps/deployment_v1.json
 apiVersion: apps/v1
 kind: Deployment
