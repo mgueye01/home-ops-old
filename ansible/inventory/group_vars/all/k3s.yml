@@ -31,8 +31,8 @@ k3s_registration_address: 192.168.10.250
 #   - url: https://docs.projectcalico.org/archive/v3.22/manifests/tigera-operator.yaml
 #     filename: tigera-operator.yaml
 k3s_server_manifests_urls:
-  - url: https://raw.githubusercontent.com/mgueye01/homelab/main/provision/integrations/cilium-quick-install/quick-install.yaml
-    filename: quick-install.yaml
+  # - url: https://raw.githubusercontent.com/mgueye01/homelab/main/provision/integrations/cilium-quick-install/quick-install.yaml
+  #   filename: quick-install.yaml
   - url: https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
     filename: custom-calico-tigera-operator.yaml
   - url: https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.65.1/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml
@@ -57,7 +57,7 @@ k3s_server_manifests_urls:
     filename: custom-prometheus-prometheusagents.yaml
 # (list) A flat list of templates to deploy on the primary control plane
 # /var/lib/rancher/k3s/server/manifests
-# k3s_server_manifests_templates:
-#   - "calico-installation.yaml.j2"
+k3s_server_manifests_templates:
+  - "calico-installation.yaml.j2"
 # - "kube-vip-rbac.yaml.j2"
 # - "kube-vip-daemonset.yaml.j2"
