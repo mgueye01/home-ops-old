@@ -78,7 +78,7 @@ spec:
           group_by: ["alertname", "job"]
           group_wait: 1m
           group_interval: 2m
-          repeat_interval: 2m
+          repeat_interval: 120m
           receiver: "pushover"
           routes:
             # - receiver: "robusta"
@@ -324,7 +324,7 @@ spec:
               username: admin
               password: ${SECRET_PIKVM_PWD}
             static_configs:
-              - targets: ["pikvm.g-eye.tech"]
+              - targets: ["192.168.0.171"]
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
