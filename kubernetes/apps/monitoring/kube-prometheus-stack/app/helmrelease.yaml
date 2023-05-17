@@ -320,11 +320,12 @@ spec:
                 replacement: 192.168.0.18:9116 # The SNMP exporter's real hostname:port.
           - job_name: pikvm
             metrics_path: /api/export/prometheus/metrics
+            scheme: https
             basic_auth:
               username: admin
               password: ${SECRET_PIKVM_PWD}
             static_configs:
-              - targets: ["192.168.0.171"]
+              - targets: ["pikvm.g-eye.ioss"]
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
