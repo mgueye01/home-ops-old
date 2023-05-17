@@ -321,11 +321,13 @@ spec:
           - job_name: pikvm
             metrics_path: /api/export/prometheus/metrics
             scheme: https
+            tls_config:
+              insecure_skip_verify: true
             basic_auth:
               username: admin
               password: ${SECRET_PIKVM_PWD}
             static_configs:
-              - targets: ["pikvm.g-eye.ioss"]
+              - targets: ["pikvm.g-eye.tech"]
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
