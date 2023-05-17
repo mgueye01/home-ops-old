@@ -24,7 +24,7 @@ spec:
     remediation:
       retries: 5
   values:
-    replicas: 1
+    replicas: 3
     rbac:
       pspEnabled: false
     env:
@@ -116,6 +116,12 @@ spec:
             type: loki
             access: proxy
             url: http://loki-gateway.monitoring.svc.cluster.local:80
+          - name: Alertmanager
+            type: alertmanager
+            access: proxy
+            url: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
+            jsonData:
+              implementation: prometheus
     dashboards:
       default:
         External-dns:
@@ -130,16 +136,37 @@ spec:
         # Ref: https://grafana.com/grafana/dashboards/5336
         ceph-osd:
           gnetId: 5336
-          revision: 5
+          revision: 9
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/5342
         ceph-pools:
           gnetId: 5342
-          revision: 5
+          revision: 9
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/2842-ceph-cluster/
+        ceph-cluster:
+          gnetId: 2842
+          revision: 16
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/763-redis-dashboard-for-prometheus-redis-exporter-1-x/
+        redis:
+          gnetId: 763
+          revision: 4
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+        node-exporter-full:
+          gnetId: 1860
+          revision: 30
+          datasource: Prometheus
+        cert-manager:
+          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          datasource: Prometheus
+        external-secrets:
+          url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
           datasource: Prometheus
         minio:
           gnetId: 13502
-          revision: 10
+          revision: 21
           datasource: Prometheus
         home-ops-kubernetes:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
