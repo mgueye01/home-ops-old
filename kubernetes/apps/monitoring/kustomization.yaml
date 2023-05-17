@@ -10,7 +10,7 @@ resources:
   - ./unpoller/ks.yaml
   - node-problem-detector
   - karma
-  - kubernetes-event-exporter
+  # - kubernetes-event-exporter
   - blackbox-exporter
   # - goldilocks
   - pushgateway
