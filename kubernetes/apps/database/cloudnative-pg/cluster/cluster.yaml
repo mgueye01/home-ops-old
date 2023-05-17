@@ -22,11 +22,6 @@ spec:
   bootstrap:
     recovery:
       source: &previous-cluster postgres-v2
-  # bootstrap:
-  #   initdb:
-  #     # set up 'default' db/owner
-  #     database: default
-  #     owner: default
   postgresql:
     parameters:
       max_connections: "600"
@@ -39,10 +34,6 @@ spec:
       wal:
         compression: bzip2
         maxParallel: 8
-      data:
-        compression: bzip2
-        immediateCheckpoint: false
-        jobs: 4
       destinationPath: s3://postgresql/
       endpointURL: http://minio.default.svc.cluster.local:9000
       serverName: postgres-v3
