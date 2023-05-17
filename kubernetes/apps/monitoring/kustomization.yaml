@@ -5,14 +5,14 @@ resources:
   - ./namespace.yaml
   - ./thanos/ks.yaml
   - grafana
-  - loki/ks.yaml
+  - ./loki/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
   - ./unpoller/ks.yaml
   - node-problem-detector
   - karma
-  - kubernetes-event-exporter
+  - ./kubernetes-event-exporter/ks.yaml
   - blackbox-exporter
   # - goldilocks
   - pushgateway
-  - smartctl-exporter
+  - ./smartctl-exporter/ks.yaml
   - vector
