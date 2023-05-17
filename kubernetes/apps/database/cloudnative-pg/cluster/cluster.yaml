@@ -19,9 +19,9 @@ spec:
     storageClass: ceph-block
   superuserSecret:
     name: cloudnative-pg-secret
-  # bootstrap:
-  #   recovery:
-  #     source: &previous-cluster postgres-v3
+  bootstrap:
+    recovery:
+      source: &previous-cluster postgres-v1
   # bootstrap:
   #   initdb:
   #     # set up 'default' db/owner
@@ -55,7 +55,7 @@ spec:
           key: aws-secret-access-key
   # externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-    # - name: *previous-cluster
+    - name: *previous-cluster
     - name: postgres
       barmanObjectStore:
         wal:
