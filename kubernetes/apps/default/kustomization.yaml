@@ -17,3 +17,4 @@ resources:
   - ./weave-gitops/ks.yaml
   - ./kubernetes-schemas/ks.yaml
   # - ./paperless/ks.yaml
+  - ./hajimari/ks.yaml
