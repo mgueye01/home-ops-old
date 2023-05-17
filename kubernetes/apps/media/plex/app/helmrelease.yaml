@@ -53,8 +53,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: ipv4.g-eye.io
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-          # external-dns.home.arpa/enabled: "true"
-          # external-dns.alpha.kubernetes.io/hostname: "plex.g-eye.io"
+          hajimari.io/icon: mdi:plex
           external-dns/is-public: "true"
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"

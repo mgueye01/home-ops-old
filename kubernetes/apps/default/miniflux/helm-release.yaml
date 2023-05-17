@@ -59,6 +59,7 @@ spec:
         annotations:
           auth.home.arpa/enabled: "false"
           external-dns/is-public: "true"
+          hajimari.io/enable: "true"
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:

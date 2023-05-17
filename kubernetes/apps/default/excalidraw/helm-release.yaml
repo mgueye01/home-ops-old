@@ -42,6 +42,7 @@ spec:
         annotations:
           auth.home.arpa/enabled: "true"
           external-dns/is-public: "true"
+          hajimari.io/enable: "true"
         hosts:
           - host: &host "draw.${SECRET_DOMAIN}"
             paths:
