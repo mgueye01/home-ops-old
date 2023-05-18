@@ -12,7 +12,7 @@ spec:
   nfs:
     server: nas.g-eye.tech
     path: /volume1/Photo
-  mountOptions: ["nfsvers=4.1", "hard", "noatime"]
+  # mountOptions: ["nfsvers=4.1", "hard", "noatime"]
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
