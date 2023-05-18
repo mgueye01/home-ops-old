@@ -10,7 +10,7 @@ resources:
   - lidarr
   - prowlarr
   - ./overseerr/ks.yaml
-  - recyclarr
+  - ./recyclarr/ks.yaml
   - plex-meta-manager
   - navidrome
   - ./jellyfin/ks.yaml

@@ -1,14 +1,16 @@
 ---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources:
-  - secret.sops.yaml
-  - cron-job.yaml
 namespace: media
+resources:
+  - ./externalsecret.yaml
+  - ./helmrelease.yaml
+  - ./volsync.yaml
 configMapGenerator:
-  - name: recyclarr
+  - name: recyclarr-configmap
     files:
-      - recyclarr.yaml
+      - recyclarr.yml=./config/recyclarr.yml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
