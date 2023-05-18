@@ -13,3 +13,4 @@ resources:
   - recyclarr
   - plex-meta-manager
   - navidrome
+  - ./jellyfin/ks.yaml
