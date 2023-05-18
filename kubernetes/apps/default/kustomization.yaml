@@ -18,3 +18,4 @@ resources:
   - ./kubernetes-schemas/ks.yaml
   - ./paperless/ks.yaml
   - ./hajimari/ks.yaml
+  - ./changedetection.io/ks.yaml
