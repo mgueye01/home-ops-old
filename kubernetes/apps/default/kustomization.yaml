@@ -19,3 +19,4 @@ resources:
   - ./paperless/ks.yaml
   - ./hajimari/ks.yaml
   - ./changedetection.io/ks.yaml
+  - ./immiche/ks.yaml
