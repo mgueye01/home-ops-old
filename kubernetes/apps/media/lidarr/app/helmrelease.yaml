@@ -1,11 +1,12 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: lidarr
   namespace: media
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: app-template
@@ -14,18 +15,33 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
+  maxHistory: 2
   install:
     createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/onedr0p/lidarr
-      tag: 1.1.4.3027@sha256:d7e06edaee3b2227a0dcbf170a95d26595b0d10655d5e084c45b859f175a0672
+      repository: ghcr.io/onedr0p/lidarr-develop
+      tag: 1.1.4.3027@sha256:45e2ddaf00feffc17614562ad4fc8480a90bc92ffa6e97845e9ae1984c463709
     env:
-      TZ: "${TIMEZONE}"
+      TZ: Europe/Paris
       LIDARR__INSTANCE_NAME: Lidarr
-      LIDARR__PORT: &port 8686
+      LIDARR__PORT: &port 80
       LIDARR__LOG_LEVEL: info
+    envFrom:
+      - secretRef:
+          name: lidarr-secret
     service:
       main:
         ports:
@@ -34,18 +50,15 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: nginx
         annotations:
-          external-dns/is-public: "true"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          auth.home.arpa/enabled: "true"
-          cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_PUBLIC_DOMAIN}/css/base/lidarr/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.g-eye.io/css/base/lidarr/nord.css"></head>';
             sub_filter_once on;
+          hajimari.io/icon: mdi:headphones
         hosts:
-          - host: &host "lidarr.${SECRET_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:
               - path: /
                 pathType: Prefix
@@ -56,32 +69,19 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 100
-    metrics:
-      enabled: true
-      serviceMonitor:
-        interval: 5m
-        scrapeTimeout: 1m
-      prometheusRule:
-        enabled: false
-      exporter:
-        image:
-          repository: ghcr.io/onedr0p/exportarr
-          tag: v1.3.2
-        env:
-          port: 9794
-          additionalMetrics: true
-          unknownQueueItems: true
+      fsGroupChangePolicy: OnRootMismatch
+      supplementalGroups: [10000]
+    volumeClaimTemplates:
+      - name: config
+        mountPath: /config
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        storageClass: ceph-block
     persistence:
-      config:
-        enabled: true
-        existingClaim: lidarr-config-v1
       media:
         enabled: true
         type: nfs
-        server: ${NAS_ADDR}
+        server: nas.g-eye.tech
         path: /volume1/music
         mountPath: /media
       downloads:
@@ -89,18 +89,18 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDR}
+            server: nas.g-eye.tech
             path: /volume1/downloads/complete
         mountPath: /downloads
       backup:
         enabled: true
         type: nfs
-        server: ${NAS_ADDR}
+        server: nas.g-eye.tech
         path: /volume1/CLOUDNATIVE1/Backups/lidarr
         mountPath: /config/Backups
     resources:
       requests:
         cpu: 10m
-        memory: 150Mi
+        memory: 250Mi
       limits:
-        memory: 1000Mi
+        memory: 2000Mi
