@@ -4,7 +4,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: jellyfin
-  namespace: default
+  namespace: media
 spec:
   interval: 15m
   chart:
@@ -13,7 +13,7 @@ spec:
       version: 1.5.0
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: bjw-s-charts
         namespace: flux-system
   maxHistory: 2
   install:
@@ -33,11 +33,11 @@ spec:
       repository: ghcr.io/onedr0p/jellyfin
       tag: 10.8.10@sha256:1ef614db6a4c589777eb48bc9004d573b9c09f0d6d573a509041c6060f3a956b
     env:
-      TZ: America/New_York
+      TZ: Europe/Paris
     service:
       main:
         type: LoadBalancer
-        externalIPs: ["192.168.69.105"]
+        externalIPs: ["192.168.10.61"]
         externalTrafficPolicy: Local
         ports:
           http:
@@ -90,8 +90,8 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: expanse.turbo.ac
-        path: /eros/Media
+        server: nas.g-eye.tech
+        path: /volume1/video
         mountPath: /media
         readOnly: true
       transcode:
