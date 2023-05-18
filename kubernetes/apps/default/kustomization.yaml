@@ -9,7 +9,7 @@ resources:
   - theme-park
   # # - ghost
   - homer
-  - echo-server
+  # - echo-server
   - excalidraw
   - outline
   - minio
@@ -18,5 +18,5 @@ resources:
   - ./kubernetes-schemas/ks.yaml
   - ./paperless/ks.yaml
   - ./hajimari/ks.yaml
-  - ./changedetection.io/ks.yaml
+  - ./changedetection/ks.yaml
   - ./immiche/ks.yaml
