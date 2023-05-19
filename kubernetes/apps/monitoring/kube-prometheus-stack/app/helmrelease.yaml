@@ -328,6 +328,12 @@ spec:
               password: ${SECRET_PIKVM_PWD}
             static_configs:
               - targets: ["pikvm.g-eye.tech"]
+          - job_name: environment
+            static_configs:
+              - targets: ['enviro.g-eye.tech:8000']
+                labels:
+                  group: 'environment'
+                  location: 'Paris'
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
