@@ -119,7 +119,7 @@ spec:
             summary: Redis too many connections.
           expr: |
             redis_connected_clients
-              > 100
+              > 200
           for: 2m
           labels:
             severity: warning

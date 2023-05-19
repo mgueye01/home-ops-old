@@ -333,7 +333,7 @@ spec:
               - targets: ['enviro.g-eye.tech:8000']
                 labels:
                   group: 'environment'
-                  location: 'Paris'
+                  location: 'Office'
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
