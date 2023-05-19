@@ -6,3 +6,4 @@ namespace: database
 resources:
   - ./helmrelease.yaml
   - monitoring
+  - dashboard
