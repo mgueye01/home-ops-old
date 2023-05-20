@@ -9,10 +9,9 @@ resources:
   - theme-park
   # # - ghost
   # - homer
-  # - echo-server
   - excalidraw
   - outline
-  # - minio
+  - minio
   # - miniflux
   - ./weave-gitops/ks.yaml
   - ./kubernetes-schemas/ks.yaml
