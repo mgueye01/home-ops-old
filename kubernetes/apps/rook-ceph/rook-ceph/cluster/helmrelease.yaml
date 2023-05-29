@@ -108,6 +108,7 @@ spec:
         host:
           name: &host rook.g-eye.io
           path: "/"
+          pathType: Prefix
         tls:
           - hosts:
               - *host
