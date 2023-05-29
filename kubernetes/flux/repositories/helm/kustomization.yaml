@@ -46,3 +46,4 @@ resources:
   - ./piraeus.yaml
   - ./intel.yaml
   - ./hajimari.yaml
+  - ./actions-runner-controller.yaml
