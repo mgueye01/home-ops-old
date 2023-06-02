@@ -1,26 +1,29 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/kyverno.io/clusterpolicy_v1.json
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
   name: remove-cpu-limit
   annotations:
-    policies.kyverno.io/title: Remove CPU limits
-    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/title: Remove CPU limit
     policies.kyverno.io/subject: Pod
     policies.kyverno.io/description: >-
       This policy removes CPU limits from all Pods.
-    pod-policies.kyverno.io/autogen-controllers: none
 spec:
+  background: true
   mutateExistingOnPolicyUpdate: true
   generateExistingOnPolicyUpdate: true
   rules:
-    - name: remove-containers-cpu-limits
+    - name: delete-containers-cpu-limits
       match:
         any:
           - resources:
               kinds:
                 - Pod
       mutate:
+        targets:
+          - kind: Pod
+            namespace: "{{ request.object.metadata.namespace }}"
         foreach:
           - list: "request.object.spec.containers"
             patchesJson6902: |-
@@ -38,6 +41,9 @@ spec:
             operator: GreaterThanOrEquals
             value: 1
       mutate:
+        targets:
+          - kind: Pod
+            namespace: "{{ request.object.metadata.namespace }}"
         foreach:
           - list: "request.object.spec.initContainers"
             patchesJson6902: |-
