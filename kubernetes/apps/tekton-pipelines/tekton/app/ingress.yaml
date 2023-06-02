@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: tekton-dashboard
   namespace: tekton-pipelines
+  annotations:
+    ingress.home.arpa/type: "internal"
 spec:
   ingressClassName: nginx
   rules:
