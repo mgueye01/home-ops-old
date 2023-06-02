@@ -65,7 +65,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          external-dns.alpha.kubernetes.io/target: ipv4.g-eye.io
+          external-dns.alpha.kubernetes.io/target: ingress.g-eye.io
           hajimari.io/enable: "false"
         hosts:
           - host: *host
