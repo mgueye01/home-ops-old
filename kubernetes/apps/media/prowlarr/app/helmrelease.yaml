@@ -73,6 +73,7 @@ spec:
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.g-eye.io/css/base/prowlarr/nord.css"></head>';
             sub_filter_once on;
           hajimari.io/icon: mdi:movie-search
+          ingress.home.arpa/type: "internal"
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:

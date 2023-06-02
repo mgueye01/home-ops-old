@@ -49,6 +49,7 @@ spec:
         ingressClassName: nginx
         annotations:
           hajimari.io/icon: mdi:web-sync
+          ingress.home.arpa/type: "internal"
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:
