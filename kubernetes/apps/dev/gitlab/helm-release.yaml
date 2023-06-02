@@ -37,10 +37,11 @@ spec:
       ingress:
         class: nginx
         annotations:
-          nginx.ingress.kubernetes.io/enable-global-auth: "false"
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
+          # nginx.ingress.kubernetes.io/enable-global-auth: "false"
+          # cert-manager.io/cluster-issuer: letsencrypt-production
+          # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          # external-dns/is-public: "true"
+          ingress.home.arpa/type: "external"
         # Wildcard is configured by default
         configureCertmanager: false
         # TLS is enabled by default

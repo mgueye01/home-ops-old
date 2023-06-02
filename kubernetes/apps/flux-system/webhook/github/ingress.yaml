@@ -6,8 +6,9 @@ metadata:
   namespace: flux-system
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
-    external-dns/is-public: "true"
-    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    # external-dns/is-public: "true"
+    # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    ingress.home.arpa/type: "external"
 spec:
   ingressClassName: "nginx"
   rules:

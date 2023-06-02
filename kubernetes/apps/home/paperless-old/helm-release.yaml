@@ -83,9 +83,10 @@ spec:
         ingressClassName: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
-          auth.home.arpa/enabled: "true"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
+          # auth.home.arpa/enabled: "true"
+          # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          # external-dns/is-public: "true"
+          ingress.home.arpa/type: "external-auth"
         hosts:
           - host: &host "paperless.${SECRET_DOMAIN}"
             paths:

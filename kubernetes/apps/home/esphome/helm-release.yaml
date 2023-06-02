@@ -41,10 +41,11 @@ spec:
       main:
         enabled: true
         annotations:
-          nginx.ingress.kubernetes.io/enable-global-auth: "false"
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
+          # nginx.ingress.kubernetes.io/enable-global-auth: "false"
+          # cert-manager.io/cluster-issuer: letsencrypt-production
+          # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          # external-dns/is-public: "true"
+          ingress.home.arpa/type: "internal"
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
