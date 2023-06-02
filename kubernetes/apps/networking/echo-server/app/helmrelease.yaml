@@ -58,7 +58,8 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          external-dns.alpha.kubernetes.io/target: ipv4.g-eye.io
+          # external-dns.alpha.kubernetes.io/target: ipv4.g-eye.io
+          ingress.home.arpa/type: "external"
           hajimari.io/icon: mdi:video-input-antenna
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
