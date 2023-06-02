@@ -43,8 +43,9 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          external-dns/is-public: "true"
+          # external-dns.home.arpa/enabled: "true"
+          # external-dns/is-public: "true"
+          ingress.home.arpa/type: "external"
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:

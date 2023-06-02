@@ -51,8 +51,9 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          auth.home.arpa/enabled: "false"
-          external-dns/is-public: "true"
+          # auth.home.arpa/enabled: "false"
+          # external-dns/is-public: "true"
+          ingress.home.arpa/type: "internal"
           hajimari.io/enable: "true"
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
           nginx.ingress.kubernetes.io/proxy-body-size: 5000m
