@@ -11,7 +11,7 @@ resources:
   - node-problem-detector
   - karma
   - blackbox-exporter
-  - goldilocks
+  # - goldilocks
   - pushgateway
   - ./smartctl-exporter/ks.yaml
   - ./vector/ks.yaml
