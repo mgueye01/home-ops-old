@@ -24,7 +24,7 @@ resources:
   - ./podinfo.yaml
   - ./gitea-charts.yaml
   - ./fairwinds-charts.yaml
-  - ./drone-charts.yaml
+  # - ./drone-charts.yaml
   - ./harbor-charts.yaml
   - ./kyverno-charts.yaml
   - ./cilium-charts.yaml
