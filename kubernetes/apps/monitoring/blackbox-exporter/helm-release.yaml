@@ -19,7 +19,11 @@ spec:
   values:
     fullnameOverride: blackbox-exporter
     image:
-      repository: quay.io/prometheus/blackbox-exporter
+      registry: quay.io
+    podSecurityContext:
+      sysctls:
+        - name: net.ipv4.ping_group_range
+          value: "0 2147483647"
     ingress:
       enabled: true
       className: nginx
