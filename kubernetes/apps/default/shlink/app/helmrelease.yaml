@@ -54,7 +54,7 @@ spec:
       REDIS_PUB_SUB_ENABLED: "true"
       REDIS_SENTINEL_SERVICE: redis-master
       REDIS_SERVERS: redis-node-0.redis-headless.database.svc.cluster.local:26379,redis-node-1.redis-headless.database.svc.cluster.local:26379,redis-node-2.redis-headless.database.svc.cluster.local:26379
-      TIMEZONE: America/New_York
+      TIMEZONE: Europe/Paris
     envFrom: *envFrom
     service:
       main:
@@ -103,4 +103,4 @@ spec:
         cpu: 10m
         memory: 100Mi
       limits:
-        memory: 500Mi
+        memory: 5000Mi
