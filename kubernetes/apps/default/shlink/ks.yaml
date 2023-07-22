@@ -27,7 +27,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-shlink-api
+    - name: cluster-apps-shlink
   path: ./kubernetes/apps/default/shlink/web
   prune: true
   sourceRef:
