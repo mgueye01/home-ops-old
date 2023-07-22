@@ -7,8 +7,8 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-cloudnative-pg-cluster
-    - name: cluster-apps-external-secrets-stores
+    - name: cluster-apps-cloudnative-pg
+    - name: cluster-apps-external-secrets
   path: ./kubernetes/apps/default/shlink/app
   prune: true
   sourceRef:
