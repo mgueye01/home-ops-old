@@ -4,4 +4,4 @@ resources:
   - ./namespace.yaml
   - glauth
   - authelia
-  - ./lldap
+  - ./lldap/ks.yaml
