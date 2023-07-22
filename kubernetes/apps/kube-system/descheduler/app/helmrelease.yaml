@@ -26,25 +26,35 @@ spec:
       resourceLock: "leases"
       resourceName: "descheduler"
       resourceNamescape: "kube-system"
-    # schedule: "*/5 * * * *"
+    schedule: "*/5 * * * *"
     deschedulerPolicy:
       strategies:
         RemovePodsHavingTooManyRestarts:
           enabled: true
           params:
             podsHavingTooManyRestarts:
-              podRestartThreshold: 100
+              podRestartThreshold: 5
               includingInitContainers: true
         RemovePodsViolatingTopologySpreadConstraint:
           enabled: true
           params:
             includeSoftConstraints: true
+        PodLifeTime:
+          enabled: true
+          params:
+            podLifeTime:
+              states:
+                - Pending
+                - PodInitializing
+                - ContainerCreating
+              maxPodLifeTimeSeconds: 3600
         RemoveFailedPods:
           enabled: true
           params:
             failedPods:
               reasons:
-                - OutOfcpu
+                - NodeShutdown
+                - ImagePullBackOff
                 - CreateContainerConfigError
               includingInitContainers: true
               excludeOwnerKinds:
@@ -66,13 +76,13 @@ spec:
           params:
             nodeResourceUtilizationThresholds:
               thresholds:
-                cpu: 20
-                memory: 20
+                cpu: 35
+                memory: 35
                 pods: 20
               targetThresholds:
-                cpu: 50
-                memory: 50
-                pods: 50
+                cpu: 40
+                memory: 40
+                # pods: 50
     resources:
       requests:
         cpu: 10m
