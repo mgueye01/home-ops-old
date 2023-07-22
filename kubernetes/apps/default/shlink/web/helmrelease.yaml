@@ -51,7 +51,7 @@ spec:
         ingressClassName: nginx
         annotations:
           hajimari.io/icon: mdi:link
-          ingress.home.arpa/type: "internal"
+          ingress.home.arpa/type: "external-auth"
         hosts:
           - host: &host shlink.g-eye.io
             paths:
