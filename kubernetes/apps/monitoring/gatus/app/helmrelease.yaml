@@ -76,7 +76,7 @@ spec:
         ingressClassName: nginx
         annotations:
           hajimari.io/icon: mdi:monitor-dashboard
-          ingress.home.arpa/type: "external-auth"
+          ingress.home.arpa/type: "external"
         hosts:
           - host: &host status.g-eye.io
             paths:
