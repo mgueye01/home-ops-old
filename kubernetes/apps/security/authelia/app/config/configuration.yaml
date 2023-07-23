@@ -87,12 +87,12 @@ identity_providers:
       #   scopes: ["openid", "profile", "email"]
       #   redirect_uris: ["https://photos.g-eye.io/auth/login", "app.immich:/"]
       #   userinfo_signing_algorithm: none
-      # - id: weave-gitops
-      #   description: Weave GitOps
-      #   secret: "${WEAVEGITOPS_OAUTH_CLIENT_SECRET}"
-      #   public: false
-      #   authorization_policy: two_factor
-      #   pre_configured_consent_duration: 1y
-      #   scopes: ["openid", "profile", "groups", "email"]
-      #   redirect_uris: ["https://gitops.g-eye.io/oauth2/callback"]
-      #   userinfo_signing_algorithm: none
+      - id: weave-gitops
+        description: Weave GitOps
+        secret: "${WEAVEGITOPS_OAUTH_CLIENT_SECRET}"
+        public: false
+        authorization_policy: two_factor
+        pre_configured_consent_duration: 1y
+        scopes: ["openid", "profile", "groups", "email"]
+        redirect_uris: ["https://gitops.g-eye.io/oauth2/callback"]
+        userinfo_signing_algorithm: none
