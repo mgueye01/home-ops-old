@@ -33,7 +33,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: ingress.g-eye.io
         externalIPs: ["192.168.10.60"]
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Cluster
       publishService:
         enabled: true
       ingressClassResource:
@@ -75,7 +75,7 @@ spec:
         limits:
           memory: 500Mi
     defaultBackend:
-      enabled: true
+      enabled: false
       image:
         repository: ghcr.io/tarampampam/error-pages
         tag: 2.24.0
