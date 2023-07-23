@@ -33,7 +33,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: ingress.g-eye.io
         externalIPs: ["192.168.10.60"]
-        externalTrafficPolicy: Cluster
+        externalTrafficPolicy: Local
       publishService:
         enabled: true
       ingressClassResource:
