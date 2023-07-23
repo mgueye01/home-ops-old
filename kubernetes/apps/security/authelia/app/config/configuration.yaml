@@ -44,55 +44,55 @@ identity_providers:
         redirect_uris:
           - "https://grafana.g-eye.io/login/generic_oauth"
         userinfo_signing_algorithm: none
-      - id: gitea
-        secret: "${GITEA_OAUTH_CLIENT_SECRET}"
-        public: false
-        authorization_policy: two_factor
-        scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris:
-          ["https://git.g-eye.io/user/oauth2/authelia/callback"]
-        userinfo_signing_algorithm: none
-      - id: harbor
-        secret: "${HARBOR_OAUTH_CLIENT_SECRET}"
-        public: false
-        authorization_policy: two_factor
-        scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["https://harbor.g-eye.io/c/oidc/callback"]
-        userinfo_signing_algorithm: none
-      - id: outline
-        description: Outline
-        secret: "${OUTLINE_OAUTH_CLIENT_SECRET}"
-        public: false
-        authorization_policy: two_factor
-        pre_configured_consent_duration: 1y
-        scopes: ["openid", "profile", "email", "offline_access"]
-        redirect_uris: ["https://docs.g-eye.io/auth/oidc.callback"]
-        userinfo_signing_algorithm: none
-      - id: miniflux
-        description: Miniflux
-        secret: "${MINIFLUX_OAUTH_CLIENT_SECRET}"
-        public: false
-        authorization_policy: two_factor
-        pre_configured_consent_duration: 1y
-        scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris:
-          ["https://miniflux.g-eye.io/oauth2/oidc/callback"]
-        userinfo_signing_algorithm: none
-      - id: immich
-        description: Immich
-        secret: "${IMMICH_OAUTH_CLIENT_SECRET}"
-        public: false
-        authorization_policy: two_factor
-        pre_configured_consent_duration: 1y
-        scopes: ["openid", "profile", "email"]
-        redirect_uris: ["https://photos.g-eye.io/auth/login", "app.immich:/"]
-        userinfo_signing_algorithm: none
-      - id: weave-gitops
-        description: Weave GitOps
-        secret: "${WEAVEGITOPS_OAUTH_CLIENT_SECRET}"
-        public: false
-        authorization_policy: two_factor
-        pre_configured_consent_duration: 1y
-        scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["https://gitops.g-eye.io/oauth2/callback"]
-        userinfo_signing_algorithm: none
+      # - id: gitea
+      #   secret: "${GITEA_OAUTH_CLIENT_SECRET}"
+      #   public: false
+      #   authorization_policy: two_factor
+      #   scopes: ["openid", "profile", "groups", "email"]
+      #   redirect_uris:
+      #     ["https://git.g-eye.io/user/oauth2/authelia/callback"]
+      #   userinfo_signing_algorithm: none
+      # - id: harbor
+      #   secret: "${HARBOR_OAUTH_CLIENT_SECRET}"
+      #   public: false
+      #   authorization_policy: two_factor
+      #   scopes: ["openid", "profile", "groups", "email"]
+      #   redirect_uris: ["https://harbor.g-eye.io/c/oidc/callback"]
+      #   userinfo_signing_algorithm: none
+      # - id: outline
+      #   description: Outline
+      #   secret: "${OUTLINE_OAUTH_CLIENT_SECRET}"
+      #   public: false
+      #   authorization_policy: two_factor
+      #   pre_configured_consent_duration: 1y
+      #   scopes: ["openid", "profile", "email", "offline_access"]
+      #   redirect_uris: ["https://docs.g-eye.io/auth/oidc.callback"]
+      #   userinfo_signing_algorithm: none
+      # - id: miniflux
+      #   description: Miniflux
+      #   secret: "${MINIFLUX_OAUTH_CLIENT_SECRET}"
+      #   public: false
+      #   authorization_policy: two_factor
+      #   pre_configured_consent_duration: 1y
+      #   scopes: ["openid", "profile", "groups", "email"]
+      #   redirect_uris:
+      #     ["https://miniflux.g-eye.io/oauth2/oidc/callback"]
+      #   userinfo_signing_algorithm: none
+      # - id: immich
+      #   description: Immich
+      #   secret: "${IMMICH_OAUTH_CLIENT_SECRET}"
+      #   public: false
+      #   authorization_policy: two_factor
+      #   pre_configured_consent_duration: 1y
+      #   scopes: ["openid", "profile", "email"]
+      #   redirect_uris: ["https://photos.g-eye.io/auth/login", "app.immich:/"]
+      #   userinfo_signing_algorithm: none
+      # - id: weave-gitops
+      #   description: Weave GitOps
+      #   secret: "${WEAVEGITOPS_OAUTH_CLIENT_SECRET}"
+      #   public: false
+      #   authorization_policy: two_factor
+      #   pre_configured_consent_duration: 1y
+      #   scopes: ["openid", "profile", "groups", "email"]
+      #   redirect_uris: ["https://gitops.g-eye.io/oauth2/callback"]
+      #   userinfo_signing_algorithm: none
