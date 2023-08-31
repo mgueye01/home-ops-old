@@ -283,7 +283,7 @@ spec:
                 requests:
                   storage: 20Gi
         thanos:
-          image: quay.io/thanos/thanos:v0.32.1
+          image: quay.io/thanos/thanos:v0.32.2
           # renovate: datasource=docker depName=quay.io/thanos/thanos
           objectStorageConfig:
             name: thanos-objstore-secret
