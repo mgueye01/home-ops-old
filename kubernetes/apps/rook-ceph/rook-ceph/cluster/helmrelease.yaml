@@ -103,11 +103,11 @@ spec:
           #     - name: "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX1W320277D"
 
     ingress:
-      ingressClassName: "nginx"
       dashboard:
+        ingressClassName: "nginx"
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-          ingress.home.arpa/type: "internal"
+          ingress.home.arpa/type: "external"
         host:
           name: &host rook.g-eye.io
           path: "/"
