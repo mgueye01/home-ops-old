@@ -4,6 +4,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./namespace.yaml
-  # - ./dashboard
-  # # Flux-Kustomizations
-  # - ./cert-manager/ks.yaml
+  - ./dashboard
+  # Flux-Kustomizations
+  - ./cert-manager/ks.yaml

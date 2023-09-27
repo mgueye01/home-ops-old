@@ -10,10 +10,13 @@ tasks:
   install:
     desc: Install Flux into your cluster
     cmds:
-      - kubectl apply --kustomize {{.CLUSTER_DIR}}/bootstrap/
+      - kubectl apply --kustomize {{.CLUSTER_DIR}}/bootstrap
       - cat {{.SOPS_AGE_KEY_FILE}} | kubectl -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
-      - kubectl apply --kustomize {{.CLUSTER_DIR}}/flux/flux-system/
-      - task: reconcile
+      - sops --decrypt {{.CLUSTER_DIR}}/flux/vars/cluster-secrets.sops.yaml | kubectl apply -f -
+      - sops --decrypt {{.CLUSTER_DIR}}/flux/vars/cluster-secrets-user.sops.yaml | kubectl apply -f -
+      - kubectl apply -f {{.CLUSTER_DIR}}/flux/vars/cluster-settings.yaml
+      - kubectl apply -f {{.CLUSTER_DIR}}/flux/vars/cluster-settings-user.yaml
+      - kubectl apply --kustomize {{.CLUSTER_DIR}}/flux/config
     preconditions:
       - sh: test -f {{.SOPS_AGE_KEY_FILE}}
         msg: |
