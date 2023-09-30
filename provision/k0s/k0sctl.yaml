@@ -76,4 +76,8 @@ spec:
               - name: a-cilium
                 chartname: cilium/cilium
                 namespace: kube-system
-                version: "1.13.1"
+                version: "1.14.2"
+                values: |
+                  kubeProxyReplacement: true
+                  k8sServiceHost: 192.168.10.250
+                  k8sServicePort: 6443
