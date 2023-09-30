@@ -72,8 +72,11 @@ spec:
         tls:
           - hosts:
               - *host
-    securityContext:
-      runAsUser: 0 # Run container as root
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
+      fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       data:
         enabled: true
