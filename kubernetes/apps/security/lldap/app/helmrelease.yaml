@@ -42,7 +42,7 @@ spec:
     image:
       repository: ghcr.io/lldap/lldap
       # TODO: Switch to release tag on next release
-      tag: v0.5.0
+      tag: latest-alpine@sha256:49a328c0318e6b6325454a191ab259aeae73ef3517a9262673544e220713802d
     env:
       TZ: Europe/Paris
       LLDAP_HTTP_PORT: &port 80
@@ -72,6 +72,11 @@ spec:
         tls:
           - hosts:
               - *host
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       data:
         enabled: true
