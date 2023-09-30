@@ -12,7 +12,7 @@ resources:
   - excalidraw
   - outline
   - minio
-  - miniflux
+  # - miniflux
   - ./weave-gitops/ks.yaml
   - ./kubernetes-schemas/ks.yaml
   - ./paperless/ks.yaml
