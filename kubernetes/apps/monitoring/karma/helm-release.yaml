@@ -36,12 +36,12 @@ spec:
           # auth.home.arpa/enabled: "true"
           # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           # external-dns/is-public: "false"
-          ingress.home.arpa/type: "external-auth"
+          ingress.home.arpa/type: "internal"
         hosts:
           - host: &host "karma.${SECRET_DOMAIN}"
             paths:
               - path: /
-                # pathType: Prefix
+                pathType: Prefix
         tls:
           - hosts:
               - *host
