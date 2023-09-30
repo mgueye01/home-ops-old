@@ -7,6 +7,7 @@ metadata:
   namespace: rook-ceph
 spec:
   interval: 30m
+  timeout: 15m
   chart:
     spec:
       chart: rook-ceph-cluster
@@ -15,6 +16,16 @@ spec:
         kind: HelmRepository
         name: rook-ceph-charts
         namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
     toolbox:
       enabled: true
@@ -99,19 +110,18 @@ spec:
               - name: "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX0W263166J"
           - name: "k8s-3"
             devices:
-              # - name: "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX0R804746Y"
               - name: "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX1W320277D"
 
     ingress:
       dashboard:
         ingressClassName: "nginx"
         annotations:
-          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-          ingress.home.arpa/type: "external"
+          # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          ingress.home.arpa/type: "internal"
         host:
           name: &host rook.g-eye.io
-          path: "/"
-          pathType: Prefix
+          path: /
+          # pathType: Prefix
         tls:
           - hosts:
               - *host
@@ -152,22 +162,23 @@ spec:
             - failureDomain: host
               replicated:
                 size: 3
+              name: data0
           metadataServer:
             activeCount: 1
             activeStandby: true
             resources:
               requests:
-                cpu: "35m"
-                memory: "64M"
+                cpu: 1000m
+                memory: 4Gi
               limits:
-                memory: "144M"
+                memory: 4Gi
         storageClass:
           enabled: true
           isDefault: false
           name: ceph-filesystem
+          pool: data0
           reclaimPolicy: Delete
           allowVolumeExpansion: true
-          mountOptions: []
           parameters:
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
             csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
@@ -187,7 +198,7 @@ spec:
           dataPool:
             failureDomain: host
             erasureCoded:
-              dataChunks: 3
+              dataChunks: 2
               codingChunks: 1
           preservePoolsOnDelete: true
           gateway:
