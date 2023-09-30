@@ -72,6 +72,8 @@ spec:
         tls:
           - hosts:
               - *host
+    securityContext:
+      runAsUser: 0 # Run container as root
     persistence:
       data:
         enabled: true
