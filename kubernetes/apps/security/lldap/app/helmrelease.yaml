@@ -29,7 +29,7 @@ spec:
   values:
     initContainers:
       01-init-db:
-        image: ghcr.io/onedr0p/postgres-init:14.9
+        image: ghcr.io/onedr0p/postgres-init:14.8
         imagePullPolicy: IfNotPresent
         envFrom: &envFrom
           - secretRef:
@@ -42,7 +42,7 @@ spec:
     image:
       repository: ghcr.io/lldap/lldap
       # TODO: Switch to release tag on next release
-      tag: latest-alpine@sha256:117b47177236ff1f6397bf6524b7e840bbd73a11e148c6d8fa81337187df3409
+      tag: v0.5.0
     env:
       TZ: Europe/Paris
       LLDAP_HTTP_PORT: &port 80
@@ -63,7 +63,7 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          ingress.home.arpa/type: "external"
+          ingress.home.arpa/type: "internal"
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:
@@ -77,7 +77,7 @@ spec:
         enabled: true
         type: emptyDir
     topologySpreadConstraints:
-      - maxSkew: 2
+      - maxSkew: 1
         topologyKey: kubernetes.io/hostname
         whenUnsatisfiable: DoNotSchedule
         labelSelector:
