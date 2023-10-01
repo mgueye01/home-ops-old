@@ -45,12 +45,10 @@ spec:
       tag: latest-alpine@sha256:49a328c0318e6b6325454a191ab259aeae73ef3517a9262673544e220713802d
     env:
       TZ: Europe/Paris
-      LLDAP_HTTP_PORT: &port 80
+      LLDAP_HTTP_PORT: &port 8080
       LLDAP_HTTP_URL: https://lldap.g-eye.io
-      LLDAP_LDAP_PORT: &ldapPort 389
+      LLDAP_LDAP_PORT: &ldapPort 3890
       LLDAP_LDAP_BASE_DN: dc=home,dc=arpa
-      UID: 1000
-      GID: 1000
     envFrom: *envFrom
     service:
       main:
