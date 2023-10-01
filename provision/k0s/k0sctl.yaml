@@ -10,19 +10,19 @@ spec:
         user: tapha
         port: 22
         keyPath: ~/.ssh/id_rsa
-      role: controller
+      role: controller+worker
     - ssh:
         address: 192.168.10.12
         user: tapha
         port: 22
         keyPath: ~/.ssh/id_rsa
-      role: controller
+      role: controller+worker
     - ssh:
         address: 192.168.10.13
         user: tapha
         port: 22
         keyPath: ~/.ssh/id_rsa
-      role: controller
+      role: controller+worker
     - ssh:
         address: 192.168.10.21
         user: tapha
