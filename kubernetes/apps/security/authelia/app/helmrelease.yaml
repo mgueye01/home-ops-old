@@ -45,7 +45,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/authelia/authelia
-      tag: master@sha256:a3647c3dd136402745c7639e446944004145630c822f27e22f999c414c234d2f
+      tag: master@sha256:956878fe74477f8be6277f9d95b222e00c33b625aab8e7b59e11dac403d82e57
     args: ["--config", "/config/configuration.yaml", "--config.experimental.filters", "expand-env"]
     env:
       AUTHELIA_AUTHENTICATION_BACKEND_LDAP_ADDITIONAL_GROUPS_DN: ou=groups
@@ -55,7 +55,7 @@ spec:
       AUTHELIA_AUTHENTICATION_BACKEND_LDAP_GROUPS_FILTER: (member={dn})
       AUTHELIA_AUTHENTICATION_BACKEND_LDAP_GROUP_NAME_ATTRIBUTE: cn
       AUTHELIA_AUTHENTICATION_BACKEND_LDAP_IMPLEMENTATION: custom
-      AUTHELIA_AUTHENTICATION_BACKEND_LDAP_ATTRIBUTES_MAIL: mail
+      AUTHELIA_AUTHENTICATION_BACKEND_LDAP_MAIL_ATTRIBUTE: mail
       AUTHELIA_AUTHENTICATION_BACKEND_LDAP_START_TLS: "false"
       AUTHELIA_AUTHENTICATION_BACKEND_LDAP_TIMEOUT: 5s
       AUTHELIA_AUTHENTICATION_BACKEND_LDAP_URL: ldap://lldap.security.svc.cluster.local:3890
