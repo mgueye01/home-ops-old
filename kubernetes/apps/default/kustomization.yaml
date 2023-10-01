@@ -5,18 +5,18 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - blog
-  - littlelink
-  - theme-park
-  # - ghost
-  - homer
-  - excalidraw
-  - outline
-  - minio
-  # - miniflux
-  - ./weave-gitops/ks.yaml
-  - ./kubernetes-schemas/ks.yaml
-  - ./paperless/ks.yaml
-  - ./hajimari/ks.yaml
-  - ./changedetection/ks.yaml
-  - ./immich/ks.yaml
-  - ./shlink/ks.yaml
+  # - littlelink
+  # - theme-park
+  # # - ghost
+  # - homer
+  # - excalidraw
+  # - outline
+  # - minio
+  # # - miniflux
+  # - ./weave-gitops/ks.yaml
+  # - ./kubernetes-schemas/ks.yaml
+  # - ./paperless/ks.yaml
+  # - ./hajimari/ks.yaml
+  # - ./changedetection/ks.yaml
+  # - ./immich/ks.yaml
+  # - ./shlink/ks.yaml
