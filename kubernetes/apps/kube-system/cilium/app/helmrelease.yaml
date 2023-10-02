@@ -9,11 +9,11 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: cilium-charts
+      chart: cilium
       version: 1.14.2
       sourceRef:
         kind: HelmRepository
-        name: cilium
+        name: cilium-charts
         namespace: flux-system
   maxHistory: 2
   install:
