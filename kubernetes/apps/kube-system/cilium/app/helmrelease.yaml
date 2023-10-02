@@ -9,7 +9,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: cilium
+      chart: cilium-charts
       version: 1.14.2
       sourceRef:
         kind: HelmRepository
