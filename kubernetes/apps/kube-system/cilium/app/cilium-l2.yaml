@@ -4,6 +4,7 @@ apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
 metadata:
   name: policy
+  namespace: kube-system
 spec:
   loadBalancerIPs: true
   interfaces:
@@ -17,6 +18,7 @@ apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: pool
+  namespace: kube-system
 spec:
   cidrs:
     - cidr: "10.69.69.0/24"
