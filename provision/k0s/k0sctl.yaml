@@ -58,15 +58,15 @@ spec:
           provider: custom
           kubeProxy:
             disabled: true
-        workerProfiles:
-          - name: custom-profile
-            values:
-              cpuManagerPolicy: static
-              allowedUnsafeSysctls:
-                - net.ipv4.conf.default.disable_policy
-                - net.ipv4.ip_local_port_range
-                - net.ipv4.ip_forward
-                - net.ipv6.conf.all.forwarding
+        # workerProfiles:
+        #   - name: custom-profile
+        #     values:
+        #       cpuManagerPolicy: static
+        #       allowedUnsafeSysctls:
+        #         - net.ipv4.conf.default.disable_policy
+        #         - net.ipv4.ip_local_port_range
+        #         - net.ipv4.ip_forward
+        #         - net.ipv6.conf.all.forwarding
         extensions:
           helm:
             repositories:
