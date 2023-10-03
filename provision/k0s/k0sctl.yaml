@@ -67,17 +67,17 @@ spec:
         #         - net.ipv4.ip_local_port_range
         #         - net.ipv4.ip_forward
         #         - net.ipv6.conf.all.forwarding
-        extensions:
-          helm:
-            repositories:
-              - name: cilium
-                url: https://helm.cilium.io/
-            charts:
-              - name: a-cilium
-                chartname: cilium/cilium
-                namespace: kube-system
-                version: "1.14.2"
-                values: |
-                  kubeProxyReplacement: true
-                  k8sServiceHost: 192.168.10.250
-                  k8sServicePort: 6443
+        # extensions:
+        #   helm:
+        #     repositories:
+        #       - name: cilium
+        #         url: https://helm.cilium.io/
+        #     charts:
+        #       - name: a-cilium
+        #         chartname: cilium/cilium
+        #         namespace: kube-system
+        #         version: "1.14.2"
+        #         values: |
+        #           kubeProxyReplacement: true
+        #           k8sServiceHost: 192.168.10.250
+        #           k8sServicePort: 6443
