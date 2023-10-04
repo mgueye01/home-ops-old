@@ -37,7 +37,8 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalIPs: ["192.168.10.61"]
+        # externalIPs: ["192.168.10.61"]
+        io.cilium/lb-ipam-ips: 192.168.10.61
         externalTrafficPolicy: Local
         ports:
           http:

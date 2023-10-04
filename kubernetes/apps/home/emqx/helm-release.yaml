@@ -34,8 +34,9 @@ spec:
         prometheus.io/probe: "true"
         prometheus.io/protocol: tcp
       type: LoadBalancer
-      externalIPs:
-        - ${SVC_EMQX_ADDR}
+      # externalIPs:
+      #   - ${SVC_EMQX_ADDR}
+      io.cilium/lb-ipam-ips: ${SVC_EMQX_ADDR}
       externalTrafficPolicy: Local
 
     ingress:

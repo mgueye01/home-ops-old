@@ -43,8 +43,9 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalIPs:
-          - ${SVC_HOME_ASSISTANT_ADDR}
+        # externalIPs:
+        #   - ${SVC_HOME_ASSISTANT_ADDR}
+        io.cilium/lb-ipam-ips: ${SVC_HOME_ASSISTANT_ADDR}
         externalTrafficPolicy: Local
         ports:
           http:
