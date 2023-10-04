@@ -32,7 +32,8 @@ spec:
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: ingress.g-eye.io
-        externalIPs: ["192.168.10.60"]
+        # externalIPs: ["192.168.10.60"]
+        io.cilium/lb-ipam-ips: 192.168.10.60
         externalTrafficPolicy: Cluster
       publishService:
         enabled: true
