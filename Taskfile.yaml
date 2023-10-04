@@ -1,0 +1,39 @@
+---
+version: "3"
+vars:
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/kubernetes"
+  ANSIBLE_DIR: "{{.PROJECT_DIR}}/ansible"
+  TERRAFORM_DIR: "{{.PROJECT_DIR}}/provision/terraform"
+
+env:
+  KUBECONFIG: "{{.PROJECT_DIR}}/provision/kubeconfig"
+
+includes:
+  ansible: .taskfiles/ansible.yaml
+  cluster: .taskfiles/ClusterTasks.yaml
+  flux: .taskfiles/flux.yaml
+  format: .taskfiles/format.yaml
+  lint: .taskfiles/lint.yaml
+  pre-commit: .taskfiles/pre-commit.yaml
+  terraform: .taskfiles/terraform.yaml
+  snapshot: .taskfiles/SnapshotTasks.yaml
+  toolbox: .taskfiles/RookTasks.yaml
+  vs: .taskfiles/VolSync/Tasks.yaml
+  es: .taskfiles/ExternalSecrets/Tasks.yaml
+
+tasks:
+  kubeconfig:
+    desc: Remotely fetch kubeconfig from Kubernetes
+    cmds:
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml "{{.CLUSTER_DIR}}/provision/kubeconfig"
+      - sed -i '' 's/127.0.0.1/{{.K3S_LB_ADDR}}/g' "{{.CLUSTER_DIR}}/provision/kubeconfig"
+      - chmod go-r "{{.CLUSTER_DIR}}/provision/kubeconfig"
+    vars:
+      K3S_PRIMARY_MASTER_NODE_USERNAME: "root"
+      K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.10.11"
+      K3S_LB_ADDR: "192.168.10.250"
+  default:
+    silent: true
+    cmds: ["task -l"]

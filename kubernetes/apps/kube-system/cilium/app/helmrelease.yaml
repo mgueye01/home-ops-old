@@ -33,11 +33,11 @@ spec:
     bgp:
       enabled: false
     cluster:
-      name: home-ops
+      name: kubernetes
       id: 1
     containerRuntime:
       integration: containerd
-      socketPath: /var/run/k0s/containerd.sock
+      socketPath: /var/run/k3s/containerd/containerd.sock
     endpointRoutes:
       enabled: true
     hubble:

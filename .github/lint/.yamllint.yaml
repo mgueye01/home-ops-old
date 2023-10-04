@@ -4,7 +4,7 @@ ignore: |
   .terraform/
   .vscode/
   .taskfiles/
-  Taskfile.yml
+  Taskfile.yaml
   *.sops.*
 extends: default
 rules:

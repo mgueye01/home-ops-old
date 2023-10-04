@@ -10,7 +10,7 @@ On RedHat/CentOS, you may need to have EPEL installed before running this role. 
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
+Available variables are listed below, along with default values (see `defaults/main.yaml`):
 
     pip_package: python3-pip
 

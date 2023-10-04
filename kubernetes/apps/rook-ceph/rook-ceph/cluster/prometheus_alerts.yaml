@@ -9,7 +9,7 @@ metadata:
   namespace: rook-ceph
 spec:
   # Import the raw prometheus rules since they have descriptions that should not be processed with the helm templates
-  # copied from https://github.com/ceph/ceph/blob/master/monitoring/ceph-mixin/prometheus_alerts.yml
+  # copied from https://github.com/ceph/ceph/blob/master/monitoring/ceph-mixin/prometheus_alerts.yaml
   groups:
     - name: cluster health
       rules:
@@ -866,7 +866,7 @@ spec:
     #           The prometheus job that scrapes from Ceph is no longer defined, this
     #           will effectively mean you'll have no metrics or alerts for the cluster.
     #
-    #           Please review the job definitions in the prometheus.yml file of the prometheus
+    #           Please review the job definitions in the prometheus.yaml file of the prometheus
     #           instance.
     # Object related events
     - name: rados

@@ -5,7 +5,6 @@ kubernetes:
       vars:
         ansible_user: tapha
         ansible_ssh_port: 22
-        ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
       hosts:
         master1:
           ansible_host: 192.168.10.11
@@ -17,7 +16,6 @@ kubernetes:
       vars:
         ansible_user: tapha
         ansible_ssh_port: 22
-        ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
       hosts:
         k8s-1:
           ansible_host: 192.168.10.21

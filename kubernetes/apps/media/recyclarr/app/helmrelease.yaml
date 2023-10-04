@@ -58,8 +58,8 @@ spec:
         enabled: true
         type: configMap
         name: recyclarr-configmap
-        subPath: recyclarr.yml
-        mountPath: /config/recyclarr.yml
+        subPath: recyclarr.yaml
+        mountPath: /config/recyclarr.yaml
         readOnly: true
     resources:
       requests:

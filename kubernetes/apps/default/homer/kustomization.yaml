@@ -9,10 +9,10 @@ resources:
 configMapGenerator:
   - name: homer-config
     files:
-      - config.yml=pages/config.yaml
-      - admin.yml=pages/admin.yaml
-      - media.yml=pages/media.yaml
-      - links.yml=pages/links.yaml
+      - config.yaml=pages/config.yaml
+      - admin.yaml=pages/admin.yaml
+      - media.yaml=pages/media.yaml
+      - links.yaml=pages/links.yaml
 
 configurations:
   - kustomizeconfig.yaml

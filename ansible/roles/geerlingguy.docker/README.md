@@ -10,7 +10,7 @@ None.
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
+Available variables are listed below, along with default values (see `defaults/main.yaml`):
 
     # Edition can be one of: 'ce' (Community Edition) or 'ee' (Enterprise Edition).
     docker_edition: 'ce'
