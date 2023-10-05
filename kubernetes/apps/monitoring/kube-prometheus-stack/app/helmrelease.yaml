@@ -287,7 +287,7 @@ spec:
           # renovate: datasource=docker depName=quay.io/thanos/thanos
           objectStorageConfig:
             name: thanos-objstore-secret
-            key: objstore.yaml
+            key: objstore.yml
 
         resources:
           requests:
