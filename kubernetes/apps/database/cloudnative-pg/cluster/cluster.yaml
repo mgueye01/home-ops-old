@@ -46,8 +46,8 @@ spec:
           key: aws-secret-access-key
   # externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-    - name: *previousCluster
-    # - name: postgres
+    # - name: *previousCluster
+    - name: postgres-v3
       barmanObjectStore:
         wal:
           compression: bzip2
