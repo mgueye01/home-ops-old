@@ -47,3 +47,4 @@ resources:
   - ./intel.yaml
   - ./hajimari.yaml
   - ./actions-runner-controller.yaml
+  - ./coredns.yaml
