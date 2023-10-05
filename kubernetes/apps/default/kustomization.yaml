@@ -14,9 +14,9 @@ resources:
   - minio
   # # - miniflux
   - ./weave-gitops/ks.yaml
-  # - ./kubernetes-schemas/ks.yaml
+  - ./kubernetes-schemas/ks.yaml
   # - ./paperless/ks.yaml
-  # - ./hajimari/ks.yaml
+  - ./hajimari/ks.yaml
   # - ./changedetection/ks.yaml
   # - ./immich/ks.yaml
   # - ./shlink/ks.yaml
