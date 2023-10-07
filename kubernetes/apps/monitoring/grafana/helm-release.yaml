@@ -93,13 +93,12 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
-          - name: "thanos"
+          - name: thanos
             orgId: 1
-            folder: "thanos"
+            folder: Thanos
             type: file
-            updateIntervalSeconds: 10
             disableDeletion: false
-            allowUiUpdates: true
+            editable: true
             options:
               path: /var/lib/grafana/dashboards/thanos
     datasources:
