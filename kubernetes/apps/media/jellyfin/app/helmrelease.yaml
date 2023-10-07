@@ -31,7 +31,7 @@ spec:
       type: statefulset
     image:
       repository: ghcr.io/onedr0p/jellyfin
-      tag: 10.8.11@sha256:795c10d5be075203dd31bc295c2bb9b72f2aa6280b8fa9f98516a3d8725de298
+      tag: 10.8.11@sha256:18afced0486212be536e7bf61c2ca788a062537b583f6198d8e7908146dcba18
     env:
       TZ: Europe/Paris
     service:
