@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2023.9.2@sha256:223c9986ff318eaf35fac70351900cf766c15faf82fbe54150b73b7cfc3c933a
+      tag: 2023.10.1@sha256:a615c4a8ea9c6dd0fa8b0383b2d665d2bf03f31d35d7924662a355c3dca2bdd8
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
 
