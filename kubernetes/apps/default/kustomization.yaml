@@ -10,7 +10,7 @@ resources:
   # # - ghost
   # - homer
   # - excalidraw
-  - outline
+  # - outline
   - minio
   # - miniflux
   - ./weave-gitops/ks.yaml
