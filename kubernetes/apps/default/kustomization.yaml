@@ -6,17 +6,17 @@ resources:
   - namespace.yaml
   # - blog
   - littlelink
-  # - theme-park
+  - theme-park
   # # - ghost
   # - homer
   # - excalidraw
-  # - outline
+  - outline
   - minio
-  # # - miniflux
+  - miniflux
   - ./weave-gitops/ks.yaml
   - ./kubernetes-schemas/ks.yaml
-  # - ./paperless/ks.yaml
+  - ./paperless/ks.yaml
   - ./hajimari/ks.yaml
-  # - ./changedetection/ks.yaml
-  # - ./immich/ks.yaml
+  - ./changedetection/ks.yaml
+  - ./immich/ks.yaml
   # - ./shlink/ks.yaml
