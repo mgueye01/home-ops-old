@@ -19,4 +19,5 @@ resources:
   - ./changedetection/ks.yaml
   - ./immich/ks.yaml
   - ./miniflux/ks.yaml
+  - ./actual/ks.yaml
   # - ./shlink/ks.yaml
