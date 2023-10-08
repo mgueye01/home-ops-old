@@ -13,3 +13,4 @@ resources:
   - ./nfs-subdir-external-provisioner/ks.yaml
   - ./cilium/ks.yaml
   - ./coredns/ks.yaml
+  - ./local-path-provisioner/ks.yaml
