@@ -63,6 +63,9 @@ spec:
       main:
         enabled: true
         className: "nginx"
+        annotations:
+          hajimari.io/enable: "true"
+          ingress.home.arpa/type: "internal"
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:
