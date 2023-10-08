@@ -71,7 +71,7 @@ spec:
         ingressClassName: nginx
         annotations:
           hajimari.io/enable: "true"
-          ingress.home.arpa/type: "external-auth"
+          ingress.home.arpa/type: "external"
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:
