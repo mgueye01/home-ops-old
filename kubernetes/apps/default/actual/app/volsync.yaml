@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/external-secrets.io/externalsecret_v1beta1.json
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
@@ -22,6 +23,7 @@ spec:
     - extract:
         key: volsync-restic-template
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/volsync.backube/replicationsource_v1alpha1.json
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
@@ -33,14 +35,15 @@ spec:
     schedule: "0 */12 * * *"
   restic:
     copyMethod: Snapshot
-    pruneIntervalDays: 14
+    pruneIntervalDays: 7
     repository: actual-restic-secret
+    cacheCapacity: 2Gi
+    volumeSnapshotClassName: csi-ceph-blockpool
+    storageClassName: ceph-block
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
     retain:
-      daily: 14
-    volumeSnapshotClassName: csi-ceph-blockpool
-    storageClassName: ceph-block
-    cacheStorageClassName: local-hostpath
+      daily: 7
+      within: 3d
