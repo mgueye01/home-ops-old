@@ -207,7 +207,7 @@ spec:
           url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
           datasource: Prometheus
         environment:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/evironement-dashboard.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/evironement-dashboard.json
           datasource: Prometheus
       ceph:
         ceph-cluster:
