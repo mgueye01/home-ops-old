@@ -312,10 +312,10 @@ spec:
           datasource: Prometheus
       synology:
         Synology-nas-overview:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/synology-nas-overview_rev8.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/synology-nas-overview_rev8.json
           datasource: Prometheus
         Synology-nas-details:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/synology-nas-details_rev9.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/synology-nas-details_rev9.json
           datasource: Prometheus
     sidecar:
       dashboards:
