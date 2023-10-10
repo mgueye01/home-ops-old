@@ -137,14 +137,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/unifi
-          # - name: synology
-          #   orgId: 1
-          #   folder: Synology
-          #   type: file
-          #   disableDeletion: false
-          #   editable: true
-          #   options:
-          #     path: /var/lib/grafana/dashboards/synology
+          - name: synology
+            orgId: 1
+            folder: Synology
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/synology
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -206,9 +206,9 @@ spec:
         miniflux:
           url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
           datasource: Prometheus
-        # environment:
-        #   url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/evironement-dashboard.json
-        #   datasource: Prometheus
+        environment:
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/evironement-dashboard.json
+          datasource: Prometheus
       ceph:
         ceph-cluster:
           gnetId: 2842 # https://grafana.com/grafana/dashboards/2842?tab=revisions
@@ -251,10 +251,10 @@ spec:
         kubernetes-pods:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
           datasource: Prometheus
-        # etcd-cluster-overview:
-        #   gnetId: 15308 # Ref: https://grafana.com/grafana/dashboards/15308
-        #   revision: 1
-        #   datasource: Prometheus
+        etcd-cluster-overview:
+          gnetId: 15308 # Ref: https://grafana.com/grafana/dashboards/15308
+          revision: 1
+          datasource: Prometheus
       nginx:
         nginx:
           url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
@@ -307,13 +307,13 @@ spec:
           gnetId: 11312  # Ref: https://grafana.com/grafana/dashboards/11312
           revision: 8
           datasource: Prometheus
-      # synology:
-      #   Synology-nas-overview:
-      #     url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/synology-nas-overview_rev8.json
-      #     datasource: Prometheus
-      #   Synology-nas-details:
-      #     url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/synology-nas-details_rev9.json
-      #     datasource: Prometheus
+      synology:
+        Synology-nas-overview:
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/synology-nas-overview_rev8.json
+          datasource: Prometheus
+        Synology-nas-details:
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/synology-nas-details_rev9.json
+          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
