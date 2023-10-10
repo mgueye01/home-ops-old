@@ -256,7 +256,7 @@ spec:
           revision: 1
           datasource: Prometheus
         kubernetes-cluster-monitoring:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/cluster-monitoring.json
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/cluster-monitoring.json
           datasource: Prometheus
       nginx:
         nginx:

@@ -36,7 +36,7 @@
     "collapsed": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "gridPos": {
       "h": 1,
@@ -50,7 +50,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "refId": "A"
       }
@@ -61,7 +61,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -139,7 +139,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "editorMode": "code",
         "expr": "temperature{group=\"environment\", location=~\"[[location]]\"} -5",
@@ -155,7 +155,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -233,7 +233,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "humidity{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "{{location}}",
@@ -247,7 +247,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -410,7 +410,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "pressure{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "{{location}}",
@@ -424,7 +424,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -495,7 +495,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "lux{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "{{location}}",
@@ -509,7 +509,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "description": "PM1.0 ug/m3 (ultrafine particles)\nPM2.5 ug/m3 (combustion particles, organic compounds, metals)\nPM10 ug/m3  (dust, pollen, mould spores)",
     "fieldConfig": {
@@ -567,7 +567,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "PM1{group=\"environment\", location=~\"[[location]]\"}",
         "interval": "",
@@ -577,7 +577,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "PM25{group=\"environment\", location=~\"[[location]]\"} - PM1{group=\"environment\", location=~\"[[location]]\"}",
         "interval": "",
@@ -587,7 +587,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "PM10{group=\"environment\", location=~\"Vught\"} - PM25{group=\"environment\", location=~\"Vught\"}",
         "interval": "",
@@ -603,7 +603,7 @@
     "collapsed": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "gridPos": {
       "h": 1,
@@ -617,7 +617,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "refId": "A"
       }
@@ -632,7 +632,7 @@
     "dashes": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "decimals": 1,
     "fieldConfig": {
@@ -681,7 +681,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "editorMode": "code",
         "expr": "temperature{group=\"environment\", location=~\"[[location]]\"} -5",
@@ -692,7 +692,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "editorMode": "code",
         "expr": "avg_over_time(temperature{group=\"environment\", location=~\"[[location]]\"}[15m]) -5",
@@ -749,7 +749,7 @@
     "dashes": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "decimals": 1,
     "fieldConfig": {
@@ -797,7 +797,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "pressure{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "pressure_{{location}}",
@@ -844,7 +844,7 @@
     "dashes": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "decimals": 1,
     "description": "PM1.0 ug/m3 (ultrafine particles)\nPM2.5 ug/m3 (combustion particles, organic compounds, metals)\nPM10 ug/m3  (dust, pollen, mould spores)",
@@ -894,7 +894,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "PM1{group=\"environment\", location=~\"[[location]]\"}",
         "interval": "",
@@ -904,7 +904,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "PM25{group=\"environment\", location=~\"[[location]]\"} - PM1{group=\"environment\", location=~\"[[location]]\"}",
         "interval": "",
@@ -914,7 +914,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "PM10{group=\"environment\", location=~\"[[location]]\"} - PM25{group=\"environment\", location=~\"[[location]]\"}",
         "interval": "",
@@ -972,7 +972,7 @@
     "dashes": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "description": "NH3 -> Ammonia, \nOxidising -> Nitrogen Dioxide,\nReducing -> Carbon Monoxide",
     "fieldConfig": {
@@ -1020,7 +1020,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "NH3{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "nh3_{{location}}",
@@ -1029,7 +1029,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "oxidising{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "oxidising_{{location}}",
@@ -1038,7 +1038,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "reducing{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "reducing_{{location}}",
@@ -1086,7 +1086,7 @@
     "dashes": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "description": "A value (from zero to a couple of thousand) for the proximity, with larger numbers being closer proximity and vice versa.",
     "fieldConfig": {
@@ -1134,7 +1134,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "proximity{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "proximity_{{location}}",
@@ -1179,7 +1179,7 @@
     "dashes": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "decimals": 1,
     "fieldConfig": {
@@ -1227,7 +1227,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "humidity{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "humidity_{{location}}",
@@ -1282,7 +1282,7 @@
     "dashes": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "description": "A value (from zero to a couple of thousand) for the proximity, with larger numbers being closer proximity and vice versa.",
     "fieldConfig": {
@@ -1330,7 +1330,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "lux{group=\"environment\", location=~\"[[location]]\"}",
         "legendFormat": "lux_{{location}}",
@@ -1372,7 +1372,7 @@
     "collapsed": true,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "gridPos": {
       "h": 1,
@@ -1386,7 +1386,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "refId": "A"
       }
@@ -1406,7 +1406,7 @@
     "dataFormat": "tsbuckets",
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -1479,7 +1479,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "rate(pm1_measurements_bucket{location=~\"[[location]]\"}[1h])",
         "format": "heatmap",
@@ -1521,7 +1521,7 @@
     "dataFormat": "tsbuckets",
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -1594,7 +1594,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "rate(pm25_measurements_bucket{location=~\"[[location]]\"}[1h])",
         "format": "heatmap",
@@ -1636,7 +1636,7 @@
     "dataFormat": "tsbuckets",
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -1709,7 +1709,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "rate(pm10_measurements_bucket{location=~\"[[location]]\"}[1h])",
         "format": "heatmap",
@@ -1743,7 +1743,7 @@
     "collapsed": false,
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "gridPos": {
       "h": 1,
@@ -1757,7 +1757,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "refId": "A"
       }
@@ -1777,7 +1777,7 @@
     "dataFormat": "tsbuckets",
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -1850,7 +1850,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "rate(oxidising_measurements_bucket{location=~\"[[location]]\"}[1h])",
         "format": "heatmap",
@@ -1892,7 +1892,7 @@
     "dataFormat": "tsbuckets",
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -1966,7 +1966,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "rate(reducing_measurements_bucket{location=~\"[[location]]\"}[1h])",
         "format": "heatmap",
@@ -2009,7 +2009,7 @@
     "dataFormat": "tsbuckets",
     "datasource": {
       "type": "prometheus",
-      "uid": "PBFA97CFB590B2093"
+      "uid": "prometheus"
     },
     "fieldConfig": {
       "defaults": {
@@ -2083,7 +2083,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "expr": "rate(nh3_measurements_bucket{location=~\"[[location]]\"}[1h])",
         "format": "heatmap",
@@ -2130,7 +2130,7 @@
       },
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "definition": "temperature",
       "hide": 0,

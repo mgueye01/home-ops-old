@@ -45,7 +45,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "gridPos": {
         "h": 1,
@@ -61,7 +61,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "Update the NASDevices variable with the total number of Synology systems you have in Prometheus regardless of the Job they are assigned to.  This is to help identify a Synology NAS across the entire fleet of Synology's.  It is meant to give you an idea that there is a problem regardless of which NAS device it is or the Prometheus Job it is in. Total Synology's is the number of NAS devices you are reporting in Prometheus.  This is a number that you must manually enter in the NASDevices variable.  Count every Synology you have in Prometheus regardless of the Job it is in.\n\nSynology's Down indicates that a NAS is either down or not being scrapped in either this Job or any other Job.\n\n Update Variable indicates that you are scrapping more NAS devices than you have entered in the NASDevices variable indicating a new device has come online.  Update the NASDevices variable to properly reflect the number of NAS devices you expect to be reporting on.\n",
       "fieldConfig": {
@@ -198,7 +198,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -351,7 +351,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -497,7 +497,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -638,7 +638,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -775,7 +775,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -886,7 +886,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "gridPos": {
         "h": 1,
@@ -1238,7 +1238,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "ssCpuUser{job=~'$JobName',instance=~'$Device'}",
@@ -1251,7 +1251,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "modelName{job=~'$JobName',instance=~'$Device'}",
@@ -1265,7 +1265,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "version{job=~'$JobName',instance=~'$Device'}",
@@ -1279,7 +1279,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "serialNumber{job=~'$JobName',instance=~'$Device'}",
@@ -1293,7 +1293,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "sysUpTime{job=~'$JobName',instance=~'$Device'}/100",
@@ -1307,7 +1307,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "systemFanStatus{job=~'$JobName',instance=~'$Device'}",
@@ -1321,7 +1321,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "upgradeAvailable{job=~'$JobName',instance=~'$Device'}",
@@ -1335,7 +1335,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "systemFanStatus{job=~'$JobName',instance=~'$Device'}",
@@ -1349,7 +1349,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "systemFanStatus{job=~'$JobName',instance=~'$Device'}",
@@ -1363,7 +1363,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "cpuFanStatus{job=~'$JobName',instance=~'$Device'}",
@@ -1377,7 +1377,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "(temperature{job=~'$JobName',instance=~'$Device'})",
@@ -1391,7 +1391,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "memTotalReal{job=~'$JobName',instance=~'$Device'}",
@@ -1405,7 +1405,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "diskIndex{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'}+1",
@@ -1490,7 +1490,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "gridPos": {
         "h": 1,
@@ -1506,7 +1506,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -1706,7 +1706,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "gridPos": {
         "h": 1,
@@ -1721,7 +1721,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -2143,7 +2143,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "gridPos": {
         "h": 1,
@@ -2376,7 +2376,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "diskIndex{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskIndex{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'}",
@@ -2390,7 +2390,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "diskID{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskID{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'} ",
@@ -2403,7 +2403,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "diskType{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskType{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'}",
@@ -2417,7 +2417,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "diskStatus{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskStatus{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'}",
@@ -2431,7 +2431,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "diskModel{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'} or diskModel{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'}",
@@ -2445,7 +2445,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "exemplar": false,
           "expr": "(diskTemperature{job=~'$JobName',instance=~'$Device',diskID=~'$DiskName'}) or (diskTemperature{job=~'$JobName',instance=~'$Device',diskID=~'$DiskNameSSD'})",
@@ -2529,7 +2529,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "gridPos": {
         "h": 1,
@@ -2545,7 +2545,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -2919,7 +2919,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -3325,7 +3325,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "definition": "label_values(ssCpuUser, job)",
         "hide": 0,
@@ -3354,7 +3354,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "definition": "query_result(ssCpuUser{job=~'$JobName'})",
         "hide": 0,
@@ -3383,7 +3383,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "definition": "label_values(ifName{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Physical Network Interfaces",
@@ -3414,7 +3414,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "definition": "label_values(ifType_info{job=~'$JobName',instance=~'$Device'},ifName)",
         "description": "Bonds an VLans",
@@ -3445,7 +3445,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "definition": "label_values(raidName{job=~'$JobName',instance=~'$Device'},raidName)",
         "hide": 0,
@@ -3475,7 +3475,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "definition": "label_values(diskID{job=~'$JobName',instance=~'$Device'},diskID)",
         "hide": 0,
@@ -3505,7 +3505,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "definition": "label_values(diskID{job=~'$JobName',instance=~'$Device'},diskID)",
         "hide": 0,
