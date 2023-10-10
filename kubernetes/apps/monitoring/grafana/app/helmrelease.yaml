@@ -206,6 +206,9 @@ spec:
         miniflux:
           url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
           datasource: Prometheus
+        environment:
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/evironement-dashboard.json
+          datasource: Prometheus
       ceph:
         ceph-cluster:
           gnetId: 2842 # https://grafana.com/grafana/dashboards/2842?tab=revisions
@@ -251,6 +254,9 @@ spec:
         etcd-cluster-overview:
           gnetId: 15308 # Ref: https://grafana.com/grafana/dashboards/15308
           revision: 1
+          datasource: Prometheus
+        kubernetes-cluster-monitoring:
+          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/dashboards/cluster-monitoring.json
           datasource: Prometheus
       nginx:
         nginx:
