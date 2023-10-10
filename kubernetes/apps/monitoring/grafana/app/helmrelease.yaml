@@ -255,9 +255,6 @@ spec:
           gnetId: 15308 # Ref: https://grafana.com/grafana/dashboards/15308
           revision: 1
           datasource: Prometheus
-        kubernetes-cluster-monitoring:
-          url: https://raw.githubusercontent.com/mgueye01/homelab/main/kubernetes/apps/monitoring/grafana/app/dashboards/cluster-monitoring.json
-          datasource: Prometheus
       nginx:
         nginx:
           url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
