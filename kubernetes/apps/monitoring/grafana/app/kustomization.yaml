@@ -7,3 +7,42 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./gatus.yaml
+# Global options
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "true"
+# Generate a ConfigMap for each dashboard
+configMapGenerator:
+  #################################################
+  # Views Dashboards
+  #################################################
+  - name: dashboards-k8s-views-global
+    files: [dashboards/k8s-views-global.json]
+
+  - name: dashboards-k8s-views-namespaces
+    files: [dashboards/k8s-views-namespaces.json]
+
+  - name: dashboards-k8s-views-nodes
+    files: [dashboards/k8s-views-nodes.json]
+
+  - name: dashboards-k8s-views-pods
+    files: [dashboards/k8s-views-pods.json]
+
+  - name: enviro
+    files: [dashboards/evironement-dashboard.json]
+  #################################################
+  # System / Addons Dashboards
+  #################################################
+
+  - name: dashboards-k8s-system-api-server
+    files: [dashboards/k8s-system-api-server.json]
+
+  - name: dashboards-k8s-system-coredns
+    files: [dashboards/k8s-system-coredns.json]
+
+  - name: ceph-cluster-dashboard
+    files: [dashboards/ceph-cluster_rev14.json]
+
+  - name: kubernetes-cluster-monitoring
+    files: [dashboards/cluster-monitoring.json]
