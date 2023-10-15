@@ -36,7 +36,7 @@ spec:
       annotations:
         # auth.home.arpa/enabled: "false"
         # external-dns/is-public: "true"
-        ingress.home.arpa/type: "external-auth"
+        ingress.home.arpa/type: "internal"
       hosts:
         - host: &host "gitops.${SECRET_DOMAIN}"
           paths:
