@@ -52,13 +52,13 @@ identity_providers:
       #   redirect_uris:
       #     ["https://git.g-eye.io/user/oauth2/authelia/callback"]
       #   userinfo_signing_algorithm: none
-      # - id: harbor
-      #   secret: "${HARBOR_OAUTH_CLIENT_SECRET}"
-      #   public: false
-      #   authorization_policy: two_factor
-      #   scopes: ["openid", "profile", "groups", "email"]
-      #   redirect_uris: ["https://harbor.g-eye.io/c/oidc/callback"]
-      #   userinfo_signing_algorithm: none
+      - id: harbor
+        secret: "${HARBOR_OAUTH_CLIENT_SECRET}"
+        public: false
+        authorization_policy: two_factor
+        scopes: ["openid", "profile", "groups", "email"]
+        redirect_uris: ["https://harbor.g-eye.io/c/oidc/callback"]
+        userinfo_signing_algorithm: none
       - id: outline
         description: Outline
         secret: "${OUTLINE_OAUTH_CLIENT_SECRET}"
