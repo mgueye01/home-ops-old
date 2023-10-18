@@ -10,7 +10,7 @@ resources:
   # # - ghost
   # - homer
   # - excalidraw
-  # - outline
+  - outline
   - minio
   - ./weave-gitops/ks.yaml
   - ./kubernetes-schemas/ks.yaml
