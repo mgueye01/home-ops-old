@@ -50,7 +50,7 @@ identity_providers:
         authorization_policy: two_factor
         scopes: ["openid", "profile", "groups", "email"]
         redirect_uris:
-          ["https://git.g-eye.io/user/oauth2/authelia/callback"]
+          ["https://gitea.g-eye.io/user/oauth2/authelia/callback"]
         userinfo_signing_algorithm: none
       - id: harbor
         secret: "${HARBOR_OAUTH_CLIENT_SECRET}"
