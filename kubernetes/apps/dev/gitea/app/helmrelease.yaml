@@ -35,6 +35,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
+        ingress.home.arpa/type: "internal"
       hosts:
         - host: &host gitea.g-eye.io
           paths:
