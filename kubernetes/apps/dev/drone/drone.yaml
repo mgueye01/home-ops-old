@@ -48,7 +48,7 @@ spec:
       DRONE_SERVER_PROXY_PROTO: http
       DRONE_SERVER_PROTO: https
       DRONE_GIT_ALWAYS_AUTH: true
-      DRONE_GITEA_SERVER: https://git.${SECRET_DOMAIN}
+      DRONE_GITEA_SERVER: https://gitea.${SECRET_DOMAIN}
       DRONE_USER_CREATE: username:context,admin:true
       DRONE_LOGS_TEXT: true
       DRONE_LOGS_PRETTY: true
