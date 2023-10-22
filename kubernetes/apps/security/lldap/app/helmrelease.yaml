@@ -39,10 +39,12 @@ spec:
       strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/lldap/lldap
-      # TODO: Switch to release tag on next release
-      tag: latest-alpine@sha256:80398ff35ab5e39d749afe25bc6dfccc08f2c5b17b622b496cfee561f25bdeab
+    containers:
+      main:
+        image:
+          repository: ghcr.io/lldap/lldap
+          # TODO: Switch to release tag on next release
+          tag: latest-alpine@sha256:80398ff35ab5e39d749afe25bc6dfccc08f2c5b17b622b496cfee561f25bdeab
     env:
       TZ: Europe/Paris
       LLDAP_HTTP_PORT: &port 80
