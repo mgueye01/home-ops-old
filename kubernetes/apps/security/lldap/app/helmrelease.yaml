@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.0.3
+      version: 1.5.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -29,8 +29,7 @@ spec:
   values:
     initContainers:
       01-init-db:
-        image:
-          repository: ghcr.io/onedr0p/postgres-init:14.9
+        image: ghcr.io/onedr0p/postgres-init:14.9
         imagePullPolicy: IfNotPresent
         envFrom: &envFrom
           - secretRef:
@@ -40,12 +39,10 @@ spec:
       strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
-    containers:
-      main:
-        image:
-          repository: ghcr.io/lldap/lldap
-          # TODO: Switch to release tag on next release
-          tag: latest-alpine@sha256:80398ff35ab5e39d749afe25bc6dfccc08f2c5b17b622b496cfee561f25bdeab
+    image:
+      repository: ghcr.io/lldap/lldap
+      # TODO: Switch to release tag on next release
+      tag: latest-alpine@sha256:80398ff35ab5e39d749afe25bc6dfccc08f2c5b17b622b496cfee561f25bdeab
     env:
       TZ: Europe/Paris
       LLDAP_HTTP_PORT: &port 80
