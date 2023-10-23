@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - ./gitea/ks.yaml
-  # - drone
+  - drone
   - buildkit
   # - gitlab
