@@ -80,6 +80,8 @@ spec:
           # NAME: gitea
           # USER: gitea
           # PASSWD:
+        webhook:
+          ALLOWED_HOST_LIST: "*"
         service:
           DISABLE_REGISTRATION: false
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
