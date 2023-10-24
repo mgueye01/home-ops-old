@@ -1,0 +1,10 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: blog
+  namespace: default
+spec:
+  image: harbor.g-eye.io/blog/blog
+  interval: 1m
+  provider: generic
