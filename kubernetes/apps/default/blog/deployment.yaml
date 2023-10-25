@@ -22,7 +22,7 @@ spec:
         - name: regcred
       containers:
         - name: *app
-          image: "harbor.g-eye.io/blog/blog:1.0.8" # {"$imagepolicy": "default:blog"}
+          image: "harbor.g-eye.io/blog/blog:1.0.8" # {"$imagepolicy": "flux-system:blog"}
           imagePullPolicy: Always
           ports:
             - name: http
