@@ -102,5 +102,5 @@ spec:
         mountPath: /host/sys
         readOnly: true
     tolerations:
-      - key: node-role.kubernetes.io/master
+      - key: node-role.kubernetes.io/control-plane
         effect: NoSchedule
