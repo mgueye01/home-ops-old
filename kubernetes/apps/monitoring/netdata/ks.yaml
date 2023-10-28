@@ -12,7 +12,7 @@ spec:
     kind: GitRepository
     name: home-ops-kubernetes
   dependsOn:
-    - name: rook-ceph
+    - name: cluster-apps-rook-ceph
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
