@@ -28,5 +28,5 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: snapshot-controller
+  # dependsOn:
+  #   - name: snapshot-controller
