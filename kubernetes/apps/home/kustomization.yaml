@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - emqx
-  - home-assistant
+  # - home-assistant
   # - home-assistant-code
   # - node-red
   # - zwavejs2mqtt

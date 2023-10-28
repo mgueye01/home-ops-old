@@ -48,3 +48,4 @@ resources:
   - ./hajimari.yaml
   - ./actions-runner-controller.yaml
   - ./coredns.yaml
+  - ./netdata.yaml
