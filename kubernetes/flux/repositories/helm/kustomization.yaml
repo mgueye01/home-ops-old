@@ -49,3 +49,5 @@ resources:
   - ./actions-runner-controller.yaml
   - ./coredns.yaml
   - ./netdata.yaml
+  - ./k8s-gpt.yaml
+  - ./go-skynet.yaml

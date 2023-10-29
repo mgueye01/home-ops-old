@@ -1,0 +1,14 @@
+---
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: K8sGPT
+metadata:
+  name: k8sgpt
+  namespace: ai
+spec:
+  ai:
+    enabled: true
+    model: llama-2-7b-chat.ggmlv3.q4_0
+    backend: localai
+    baseUrl: http://localai-local-ai.ai.svc.cluster.local/v1
+  noCache: false
+  version: v0.3.17
