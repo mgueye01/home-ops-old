@@ -27,9 +27,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: rook-ceph-operator
-      namespace: rook-ceph
   values:
     volumeSnapshotClasses:
       - name: csi-ceph-blockpool
