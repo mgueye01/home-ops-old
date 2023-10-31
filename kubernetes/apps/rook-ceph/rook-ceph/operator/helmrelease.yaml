@@ -21,7 +21,7 @@ spec:
 
     csi:
       csiAddons:
-        enabled: false
+        enabled: true
 
       kubeletDirPath: /var/lib/kubelet
       enableCSIHostNetwork: true
