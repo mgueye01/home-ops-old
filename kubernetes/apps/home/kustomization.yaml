@@ -10,5 +10,5 @@ resources:
   # - zigbee2mqtt
   # - zigbee2mqtt-exporter
   # - mealie
-  # - esphome
+  - esphome
   # - appdaemon
