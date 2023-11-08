@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: teslamate-gatus-ep
-  namespace: selfhosted
+  namespace: default
   labels:
     gatus.io/enabled: "true"
 data:
