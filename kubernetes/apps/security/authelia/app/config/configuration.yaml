@@ -23,6 +23,8 @@ access_control:
     - domain: ["navidrome.g-eye.io"]
       policy: bypass
       resources: ["^/rest.*$"]
+    - domain: ["requests.g-eye.io"]
+      policy: one_factor
 
 identity_providers:
   oidc:
