@@ -27,19 +27,27 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
     initContainers:
       init-db:
         image: ghcr.io/onedr0p/postgres-initdb:14.9
         envFrom:
           - secretRef:
               name: teslamate-secret
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: teslamate/teslamate
-      tag: 1.27.3
-
+    containers:
+      main:
+        image:
+          repository: teslamate/teslamate
+          tag: 1.27.3
+        resources:
+          requests:
+            memory: 250Mi
+            cpu: 50m
+          limits:
+            memory: 500Mi
     env:
       TZ: "Europe/Paris"
       DISABLE_MQTT: "false"
@@ -70,10 +78,3 @@ spec:
         tls:
           - hosts:
               - teslamate.g-eye.io
-
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 50m
-      limits:
-        memory: 500Mi
