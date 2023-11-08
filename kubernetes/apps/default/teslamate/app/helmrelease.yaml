@@ -54,7 +54,7 @@ spec:
       main:
         enabled: true
         annotations:
-          ningress.home.arpa/type: "internal"
+          ingress.home.arpa/type: "internal"
         ingressClassName: "nginx"
         hosts:
           - host: "teslamate.g-eye.io"
