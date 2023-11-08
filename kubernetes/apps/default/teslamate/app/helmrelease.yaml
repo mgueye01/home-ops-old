@@ -29,15 +29,14 @@ spec:
   values:
     controllers:
       main:
-        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
           init-db:
             image:
-              repository: ghcr.io/onedr0p/postgres-initdb
+              repository: ghcr.io/onedr0p/postgres-init
               tag: 14.9
-              pullPolicy: IfNotPresent
+              pullPolicy: Always
             envFrom:
               - secretRef:
                   name: teslamate-secret
@@ -46,12 +45,13 @@ spec:
             image:
               repository: teslamate/teslamate
               tag: 1.27.3
-          resources:
-            requests:
-              memory: 250Mi
-              cpu: 50m
-            limits:
-              memory: 500Mi
+
+        resources:
+          requests:
+            memory: 250Mi
+            cpu: 50m
+          limits:
+            memory: 500Mi
     env:
       TZ: "Europe/Paris"
       DISABLE_MQTT: "false"
