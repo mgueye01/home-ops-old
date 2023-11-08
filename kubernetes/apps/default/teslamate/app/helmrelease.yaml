@@ -46,21 +46,21 @@ spec:
               repository: teslamate/teslamate
               tag: 1.27.3
 
-        resources:
-          requests:
-            memory: 250Mi
-            cpu: 50m
-          limits:
-            memory: 500Mi
-    env:
-      TZ: "Europe/Paris"
-      DISABLE_MQTT: "false"
-      MQTT_HOST: "mosquitto.home.svc.cluster.local"
-      MQTT_USERNAME: "teslamate"
+            resources:
+              requests:
+                memory: 250Mi
+                cpu: 50m
+              limits:
+                memory: 500Mi
+            env:
+              TZ: "Europe/Paris"
+              DISABLE_MQTT: "false"
+              MQTT_HOST: "mosquitto.home.svc.cluster.local"
+              MQTT_USERNAME: "teslamate"
 
-    envFrom:
-      - secretRef:
-          name: teslamate-secret
+            envFrom:
+              - secretRef:
+                  name: teslamate-secret
 
     service:
       main:
