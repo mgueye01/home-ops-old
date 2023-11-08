@@ -40,7 +40,12 @@ spec:
               name: authelia-secret
     controller:
       replicas: 2
-      strategy: RollingUpdate
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+
       annotations:
         reloader.stakater.com/auto: "true"
     image:
@@ -151,7 +156,7 @@ spec:
         mountPath: /config/configuration.yaml
         readOnly: false
     topologySpreadConstraints:
-      - maxSkew: 0
+      - maxSkew: 1
         topologyKey: kubernetes.io/hostname
         whenUnsatisfiable: DoNotSchedule
         labelSelector:
