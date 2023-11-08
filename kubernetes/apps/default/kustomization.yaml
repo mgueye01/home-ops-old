@@ -18,3 +18,4 @@ resources:
   - ./miniflux/ks.yaml
   - ./actual/ks.yaml
   # - ./shlink/ks.yaml
+  - ./teslamate/ks.yaml
