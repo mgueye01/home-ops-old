@@ -151,7 +151,7 @@ spec:
         mountPath: /config/configuration.yaml
         readOnly: false
     topologySpreadConstraints:
-      - maxSkew: 2
+      - maxSkew: 0
         topologyKey: kubernetes.io/hostname
         whenUnsatisfiable: DoNotSchedule
         labelSelector:
