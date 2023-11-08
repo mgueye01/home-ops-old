@@ -8,4 +8,4 @@ resources:
   - ./redis/ks.yaml
   # # - phpmyadmin
   # # - mysql
-  # - pgadmin
+  - pgadmin
