@@ -183,9 +183,13 @@ spec:
             user: teslamate
             secureJsonData:
               password: "$TESLAMATE_DB_PASSWORD"
+            basicAuth: false
+            withCredentials: false
             jsonData:
               postgresVersion: 1000
               sslmode: disable
+            version: 1
+            editable: true
     dashboards:
       default:
         external-dns:
