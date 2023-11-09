@@ -6,6 +6,7 @@ resources:
   - ./externalsecret.yaml
   # - ./gatus.yaml
   - ./helmrelease.yaml
+  - dashboards
 labels:
   - pairs:
       app.kubernetes.io/name: teslamate

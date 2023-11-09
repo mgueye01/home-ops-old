@@ -175,6 +175,17 @@ spec:
             url: http://alertmanager-operated.monitoring.svc.cluster.local:9093
             jsonData:
               implementation: prometheus
+          - name: TeslaMate
+            type: postgres
+            access: proxy
+            url: postgres-rw.database.svc.cluster.local:5432
+            database: teslamate
+            user: teslamate
+            secureJsonData:
+              password: "$TESLAMATE_DB_PASSWORD"
+            jsonData:
+              postgresVersion: 1000
+              sslmode: disable
     dashboards:
       default:
         external-dns:
@@ -330,11 +341,13 @@ spec:
         labelValue: ""
     plugins:
       - grafana-clock-panel
+      - natel-plotly-panel
       - grafana-piechart-panel
       - grafana-worldmap-panel
       - natel-discrete-panel
       - pr0ps-trackmap-panel
       - vonage-status-panel
+      - https://github.com/panodata/panodata-map-panel/releases/download/0.16.0/panodata-map-panel-0.16.0.zip;grafana-worldmap-panel-ng
     serviceMonitor:
       enabled: true
     ingress:
