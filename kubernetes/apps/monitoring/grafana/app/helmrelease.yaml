@@ -180,7 +180,7 @@ spec:
             access: proxy
             url: postgres-rw.database.svc.cluster.local:5432
             database: teslamate
-            user: teslamate
+            user: postgres
             secureJsonData:
               password: "$TESLAMATE_DB_PASSWORD"
             basicAuth: false
