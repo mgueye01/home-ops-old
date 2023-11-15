@@ -6,8 +6,8 @@ resources:
   - namespace.yaml
   - blog
   - littlelink
-  # - theme-park
-  # - excalidraw
+  - theme-park
+  - excalidraw
   - minio
   - ./weave-gitops/ks.yaml
   - ./kubernetes-schemas/ks.yaml
@@ -17,5 +17,4 @@ resources:
   - ./immich/ks.yaml
   - ./miniflux/ks.yaml
   - ./actual/ks.yaml
-  # - ./shlink/ks.yaml
   - ./teslamate/ks.yaml
