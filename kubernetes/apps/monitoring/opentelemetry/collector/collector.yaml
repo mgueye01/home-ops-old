@@ -1,0 +1,77 @@
+---
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: opentelemetry-collector
+  namespace: monitoring
+spec:
+  mode: daemonset
+  hostNetwork: false
+  ports:
+    - name: app-metrics
+      port: 9090
+    - name: prometheus
+      port: 8889
+  config: |
+    receivers:
+      zipkin:
+      otlp:
+        protocols:
+          grpc:
+      filelog:
+        include_file_path: true
+        poll_interval: 500ms
+        include: [/var/log/pods/**/*.log, /var/lib/docker/containers/**/*.log ]
+    processors:
+      batch:
+      attributes:
+        actions:
+          - action: insert
+            key: log_file_name
+            from_attribute: log.file.name
+          - action: insert
+            key: loki.attribute.labels
+            value: log_file_name
+    exporters:
+      otlp:
+        endpoint: "http://tempo:4317"
+        tls:
+          insecure: true
+      prometheus:
+        endpoint: "0.0.0.0:8889"
+      loki:
+        endpoint: "http://loki-gateway/loki/api/v1/push"
+
+      logging:
+        verbosity: normal
+    service:
+      telemetry:
+        logs:
+          level: DEBUG
+      pipelines:
+        traces:
+          receivers: [otlp, zipkin]
+          processors: [batch]
+          exporters: [otlp]
+        metrics:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [prometheus]
+        logs:
+          receivers: [filelog]
+          processors: [attributes]
+          exporters: [loki]
+  volumes:
+    - name: varlogpods
+      hostPath:
+        path: /var/log/pods
+    - name: varlibdockercontainers
+      hostPath:
+        path: /var/lib/docker/containers
+  volumeMounts:
+    - name: varlogpods
+      mountPath: /var/log/pods
+      readOnly: true
+    - name: varlibdockercontainers
+      mountPath: /var/lib/docker/containers
+      readOnly: true

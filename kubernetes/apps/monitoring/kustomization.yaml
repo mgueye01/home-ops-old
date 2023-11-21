@@ -17,3 +17,5 @@ resources:
   - ./vector/ks.yaml
   - ./gatus/ks.yaml
   - ./netdata/ks.yaml
+  - ./opentelemetry/ks.yaml
+  - ./tempo/ks.yaml
