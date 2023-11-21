@@ -193,6 +193,33 @@ spec:
               sslmode: disable
             version: 1
             editable: true
+          - name: Tempo
+            type: tempo
+            url: http://tempo.monitoring.svc.cluster.local:3100
+            access: proxy
+            jsonData:
+              tracesToLogsV2:
+                datasourceUid: 'Loki'
+                tags: ['job', 'instance', 'pod', 'namespace']
+                filterByTraceID: true
+                filterBySpanID: true
+                customQuery: true
+              tracesToMetrics:
+                datasourceUid: 'Prometheus'
+                tags: [{ key: 'service.name', value: 'service' }, { key: 'job' }]
+              serviceMap:
+                datasourceUid: 'Prometheus'
+              nodeGraph:
+                enabled: true
+              search:
+                hide: false
+              lokiSearch:
+                datasourceUid: 'Loki'
+              traceQuery:
+                timeShiftEnabled: true
+              spanBar:
+                type: 'Tag'
+                tag: 'http.path'
     dashboards:
       default:
         external-dns:
