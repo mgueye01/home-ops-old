@@ -56,8 +56,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: vector.g-eye.io
         # externalIPs: ["192.168.10.75"]
-        io.cilium/lb-ipam-ips: 192.168.10.75
-        externalTrafficPolicy: Local
+          io.cilium/lb-ipam-ips: 192.168.10.75
         ports:
           http:
             port: 8686
@@ -67,9 +66,9 @@ spec:
           kubernetes:
             enabled: true
             port: 6010
-          vyos:
-            enabled: true
-            port: 6020
+          # vyos:
+          #   enabled: true
+          #   port: 6020
             # protocol: UDP
     persistence:
       config:
