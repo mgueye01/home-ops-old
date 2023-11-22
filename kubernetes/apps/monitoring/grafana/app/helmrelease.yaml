@@ -155,6 +155,8 @@ spec:
           - { name: Alertmanager, orgId: 1 }
           - { name: Loki, orgId: 1 }
           - { name: Prometheus, orgId: 1 }
+          - { name: TeslaMate, orgId: 1 }
+          - { name: Tempo, orgId: 1 }
         datasources:
           - name: Prometheus
             type: prometheus
@@ -168,7 +170,7 @@ spec:
             type: loki
             uid: loki
             access: proxy
-            url: http://loki-gateway.monitoring.svc.cluster.local
+            url: http://loki-gateway.monitoring.svc.cluster.local:80
             jsonData:
               maxLines: 250
           - name: Alertmanager
