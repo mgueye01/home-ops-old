@@ -156,7 +156,7 @@ spec:
           - { name: Loki, orgId: 1 }
           - { name: Prometheus, orgId: 1 }
           - { name: TeslaMate, orgId: 1 }
-          # - { name: Tempo, orgId: 1 }
+          - { name: Tempo, orgId: 1 }
         datasources:
           - name: Prometheus
             type: prometheus
