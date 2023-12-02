@@ -12,4 +12,4 @@ resources:
   - ./microservices
   # - ./machine-learning
   - ./web
-  - ./gatus.yaml
+  # - ./gatus.yaml
