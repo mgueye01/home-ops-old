@@ -19,9 +19,9 @@ spec:
     storageClass: ceph-block
   superuserSecret:
     name: cloudnative-pg-secret
-  bootstrap:
-    recovery:
-      source: &previousCluster postgres-v3
+  # bootstrap:
+  #   recovery:
+  #     source: &previousCluster postgres-v2
   postgresql:
     parameters:
       max_connections: "600"
@@ -36,7 +36,7 @@ spec:
         maxParallel: 8
       destinationPath: s3://postgresql/
       endpointURL: http://minio.default.svc.cluster.local:9000
-      serverName: &currentCluster postgres-v4
+      serverName: &currentCluster postgres-v3
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -46,8 +46,8 @@ spec:
           key: aws-secret-access-key
   # externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-    - name: *previousCluster
-    # - name: postgres-v4
+    # - name: *previousCluster
+    - name: postgres-v2
       barmanObjectStore:
         wal:
           compression: bzip2
