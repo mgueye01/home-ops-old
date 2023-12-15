@@ -86,7 +86,7 @@ spec:
           DEFAULT_PRIVATE: true
         database:
           DB_TYPE: postgres
-          HOST: postgres-rw.database
+          HOST: postgres16-rw.database
           NAME: gitea
           SCHEMA: public
           SSL_MODE: disable

@@ -42,7 +42,7 @@ spec:
             - drone.${SECRET_DOMAIN}
     env:
       DRONE_DATABASE_DRIVER: postgres
-      DRONE_DATABASE_DATASOURCE: postgres://postgres:${SECRET_DRONE_POSTGRESQL_PASSWORD}@postgres-rw.database/postgres?sslmode=disable
+      DRONE_DATABASE_DATASOURCE: postgres://postgres:${SECRET_DRONE_POSTGRESQL_PASSWORD}@postgres16-rw.database/postgres?sslmode=disable
       DRONE_SERVER_HOST: drone.${SECRET_DOMAIN}
       DRONE_SERVER_PROXY_HOST: drone.drone.svc:8080
       DRONE_SERVER_PROXY_PROTO: http
