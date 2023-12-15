@@ -1,42 +1,47 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/cluster_v1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/postgresql.cnpg.io/cluster_v1.json
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres
-  namespace: database
-  annotations:
-    kyverno.io/ignore: "true"
+  name: postgres16
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.8-1
-  inheritedMetadata:
-    labels:
-      kube-image-keeper.enix.io/image-caching-policy: ignore
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1-6
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
-    storageClass: ceph-block
+    storageClass: local-path
   superuserSecret:
     name: cloudnative-pg-secret
+  enableSuperuserAccess: true
+  # Note: Bootstrap is needed when recovering from an existing cnpg cluster
   # bootstrap:
   #   recovery:
-  #     source: &previousCluster postgres-v2
+  #     source: &previousCluster postgres16-v1
   postgresql:
     parameters:
       max_connections: "600"
+      max_slot_wal_keep_size: 10GB
       shared_buffers: 512MB
+  resources:
+    requests:
+      memory: "2Gi"
+      cpu: "500m"
+    limits:
+      memory: "4Gi"
   monitoring:
     enablePodMonitor: true
   backup:
     retentionPolicy: 30d
     barmanObjectStore:
+      data:
+        compression: bzip2
       wal:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://postgresql/
       endpointURL: http://minio.default.svc.cluster.local:9000
-      serverName: &currentCluster postgres-v3
+      serverName: &currentCluster postgres16-v1
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -44,23 +49,19 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-  # externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    # - name: *previousCluster
-    - name: postgres-v2
-      barmanObjectStore:
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://postgresql/
-        endpointURL: http://minio.default.svc.cluster.local:9000
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg-secret
-            key: aws-access-key-id
-          secretAccessKey:
-            name: cloudnative-pg-secret
-            key: aws-secret-access-key
-  affinity:
-    enablePodAntiAffinity: true
-    topologyKey: kubernetes.io/hostname
+  # # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  # externalClusters:
+  #   - name: *previousCluster
+  #     barmanObjectStore:
+  #       wal:
+  #         compression: bzip2
+  #         maxParallel: 8
+  #       destinationPath: s3://postgresql/
+  #       endpointURL: http://minio.default.svc.cluster.local:9000
+  #       s3Credentials:
+  #         accessKeyId:
+  #           name: cloudnative-pg-secret
+  #           key: aws-access-key-id
+  #         secretAccessKey:
+  #           name: cloudnative-pg-secret
+  #           key: aws-secret-access-key
