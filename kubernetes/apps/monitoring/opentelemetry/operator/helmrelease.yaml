@@ -24,7 +24,7 @@ spec:
         repository: ghcr.io/open-telemetry/opentelemetry-operator/opentelemetry-operator
       collectorImage:
         repository: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib
-        tag: 0.90.1
+        tag: 0.91.0
     admissionWebhooks:
       certManager:
         enabled: true
