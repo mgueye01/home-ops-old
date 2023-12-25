@@ -42,5 +42,4 @@ jobs:
               --output=${{ env.SCHEMA_DIR }}
 
       - name: Run kubeconform
-        run: |
-          bash ./.github/scripts/kubeconform.sh ${{ env.KUBERNETES_DIR }} ${{ env.SCHEMA_DIR }}
+        run: bash ./.github/scripts/kubeconform.sh ${{ matrix.path }}
