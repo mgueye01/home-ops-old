@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-monitoring-netdata
+  name: monitoring-netdata
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
@@ -14,7 +14,7 @@ spec:
     kind: GitRepository
     name: home-ops-kubernetes
   dependsOn:
-    - name: cluster-apps-rook-ceph
+    - name: rook-ceph
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease

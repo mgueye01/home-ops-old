@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: cluster-apps-external-secrets
+    - name: external-secrets
   path: "./kubernetes/apps/monitoring/thanos/app"
   prune: true
   sourceRef:

@@ -3,11 +3,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-intel-device-plugin-operator
+  name: intel-device-plugin-operator
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-node-feature-discovery
+    - name: node-feature-discovery
   path: ./kubernetes/apps/kube-system/intel-device-plugin/app
   prune: true
   sourceRef:
@@ -26,11 +26,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-intel-device-plugin-gpu
+  name: intel-device-plugin-gpu
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-intel-device-plugin-operator
+    - name: intel-device-plugin-operator
   path: ./kubernetes/apps/kube-system/intel-device-plugin/gpu
   prune: true
   sourceRef:
@@ -49,7 +49,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-intel-device-plugin-exporter
+  name: intel-device-plugin-exporter
   namespace: flux-system
 spec:
   path: ./kubernetes/apps/kube-system/intel-device-plugin/exporter

@@ -3,15 +3,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-recyclarr
+  name: recyclarr
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-external-secrets
-    - name: cluster-apps-lidarr
-    - name: cluster-apps-radarr
-    - name: cluster-apps-sonarr
-    - name: cluster-apps-volsync
+    - name: external-secrets
+    - name: lidarr
+    - name: radarr
+    - name: sonarr
+    - name: volsync
   path: ./kubernetes/apps/media/recyclarr/app
   prune: true
   sourceRef:
