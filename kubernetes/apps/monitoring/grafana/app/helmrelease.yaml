@@ -152,11 +152,11 @@ spec:
       datasources.yaml:
         apiVersion: 1
         deleteDatasources:
-          - { name: Alertmanager, orgId: 1 }
-          - { name: Loki, orgId: 1 }
-          - { name: Prometheus, orgId: 1 }
-          - { name: TeslaMate, orgId: 1 }
-          - { name: Tempo, orgId: 1 }
+          - {name: Alertmanager, orgId: 1}
+          - {name: Loki, orgId: 1}
+          - {name: Prometheus, orgId: 1}
+          - {name: TeslaMate, orgId: 1}
+          - {name: Tempo, orgId: 1}
         datasources:
           - name: Prometheus
             type: prometheus
@@ -232,7 +232,7 @@ spec:
           gnetId: 13502 # https://grafana.com/grafana/dashboards/13502?tab=revisions
           revision: 23
           datasource:
-            - { name: DS_PROMETHEUS, value: Prometheus }
+            - {name: DS_PROMETHEUS, value: Prometheus}
         node-exporter-full:
           gnetId: 1860 # https://grafana.com/grafana/dashboards/1860?tab=revisions
           revision: 31
@@ -351,7 +351,7 @@ spec:
           revision: 9
           datasource: Prometheus
         unifi-usw-insights:
-          gnetId: 11312  # Ref: https://grafana.com/grafana/dashboards/11312
+          gnetId: 11312 # Ref: https://grafana.com/grafana/dashboards/11312
           revision: 8
           datasource: Prometheus
       synology:

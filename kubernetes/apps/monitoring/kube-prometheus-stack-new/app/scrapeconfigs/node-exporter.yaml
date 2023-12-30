@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/scrapeconfig_v1alpha1.json
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
@@ -7,6 +7,6 @@ metadata:
 spec:
   staticConfigs:
     - targets:
-        - pikvm.turbo.ac:9100
-        - vyos.turbo.ac:9100
+        - pikvm.g-eye.tech:9100
+        # - vyos.turbo.ac:9100
   metricsPath: /metrics

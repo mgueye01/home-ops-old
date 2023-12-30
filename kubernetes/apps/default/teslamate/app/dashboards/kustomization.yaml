@@ -57,6 +57,12 @@ configMapGenerator:
   - name: visited
     files:
       - visited.json=https://raw.githubusercontent.com/adriankumpf/teslamate/master/grafana/dashboards/visited.json
+  - name: charging-costs-stats
+    files:
+      - charging-costs-stats.json=https://raw.githubusercontent.com/jheredianet/Teslamate-CustomGrafanaDashboards/main/dashboards/ChargingCostsStats.json
+  - name: current-charge-view
+    files:
+      - current-charge-view.json=https://raw.githubusercontent.com/jheredianet/Teslamate-CustomGrafanaDashboards/main/dashboards/CurrentChargeView.json
 
 generatorOptions:
   disableNameSuffixHash: true
