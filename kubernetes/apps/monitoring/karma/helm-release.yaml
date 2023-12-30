@@ -27,7 +27,8 @@ spec:
       tag: v0.118
     nameOverride: karma
     env:
-      ALERTMANAGER_URI: http://alertmanager-operated:9093
+      # ALERTMANAGER_URI: http://alertmanager-operated:9093
+      ALERTMANAGER_URI: http://kube-prometheus-stack-alertmanager:9093
     ingress:
       main:
         enabled: true
