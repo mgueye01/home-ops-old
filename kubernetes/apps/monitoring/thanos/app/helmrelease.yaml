@@ -75,12 +75,14 @@ spec:
           master_name: redis-master
       ingress:
         enabled: true
-        ingressClassName: internal
+        ingressClassName: "nginx"
         hostname: &host thanos-query-frontend.g-eye.io
         tls: true
         extraTls:
           - hosts:
               - *host
+        annotations:
+          ingress.home.arpa/type: "internal"
     query:
       enabled: true
       replicaCount: 2
