@@ -125,13 +125,15 @@ spec:
     prometheus:
       ingress:
         enabled: true
-        ingressClassName: internal
+        ingressClassName: "nginx"
         pathType: Prefix
         hosts:
           - &host prometheus.g-eye.io
         tls:
           - hosts:
               - *host
+        annotations:
+          ingress.home.arpa/type: "internal"
       thanosService:
         enabled: true
       thanosServiceMonitor:
