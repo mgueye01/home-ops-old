@@ -3,8 +3,8 @@ kind: Kustomization
 namespace: harbor
 resources:
   - ./namespace.yaml
-  - helm-release.yaml
-  - pvcs/database.yaml
-  - pvcs/jobservice.yaml
-  - pvcs/redis.yaml
-  - pvcs/registry.yaml
+  # - helm-release.yaml
+  # - pvcs/database.yaml
+  # - pvcs/jobservice.yaml
+  # - pvcs/redis.yaml
+  # - pvcs/registry.yaml

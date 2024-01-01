@@ -4,14 +4,14 @@ kind: Kustomization
 resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
-  # Flux-Kustomizations
-  - ./tautulli/ks.yaml
-  - ./plex/ks.yaml
-  - ./radarr/ks.yaml
-  - ./sonarr/ks.yaml
-  - ./lidarr/ks.yaml
-  - ./prowlarr/ks.yaml
-  - ./overseerr/ks.yaml
-  - ./recyclarr/ks.yaml
-  - plex-meta-manager
-  # - ./jellyfin/ks.yaml
+  # # Flux-Kustomizations
+  # - ./tautulli/ks.yaml
+  # - ./plex/ks.yaml
+  # - ./radarr/ks.yaml
+  # - ./sonarr/ks.yaml
+  # - ./lidarr/ks.yaml
+  # - ./prowlarr/ks.yaml
+  # - ./overseerr/ks.yaml
+  # - ./recyclarr/ks.yaml
+  # - plex-meta-manager
+  # # - ./jellyfin/ks.yaml

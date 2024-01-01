@@ -3,19 +3,19 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./namespace.yaml
-  - ./thanos/ks.yaml
-  - ./grafana/ks.yaml
-  - ./loki/ks.yaml
-  - ./kube-prometheus-stack/ks.yaml
-  - ./unpoller/ks.yaml
-  - node-problem-detector
-  - karma
-  - blackbox-exporter
-  # - goldilocks
-  - pushgateway
-  - ./smartctl-exporter/ks.yaml
-  - ./vector/ks.yaml
-  - ./gatus/ks.yaml
-  - ./netdata/ks.yaml
+  # - ./thanos/ks.yaml
+  # - ./grafana/ks.yaml
+  # - ./loki/ks.yaml
+  # - ./kube-prometheus-stack/ks.yaml
+  # - ./unpoller/ks.yaml
+  # - node-problem-detector
+  # - karma
+  # - blackbox-exporter
+  # # - goldilocks
+  # - pushgateway
+  # - ./smartctl-exporter/ks.yaml
+  # - ./vector/ks.yaml
+  # - ./gatus/ks.yaml
+  # - ./netdata/ks.yaml
   # - ./opentelemetry/ks.yaml
   # - ./tempo/ks.yaml
