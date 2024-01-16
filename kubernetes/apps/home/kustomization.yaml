@@ -10,6 +10,6 @@ resources:
   # - zigbee2mqtt
   # - zigbee2mqtt-exporter
   # - mealie
-  - esphome
-  # - appdaemon
-  - ./mosquitto/ks.yaml
+  # - esphome
+  # # - appdaemon
+  # - ./mosquitto/ks.yaml

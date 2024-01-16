@@ -17,15 +17,15 @@ kubernetes:
         ansible_user: tapha
         ansible_ssh_port: 22
       hosts:
-        k8s-1:
+        worker1:
           ansible_host: 192.168.10.21
           rook_block_devices:
             - /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX0W263111V
-        k8s-2:
+        worker2:
           ansible_host: 192.168.10.22
           rook_block_devices:
             - /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX0W263166J
-        k8s-3:
+        worker3:
           ansible_host: 192.168.10.23
           rook_block_devices:
             - /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX1W320277D
