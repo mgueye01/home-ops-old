@@ -5,6 +5,7 @@
 Thumbs.db
 # k8s
 kubeconfig
+kubecm.config
 # vscode-sops
 .decrypted~*
 .config.env
