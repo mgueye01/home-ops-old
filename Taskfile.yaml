@@ -1,14 +1,12 @@
 ---
 version: "3"
 vars:
-  PROJECT_DIR:
-    sh: "git rev-parse --show-toplevel"
-  CLUSTER_DIR: "{{.PROJECT_DIR}}/kubernetes"
-  ANSIBLE_DIR: "{{.PROJECT_DIR}}/ansible"
-  TERRAFORM_DIR: "{{.PROJECT_DIR}}/provision/terraform"
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
+  KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
+  TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform"
 
 env:
-  KUBECONFIG: "{{.PROJECT_DIR}}/provision/kubeconfig"
+  KUBECONFIG: "{{.KUBERNETES_DIR}}/provision/kubeconfig"
 
 includes:
   ansible: .taskfiles/ansible.yaml
