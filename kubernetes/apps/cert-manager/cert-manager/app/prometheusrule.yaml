@@ -1,10 +1,9 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/monitoring.coreos.com/prometheusrule_v1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: cert-manager.rules
-  namespace: cert-manager
+  name: cert-manager-rules
 spec:
   groups:
     - name: cert-manager
@@ -12,7 +11,7 @@ spec:
         - alert: CertManagerAbsent
           expr: |
             absent(up{job="cert-manager"})
-          for: 10m
+          for: 15m
           labels:
             severity: critical
           annotations:
@@ -20,7 +19,7 @@ spec:
               "New certificates will not be able to be minted, and existing
               ones can't be renewed until cert-manager is back."
             runbook_url: https://gitlab.com/uneeq-oss/cert-manager-mixin/-/blob/master/RUNBOOK.md#certmanagerabsent
-            summary: "Cert Manager has disappeared from Prometheus service discovery."
+            summary: "Cert Manager has dissapeared from Prometheus service discovery."
     - name: certificates
       rules:
         - alert: CertManagerCertExpirySoon
@@ -28,7 +27,7 @@ spec:
             avg by (exported_namespace, namespace, name) (
             certmanager_certificate_expiration_timestamp_seconds - time())
               < (21 * 24 * 3600)
-          for: 1h
+          for: 15m
           labels:
             severity: warning
           annotations:
@@ -44,7 +43,7 @@ spec:
           expr: |
             max by (name, exported_namespace, namespace, condition) (
             certmanager_certificate_ready_status{condition!="True"} == 1)
-          for: 10m
+          for: 15m
           labels:
             severity: critical
           annotations:
@@ -58,7 +57,7 @@ spec:
           expr: |
             sum by (host) (rate(certmanager_http_acme_client_request_count{status="429"}[5m]))
               > 0
-          for: 5m
+          for: 15m
           labels:
             severity: critical
           annotations:
