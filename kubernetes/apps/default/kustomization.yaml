@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - blog
-  # - littlelink
+  - littlelink
   # - theme-park
   # - excalidraw
   # - minio
