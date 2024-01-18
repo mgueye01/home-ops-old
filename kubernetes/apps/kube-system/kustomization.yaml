@@ -11,6 +11,6 @@ resources:
   # - ./kube-cleanup-operator/ks.yaml
   # - ./snapshot-controller/ks.yaml
   # - ./nfs-subdir-external-provisioner/ks.yaml
-  # - ./cilium/ks.yaml
-  # - ./coredns/ks.yaml
-  # - ./local-path-provisioner/ks.yaml
+  - ./cilium/ks.yaml
+  - ./coredns/ks.yaml
+  - ./local-path-provisioner/ks.yaml
