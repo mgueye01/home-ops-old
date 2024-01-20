@@ -8,7 +8,7 @@ resources:
   - littlelink
   # - theme-park
   # - excalidraw
-  # - minio
+  - minio
   - ./weave-gitops/ks.yaml
   # - ./kubernetes-schemas/ks.yaml
   # - ./paperless/ks.yaml
