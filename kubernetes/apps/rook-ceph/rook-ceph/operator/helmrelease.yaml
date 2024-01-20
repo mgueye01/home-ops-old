@@ -23,7 +23,7 @@ spec:
       csiAddons:
         enabled: true # Set to true when using kubernetes-csi-addons
 
-      kubeletDirPath: /var/lib/kubelet
+      kubeletDirPath: /var/lib/k0s/kubelet
       enableCSIHostNetwork: true
       pluginTolerations:
         - effect: "NoExecute"
