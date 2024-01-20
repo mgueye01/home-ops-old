@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: cloudnative-pg
     - name: external-secrets
-  path: ./kubernetes/main/apps/default/radarr/app
+  path: ./kubernetes/apps/media/radarr/app
   prune: true
   sourceRef:
     kind: GitRepository
