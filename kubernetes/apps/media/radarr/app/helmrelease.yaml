@@ -55,7 +55,7 @@ spec:
               RADARR__PORT: &port 80
               RADARR__LOG_LEVEL: info
               RADARR__THEME: dark
-              TZ: America/New_York
+              TZ: Europe/Paris
             envFrom: *envFrom
             probes:
               liveness: &probes
@@ -97,9 +97,11 @@ spec:
     ingress:
       main:
         enabled: true
-        className: internal
+        className: nginx
+        annotations:
+          ingress.home.arpa/type: "internal"
         hosts:
-          - host: &host "{{ .Release.Name }}.devbu.io"
+          - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:
               - path: /
                 service:
@@ -123,8 +125,29 @@ spec:
       tmp:
         type: emptyDir
       media:
+        enabled: true
         type: nfs
-        server: expanse.turbo.ac
-        path: /eros/Media
-        globalMounts:
-          - path: /media
+        server: 192.168.0.18
+        path: /volume1/video/Movie
+        mountPath: /media
+      downloads:
+        enabled: true
+        type: nfs
+        server: 192.168.0.18
+        path: /volume1/downloads/complete
+        mountPath: /downloads
+      backup:
+        enabled: true
+        type: nfs
+        server: 192.168.0.18
+        path: /volume1/CLOUDNATIVE1/Backups/radarr
+        mountPath: /config/Backups
+        readOnly: false
+      scripts:
+        enabled: true
+        type: configMap
+        name: radarr-configmap
+        subPath: pushover-notify.sh
+        mountPath: /scripts/pushover-notify.sh
+        defaultMode: 0775
+        readOnly: true
