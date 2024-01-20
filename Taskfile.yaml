@@ -11,7 +11,8 @@ env:
 includes:
   ansible: .taskfiles/ansible.yaml
   cluster: .taskfiles/ClusterTasks.yaml
-  flux: .taskfiles/flux.yaml
+  flux: .taskfiles/Flux/Taskfile.yaml
+  k0s: .taskfiles/K0s/Taskfile.yaml
   format: .taskfiles/format.yaml
   lint: .taskfiles/lint.yaml
   pre-commit: .taskfiles/pre-commit.yaml

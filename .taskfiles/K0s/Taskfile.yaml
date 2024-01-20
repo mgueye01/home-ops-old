@@ -1,0 +1,33 @@
+---
+version: "3"
+
+env:
+  DISABLE_TELEMETRY: "true"
+  DISABLE_UPGRADE_CHECK: "true"
+
+tasks:
+
+  kubeconfig:
+    desc: Gets k0s cluster kubeconfig
+    cmds:
+      - k0sctl kubeconfig --config provision/k0s/k0s-config.yaml > provision/kubeconfig
+    preconditions:
+      - { msg: "k0s-config.yaml not found", sh: "test -f {{.ROOT_DIR}}/provision/k0s/k0s-config.yaml" }
+
+  apply:
+    desc: Apply k0s cluster k0s-config.yaml
+    cmds:
+      - k0sctl apply --config provision/k0s/k0s-config.yaml
+      - task: kubeconfig
+    preconditions:
+      - { msg: "k0s-config.yaml not found", sh: "test -f {{.ROOT_DIR}}/provision/k0s/k0s-config.yaml" }
+
+  reset:
+    desc: Resets the k0s cluster
+    cmds:
+      - k0sctl reset --config provision/k0s/k0s-config.yaml
+      - task: :ansible:run
+        vars:
+          playbook: cluster-nuke
+    preconditions:
+      - { msg: "k0s-config.yaml not found", sh: "test -f {{.ROOT_DIR}}/provision/k0s/k0s-config.yaml" }
