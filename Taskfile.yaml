@@ -9,18 +9,16 @@ env:
   KUBECONFIG: "{{.KUBERNETES_DIR}}/provision/kubeconfig"
 
 includes:
-  ansible: .taskfiles/ansible.yaml
-  cluster: .taskfiles/ClusterTasks.yaml
+  ansible: .taskfiles/Ansible/Taskfile.yaml
+  kubernetes: .taskfiles/Kubernetes/Taskfile.yaml
+  external-secrets: .taskfiles/ExternalSecrets/Taskfile.yaml
   flux: .taskfiles/Flux/Taskfile.yaml
   k0s: .taskfiles/K0s/Taskfile.yaml
   format: .taskfiles/format.yaml
   lint: .taskfiles/lint.yaml
-  pre-commit: .taskfiles/pre-commit.yaml
-  terraform: .taskfiles/terraform.yaml
-  snapshot: .taskfiles/SnapshotTasks.yaml
   toolbox: .taskfiles/RookTasks.yaml
-  vs: .taskfiles/VolSync/Tasks.yaml
-  es: .taskfiles/ExternalSecrets/Tasks.yaml
+  sops: .taskfiles/Sops/Taskfile.yaml
+  volsync: .taskfiles/VolSync/Taskfile.yaml
 
 tasks:
   kubeconfig:

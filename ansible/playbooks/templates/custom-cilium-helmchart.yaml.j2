@@ -1,5 +1,5 @@
 ---
-# https://docs.k3s.io/helm
+# Ref: https://docs.k3s.io/helm
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
@@ -9,7 +9,7 @@ spec:
   # renovate: datasource=helm
   repo: https://helm.cilium.io/
   chart: cilium
-  version: 1.14.2
+  version: 1.15.0-rc.0
   targetNamespace: kube-system
   bootstrap: true
   valuesContent: |-
@@ -49,4 +49,4 @@ spec:
     rollOutCiliumPods: true
     securityContext:
       privileged: true
-    tunnel: disabled
+    routingMode: native

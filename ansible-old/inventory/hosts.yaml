@@ -1,0 +1,31 @@
+---
+kubernetes:
+  children:
+    master:
+      vars:
+        ansible_user: tapha
+        ansible_ssh_port: 22
+      hosts:
+        master1:
+          ansible_host: 192.168.10.11
+        master2:
+          ansible_host: 192.168.10.12
+        master3:
+          ansible_host: 192.168.10.13
+    worker:
+      vars:
+        ansible_user: tapha
+        ansible_ssh_port: 22
+      hosts:
+        worker1:
+          ansible_host: 192.168.10.21
+          rook_block_devices:
+            - /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX0W263111V
+        worker2:
+          ansible_host: 192.168.10.22
+          rook_block_devices:
+            - /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX0W263166J
+        worker3:
+          ansible_host: 192.168.10.23
+          rook_block_devices:
+            - /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX1W320277D

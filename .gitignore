@@ -21,3 +21,15 @@ megalinter-reports/
 provision/terraform/proxmox/*
 provision/talos/*
 wipe-rook.yaml
+.venv/
+.private/
+.task/
+*.tfvars
+*.secret.env
+*.secret.yaml
+*.agekey
+*.pub
+*.key
+*.pem
+kubeconfig
+config.xml
