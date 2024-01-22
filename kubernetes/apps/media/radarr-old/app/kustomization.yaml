@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: media
 resources:
   - ./externalsecret.yaml
-  - ./helmrelease.yaml
+  # - ./helmrelease.yaml
   - ./volsync.yaml
 configMapGenerator:
   - name: radarr-configmap
