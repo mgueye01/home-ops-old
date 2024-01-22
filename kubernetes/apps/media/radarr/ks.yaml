@@ -1,27 +1,24 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app radarr
+  name: radarr
   namespace: flux-system
 spec:
-  targetNamespace: media
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   dependsOn:
-    - name: cloudnative-pg
     - name: external-secrets
-  path: ./kubernetes/apps/media/radarr/app
+    - name: volsync
+  path: ./kubernetes/apps/media/radarr-old/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-ops-kubernetes
-  wait: false
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: radarr
+      namespace: media
   interval: 30m
   retryInterval: 1m
-  timeout: 5m
-  postBuild:
-    substitute:
-      APP: *app
+  timeout: 3m
