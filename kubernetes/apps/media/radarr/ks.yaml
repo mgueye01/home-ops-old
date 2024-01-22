@@ -9,7 +9,7 @@ spec:
   dependsOn:
     - name: external-secrets
     - name: volsync
-  path: ./kubernetes/apps/media/radarr-old/app
+  path: ./kubernetes/apps/media/radarr/app
   prune: true
   sourceRef:
     kind: GitRepository
