@@ -4,8 +4,9 @@ version: "3"
 
 vars:
   PYTHON_BIN: python3
-
+  ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
 env:
+  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/ansible.cfg"
   PATH: "{{.ROOT_DIR}}/.venv/bin:$PATH"
   VIRTUAL_ENV: "{{.ROOT_DIR}}/.venv"
   ANSIBLE_COLLECTIONS_PATH: "{{.ROOT_DIR}}/.venv/galaxy"
@@ -38,6 +39,35 @@ tasks:
       - { msg: "Venv not found",                  sh: "test -d {{.ROOT_DIR}}/.venv" }
       - { msg: "Inventory not found",             sh: "test -f {{.ANSIBLE_DIR}}/{{.cluster}}/inventory/hosts.yaml" }
       - { msg: "Playbook not found",              sh: "test -f {{.ANSIBLE_DIR}}/{{.cluster}}/playbooks/{{.playbook}}.yaml" }
+
+  ping:
+    desc: Ping all the hosts
+    dir: ansible
+    cmds:
+      - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml --one-line -m 'ping'"
+
+  uptime:
+    desc: Uptime of all the hosts
+    dir: ansible
+    cmds:
+      - ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml --one-line -a 'uptime'
+
+  reboot:
+    desc: Reboot all the k8s nodes
+    dir: ansible
+    cmds:
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml -a '/usr/bin/systemctl reboot' --become"
+
+  poweroff:
+    desc: Shutdown all the k8s nodes
+    dir: ansible
+    cmds:
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml -a '/usr/bin/systemctl poweroff' --become"
+  prune:
+    desc: Prune unused images
+    dir: ansible
+    cmds:
+      - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml -a '/usr/local/bin/crictl rmi --prune' --become"
 
   .venv:
     internal: true
