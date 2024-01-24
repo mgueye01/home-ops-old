@@ -1,0 +1,135 @@
+---
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: k0s-cluster
+spec:
+  hosts:
+    - role: controller+worker
+      ssh:
+        address: 192.168.10.11
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
+      installFlags:
+        - --disable-components=metrics-server
+        - --no-taints
+    - role: controller+worker
+      ssh:
+        address: 192.168.10.12
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
+      installFlags:
+        - --disable-components=metrics-server
+        - --no-taints
+    - role: controller+worker
+      ssh:
+        address: 192.168.10.13
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
+      installFlags:
+        - --disable-components=metrics-server
+        - --no-taints
+    - role: worker
+      ssh:
+        address: 192.168.10.21
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
+    - role: worker
+      ssh:
+        address: 192.168.10.22
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
+    - role: worker
+      ssh:
+        address: 192.168.10.23
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
+  k0s:
+    # renovate: datasource=github-releases depName=k0sproject/k0s
+    version: "v1.28.5+k0s.0"
+    dynamicConfig: false
+    config:
+      spec:
+        telemetry:
+          enabled: false
+        controllerManager:
+          extraArgs:
+            # Required to monitor kube-controller-manager with kube-prometheus-stack
+            bind-address: "0.0.0.0"
+        scheduler:
+          extraArgs:
+            # Required to monitor kube-scheduler with kube-prometheus-stack
+            bind-address: "0.0.0.0"
+        api:
+          sans:
+            - 192.168.10.250
+            - 192.168.10.11
+            - master1
+            - 192.168.10.12
+            - master2
+            - 192.168.10.13
+            - master3
+        extensions:
+          helm:
+            repositories:
+              - name: cilium
+                url: https://helm.cilium.io
+            charts:
+              - name: cilium
+                chartname: cilium/cilium
+                # renovate: datasource=github-releases depName=cilium/cilium
+                version: "1.14.5"
+                namespace: kube-system
+                values: |2
+                  autoDirectNodeRoutes: true
+                  bpf:
+                    masquerade: true
+                  bgp:
+                    enabled: false
+                  cluster:
+                    name: home-cluster
+                    id: 1
+                  containerRuntime:
+                    integration: containerd
+                    socketPath: /var/run/k0s/containerd.sock
+                  endpointRoutes:
+                    enabled: true
+                  hubble:
+                    enabled: false
+                  ipam:
+                    mode: kubernetes
+                  ipv4NativeRoutingCIDR: "10.42.0.0/16"
+                  k8sServiceHost: "192.168.10.250"
+                  k8sServicePort: 6443
+                  kubeProxyReplacement: true
+                  kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+                  l2announcements:
+                    enabled: true
+                    # https://github.com/cilium/cilium/issues/26586
+                    leaseDuration: 120s
+                    leaseRenewDeadline: 60s
+                    leaseRetryPeriod: 1s
+                  loadBalancer:
+                    algorithm: maglev
+                    mode: dsr
+                  localRedirectPolicy: true
+                  operator:
+                    replicas: 1
+                    rollOutPods: true
+                  rollOutCiliumPods: true
+                  routingMode: native
+                  securityContext:
+                    privileged: true
+        network:
+          kubeProxy:
+            disabled: true
+          nodeLocalLoadBalancing:
+            enabled: true
+            type: EnvoyProxy
+          provider: custom
