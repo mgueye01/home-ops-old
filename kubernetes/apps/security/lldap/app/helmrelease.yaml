@@ -45,7 +45,7 @@ spec:
               tag: v0.5.0@sha256:f0f5d92cd6c6dca9415993cfc57919f0618e87090b323a98c1536975860fa45a
             env:
               TZ: Europe/Paris
-              LLDAP_HTTP_PORT: &port 80
+              LLDAP_HTTP_PORT: &port 8080
               LLDAP_HTTP_URL: https://lldap.g-eye.io
               LLDAP_LDAP_PORT: &ldapPort 1389
               LLDAP_LDAP_BASE_DN: dc=home,dc=arpa
