@@ -6,6 +6,4 @@ resources:
   - namespace.yaml
   - ./cloudnative-pg/ks.yaml
   - ./redis/ks.yaml
-  # # - phpmyadmin
-  # # - mysql
-  # - pgadmin
+  - pgadmin
