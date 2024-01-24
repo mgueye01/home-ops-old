@@ -70,6 +70,11 @@ spec:
                 cpu: 10m
               limits:
                 memory: 128Mi
+            podSecurityContext:
+              runAsUser: 568
+              runAsGroup: 568
+              fsGroup: 568
+              fsGroupChangePolicy: OnRootMismatch
         pod:
           topologySpreadConstraints:
             - maxSkew: 1
@@ -78,11 +83,6 @@ spec:
               labelSelector:
                 matchLabels:
                   app.kubernetes.io/name: *app
-        podSecurityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
     service:
       main:
         ports:
