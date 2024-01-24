@@ -2,7 +2,7 @@
 apiVersion: k0sctl.k0sproject.io/v1beta1
 kind: Cluster
 metadata:
-  name: home-kubernetes
+  name: k0s-cluster
 spec:
   hosts:
     - role: controller+worker
@@ -15,13 +15,13 @@ spec:
       hooks:
         apply:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="master1" bash -s -
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/apply-kube-vip.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="master1" bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-kube-vip.sh | bash -s -
         reset:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-cilium.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-cilium.sh | bash -s -
           after:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-system.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: controller+worker
       ssh:
         address: "192.168.10.12"
@@ -32,13 +32,13 @@ spec:
       hooks:
         apply:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="master2" bash -s -
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/apply-kube-vip.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="master2" bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-kube-vip.sh | bash -s -
         reset:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-cilium.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-cilium.sh | bash -s -
           after:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-system.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: controller+worker
       ssh:
         address: "192.168.10.13"
@@ -49,13 +49,13 @@ spec:
       hooks:
         apply:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="master3" bash -s -
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/apply-kube-vip.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="master3" bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-kube-vip.sh | bash -s -
         reset:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-cilium.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-cilium.sh | bash -s -
           after:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-system.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: worker
       ssh:
         address: "192.168.10.21"
@@ -63,12 +63,12 @@ spec:
       hooks:
         apply:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="worker1" bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="worker1" bash -s -
         reset:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-cilium.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-cilium.sh | bash -s -
           after:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-system.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: worker
       ssh:
         address: "192.168.10.22"
@@ -76,12 +76,12 @@ spec:
       hooks:
         apply:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="worker2" bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="worker2" bash -s -
         reset:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-cilium.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-cilium.sh | bash -s -
           after:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-system.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: worker
       ssh:
         address: "192.168.10.23"
@@ -89,12 +89,12 @@ spec:
       hooks:
         apply:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="worker3" bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="worker3" bash -s -
         reset:
           before:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-cilium.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-cilium.sh | bash -s -
           after:
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/kubernetes/k0s/resources/reset-system.sh | bash -s -
+            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
   k0s:
     # renovate: datasource=github-releases depName=k0sproject/k0s
     version: "v1.28.6+k0s.0"
