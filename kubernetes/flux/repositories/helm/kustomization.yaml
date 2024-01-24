@@ -51,3 +51,4 @@ resources:
   - ./k8sgpt.yaml
   - ./go-skynet.yaml
   - ./opentelemetry.yaml
+  - ./xenitab.yaml
