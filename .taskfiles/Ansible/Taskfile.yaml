@@ -68,6 +68,11 @@ tasks:
     dir: ansible
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml -a '/usr/local/bin/crictl rmi --prune' --become"
+  prepare:
+    desc: Prepare all the k8s nodes for running k3s
+    dir: ansible
+    cmds:
+      - ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml {{.ANSIBLE_PLAYBOOK_DIR}}/cluster-prepare.yaml
 
   .venv:
     internal: true
