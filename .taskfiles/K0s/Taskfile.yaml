@@ -24,8 +24,7 @@ tasks:
 
   reset:
     desc: Resets the k0s cluster
-    deps: [":ansible:deps"]
     cmds:
       - k0sctl reset --config provision/k0s/k0s-config.yaml
     preconditions:
-      - { msg: "Missing K0s config file", sh: "test -f {{.ROOT_DIR}}/provision/k0s/k0s-config.yaml" }
+      - { msg: "k0s-config.yaml not found", sh: "test -f {{.ROOT_DIR}}/provision/k0s/k0s-config.yaml" }
