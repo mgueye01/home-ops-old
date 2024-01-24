@@ -42,7 +42,7 @@ spec:
           main:
             image:
               repository: ghcr.io/lldap/lldap
-              tag: v0.5.0@sha256:f0f5d92cd6c6dca9415993cfc57919f0618e87090b323a98c1536975860fa45a
+              tag: latest-alpine-rootless@sha256:ba1385813ea9aa21cefab32c306ff8ba13dc8c8cc95bc26346a9fbcfb5c9eb8c
             env:
               TZ: Europe/Paris
               LLDAP_HTTP_PORT: &port 80
@@ -71,6 +71,12 @@ spec:
               limits:
                 memory: 128Mi
         pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
           topologySpreadConstraints:
             - maxSkew: 1
               topologyKey: kubernetes.io/hostname
