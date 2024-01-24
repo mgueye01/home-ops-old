@@ -14,4 +14,4 @@ resources:
   - ./cilium/ks.yaml
   # - ./coredns/ks.yaml
   - ./local-path-provisioner/ks.yaml
-  - ./spegel/ks.yaml
+  # - ./spegel/ks.yaml
