@@ -1,0 +1,14 @@
+---
+originRequest:
+  http2Origin: true
+
+ingress:
+  - hostname: g-eye.io
+    service: https://nginx-external-controller.network.svc.cluster.local:443
+    originRequest:
+      originServerName: external.g-eye.io
+  - hostname: "*.g-eye.io"
+    service: https://nginx-external-controller.network.svc.cluster.local:443
+    originRequest:
+      originServerName: external.g-eye.io
+  - service: http_status:404

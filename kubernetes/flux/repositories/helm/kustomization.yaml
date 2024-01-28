@@ -52,3 +52,4 @@ resources:
   - ./go-skynet.yaml
   - ./opentelemetry.yaml
   - ./xenitab.yaml
+  - ./democratic-csi.yaml
