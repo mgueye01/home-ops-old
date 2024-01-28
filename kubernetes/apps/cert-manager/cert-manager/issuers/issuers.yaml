@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/cert-manager.io/clusterissuer_v1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cert-manager.io/clusterissuer_v1.json
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -16,12 +16,12 @@ spec:
             email: mgueye01@gmail.com
             apiKeySecretRef:
               name: cloudflare-secret
-              key: CLOUDFLARE_APIKEY
+              key: CLOUDFLARE_API_KEY
         selector:
           dnsZones:
             - g-eye.io
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/cert-manager.io/clusterissuer_v1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/cert-manager.io/clusterissuer_v1.json
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -38,7 +38,7 @@ spec:
             email: mgueye01@gmail.com
             apiKeySecretRef:
               name: cloudflare-secret
-              key: CLOUDFLARE_APIKEY
+              key: CLOUDFLARE_API_KEY
         selector:
           dnsZones:
             - g-eye.io
