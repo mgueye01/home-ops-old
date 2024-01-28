@@ -7,8 +7,10 @@ spec:
   hosts:
     - role: controller+worker
       ssh:
-        address: "192.168.10.11"
-        user: "tapha"
+        address: 192.168.10.11
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
       installFlags:
         - --disable-components=metrics-server
         - --no-taints
@@ -16,7 +18,7 @@ spec:
         apply:
           before:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="master1" bash -s -
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-kube-vip.sh | bash -s -
+            # - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-kube-vip.sh | bash -s -
         reset:
           before:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-cilium.sh | bash -s -
@@ -24,8 +26,10 @@ spec:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: controller+worker
       ssh:
-        address: "192.168.10.12"
-        user: "tapha"
+        address: 192.168.10.12
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
       installFlags:
         - --disable-components=metrics-server
         - --no-taints
@@ -33,7 +37,7 @@ spec:
         apply:
           before:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="master2" bash -s -
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-kube-vip.sh | bash -s -
+            # - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-kube-vip.sh | bash -s -
         reset:
           before:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-cilium.sh | bash -s -
@@ -41,8 +45,10 @@ spec:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: controller+worker
       ssh:
-        address: "192.168.10.13"
-        user: "tapha"
+        address: 192.168.10.13
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
       installFlags:
         - --disable-components=metrics-server
         - --no-taints
@@ -50,7 +56,7 @@ spec:
         apply:
           before:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-system.sh | INSTALL_K0S_HOSTNAME="master3" bash -s -
-            - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-kube-vip.sh | bash -s -
+            # - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/apply-kube-vip.sh | bash -s -
         reset:
           before:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-cilium.sh | bash -s -
@@ -58,8 +64,10 @@ spec:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: worker
       ssh:
-        address: "192.168.10.21"
-        user: "tapha"
+        address: 192.168.10.21
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
       hooks:
         apply:
           before:
@@ -71,8 +79,10 @@ spec:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: worker
       ssh:
-        address: "192.168.10.22"
-        user: "tapha"
+        address: 192.168.10.22
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
       hooks:
         apply:
           before:
@@ -84,8 +94,10 @@ spec:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
     - role: worker
       ssh:
-        address: "192.168.10.23"
-        user: "tapha"
+        address: 192.168.10.23
+        user: tapha
+        port: 22
+        keyPath: ~/.ssh/id_rsa
       hooks:
         apply:
           before:
@@ -97,7 +109,7 @@ spec:
             - curl -sfL https://raw.githubusercontent.com/mgueye01/home-ops/main/provision/k0s/resources/reset-system.sh | bash -s -
   k0s:
     # renovate: datasource=github-releases depName=k0sproject/k0s
-    version: "v1.28.6+k0s.0"
+    version: "v1.29.1+k0s.0"
     dynamicConfig: false
     config:
       spec:
@@ -117,22 +129,13 @@ spec:
               listen-metrics-urls: http://0.0.0.0:2381 # Required to monitor etcd with kube-prometheus-stack
         api:
           sans:
-            - "192.168.10.250"
-            - "192.168.10.11"
-            - "master1"
-            - "192.168.10.12"
-            - "master2"
-            - "192.168.10.13"
-            - "master3"
-        network:
-          podCIDR: "10.42.0.0/16"
-          serviceCIDR: "10.43.0.0/16"
-          provider: custom
-          kubeProxy:
-            disabled: true
-          nodeLocalLoadBalancing:
-            enabled: true
-            type: EnvoyProxy
+            - 192.168.10.250
+            - 192.168.10.11
+            - master1
+            - 192.168.10.12
+            - master2
+            - 192.168.10.13
+            - master3
         extensions:
           helm:
             repositories:
@@ -141,7 +144,7 @@ spec:
             charts:
               - name: cilium
                 chartname: cilium/cilium
-                # renovate: datasource=helm depName=cilium repository=https://helm.cilium.io
+                # renovate: datasource=github-releases depName=cilium/cilium
                 version: "1.14.6"
                 namespace: kube-system
                 values: |2
@@ -151,7 +154,7 @@ spec:
                   bgp:
                     enabled: false
                   cluster:
-                    name: home-kubernetes
+                    name: home-cluster
                     id: 1
                   containerRuntime:
                     integration: containerd
@@ -163,8 +166,8 @@ spec:
                   ipam:
                     mode: kubernetes
                   ipv4NativeRoutingCIDR: "10.42.0.0/16"
-                  k8sServiceHost: localhost
-                  k8sServicePort: 7443
+                  k8sServiceHost: "192.168.10.250"
+                  k8sServicePort: 6443
                   kubeProxyReplacement: true
                   kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
                   l2announcements:
@@ -175,7 +178,7 @@ spec:
                     leaseRetryPeriod: 1s
                   loadBalancer:
                     algorithm: maglev
-                    mode: "dsr"
+                    mode: dsr
                   localRedirectPolicy: true
                   operator:
                     replicas: 1
@@ -184,3 +187,10 @@ spec:
                   routingMode: native
                   securityContext:
                     privileged: true
+        network:
+          kubeProxy:
+            disabled: true
+          nodeLocalLoadBalancing:
+            enabled: true
+            type: EnvoyProxy
+          provider: custom

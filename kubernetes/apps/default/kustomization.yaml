@@ -5,15 +5,15 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - blog
-  - littlelink
+  # - littlelink
   # - theme-park
   # - excalidraw
   # - minio
-  - ./weave-gitops/ks.yaml
+  # - ./weave-gitops/ks.yaml
   # - ./kubernetes-schemas/ks.yaml
   # - ./paperless/ks.yaml
   # - ./hajimari/ks.yaml
   # - ./changedetection/ks.yaml
-  - ./miniflux/ks.yaml
+  # - ./miniflux/ks.yaml
   # # - ./actual/ks.yaml
   # - ./teslamate/ks.yaml

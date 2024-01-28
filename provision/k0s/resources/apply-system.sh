@@ -24,9 +24,9 @@ timedatectl set-timezone "Europe/Paris"
 
 # Install Packages
 apt-get install -y --no-install-recommends \
-    apt-transport-https ca-certificates conntrack curl dirmngr gdisk gnupg hdparm htop \
-    iptables iputils-ping ipvsadm libseccomp2 lm-sensors neofetch net-tools nfs-common \
-    nvme-cli open-iscsi parted psmisc python3 python3-apt python3-kubernetes python3-yaml \
+    i965-va-driver-shaders apt-transport-https ca-certificates conntrack curl dirmngr gdisk gnupg hdparm htop \
+    iptables intel-media-va-driver-non-free iperf3 iputils-ping ipvsadm libseccomp2 lm-sensors neofetch net-tools nfs-common \
+    nvme-cli open-iscsi parted psmisc python3 python3-apt python3-kubernetes python3-openshift python3-yaml \
     smartmontools socat software-properties-common unzip util-linux
 
 # Update DNS
