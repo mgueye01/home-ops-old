@@ -6,4 +6,4 @@ resources:
   - ./namespace.yaml
   - ./dashboard
   # Flux-Kustomizations
-  # - ./cert-manager/ks.yaml
+  - ./cert-manager/ks.yaml
