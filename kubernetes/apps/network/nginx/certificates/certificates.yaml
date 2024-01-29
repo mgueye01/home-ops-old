@@ -4,6 +4,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: g-eye-io
+  namespace: network
 spec:
   secretName: g-eye-io-tls
   issuerRef:
