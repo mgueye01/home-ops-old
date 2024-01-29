@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app external-dns-cloudflare
+  name: &app external-dns
 spec:
   interval: 30m
   chart:
@@ -36,7 +36,7 @@ spec:
               tag: v0.14.0@sha256:474077b3dfccb3021db0a6638274967d0f64ce60dd9730a6f464bee2f78b046f
             envFrom:
               - secretRef:
-                  name: external-dns-cloudflare-secret
+                  name: external-dns-secret
             args:
               - --cloudflare-proxied
               - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
