@@ -53,3 +53,4 @@ resources:
   - ./opentelemetry.yaml
   - ./xenitab.yaml
   - ./democratic-csi.yaml
+  - ./openebs.yaml
