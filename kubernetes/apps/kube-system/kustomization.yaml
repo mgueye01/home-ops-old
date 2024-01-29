@@ -9,9 +9,7 @@ resources:
   # - ./intel-device-plugin/ks.yaml
   # - ./node-feature-discovery/ks.yaml
   # - ./kube-cleanup-operator/ks.yaml
-  # - ./snapshot-controller/ks.yaml
   # - ./nfs-subdir-external-provisioner/ks.yaml
   - ./cilium/ks.yaml
   # # - ./coredns/ks.yaml
-  # - ./local-path-provisioner/ks.yaml
   # # - ./spegel/ks.yaml
