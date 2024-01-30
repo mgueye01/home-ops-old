@@ -7,7 +7,7 @@ resources:
   - ./reloader/ks.yaml
   - ./descheduler/ks.yaml
   - ./intel-device-plugin/ks.yaml
-  # - ./node-feature-discovery/ks.yaml
+  - ./node-feature-discovery/ks.yaml
   # - ./kube-cleanup-operator/ks.yaml
   # - ./nfs-subdir-external-provisioner/ks.yaml
   - ./cilium/ks.yaml
