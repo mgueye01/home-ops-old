@@ -25,8 +25,8 @@ spec:
     keepHistory: false
   values:
     spegel:
-      containerdSock: /var/lib/k0s/run/containerd.sock
-      containerdRegistryConfigPath: /var/lib/k0s/containerd/certs.d
+      containerdSock: /run/k0s/containerd.sock
+      containerdRegistryConfigPath: /var/lib/k0s/containerd
     service:
       registry:
         hostPort: 29999
