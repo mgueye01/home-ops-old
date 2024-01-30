@@ -30,12 +30,12 @@ spec:
         valueFrom:
           secretKeyRef:
             name: external-dns-secret
-            key: CF_API_EMAIL
+            key: email
       - name: CF_API_KEY
         valueFrom:
           secretKeyRef:
             name: external-dns-secret
-            key: CF_API_KEY
+            key: api-key
     extraArgs:
       - --ingress-class=external
       - --cloudflare-proxied
