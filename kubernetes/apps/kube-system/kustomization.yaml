@@ -11,5 +11,5 @@ resources:
   # - ./kube-cleanup-operator/ks.yaml
   # - ./nfs-subdir-external-provisioner/ks.yaml
   - ./cilium/ks.yaml
-  # # - ./coredns/ks.yaml
+  - ./coredns/ks.yaml
   # # - ./spegel/ks.yaml
