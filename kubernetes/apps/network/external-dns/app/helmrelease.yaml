@@ -37,7 +37,7 @@ spec:
     sources: ["crd", "ingress"]
     txtPrefix: k8s.
     txtOwnerId: default
-    domainFilters: g-eye.io
+    domainFilters: ["g-eye.io"]
     serviceMonitor:
       enabled: true
     podAnnotations:
