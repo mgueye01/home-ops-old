@@ -25,7 +25,7 @@ spec:
     keepHistory: false
   values:
     spegel:
-      containerdSock: /run/k0s/containerd.sock
+      containerdSock: /var/lib/k0s/run/containerd.sock
       containerdRegistryConfigPath: /var/lib/k0s/containerd/certs.d
     service:
       registry:
