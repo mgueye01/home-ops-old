@@ -32,11 +32,7 @@ spec:
       username: admin
     ingress:
       enabled: true
-      className: nginx
-      annotations:
-        # auth.home.arpa/enabled: "false"
-        # external-dns/is-public: "true"
-        ingress.home.arpa/type: "internal"
+      className: internal
       hosts:
         - host: &host "gitops.${SECRET_DOMAIN}"
           paths:
