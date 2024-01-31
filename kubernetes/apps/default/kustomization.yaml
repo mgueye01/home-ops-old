@@ -9,8 +9,7 @@ resources:
   # - theme-park
   # - excalidraw
   # - minio
-  # - ./weave-gitops/ks.yaml
-  # - ./kubernetes-schemas/ks.yaml
+  - ./weave-gitops/ks.yaml
   # - ./paperless/ks.yaml
   # - ./hajimari/ks.yaml
   # - ./changedetection/ks.yaml
