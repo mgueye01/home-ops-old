@@ -35,7 +35,7 @@ spec:
               name: teslamate-secret
     image:
       repository: teslamate/teslamate
-      tag: 1.28.2
+      tag: 1.28.3
     env:
       TZ: "Europe/Paris"
       DISABLE_MQTT: "false"
