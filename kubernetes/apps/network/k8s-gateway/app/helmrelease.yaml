@@ -75,24 +75,24 @@ spec:
               labelSelector:
                 matchLabels:
                   app.kubernetes.io/name: *app
-    persistence:
-      config:
-        enabled: true
-        type: configMap
-        name: k8s-gateway-configmap
-        globalMounts:
-          - path: /etc/coredns/Corefile
-            subPath: Corefile
-            readOnly: true
-    service:
-      type: LoadBalancer
-      port: 53
-      annotations:
-        io.cilium/lb-ipam-ips: "192.168.10.240"
-      externalTrafficPolicy: Cluster
-    serviceAccount:
-      create: true
-      name: *app
-    serviceMonitor:
-      main:
-        enabled: true
+        persistence:
+          config:
+            enabled: true
+            type: configMap
+            name: k8s-gateway-configmap
+            globalMounts:
+              - path: /etc/coredns/Corefile
+                subPath: Corefile
+                readOnly: true
+        service:
+          type: LoadBalancer
+          port: 53
+          annotations:
+            io.cilium/lb-ipam-ips: "192.168.10.240"
+          externalTrafficPolicy: Cluster
+        serviceAccount:
+          create: true
+          name: *app
+        serviceMonitor:
+          main:
+            enabled: true
