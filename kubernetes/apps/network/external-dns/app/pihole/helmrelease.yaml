@@ -31,7 +31,7 @@ spec:
       - secretRef:
           name: pihole-password
     extraArgs:
-      - --pihole-server=http://pi-hole.g-eye.tech
+      - --pihole-server=http://192.168.0.53
     policy: upsert-only
     sources: ["ingress", "service"]
     registry: noop
