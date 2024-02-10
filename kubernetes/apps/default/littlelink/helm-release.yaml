@@ -70,11 +70,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "external"
         annotations:
-          # external-dns.alpha.kubernetes.io/target: ipv4.g-eye.io
-          # external-dns/is-public: "true"
-          ingress.home.arpa/type: "external"
+          external-dns.alpha.kubernetes.io/target: external.g-eye.io
         hosts:
           - host: "me.${SECRET_DOMAIN}"
             paths:
