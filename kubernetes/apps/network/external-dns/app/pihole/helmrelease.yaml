@@ -3,19 +3,21 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app external-dns-pihole
+  name: external-dns-pihole
+  namespace: network
 spec:
-  interval: 30m
+  interval: 15m
   chart:
     spec:
       chart: external-dns
-      version: 1.14.1
+      version: 1.14.3
       sourceRef:
         kind: HelmRepository
         name: external-dns-charts
         namespace: flux-system
-  maxHistory: 2
+  maxHistory: 3
   install:
+    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -25,18 +27,20 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    fullnameOverride: *app
+    interval: 2m
     provider: pihole
-    envFrom:
-      - secretRef:
-          name: external-dns-pihole-secret
+    env:
+      - name: EXTERNAL_DNS_PIHOLE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: external-dns-pihole-secret
+            key: pihole-password
     extraArgs:
       - --pihole-server=http://192.168.0.53
     policy: upsert-only
-    sources: ["ingress", "service"]
+    sources: ["service", "ingress"]
     registry: noop
-    domainFilters: ["${SECRET_DOMAIN}"]
     serviceMonitor:
       enabled: true
     podAnnotations:
-      secret.reloader.stakater.com/reload: external-dns-pihole-secret
+      secret.reloader.stakater.com/auto: "true"
