@@ -50,7 +50,7 @@ spec:
       METRICS_COLLECTOR: "1"
       OAUTH2_CLIENT_ID: miniflux
       OAUTH2_USER_CREATION: "1"
-      OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://login.g-eye.io
+      OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://auth.g-eye.io
       OAUTH2_PROVIDER: oidc
       OAUTH2_REDIRECT_URL: https://miniflux.g-eye.io/oauth2/oidc/callback
       POLLING_SCHEDULER: entry_frequency
@@ -68,10 +68,10 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: external
         annotations:
           hajimari.io/enable: "true"
-          ingress.home.arpa/type: "external"
+          external-dns.alpha.kubernetes.io/target: external.g-eye.io
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:
