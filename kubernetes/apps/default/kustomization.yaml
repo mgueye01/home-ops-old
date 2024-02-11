@@ -6,7 +6,6 @@ resources:
   - namespace.yaml
   # - blog
   - littlelink
-  - theme-park
   # - excalidraw
   # - minio
   - ./weave-gitops/ks.yaml
