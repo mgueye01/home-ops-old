@@ -85,12 +85,12 @@ spec:
                     - key: node-role.kubernetes.io/worker
                       operator: Exists
         mon: *placement
-        # all:
-        #   tolerations:
-        #     - effect: NoSchedule
-        #       operator: Exists
-        #     - effect: NoExecute
-        #       operator: Exists
+        all:
+          tolerations:
+            - effect: NoSchedule
+              operator: Exists
+            - effect: NoExecute
+              operator: Exists
       resources:
         mgr:
           requests:
