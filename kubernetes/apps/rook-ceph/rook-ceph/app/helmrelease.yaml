@@ -35,6 +35,7 @@ spec:
       enableLiveness: true
       serviceMonitor:
         enabled: true
+      kubeletDirPath: /var/lib/k0s/kubelet
     monitoring:
       enabled: true
     resources:
