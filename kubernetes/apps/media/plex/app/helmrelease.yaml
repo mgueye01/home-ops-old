@@ -1,23 +1,20 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: plex
-  namespace: media
 spec:
-  interval: 15m
+  interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-  maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -26,57 +23,104 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: intel-device-plugin-gpu
+      namespace: kube-system
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+    - name: volsync
+      namespace: storage
   values:
-    controller:
-      type: statefulset
-    image:
-      repository: ghcr.io/onedr0p/plex
-      tag: 1.32.8.7639-fb6452ebf@sha256:637fe10cef736f249d96cb004c12f81646c81ca17ddce22374ea8782aa6646c2
-    env:
-      TZ: Europe/Paris
-      ADVERTISE_IP: "http://${SVC_PLEX_ADDR}:32400,https://{{ .Release.Name }}.${SECRET_DOMAIN}:443"
-      PLEX_PREFERENCE_1: "FriendlyName=k8s-plex"
-      PLEX_CLAIM: "${SECRET_PLEX_TOKEN}"
-      HOSTNAME: "plex"
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/plex-beta
+              tag: 1.40.0.7997-b09370ecd@sha256:a79eaec7e0b84afdaeef391ff06278d878ba60f8440b33baf0e68ff9e25c3897
+            env:
+              TZ: Europe/Paris
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /identity
+                    port: 32400
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                gpu.intel.com/i915: 1
+                memory: 16Gi
+        pod:
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values: ["frigate"]
+                  topologyKey: kubernetes.io/hostname
+          nodeSelector:
+            node-role.kubernetes.io/worker: "true"
+            intel.feature.node.kubernetes.io/gpu: "true"
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+            supplementalGroups: [44, 10000]
     service:
       main:
         type: LoadBalancer
-        externalTrafficPolicy: Local
-        loadBalancerIP: 192.168.10.68
+        annotations:
+          io.cilium/lb-ipam-ips: 192.168.10.68
         ports:
           http:
             port: 32400
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        className: external
         annotations:
-          # external-dns.alpha.kubernetes.io/target: ipv4.g-eye.io
+          external-dns.alpha.kubernetes.io/target: external.g-eye.io
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-          hajimari.io/icon: mdi:plex
-          # external-dns/is-public: "true"
-          ingress.home.arpa/type: "external"
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [44, 109, 10000]
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 100Gi
-        storageClass: ceph-block
     persistence:
+      config:
+        enabled: true
+        existingClaim: plex
+      # Separate PVC for cache to avoid backing up cache files
+      plex-cache:
+        existingClaim: plex-cache
+        globalMounts:
+          - path: /config/Library/Application Support/Plex Media Server/Cache
       media:
         enabled: true
         type: nfs
@@ -87,15 +131,5 @@ spec:
       transcode:
         enabled: true
         type: emptyDir
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
-      intel.feature.node.kubernetes.io/gpu: "true"
-
-    resources:
-      requests:
-        gpu.intel.com/i915: 1
-        cpu: 100m
-        memory: 2000Mi
-      limits:
-        gpu.intel.com/i915: 1
-        memory: 10000Mi
+      tmp:
+        type: emptyDir

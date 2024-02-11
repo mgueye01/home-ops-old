@@ -1,39 +1,78 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: overseerr
-  namespace: media
 spec:
-  interval: 15m
+  interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-  maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
+    cleanupOnFail: true
     remediation:
       retries: 3
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+    - name: volsync
+      namespace: storage
   values:
-    controller:
-      type: statefulset
-    image:
-      repository: ghcr.io/sct/overseerr
-      tag: 1.33.2
-    env:
-      TZ: Europe/Paris
-      LOG_LEVEL: "info"
-      PORT: &port 80
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/sct/overseerr
+              tag: 1.33.2@sha256:714ea6db2bc007a2262d112bef7eec74972eb33d9c72bddb9cbd98b8742de950
+            env:
+              TZ: Europe/Paris
+              LOG_LEVEL: "info"
+              PORT: &port 80
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/status
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 2Gi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
     service:
       main:
         ports:
@@ -42,40 +81,24 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        className: external
         annotations:
-          # auth.home.arpa/enabled: "false"
-          # external-dns.alpha.kubernetes.io/target: "ipv4.g-eye.io"
-          # external-dns/is-public: "false"
-          ingress.home.arpa/type: "internal"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.g-eye.io/css/base/overseerr/nord.css"></head>';
-            sub_filter_once on;
+          external-dns.alpha.kubernetes.io/target: external.g-eye.io
         hosts:
-          - host: &host "requests.g-eye.io"
+          - host: &host requests.g-eye.io
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /app/config
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: ceph-block
-        labels:
-          snapshot.home.arpa/enabled: "true"
-    resources:
-      requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 1000Mi
+    persistence:
+      config:
+        enabled: true
+        existingClaim: overseerr
+        globalMounts:
+          - path: /app/config
+      tmp:
+        type: emptyDir

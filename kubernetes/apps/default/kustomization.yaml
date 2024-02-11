@@ -6,12 +6,12 @@ resources:
   - namespace.yaml
   # - blog
   - littlelink
-  # - theme-park
+  - theme-park
   # - excalidraw
   # - minio
   - ./weave-gitops/ks.yaml
   # - ./paperless/ks.yaml
-  # - ./hajimari/ks.yaml
+  - ./hajimari/ks.yaml
   # - ./changedetection/ks.yaml
   # - ./miniflux/ks.yaml
   # # - ./actual/ks.yaml
