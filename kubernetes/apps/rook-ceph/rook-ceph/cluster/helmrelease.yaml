@@ -82,7 +82,7 @@ spec:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
                 - matchExpressions:
-                    - key: node-role.kubernetes.io/worker
+                    - key: node-role.kubernetes.io/control-plane
                       operator: Exists
         mon: *placement
         all:
