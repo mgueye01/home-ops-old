@@ -36,6 +36,11 @@ spec:
       serviceMonitor:
         enabled: true
       kubeletDirPath: /var/lib/k0s/kubelet
+      pluginTolerations:
+        - effect: "NoExecute"
+          operator: "Exists"
+        - effect: "NoSchedule"
+          operator: "Exists"
     monitoring:
       enabled: true
     resources:
