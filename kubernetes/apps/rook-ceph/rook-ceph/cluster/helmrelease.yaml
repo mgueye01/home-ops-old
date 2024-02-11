@@ -76,15 +76,21 @@ spec:
           - name: "worker3"
             devices:
               - name: "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX1W320277D"
-      # placement:
-      #   mgr: &placement
-      #     nodeAffinity:
-      #       requiredDuringSchedulingIgnoredDuringExecution:
-      #         nodeSelectorTerms:
-      #           - matchExpressions:
-      #               - key: node-role.kubernetes.io/control-plane
-      #                 operator: Exists
-      #   mon: *placement
+      placement:
+        mgr: &placement
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: node-role.kubernetes.io/control-plane
+                      operator: Exists
+        mon: *placement
+        all:
+          tolerations:
+            - effect: NoSchedule
+              operator: Exists
+            - effect: NoExecute
+              operator: Exists
       resources:
         mgr:
           requests:
