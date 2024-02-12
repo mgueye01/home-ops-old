@@ -6,7 +6,7 @@ metadata:
   name: &app overseerr
   namespace: flux-system
 spec:
-  targetNamespace: &ns media
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -25,4 +25,3 @@ spec:
       GATUS_SUBDOMAIN: requests
       GATUS_PATH: /api/v1/status
       VOLSYNC_CAPACITY: 5Gi
-      NS: *ns
