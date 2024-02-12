@@ -1,23 +1,20 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: sonarr
-  namespace: media
 spec:
-  interval: 15m
+  interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-  maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -26,105 +23,121 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
-    controller:
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.1.1114@sha256:1895eb1f08c3316082a773cf2c25a417ab42aa9d9935185ccd60dc6826d3087a
-    env:
-      TZ: Europe/Paris
-      PUSHOVER_DEBUG: "false"
-      SONARR__INSTANCE_NAME: Sonarr
-      SONARR__PORT: &port 80
-      SONARR__LOG_LEVEL: info
-    envFrom:
-      - secretRef:
-          name: sonarr-secret
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: sonarr-secret
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/sonarr-develop
+              tag: 4.0.1.1114@sha256:1895eb1f08c3316082a773cf2c25a417ab42aa9d9935185ccd60dc6826d3087a
+            env:
+              COMPlus_EnableDiagnostics: "0"
+              PUSHOVER_DEBUG: "false"
+              SONARR__AUTHENTICATION_METHOD: External
+              SONARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
+              SONARR__INSTANCE_NAME: Sonarr
+              SONARR__PORT: &port 80
+              SONARR__LOG_LEVEL: info
+              SONARR__THEME: dark
+              TZ: Europe/Paris
+            envFrom: *envFrom
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+            supplementalGroups: [10000]
     service:
       main:
         ports:
           http:
             port: *port
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /ping
-            port: *port
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      readiness: *probes
-      startup:
-        enabled: false
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
-        annotations:
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.g-eye.io/css/base/sonarr/nord.css"></head>';
-            sub_filter_once on;
-          hajimari.io/icon: mdi:television-classic
-          ingress.home.arpa/type: "internal"
+        className: internal
         hosts:
           - host: &host "{{ .Release.Name }}.g-eye.io"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [10000]
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 10Gi
-        storageClass: ceph-block
     persistence:
-      media:
+      config:
         enabled: true
+        existingClaim: sonarr
+      pushover-notify:
+        type: configMap
+        name: sonarr-configmap
+        defaultMode: 0775
+        globalMounts:
+          - path: /scripts/pushover-notify.sh
+            subPath: pushover-notify.sh
+            readOnly: true
+      tmp:
+        type: emptyDir
+      media:
         type: nfs
-        server: nas.g-eye.tech
-        path: /volume1/video/TVshows
-        mountPath: /media
+        server: 192.168.0.18
+        path: /eros/Media
+        globalMounts:
+          - path: /media
       downloads:
         enabled: true
         type: nfs
-        server: nas.g-eye.tech
+        server: 192.168.0.18
         path: /volume1/downloads/complete
-        mountPath: /downloads
+        lobalMounts:
+          - path: /downloads
       backup:
         enabled: true
         type: nfs
-        server: nas.g-eye.tech
+        server: 192.168.0.18
         path: /volume1/CLOUDNATIVE1/Backups/sonarr
-        mountPath: /config/Backups
+        lobalMounts:
+          - path: /config/Backups
         readOnly: false
-      scripts:
-        enabled: true
-        type: configMap
-        name: sonarr-configmap
-        subPath: pushover-notify.sh
-        mountPath: /scripts/pushover-notify.sh
-        defaultMode: 0775
-        readOnly: true
-    resources:
-      requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 2000Mi
