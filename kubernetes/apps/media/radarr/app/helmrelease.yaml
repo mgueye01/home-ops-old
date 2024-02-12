@@ -136,5 +136,6 @@ spec:
         type: nfs
         server: 192.168.0.18
         path: /volume1/CLOUDNATIVE1/Backups/radarr
-        mountPath: /config/Backups
+        globalMounts:
+          - path: /config/Backups
         readOnly: false
