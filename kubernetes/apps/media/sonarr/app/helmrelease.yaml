@@ -123,7 +123,7 @@ spec:
       media:
         type: nfs
         server: 192.168.0.18
-        path: /volume1/video/TVshows
+        path: /volume1/video/TVshowsg
         globalMounts:
           - path: /media
       downloads:
