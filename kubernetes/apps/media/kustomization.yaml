@@ -12,6 +12,6 @@ resources:
   # # - ./lidarr/ks.yaml
   - ./prowlarr/ks.yaml
   - ./overseerr/ks.yaml
-  - ./recyclarr/ks.yaml
+  # - ./recyclarr/ks.yaml
   # - plex-meta-manager
   # # - ./jellyfin/ks.yaml
