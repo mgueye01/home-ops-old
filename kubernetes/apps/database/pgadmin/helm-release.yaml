@@ -47,7 +47,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: "internal"
+        className: internal
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
