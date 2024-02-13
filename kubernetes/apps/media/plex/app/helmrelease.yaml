@@ -87,6 +87,9 @@ spec:
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
             supplementalGroups: [44, 10000]
+    envFrom:
+      - secretRef:
+          name: plex-secret
     service:
       main:
         type: LoadBalancer
