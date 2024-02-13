@@ -7,7 +7,6 @@ resources:
   # - blog
   - littlelink
   # - excalidraw
-  # - minio
   - ./weave-gitops/ks.yaml
   # - ./paperless/ks.yaml
   - ./hajimari/ks.yaml
