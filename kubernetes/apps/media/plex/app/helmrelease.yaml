@@ -124,7 +124,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: nas.g-eye.tech
+        server: 192.168.0.18
         path: /volume1/video
         mountPath: /media
         readOnly: true
