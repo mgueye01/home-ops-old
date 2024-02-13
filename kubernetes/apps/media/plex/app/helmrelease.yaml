@@ -116,12 +116,12 @@ spec:
       config:
         enabled: true
         existingClaim: plex
-      # Separate PVC for cache to avoid backing up cache files
-      plex-cache:
-        enable: true
-        existingClaim: plex-cache
-        globalMounts:
-          - path: /config/Library/Application Support/Plex Media Server/Cache
+      # # Separate PVC for cache to avoid backing up cache files
+      # plex-cache:
+      #   enable: true
+      #   existingClaim: plex-cache
+      #   globalMounts:
+      #     - path: /config/Library/Application Support/Plex Media Server/Cache
       transcode:
         type: emptyDir
       tmp:
