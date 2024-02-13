@@ -39,7 +39,7 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/plex-beta
-              tag: 1.40.0.7997-b09370ecd@sha256:edcfccf9a93cf4a02794b3ff1cbbaf598483a1d04c7457c8c733248bd826f7ae
+              tag: 1.40.0.7997-b09370ecd@sha256:a79eaec7e0b84afdaeef391ff06278d878ba60f8440b33baf0e68ff9e25c3897
             env:
               TZ: Europe/Paris
             probes:
@@ -121,15 +121,14 @@ spec:
         existingClaim: plex-cache
         globalMounts:
           - path: /config/Library/Application Support/Plex Media Server/Cache
-      media:
-        enabled: true
-        type: nfs
-        server: 192.168.0.18
-        path: /volume1/video
-        mountPath: /media
-        readOnly: true
       transcode:
-        enabled: true
         type: emptyDir
       tmp:
         type: emptyDir
+      media:
+        type: nfs
+        server: 192.168.0.18
+        path: /volume1/video
+        globalMounts:
+          - path: /media
+            readOnly: true
