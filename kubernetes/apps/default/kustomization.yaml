@@ -12,6 +12,5 @@ resources:
   - ./hajimari/ks.yaml
   # - ./changedetection/ks.yaml
   - ./miniflux/ks.yaml
-  # # - ./actual/ks.yaml
   # - ./teslamate/ks.yaml
   - ./atuin/ks.yaml
