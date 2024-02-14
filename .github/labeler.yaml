@@ -12,5 +12,3 @@ area/kubernetes:
 area/terraform:
   - changed-files:
       - any-glob-to-any-file: "terraform/**/*"
-area/hack:
-  - "hack/**/*"
