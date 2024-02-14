@@ -3,8 +3,8 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: expanse-zrepl
+  name: synology-nas
 spec:
   staticConfigs:
-    - targets: ["expanse.turbo.ac:9811"]
+    - targets: ["192.168.0.18:9116"]
   metricsPath: /metrics
