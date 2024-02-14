@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: thanos
-      version: 12.23.1
+      version: 13.0.0
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -25,8 +25,8 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: openebs
-      namespace: storage
+    - name: local-path-provisioner
+      namespace: kube-system
     - name: redis
       namespace: database
     - name: rook-ceph-cluster
@@ -75,19 +75,21 @@ spec:
           master_name: redis-master
       ingress:
         enabled: true
-        ingressClassName: internal
+        ingressClassName: "nginx"
         hostname: &host thanos-query-frontend.g-eye.io
         tls: true
         extraTls:
           - hosts:
               - *host
+        annotations:
+          ingress.home.arpa/type: "internal"
     query:
       enabled: true
       replicaCount: 2
       replicaLabel: ["__replica__"]
       dnsDiscovery:
         sidecarsService: kube-prometheus-stack-thanos-discovery
-        sidecarsNamespace: monitoring
+        sidecarsNamespace: observability
       stores: ["thanos.g-eye.tech:10901"]
     bucketweb:
       enabled: true
@@ -116,7 +118,8 @@ spec:
       enabled: true
       replicaCount: 2
       replicaLabel: __replica__
-      alertmanagers: ["http://alertmanager-operated.monitoring.svc.cluster.local:9093"]
+      alertmanagers:
+        ["http://alertmanager-operated.observability.svc.cluster.local:9093"]
       extraFlags: ["--web.prefix-header=X-Forwarded-Prefix"]
       config: |-
         groups:
