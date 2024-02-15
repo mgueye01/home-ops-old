@@ -42,7 +42,7 @@ spec:
           main:
             image:
               repository: ghcr.io/miniflux/miniflux
-              tag: 2.0.50-distroless@sha256:625f6decf8740020fabec273e0f694f218a50281e251e13514ac2be4d9147ca8
+              tag: 2.0.51-distroless@sha256:9dcfba7bcf52194fa0a83d5bbdfd0a6b9be037380cd61b8ad94720309de71260
             env:
               BASE_URL: https://miniflux.g-eye.io
               CREATE_ADMIN: "1"
