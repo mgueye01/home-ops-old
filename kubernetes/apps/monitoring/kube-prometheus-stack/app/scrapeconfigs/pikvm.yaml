@@ -6,5 +6,5 @@ metadata:
   name: pikvm
 spec:
   staticConfigs:
-    - targets: ["pikvm.g-eye.tech"]
+    - targets: ["pikvm.g-eye.tech:443"]
   metricsPath: /api/export/prometheus/metrics

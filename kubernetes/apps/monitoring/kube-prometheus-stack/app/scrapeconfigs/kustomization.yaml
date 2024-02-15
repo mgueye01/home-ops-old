@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - ./syno.yaml
   # - ./kube-vip.yaml
-  - ./node-exporter.yaml
   - ./pikvm.yaml
-  # - ./vyos.yaml
   - ./zigbee-controller.yaml
+  - ./enviro.yaml
