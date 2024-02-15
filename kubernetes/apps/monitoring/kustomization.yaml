@@ -9,7 +9,7 @@ resources:
   - ./kube-prometheus-stack/ks.yaml
   # - ./unpoller/ks.yaml
   # - node-problem-detector
-  # - karma
+  - ./karma/ks.yaml
   # - blackbox-exporter
   # # - goldilocks
   # - pushgateway
