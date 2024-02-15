@@ -8,3 +8,6 @@ spec:
   staticConfigs:
     - targets: ["pikvm.g-eye.tech"]
   metricsPath: /api/export/prometheus/metrics
+  scheme: https
+  tls_config:
+    insecure_skip_verify: true # For self-signed certificate
