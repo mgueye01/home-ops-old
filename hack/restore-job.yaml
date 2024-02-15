@@ -38,5 +38,5 @@ spec:
             claimName: ${PVC}
         - name: snapshots
           nfs:
-            server: "192.168.0.18"
+            server: "nas.g-eye.tech"
             path: "/volume1/CLOUDNATIVE1/Backups/kopia"

@@ -122,21 +122,21 @@ spec:
         type: emptyDir
       media:
         type: nfs
-        server: 192.168.0.18
+        server: nas.g-eye.tech
         path: /volume1/video/TVshows
         globalMounts:
           - path: /media
       downloads:
         enabled: true
         type: nfs
-        server: 192.168.0.18
+        server: nas.g-eye.tech
         path: /volume1/downloads/complete
         lobalMounts:
           - path: /downloads
       backup:
         enabled: true
         type: nfs
-        server: 192.168.0.18
+        server: nas.g-eye.tech
         path: /volume1/CLOUDNATIVE1/Backups/sonarr
         lobalMounts:
           - path: /config/Backups
