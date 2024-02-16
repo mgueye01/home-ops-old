@@ -42,8 +42,6 @@ spec:
     containerRuntime:
       integration: containerd
       socketPath: /run/k0s/containerd.sock
-    devices: enp+
-    enableRuntimeDeviceDetection: true
     endpointRoutes:
       enabled: true
     hubble:
