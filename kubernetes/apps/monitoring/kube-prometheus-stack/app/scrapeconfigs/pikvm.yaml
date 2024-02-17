@@ -11,10 +11,10 @@ spec:
   basicAuth:
     username:
       name: pikvm-secret
-      key: "{{ .PIKVM_USERNAME }}"
+      key: "username"
     password:
       name: pikvm-secret
-      key: "{{ .PIKVM_PASSWORD }}"
+      key: "password"
   staticConfigs:
     - targets: ["pikvm.g-eye.tech"]
   metricsPath: /api/export/prometheus/metrics
