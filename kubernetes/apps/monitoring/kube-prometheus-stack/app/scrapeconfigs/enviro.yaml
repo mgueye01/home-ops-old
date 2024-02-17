@@ -3,9 +3,10 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: node-exporter
+  name: environment
 spec:
   staticConfigs:
-    - targets:
-        - enviro.g-eye.tech:8000
-  metricsPath: /metrics
+    - targets: ["enviro.g-eye.tech:8000"]
+      labels:
+        group: "environment"
+        location: "Office"
