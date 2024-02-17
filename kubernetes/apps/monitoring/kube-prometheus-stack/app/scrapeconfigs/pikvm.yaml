@@ -8,6 +8,13 @@ spec:
   scheme: HTTPS
   tlsConfig:
     insecureSkipVerify: true
+  basicAuth:
+    username:
+      name: alertmanager-secret
+      key: "{{ .PIKVM_USERNAME }}"
+    password:
+      name: alertmanager-secret
+      key: "{{ .PIKVM_PASSWORD }}"
   staticConfigs:
     - targets: ["pikvm.g-eye.tech"]
   metricsPath: /api/export/prometheus/metrics
