@@ -6,6 +6,8 @@ metadata:
   name: pikvm
 spec:
   scheme: HTTPS
+  tlsConfig:
+    insecureSkipVerify: true
   staticConfigs:
     - targets: ["pikvm.g-eye.tech"]
   metricsPath: /api/export/prometheus/metrics
