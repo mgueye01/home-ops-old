@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: default
 resources:
   - ./externalsecret.yaml
-  - ../../../../templates/gatus/internal
+  - ../../../../templates/gatus/guarded
   - ./helmrelease.yaml
   - dashboards
 labels:
