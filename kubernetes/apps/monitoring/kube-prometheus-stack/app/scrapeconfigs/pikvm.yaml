@@ -10,10 +10,10 @@ spec:
     insecureSkipVerify: true
   basicAuth:
     username:
-      name: alertmanager-secret
+      name: pikvm-secret
       key: "{{ .PIKVM_USERNAME }}"
     password:
-      name: alertmanager-secret
+      name: pikvm-secret
       key: "{{ .PIKVM_PASSWORD }}"
   staticConfigs:
     - targets: ["pikvm.g-eye.tech"]
