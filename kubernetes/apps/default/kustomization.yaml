@@ -12,5 +12,4 @@ resources:
   - ./hajimari/ks.yaml
   # - ./changedetection/ks.yaml
   - ./miniflux/ks.yaml
-  # - ./teslamate/ks.yaml
   - ./atuin/ks.yaml

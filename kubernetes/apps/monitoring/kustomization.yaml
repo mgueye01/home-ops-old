@@ -19,3 +19,4 @@ resources:
   # - ./netdata/ks.yaml
   # - ./opentelemetry/ks.yaml
   # - ./tempo/ks.yaml
+  - ./teslamate/ks.yaml
