@@ -7,16 +7,14 @@ resources:
   - ./grafana/ks.yaml
   # - ./loki/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
-  # - ./unpoller/ks.yaml
-  # - node-problem-detector
+  - ./unpoller/ks.yaml
+  - ./node-problem-detector/ks.yaml
   - ./karma/ks.yaml
   # - blackbox-exporter
   # # - goldilocks
-  # - pushgateway
-  # - ./smartctl-exporter/ks.yaml
+  - ./smartctl-exporter/ks.yaml
   # - ./vector/ks.yaml
   - ./gatus/ks.yaml
-  # - ./netdata/ks.yaml
   # - ./opentelemetry/ks.yaml
   # - ./tempo/ks.yaml
-  # - ./teslamate/ks.yaml
+  - ./teslamate/ks.yaml

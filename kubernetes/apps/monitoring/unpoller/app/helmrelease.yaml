@@ -10,12 +10,11 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.6.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-  maxHistory: 2
   install:
     createNamespace: true
     remediation:
@@ -27,21 +26,40 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: ghcr.io/unpoller/unpoller
-      tag: v2.9.5
-    env:
-      TZ: "${TIMEZONE}"
-      UP_UNIFI_DEFAULT_ROLE: home-ops
-      UP_UNIFI_DEFAULT_URL: "https://192.168.0.1"
-      UP_UNIFI_DEFAULT_VERIFY_SSL: false
-      UP_UNIFI_DEFAULT_USER: "${SECRET_UP_USER}"
-      UP_UNIFI_DEFAULT_PASS: "${SECRET_UP_PASSWORD}"
-      UP_UNIFI_DEFAULT_SAVE_SITES: true
-      UP_UNIFI_DEFAULT_SAVE_DPI: false
-      UP_INFLUXDB_DISABLE: true
-      UP_PROMETHEUS_DISABLE: false
-      UP_PROMETHEUS_NAMESPACE: "unifipoller"
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/unpoller/unpoller
+              tag: v2.9.5
+            env:
+              TZ: "${TIMEZONE}"
+              UP_UNIFI_DEFAULT_ROLE: home-ops
+              UP_UNIFI_DEFAULT_URL: "https://192.168.0.1"
+              UP_UNIFI_DEFAULT_VERIFY_SSL: false
+              UP_UNIFI_DEFAULT_USER: "${SECRET_UP_USER}"
+              UP_UNIFI_DEFAULT_PASS: "${SECRET_UP_PASSWORD}"
+              UP_UNIFI_DEFAULT_SAVE_SITES: true
+              UP_UNIFI_DEFAULT_SAVE_DPI: false
+              UP_INFLUXDB_DISABLE: true
+              UP_PROMETHEUS_DISABLE: false
+              UP_PROMETHEUS_NAMESPACE: "unifipoller"
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 100Mi
+              limits:
+                memory: 500Mi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
     service:
       main:
         ports:
@@ -56,9 +74,3 @@ spec:
             path: /metrics
             interval: 2m # Unifi API only polls at 2m intervals
             scrapeTimeout: 5s
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
-      limits:
-        memory: 500Mi
