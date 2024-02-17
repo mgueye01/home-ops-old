@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.6.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -27,45 +27,122 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    initContainers:
-      init-db:
-        image: ghcr.io/onedr0p/postgres-initdb:14.8
-        envFrom:
-          - secretRef:
-              name: teslamate-secret
-    image:
-      repository: teslamate/teslamate
-      tag: 1.28.3
-    env:
-      TZ: "Europe/Paris"
-      DISABLE_MQTT: "false"
-      MQTT_HOST: "mosquitto.home.svc.cluster.local"
-      MQTT_USERNAME: "mqttadmin"
-    envFrom:
-      - secretRef:
-          name: teslamate-secret
-    service:
+    controllers:
       main:
-        type: ClusterIP
-        ports:
-          http:
-            port: 4000
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: teslamate-secret
+        containers:
+          main:
+            env:
+              CHECK_ORIGIN: true
+              DATABASE_HOST: postgres16-rw.database.svc.cluster.local
+              MQTT_HOST: &mqttHost mosquitto.home.svc.cluster.local
+              PORT: &port 80
+              TZ: &TZ "Europe/Paris"
+              VIRTUAL_HOST: "{{ .Release.Name }}.g-eye.io"
+            envFrom: *envFrom
+            image:
+              repository: teslamate/teslamate
+              tag: 1.28.3
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              limits:
+                memory: 512Mi
+              requests:
+                cpu: 25m
+                memory: 256Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
+          api:
+            env:
+              DATABASE_HOST: postgres16-ro.database.svc.cluster.local
+              ENABLE_COMMANDS: "false"
+              COMMANDS_ALL: "false"
+              MQTT_HOST: *mqttHost
+              TZ: *TZ
+              TESLAMATE_HOST: &host "{{ .Release.Name }}.g-eye.io"
+            envFrom: *envFrom
+            image:
+              repository: ghcr.io/tobiasehlert/teslamateapi
+              tag: 1.16.6@sha256:ac06fbdd6b1c8f0367cbe417ead38e616098ef60b0d4c0990f5dd8bf3a2f87fd
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/ping
+                    port: &apiPort 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              limits:
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+        pod:
+          automountServiceAccountToken: false
+          securityContext:
+            runAsGroup: 10001
+            runAsNonRoot: true
+            runAsUser: 10000
+            seccompProfile: { type: RuntimeDefault }
     ingress:
       main:
         enabled: true
-        annotations:
-          ingress.home.arpa/type: "internal"
-        ingressClassName: "nginx"
+        className: internal
         hosts:
-          - host: "teslamate.g-eye.io"
+          - host: *host
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
+              - path: /api
+                service:
+                  name: api
+                  port: http
         tls:
           - hosts:
-              - teslamate.g-eye.io
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 50m
-      limits:
-        memory: 500Mi
+              - *host
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+      api:
+        controller: main
+        ports:
+          http:
+            port: *apiPort

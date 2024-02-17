@@ -12,4 +12,4 @@ resources:
   # - mealie
   # - esphome
   # # - appdaemon
-  # - ./mosquitto/ks.yaml
+  - ./mosquitto/ks.yaml
