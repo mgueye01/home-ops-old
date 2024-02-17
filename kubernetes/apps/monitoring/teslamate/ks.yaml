@@ -5,8 +5,9 @@ metadata:
   name: teslamate
   namespace: flux-system
 spec:
+  targetNamespace: monitoring
   interval: 10m
-  path: "./kubernetes/apps/default/teslamate/app"
+  path: "./kubernetes/apps/monitoring/teslamate/app"
   prune: true
   sourceRef:
     kind: GitRepository
