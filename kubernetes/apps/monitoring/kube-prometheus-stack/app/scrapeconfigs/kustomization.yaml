@@ -7,5 +7,5 @@ resources:
   - ./syno.yaml
   # - ./kube-vip.yaml
   - ./pikvm.yaml
-  - ./zigbee-controller.yaml
+  # - ./zigbee-controller.yaml
   - ./enviro.yaml
