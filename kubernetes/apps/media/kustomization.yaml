@@ -13,4 +13,3 @@ resources:
   - ./overseerr/ks.yaml
   - ./recyclarr/ks.yaml
   # - plex-meta-manager
-  # # - ./jellyfin/ks.yaml

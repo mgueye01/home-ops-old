@@ -11,10 +11,7 @@ resources:
   - ./node-problem-detector/ks.yaml
   - ./karma/ks.yaml
   # - blackbox-exporter
-  # # - goldilocks
   - ./smartctl-exporter/ks.yaml
   - ./vector/ks.yaml
   - ./gatus/ks.yaml
-  # - ./opentelemetry/ks.yaml
-  # - ./tempo/ks.yaml
   - ./teslamate/ks.yaml
