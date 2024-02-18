@@ -59,10 +59,10 @@ spec:
             args: ["--config", "/etc/vector/vector.yaml"]
             securityContext:
               privileged: true
-            tolerations:
-              - key: node-role.kubernetes.io/control-plane
-                effect: NoSchedule
-                operator: Exists
+        pod:
+          tolerations:
+            - key: node-role.kubernetes.io/control-plane
+              effect: NoSchedule
     service:
       main:
         enabled: false
