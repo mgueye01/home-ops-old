@@ -107,5 +107,6 @@ spec:
           - path: /var/log
             readOnly: true
     tolerations:
-      - effect: NoSchedule
+      - key: node-role.kubernetes.io/control-plane
+        effect: NoSchedule
         operator: Exists
