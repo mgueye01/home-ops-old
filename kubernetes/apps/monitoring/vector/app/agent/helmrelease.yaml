@@ -59,6 +59,10 @@ spec:
             args: ["--config", "/etc/vector/vector.yaml"]
             securityContext:
               privileged: true
+            tolerations:
+              - key: node-role.kubernetes.io/control-plane
+                effect: NoSchedule
+                operator: Exists
     service:
       main:
         enabled: false
@@ -106,7 +110,3 @@ spec:
         globalMounts:
           - path: /var/log
             readOnly: true
-    tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        effect: NoSchedule
-        operator: Exists
