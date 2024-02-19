@@ -42,6 +42,9 @@ spec:
               tag: 1.40.0.7997-b09370ecd@sha256:edcfccf9a93cf4a02794b3ff1cbbaf598483a1d04c7457c8c733248bd826f7ae
             env:
               TZ: Europe/Paris
+              ADVERTISE_IP: "https://plex.g-eye.io:443,http://192.168.10.68:32400"
+              ALLOWED_NETWORKS: "192.168.0.0/16,10.0.0.0/8,172.16.0.0/12"
+              HOSTNAME: "k8s-plex"
             probes:
               liveness: &probes
                 enabled: true
