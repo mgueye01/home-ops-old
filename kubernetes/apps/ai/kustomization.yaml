@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - ./localai/ks.yaml
-  - ./k8sgpt/ks.yaml
+  # - ./k8sgpt/ks.yaml
   # - ./chatgpt/ks.yaml
   # - ./chatbot-ui/ks.yaml
   - ./ollama/ks.yaml
