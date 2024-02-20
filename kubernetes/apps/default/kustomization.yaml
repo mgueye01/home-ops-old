@@ -10,6 +10,6 @@ resources:
   - ./weave-gitops/ks.yaml
   # - ./paperless/ks.yaml
   - ./hajimari/ks.yaml
-  # - ./changedetection/ks.yaml
+  - ./shlink/ks.yaml
   - ./miniflux/ks.yaml
   - ./atuin/ks.yaml
