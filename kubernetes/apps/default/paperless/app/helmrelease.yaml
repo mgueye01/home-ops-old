@@ -75,23 +75,28 @@ spec:
                   name: paperless-secret
     service:
       main:
+        controller: main
         ports:
           http:
             port: *port
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         annotations:
           nginx.ingress.kubernetes.io/auth-method: GET
           nginx.ingress.kubernetes.io/auth-url: http://authelia.security.svc.cluster.local/api/verify
-          nginx.ingress.kubernetes.io/auth-signin: https://auth.g-eye.io?rm=$request_method
+          nginx.ingress.kubernetes.io/auth-signin: https://auth.g-eye?rm=$request_method
           nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Name,Remote-Groups,Remote-Email
           nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
         hosts:
-          - host: &host "{{ .Release.Name }}.g-eye.io"
+          - host: &host "{{ .Release.Name }}.g-eye"
             paths:
               - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
