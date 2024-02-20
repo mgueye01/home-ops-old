@@ -19,6 +19,7 @@ spec:
   values:
     controllers:
       main:
+        replicas: 2
         containers:
           main:
             image:
@@ -50,8 +51,6 @@ spec:
               # CUSTOM_BUTTON_ALT_TEXT: Tech documentation site for my videos and more,Recommended Gear
               # CUSTOM_BUTTON_NAME: DOCUMENTATION,GEAR
               # CUSTOM_BUTTON_ICON: fas file-alt,fas fa-cog
-              # TWITTER: https://sprk.sh/twitter
-              # INSTAGRAM: https://www.instagram.com/techno.tim
               # TWITCH: https://www.twitch.tv/technotim/
               # DISCORD: https://discord.gg/DJKexrJ
               # TIKTOK: https://www.tiktok.com/@technotim
@@ -64,7 +63,6 @@ spec:
               # REDDIT: https://www.reddit.com/
               # MEDIUM: https://medium.com
               # PINTEREST: https://www.pinterest.com/
-              # EMAIL: hello@imake.software
               # EMAIL_ALT: you@example.com
               # FIGMA: https://figma.com
               # TELEGRAM: https://telegram.org/
@@ -74,7 +72,6 @@ spec:
               # GOODREADS: https://www.goodreads.com/
               # SKOOB: https://www.skoob.com.br/
               # FOOTER: Thanks for stopping by!
-
     service:
       main:
         ports:
@@ -83,14 +80,16 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "external"
+        className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: external.g-eye.io
         hosts:
-          - host: "me.g-eye.io"
+          - host: &host me.g-eye.io
             paths:
-              - path: /
-                pathType: Prefix
+              - path: "/"
+                pathtype: "prefix"
+                service:
+                  name: main
         tls:
           - hosts:
-              - "me.g-eye.io"
+              - *host

@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - blog
-  - ./littlelink/ks.yaml
+  - ./littlelinks/ks.yaml
   # - excalidraw
   - ./weave-gitops/ks.yaml
   # - ./paperless/ks.yaml

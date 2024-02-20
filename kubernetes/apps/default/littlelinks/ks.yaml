@@ -6,7 +6,7 @@ metadata:
   name: littlelink
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/default/littlelink/app
+  path: ./kubernetes/apps/default/littlelinks/app
   prune: true
   sourceRef:
     kind: GitRepository
