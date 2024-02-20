@@ -8,7 +8,7 @@ resources:
   - ./littlelinks/ks.yaml
   # - excalidraw
   - ./weave-gitops/ks.yaml
-  # - ./paperless/ks.yaml
+  - ./paperless/ks.yaml
   - ./hajimari/ks.yaml
   - ./shlink/ks.yaml
   - ./miniflux/ks.yaml
