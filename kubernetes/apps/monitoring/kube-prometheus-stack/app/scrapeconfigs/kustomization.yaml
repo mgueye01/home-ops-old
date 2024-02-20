@@ -9,3 +9,4 @@ resources:
   - ./pikvm.yaml
   # - ./zigbee-controller.yaml
   - ./enviro.yaml
+  - ./minio.yaml
