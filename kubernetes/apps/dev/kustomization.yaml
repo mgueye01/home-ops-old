@@ -6,4 +6,3 @@ resources:
   # - ./gitea/ks.yaml
   # - drone
   # - buildkit
-  # # - gitlab
