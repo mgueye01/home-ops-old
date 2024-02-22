@@ -33,7 +33,7 @@ spec:
         add: ["SYS_CHROOT"]
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: internal
       annotations:
         ingress.home.arpa/type: "internal"
       hosts:
