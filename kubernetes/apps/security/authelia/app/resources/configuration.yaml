@@ -101,7 +101,7 @@ identity_providers:
         authorization_policy: one_factor
         pre_configured_consent_duration: 1y
         scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["https://gitea.g-eye.io/user/oauth2/Authelia/callback"]
+        redirect_uris: ["https://gitea.g-eye.io/user/oauth2/authelia/callback"]
         userinfo_signing_algorithm: none
       - id: paperless
         description: Paperless
