@@ -5,4 +5,4 @@ resources:
   - namespace.yaml
   - ./gitea/ks.yaml
   - drone
-  # - buildkit
+  - buildkit
