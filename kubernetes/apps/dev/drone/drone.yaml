@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -51,7 +52,7 @@ spec:
       DRONE_LOGS_PRETTY: true
       DRONE_LOGS_COLOR: true
       DRONE_RPC_SECRET: ${SECRET_DRONE_RPC_SECRET}
-      DRONE_GITEA_CLIENT_ID: 6e97970d-09d9-4c3e-aef8-010a8b62e23a
+      DRONE_GITEA_CLIENT_ID: b50aa12a-d949-417a-a48e-af3c02ef03be
       DRONE_GITEA_CLIENT_SECRET: ${SECRET_DRONE_GITEA_CLIENT_SECRET}
       DRONE_LOGS_DEBUG: true
     persistentVolume:
