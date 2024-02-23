@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: registry
+  name: harbor-registry
   labels:
     app.kubernetes.io/name: harbor-registry
     app.kubernetes.io/instance: harbor
