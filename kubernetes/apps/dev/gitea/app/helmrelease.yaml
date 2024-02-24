@@ -24,8 +24,6 @@ spec:
       retries: 5
   values:
     image:
-      repository: gitea/gitea
-      tag: 1.21.5
       rootless: true
     statefulset:
       annotations:
