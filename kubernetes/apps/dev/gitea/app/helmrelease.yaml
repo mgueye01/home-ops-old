@@ -23,11 +23,13 @@ spec:
     remediation:
       retries: 5
   values:
+    image:
+      repository: gitea/gitea
+      tag: 1.21.5
+      rootless: true
     statefulset:
       annotations:
         reloader.stakater.com/auto: "true"
-    image:
-      rootless: true
     containerSecurityContext:
       capabilities:
         add: ["SYS_CHROOT"]
