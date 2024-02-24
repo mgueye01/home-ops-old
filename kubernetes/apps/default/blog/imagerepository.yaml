@@ -5,6 +5,6 @@ metadata:
   name: blog
   namespace: flux-system
 spec:
-  image: harbor.g-eye.io/blog/blog
+  image: harbor.g-eye.io/mgueye01/blog
   interval: 1m
   provider: generic
