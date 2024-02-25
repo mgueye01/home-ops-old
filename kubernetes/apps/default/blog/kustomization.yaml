@@ -6,6 +6,7 @@ resources:
   - deployment.yaml
   - ingress.yaml
   - service.yaml
-  - regcred.sops.yaml
-  - imagerepository.yaml
-  - imagepolicy.yaml
+  - ./flux-cd/regcred.sops.yaml
+  - ./flux-cd/imagerepository.yaml
+  - ./flux-cd/imagepolicy.yaml
+  - ./flux-cd/ImageUpdateAutomation.yaml

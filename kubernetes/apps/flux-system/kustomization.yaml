@@ -5,4 +5,4 @@ resources:
   # - notifications
   - ./notifications.yaml
   - webhook
-  - regcred.sops.yaml
+  - ./regcred.sops.yaml
