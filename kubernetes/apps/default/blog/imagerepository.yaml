@@ -7,4 +7,6 @@ metadata:
 spec:
   image: harbor.g-eye.io/mgueye01/blog
   interval: 1m
+  secretRef:
+    name: regcred
   provider: generic
