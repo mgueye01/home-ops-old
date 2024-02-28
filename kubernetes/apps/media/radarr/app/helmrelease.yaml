@@ -43,7 +43,7 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/radarr-develop
-              tag: 5.3.5.8592@sha256:60d0a8a04a062654e27be6f1d8d780be2e821bd0e7815201f4bb32df8090b00b
+              tag: 5.4.0.8636@sha256:6676ffdf020e239ce8ebb4876edca828af34d718c589de25957cae9c218c07b7
             env:
               COMPlus_EnableDiagnostics: "0"
               PUSHOVER_DEBUG: "false"
