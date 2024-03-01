@@ -3,7 +3,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - namespace.yaml
+  - ./namespace.yaml
   - blog
   - ./littlelinks/ks.yaml
   # - excalidraw
@@ -13,3 +13,4 @@ resources:
   - ./shlink/ks.yaml
   - ./miniflux/ks.yaml
   - ./atuin/ks.yaml
+  - ./kromgo/ks.yaml
