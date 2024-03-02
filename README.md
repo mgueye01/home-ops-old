@@ -21,8 +21,7 @@ _... managed by Flux, Renovate and GitHub Actions_ :robot:
 [![k8s](https://img.shields.io/badge/v1.29.1+k0s-green?style=flat-square)](https://k0sproject.io/)
 [![GitHub last commit](https://img.shields.io/github/last-commit/mgueye01/home-ops?style=flat-square)](https://github.com/mgueye01/home-ops/commits/main)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge?style=flat-square)](https://github.com/pre-commit/pre-commit)
-[![Renovate](https://img.shields.io/github/actions/workflow/status/mgueye01/.github/schedule-renovate.yaml?branch=main&label=&logo=renovatebot&style=flat-square&color=blue)](https://github.com/mgueye01/home-ops/actions/workflows/renovate.yaml)
-</div>
+[![Renovate](https://img.shields.io/github/actions/workflow/status/mgueye01/.github/schedule-renovate.yaml?branch=main&label=&logo=renovatebot&style=flat-square&color=blue)](https://github.com/mgueye01/home-ops/actions/workflows/Renovate)
 
 <div align="center">
 
