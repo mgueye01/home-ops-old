@@ -6,9 +6,6 @@
 
 _... managed by Flux, Renovate and GitHub Actions_ :robot:
 
-[![Discord](https://img.shields.io/discord/673534664354430999?style=for-the-badge&label&logo=discord&logoColor=white&color=blue)](https://discord.gg/home-operations)&nbsp;
-[![Renovate](https://img.shields.io/github/actions/workflow/status/mgueye01/.github/schedule-renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/mgueye01/home-ops/actions/workflows/schedule-renovate.yaml)
-
 <div align="center">
 
 [![Home-Internet](https://img.shields.io/uptimerobot/status/m793494864-dfc695db066960233ac70f45?color=brightgreeen&label=Home%20Internet&style=for-the-badge&logo=v&logoColor=white)](https://status.g-eye.io)&nbsp;&nbsp;
@@ -24,7 +21,7 @@ _... managed by Flux, Renovate and GitHub Actions_ :robot:
 [![k8s](https://img.shields.io/badge/v1.29.1+k0s-green?style=flat-square)](https://k0sproject.io/)
 [![GitHub last commit](https://img.shields.io/github/last-commit/mgueye01/home-ops?style=flat-square)](https://github.com/mgueye01/home-ops/commits/main)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge?style=flat-square)](https://github.com/pre-commit/pre-commit)
-[![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?style=flat-square&logo=renovatebot&logoColor=white)](https://github.com/renovatebot/renovate)
+[![Renovate](https://img.shields.io/github/actions/workflow/status/mgueye01/.github/schedule-renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/mgueye01/home-ops/actions/workflows/renovate.yaml)
 
 </div>
 
