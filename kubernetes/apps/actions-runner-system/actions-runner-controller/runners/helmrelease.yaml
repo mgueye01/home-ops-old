@@ -1,23 +1,20 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: arc-home-ops
-  namespace: actions-runner-system
 spec:
   interval: 30m
   chart:
     spec:
       chart: gha-runner-scale-set
-      version: 0.8.3
+      version: 0.8.2
       sourceRef:
         kind: HelmRepository
         name: actions-runner-controller
         namespace: flux-system
-  maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -26,28 +23,32 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  valuesFrom:
+    - targetPath: githubConfigSecret.github_app_id
+      kind: Secret
+      name: actions-runner-controller-auth-secret
+      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_APP_ID
+    - targetPath: githubConfigSecret.github_app_installation_id
+      kind: Secret
+      name: actions-runner-controller-auth-secret
+      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_INSTALLATION_ID
+    - targetPath: githubConfigSecret.github_app_private_key
+      kind: Secret
+      name: actions-runner-controller-auth-secret
+      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_PRIVATE_KEY
   values:
     runnerScaleSetName: arc-runner-set-home-ops
     githubConfigUrl: https://github.com/mgueye01/home-ops
     minRunners: 1
-    maxRunners: 3
+    maxRunners: 6
     containerMode:
       type: dind
     template:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/onedr0p/github-actions-runner:rolling@sha256:97b74a2c9ae3f573e5168a247d3e0a14bd18aaf1e7b1003192090f4a089a8c07
-  valuesFrom:
-    - kind: Secret
-      name: actions-runner-controller-auth-secret
-      valuesKey: github_app_id
-      targetPath: githubConfigSecret.github_app_id
-    - kind: Secret
-      name: actions-runner-controller-auth-secret
-      valuesKey: github_app_installation_id
-      targetPath: githubConfigSecret.github_app_installation_id
-    - kind: Secret
-      name: actions-runner-controller-auth-secret
-      valuesKey: github_app_private_key
-      targetPath: githubConfigSecret.github_app_private_key
+            image: ghcr.io/onedr0p/actions-runner:2.314.1@sha256:338d851a66c4942f7a33d4dc3d0ff1459e05e31e258153242521e9f8e4c64dd7
+            command: ["/home/runner/run.sh"]
+    controllerServiceAccount:
+      name: actions-runner-controller-gha-rs-controller
+      namespace: actions-runner-system
