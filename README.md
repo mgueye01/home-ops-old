@@ -7,7 +7,7 @@
 _... managed by Flux, Renovate and GitHub Actions_ :robot:
 
 [![Discord](https://img.shields.io/discord/673534664354430999?style=for-the-badge&label&logo=discord&logoColor=white&color=blue)](https://discord.gg/home-operations)&nbsp;
-[![Renovate](https://img.shields.io/github/actions/workflow/status/bjw-s/.github/schedule-renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/bjw-s/home-ops/actions/workflows/schedule-renovate.yaml)
+[![Renovate](https://img.shields.io/github/actions/workflow/status/mgueye01/.github/schedule-renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/mgueye01/home-ops/actions/workflows/schedule-renovate.yaml)
 
 <div align="center">
 
@@ -28,8 +28,9 @@ _... managed by Flux, Renovate and GitHub Actions_ :robot:
 
 </div>
 
-Main k8s cluster stats:
 <div align="center">
+
+Main k8s cluster stats:
 
 [![Age-Days](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.g-eye.io%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_age_days&style=flat-square&label=Age)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
 [![Uptime-Days](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.g-eye.io%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_uptime_days&style=flat-square&label=Uptime)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
