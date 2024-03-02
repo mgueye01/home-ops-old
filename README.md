@@ -1,9 +1,34 @@
- <img sr c="https://camo.githubusercontent.com/bd0df216af51c1525f14e62155608e448562cb4033554e001a0ac2009e545aec/68747470733a2f2f726173706265726e657465732e6769746875622e696f2f696d672f6c6f676f2e737667" align="left" width="144px" height="144px"/>
+<div align="center">
 
-#### home-infra - Home Cloud via Flux v2 | GitOps Toolkit
+<img src="https://github.com/mgueye01/home-ops/blob/main/_assets/images/logo.png?raw=true" width="144px" height="144px"/>
 
-GitOps state for my cluster using flux v2
+## My Home Operations repository
 
+_... managed by Flux, Renovate and GitHub Actions_ :robot:
+
+[![Discord](https://img.shields.io/discord/673534664354430999?style=for-the-badge&label&logo=discord&logoColor=white&color=blue)](https://discord.gg/home-operations)&nbsp;
+[![Renovate](https://img.shields.io/github/actions/workflow/status/bjw-s/.github/schedule-renovate.yaml?branch=main&label=&logo=renovatebot&style=for-the-badge&color=blue)](https://github.com/bjw-s/home-ops/actions/workflows/schedule-renovate.yaml)
+
+<div align="center">
+
+[![Home-Internet](https://img.shields.io/uptimerobot/status/m793494864-dfc695db066960233ac70f45?color=brightgreeen&label=Home%20Internet&style=for-the-badge&logo=v&logoColor=white)](https://status.g-eye.io)&nbsp;&nbsp;
+[![Status-Page](https://img.shields.io/uptimerobot/status/m793599155-ba1b18e51c9f8653acd0f5c1?color=brightgreeen&label=Status%20Page&style=for-the-badge&logo=statuspage&logoColor=white)](https://status.g-eye.io)&nbsp;&nbsp;
+[![Alertmanager](https://img.shields.io/uptimerobot/status/m793494864-dfc695db066960233ac70f45?color=brightgreeen&label=Alertmanager&style=for-the-badge&logo=prometheus&logoColor=white)](https://status.g-eye.io)
+
+</div>
+
+</div>
+
+<div align="center">
+
+[![k8s](https://img.shields.io/badge/v1.29.1+k0s-green?style=flat-square)](https://k0sproject.io/)
+[![GitHub last commit](https://img.shields.io/github/last-commit/mgueye01/home-ops?style=flat-square)](https://github.com/mgueye01/home-ops/commits/main)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge?style=flat-square)](https://github.com/pre-commit/pre-commit)
+[![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?style=flat-square&logo=renovatebot&logoColor=white)](https://github.com/renovatebot/renovate)
+
+</div>
+
+Main k8s cluster stats:
 <div align="center">
 
 [![Age-Days](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.g-eye.io%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_age_days&style=flat-square&label=Age)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
@@ -13,18 +38,5 @@ GitOps state for my cluster using flux v2
 [![CPU-Usage](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.g-eye.io%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_cpu_usage&style=flat-square&label=CPU)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
 [![Memory-Usage](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.g-eye.io%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_memory_usage&style=flat-square&label=Memory)](https://github.com/kashalls/kromgo)&nbsp;&nbsp;
 <!-- [![Power-Usage](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.g-eye.io%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_power_usage&style=flat-square&label=Power)](https://github.com/kashalls/kromgo) -->
-
-</div>
-
-<div align="center">
-
-[![k8s](https://img.shields.io/badge/k8s-v1.27.1-green?style=flat-square)](https://k8s.io/)
-[![GitHub last commit](https://img.shields.io/github/last-commit/mgueye01/home-ops?style=flat-square)](https://github.com/mgueye01/home-ops/commits/main)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge?style=flat-square)](https://github.com/pre-commit/pre-commit)
-[![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?style=flat-square&logo=renovatebot&logoColor=white)](https://github.com/renovatebot/renovate)
-
-</div>
-
-<br />
 
 ---
