@@ -1,0 +1,74 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: buildkitd
+  annotations:
+    patch.sko.ai/app-template: statefulset
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  values:
+    image:
+      repository: moby/buildkit
+      tag: v0.13.0
+    args:
+      - --root
+      - /cache
+      - --addr
+      - unix:///run/buildkit/buildkitd.sock
+      - --addr
+      - tcp://0.0.0.0:1234
+      - --tlscacert
+      - /certs/ca.pem
+      - --tlscert
+      - /certs/cert.pem
+      - --tlskey
+      - /certs/key.pem
+    service:
+      main:
+        ports:
+          http:
+            enabled: false
+          mtls:
+            enabled: true
+            port: 1234
+    persistence:
+      certs:
+        enabled: true
+        type: secret
+        name: buildkit-daemon-certs
+        mountPath: /certs
+      cache:
+        enabled: true
+        type: emptyDir
+    resources:
+      limits:
+        cpu: 2
+        memory: 2Gi
+      requests:
+        cpu: 200m
+        memory: 2Gi
+        ephemeral-storage: 10Gi
+    securityContext:
+      privileged: true
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          exec:
+            command:
+              - buildctl
+              - debug
+              - workers
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
+      readiness: *probes
