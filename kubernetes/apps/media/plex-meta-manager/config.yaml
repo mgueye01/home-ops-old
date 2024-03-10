@@ -1,7 +1,7 @@
 libraries:
   Films:
     metadata_path:
-      - file: config/Films.yaml
+      - file: config/Films.yml
       - file: config/Movies - Trakt (Unplayed).yml
       - file: config/Movies - Holidays.yml
       - file: config/Movies - Locations.yml
@@ -21,7 +21,7 @@ libraries:
       mass_user_rating_update: imdb
   Series:
     metadata_path:
-      - file: config/Series.yaml
+      - file: config/Series.yml
     overlay_files:
       - file: config/TV Shows - Overlays - Charts.yml
       - file: config/TV Shows - Overlays - Streaming Services + Networks.yml
