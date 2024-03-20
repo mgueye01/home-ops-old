@@ -84,7 +84,7 @@ spec:
                 - matchExpressions:
                     - key: node-role.kubernetes.io/worker
                       operator: Exists
-        # mon: *placement
+        mon: *placement
         # all:
         #   tolerations:
         #     - effect: NoSchedule
