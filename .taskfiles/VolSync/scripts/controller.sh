@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 APP=$1
-NAMESPACE="${2:-default}"
+# NAMESPACE="${2:-default}"
+NAMESPACE=$2
 CLUSTER="${3:-main}"
 
 is_deployment() {
