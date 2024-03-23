@@ -100,5 +100,9 @@ spec:
         existingClaim: overseerr
         globalMounts:
           - path: /app/config
+      cache:
+        existingClaim: overseerr-cache
+        globalMounts:
+          - path: /app/config/cache
       tmp:
         type: emptyDir
