@@ -27,7 +27,7 @@ resources:
   - ./harbor-charts.yaml
   - ./kyverno-charts.yaml
   - ./cilium-charts.yaml
-  - ./tika-charts.yaml
+  # - ./tika-charts.yaml
   - ./kurt108-charts.yaml
   - ./giantswarm-charts.yaml
   - ./emqx-charts.yaml
