@@ -47,7 +47,7 @@ spec:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/onedr0p/actions-runner:2.314.1@sha256:338d851a66c4942f7a33d4dc3d0ff1459e05e31e258153242521e9f8e4c64dd7
+            image: ghcr.io/onedr0p/actions-runner:2.315.0@sha256:5a85f0dbce1fb582a4d1399658cd8f67be1d2b8d2ad5281b6f2bd066408ec0bf
             command: ["/home/runner/run.sh"]
     controllerServiceAccount:
       name: actions-runner-controller-gha-rs-controller
