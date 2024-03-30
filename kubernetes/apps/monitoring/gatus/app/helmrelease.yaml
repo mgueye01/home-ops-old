@@ -20,12 +20,11 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
     controllers:
-      main:
+      gatus:
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
@@ -37,29 +36,32 @@ spec:
               - secretRef:
                   name: gatus-secret
           init-config:
-            image: &configSyncImage
+            dependsOn: init-db
+            image:
               repository: ghcr.io/kiwigrid/k8s-sidecar
               tag: 1.26.1@sha256:b8d5067137fec093cf48670dc3a1dbb38f9e734f3a6683015c2e89a45db5fd16
-            env: &configSyncEnv
+            env:
               FOLDER: /config
               LABEL: gatus.io/enabled
               NAMESPACE: ALL
               RESOURCE: both
               UNIQUE_FILENAMES: true
-              METHOD: LIST
+              METHOD: WATCH
+            restartPolicy: Always
             resources: &resources
               requests:
                 cpu: 10m
               limits:
-                memory: 128Mi
+                memory: 256Mi
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/twin/gatus
               tag: v5.8.0@sha256:fecb4c38722df59f5e00ab4fcf2393d9b8dad9161db208d8d79386dc86da8a55
             env:
               TZ: Europe/Paris
               GATUS_CONFIG_PATH: /config
+              GATUS_DELAY_START_SECONDS: 5
               CUSTOM_WEB_PORT: &port 80
             envFrom: *envFrom
             probes:
@@ -68,26 +70,17 @@ spec:
                 custom: true
                 spec:
                   httpGet:
-                    path: &path /health
+                    path: /health
                     port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
-              startup:
-                enabled: false
-            securityContext: &securityContext
+            securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
-            resources: *resources
-          config-sync:
-            image: *configSyncImage
-            env:
-              <<: *configSyncEnv
-              METHOD: WATCH
-            securityContext: *securityContext
             resources: *resources
         pod:
           dnsConfig:
@@ -127,8 +120,7 @@ spec:
                   identifier: app
                   port: http
         tls:
-          - hosts:
-              - *host
+          - hosts: [*host]
     serviceAccount:
       create: true
       name: gatus

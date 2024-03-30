@@ -46,7 +46,6 @@ spec:
                 memory: 2Gi
               startup:
                 enabled: false
-
     service:
       main:
         controller: main
@@ -68,8 +67,8 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
-                  port: http
+                  identifier: main
+                  port: *port
         tls:
           - hosts:
               - *host

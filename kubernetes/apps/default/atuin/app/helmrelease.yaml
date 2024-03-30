@@ -80,7 +80,7 @@ spec:
             port: *metricsPort
     serviceMonitor:
       app:
-        enabled: true
+        serviceName: atuin
         endpoints:
           - port: metrics
             scheme: http
