@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app kromgo
+  name: &app excalidraw
 spec:
   interval: 30m
   chart:
@@ -20,38 +20,31 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: uninstall
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
     controllers:
-      kromgo:
+      excalidraw:
         replicas: 2
         strategy: RollingUpdate
-        annotations:
-          reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
-              repository: ghcr.io/kashalls/kromgo
-              tag: 0.3.0@sha256:7fa9b72f306b0970a16667f97604b4f3ebac2bdd1de29132bf81d8e6072abaf2
-            env:
-              PROMETHEUS_URL: http://thanos-query-frontend.monitoring.svc.cluster.local:9090
-              PORT: &port 80
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              repository: ghcr.io/haraldkoch/excalidraw
+              tag: latest@sha256:cb3779395c51500351affce38c1fc1e4121bff03e1ca704c3adb1bbdc748bbe0
+              pullPolicy: IfNotPresent
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
             resources:
               requests:
-                cpu: 10m
+                cpu: 5m
+                memory: 10Mi
               limits:
-                memory: 64Mi
+                memory: 50Mi
         pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
           topologySpreadConstraints:
             - maxSkew: 1
               topologyKey: kubernetes.io/hostname
@@ -61,31 +54,23 @@ spec:
                   app.kubernetes.io/name: *app
     service:
       app:
-        controller: kromgo
+        controller: excalidraw
+        ipFamilyPolicy: PreferDualStack
         ports:
           http:
-            port: *port
+            port: 80
     ingress:
-      main:
-        enabled: true
+      app:
         className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: external.g-eye.io
+          hajimari.io/icon: mdi:draw-pen
         hosts:
-          - host: &host "{{ .Release.Name }}.g-eye.io"
+          - host: &host draw.g-eye.io
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
-          - hosts:
-              - *host
-    persistence:
-      config-file:
-        type: configMap
-        name: kromgo-configmap
-        globalMounts:
-          - path: /kromgo/config.yaml
-            subPath: config.yaml
-            readOnly: true
+          - hosts: [*host]

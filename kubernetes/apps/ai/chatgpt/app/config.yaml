@@ -1,4 +1,0 @@
-# yamllint disable
-services:
-  openai:
-    apiKey: "${OPENAPI_KEY}"

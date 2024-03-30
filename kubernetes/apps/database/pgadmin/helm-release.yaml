@@ -1,92 +1,90 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app pgadmin
-  namespace: database
+  name: pgadmin
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 3.0.4
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
+  maxHistory: 3
   install:
     createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
+    cleanupOnFail: true
     remediation:
-      retries: 5
-  dependsOn:
-    - name: cloudnative-pg
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
-    image:
-      repository: dpage/pgadmin4
-      tag: "8.4"
-    envFrom:
-      - secretRef:
-          name: *app
-    strategy:
-      type: Recreate
-
-    persistentVolume:
-      enabled: true
-      existingClaim: pgadmin-config
+    controllers:
+      main:
+        strategy: Recreate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          securityContext:
+            runAsUser: 5050 # ${APP_UID}
+            runAsGroup: 5050 # ${APP_GID}
+            fsGroup: 5050 # ${APP_GID}
+            fsGroupChangePolicy: OnRootMismatch
+        containers:
+          main:
+            image:
+              repository: docker.io/dpage/pgadmin4
+              tag: "8.4@sha256:18cd5711fc9a7ed633a5c4b2b1a8f3e969d9262a94b8166c79fe0bba52697788"
+            envFrom:
+              - secretRef:
+                  name: pgadmin-secret
+            resources:
+              requests:
+                cpu: 15m
+                memory: 164M
+              limits:
+                memory: 236M
 
     service:
       main:
+        controller: main
         ports:
           http:
             port: 80
+
     ingress:
       main:
         enabled: true
         className: internal
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-    podSecurityContext:
-      runAsUser: 5050
-      runAsGroup: 5050
-      fsGroup: 5050
-      fsGroupChangePolicy: "OnRootMismatch"
+                service:
+                  identifier: main
+                  port: http
+
     persistence:
       config:
         enabled: true
-        existingClaim: pgadmin-config
-        mountPath: "/var/lib/pgadmin"
+        existingClaim: "${VOLSYNC_CLAIM}"
+        advancedMounts:
+          main:
+            main:
+              - path: /var/lib/pgadmin
       server-json:
         enabled: true
         type: configMap
         name: servers-json
-        subPath: servers.json
-        mountPath: /pgadmin4/servers.json
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: *app
-    resources:
-      requests:
-        cpu: 15m
-        memory: 164M
-      limits:
-        memory: 236M
-  # postRenderers:
-  #   - kustomize:
-  #       patchesJson6902:
-  #         - target:
-  #             kind: Ingress
-  #             name: pgadmin-pgadmin4
-  #           patch:
-  #             - op: add
-  #               path: /spec/ingressClassName
-  #               value: nginx
+        globalMounts:
+          - path: /pgadmin4/servers.json
+            subPath: servers.json
