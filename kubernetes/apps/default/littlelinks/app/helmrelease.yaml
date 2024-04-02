@@ -73,13 +73,13 @@ spec:
               # SKOOB: https://www.skoob.com.br/
               # FOOTER: Thanks for stopping by!
     service:
-      app:
-        controller: littlelinks
+      main:
+        controller: main
         ports:
           http:
             port: 3000
     ingress:
-      app:
+      main:
         enabled: true
         className: external
         annotations:
@@ -88,9 +88,8 @@ spec:
           - host: &host me.g-eye.io
             paths:
               - path: "/"
-                pathtype: "prefix"
                 service:
-                  identifier: app
+                  identifier: main
         tls:
           - hosts:
               - *host
