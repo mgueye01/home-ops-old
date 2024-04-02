@@ -25,12 +25,12 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      flaresolverr:
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          flaresolverr:
+          app:
             image:
               repository: ghcr.io/flaresolverr/flaresolverr
               tag: v3.3.16@sha256:088412db1051d04ab32c902266510011aec1dc9f7a3a3bda3f58b93186591347
