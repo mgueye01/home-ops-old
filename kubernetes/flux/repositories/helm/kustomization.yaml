@@ -54,3 +54,4 @@ resources:
   - ./xenitab.yaml
   - ./democratic-csi.yaml
   - ./openebs.yaml
+  - ./stevehipwell.yaml
