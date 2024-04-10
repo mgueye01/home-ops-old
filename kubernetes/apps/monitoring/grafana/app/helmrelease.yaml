@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -158,17 +158,17 @@ spec:
       datasources.yaml:
         apiVersion: 1
         deleteDatasources:
-          - {name: Alertmanager, orgId: 1}
-          - {name: Loki, orgId: 1}
-          - {name: Prometheus, orgId: 1}
-          - {name: TeslaMate, orgId: 1}
-          - {name: Tempo, orgId: 1}
+          - { name: Alertmanager, orgId: 1 }
+          - { name: Loki, orgId: 1 }
+          - { name: Prometheus, orgId: 1 }
+          - { name: TeslaMate, orgId: 1 }
+          - { name: Tempo, orgId: 1 }
         datasources:
           - name: Prometheus
             type: prometheus
             uid: prometheus
             access: proxy
-            url: http://thanos-query-frontend.monitoring.svc.cluster.local:9090
+            url: http://thanos-query-frontend.monitoring.svc.cluster.local:10902
             jsonData:
               prometheusType: Thanos # Prometheus for victoria-metrics
             isDefault: true
