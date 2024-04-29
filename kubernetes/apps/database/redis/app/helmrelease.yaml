@@ -42,6 +42,12 @@ spec:
         failureThreshold: 2
       persistence:
         enabled: false
+      resources:
+        requests:
+          cpu: 10m
+          memory: 10Mi
+        limits:
+          memory: 50Mi
     networkPolicy:
       enabled: false
     metrics:
@@ -49,3 +55,9 @@ spec:
       serviceMonitor:
         enabled: true
         interval: 1m
+      resources:
+        requests:
+          cpu: 10m
+          memory: 10Mi
+        limits:
+          memory: 20Mi
