@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -9,12 +8,11 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 3.0.4
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-  maxHistory: 2
   install:
     remediation:
       retries: 3
@@ -24,70 +22,70 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
   values:
     controllers:
       main:
         type: cronjob
-        annotations:
-          reloader.stakater.com/auto: "true"
         cronjob:
-          schedule: 0 0 * * *
+          schedule: "@daily"
+          timeZone: &timeZone ${TIMEZONE}
+          concurrencyPolicy: Forbid
+          successfulJobsHistory: 1
+          failedJobsHistory: 1
         containers:
           main:
             image:
-              repository: meisnate12/plex-meta-manager
-              tag: v1.21.0
+              repository: docker.io/meisnate12/plex-meta-manager
+              tag: v1.21.0@sha256:219f11238c78080e9f76fdcb80a95d8724d4fdf3df6dba3dcbc87ad82d45fd4c
             command:
               - /scripts/run.sh
             env:
-              TZ: ${TIMEZONE}
-              PUID: 568
-              PGID: 568
+              TZ: *timeZone
+            envFrom:
+              - secretRef:
+                  name: plex-meta-manager-secret
             resources:
               requests:
                 cpu: 10m
-                memory: 4096M
               limits:
-                memory: 8192M
+                memory: 8Gi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
         pod:
           securityContext:
             runAsUser: 568
             runAsGroup: 568
+            runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-    service:
-      app:
-        controller: plex-meta-manager
-        enabled: false
     persistence:
       config:
         enabled: true
         existingClaim: *app
       config-file:
-        enabled: true
-        type: secret
-        name: plex-meta-manager-secret
+        type: configMap
+        name: plex-meta-manager-configmap
         globalMounts:
           - path: /config/config.yml
             subPath: config.yml
             readOnly: true
-      config-prerolls:
-        enabled: true
-        type: configMap
-        name: pmm-prerolls
+      logs:
+        type: emptyDir
         globalMounts:
-          - path: /config/Pre-rolls.yml
-            subPath: Pre-rolls.yml
-            readOnly: true
+          - path: /config/logs
+            subPath: logs
       scripts:
-        enabled: true
         type: configMap
-        name: pmm-scripts
+        name: plex-meta-manager-configmap
         defaultMode: 0775
         globalMounts:
           - path: /scripts/run.sh
             subPath: run.sh
             readOnly: true
+    # service:
+    #   main:
+    #     enabled: false
