@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pmm () {
+pmm() {
     echo "*** pmm: $1 ***"
 
     python3 plex_meta_manager.py \
@@ -9,6 +9,5 @@ pmm () {
         --run-libraries "$1"
 }
 
-pmm "Anime"
 pmm "Movies"
 pmm "TV Shows"

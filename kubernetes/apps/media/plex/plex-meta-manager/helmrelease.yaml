@@ -1,9 +1,9 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app plex-meta-manager
+  name: plex-meta-manager
+  namespace: media
 spec:
   interval: 30m
   chart:
@@ -24,9 +24,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
   values:
     controllers:
       main:
@@ -34,18 +31,21 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         cronjob:
-          schedule: 0 0 * * *
+          schedule: 0 6 * * *
         containers:
           main:
             image:
-              repository: meisnate12/plex-meta-manager
-              tag: v1.21.0
+              repository: docker.io/meisnate12/plex-meta-manager
+              tag: v1.19.1
             command:
               - /scripts/run.sh
             env:
-              TZ: ${TIMEZONE}
+              TZ: Europe/Paris
               PUID: 568
               PGID: 568
+            envFrom:
+              - secretRef:
+                  name: plex-meta-manager-secret
             resources:
               requests:
                 cpu: 10m
@@ -58,36 +58,32 @@ spec:
             runAsGroup: 568
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-    service:
-      app:
-        controller: plex-meta-manager
-        enabled: false
     persistence:
       config:
         enabled: true
-        existingClaim: *app
+        existingClaim: pmm-config-pvc
       config-file:
-        enabled: true
-        type: secret
-        name: plex-meta-manager-secret
+        type: configMap
+        name: plex-meta-manager-configmap
         globalMounts:
           - path: /config/config.yml
             subPath: config.yml
             readOnly: true
       config-prerolls:
-        enabled: true
         type: configMap
-        name: pmm-prerolls
+        name: plex-meta-manager-configmap
         globalMounts:
           - path: /config/Pre-rolls.yml
             subPath: Pre-rolls.yml
             readOnly: true
       scripts:
-        enabled: true
         type: configMap
-        name: pmm-scripts
+        name: plex-meta-manager-configmap
         defaultMode: 0775
         globalMounts:
           - path: /scripts/run.sh
             subPath: run.sh
             readOnly: true
+    service:
+      main:
+        enabled: false

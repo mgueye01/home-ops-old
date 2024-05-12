@@ -8,10 +8,18 @@ resources:
   - ./helmrelease.yaml
   - ./volsync.yaml
 configMapGenerator:
-  - name: plex-meta-manager-configmap
+  - name: pmm-config-tpl
     files:
       - ./configs/config.yml
+  - name: pmm-prerolls
+    files:
       - ./configs/Pre-rolls.yml
+  - name: pmm-scripts
+    files:
       - ./scripts/run.sh
 generatorOptions:
   disableNameSuffixHash: true
+labels:
+  - pairs:
+      app.kubernetes.io/name: plex-meta-manager
+      app.kubernetes.io/instance: plex-meta-manager
