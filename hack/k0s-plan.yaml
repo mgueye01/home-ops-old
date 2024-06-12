@@ -1,0 +1,30 @@
+apiVersion: autopilot.k0sproject.io/v1beta2
+kind: Plan
+metadata:
+  name: autopilot
+
+spec:
+  id: id1234
+  timestamp: now
+
+  commands:
+    - k0supdate:
+        version: v1.30.1+k0s.0
+        platforms:
+          linux-amd64:
+            url: https://github.com/k0sproject/k0s/releases/download/v1.30.1+k0s.0/k0s-v1.30.1+k0s.0-amd64
+            sha256: '22e67a03189453390df2e883d99e782677097bebecba993db4cbe86024ff0a02'
+        targets:
+          controllers:
+            discovery:
+              static:
+                nodes:
+                  - master1
+                  - master2
+                  - master3
+          workers:
+            limits:
+              concurrent: 1
+            discovery:
+              selector:
+                labels: node-role.kubernetes.io/worker=true
