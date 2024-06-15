@@ -104,7 +104,7 @@ mdblist:
   cache_expiration: 60
 
 radarr:
-  url: http://radarr.media.svc.cluster.local:7878
+  url: http://radarr.media.svc.cluster.local:80
   token: <<RADARR_API_KEY>>
   add_missing: false
   add_existing: false
@@ -119,7 +119,7 @@ radarr:
   upgrade_existing: false
 
 sonarr:
-  url: http://sonarr.media.svc.cluster.local:8989
+  url: http://sonarr.media.svc.cluster.local:80
   token: <<SONARR_API_KEY>>
   add_missing: false
   add_existing: false

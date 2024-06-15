@@ -11,3 +11,6 @@ alertmanager:
           alertmanager:
             - alertname=Watchdog
             - prometheus=monitoring/kube-prometheus-stack
+filters:
+  default:
+    - "@state!=suppressed"

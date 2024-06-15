@@ -31,6 +31,10 @@ spec:
             - --tlskey
             - /certs/key.pem
           # the probe below will only work after Release v0.6.3
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "echo 'PreStop hook: Stopping buildkitd container...'"]
           readinessProbe:
             exec:
               command:
