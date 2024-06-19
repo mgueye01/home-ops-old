@@ -8,6 +8,11 @@ metadata:
   namespace: dev
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   selector:
     matchLabels:
       app: buildkitd
@@ -18,7 +23,7 @@ spec:
     spec:
       containers:
         - name: buildkitd
-          image: moby/buildkit:v0.14.0
+          image: moby/buildkit:v0.14.1
           args:
             - --addr
             - unix:///run/buildkit/buildkitd.sock
