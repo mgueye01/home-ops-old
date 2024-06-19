@@ -51,7 +51,7 @@ spec:
             envFrom: *envFrom
             image:
               repository: teslamate/teslamate
-              tag: 1.29.1
+              tag: 1.29.2
             probes:
               liveness: &probes
                 enabled: true
