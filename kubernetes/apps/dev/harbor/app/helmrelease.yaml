@@ -39,6 +39,7 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/ssl-redirect: "true"
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
           nginx.ingress.kubernetes.io/custom-http-errors: "418"
           nginx.ingress.kubernetes.io/proxy-connect-timeout: "480"
       tls:
