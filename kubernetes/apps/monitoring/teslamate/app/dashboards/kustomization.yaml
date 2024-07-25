@@ -6,9 +6,6 @@ configMapGenerator:
   - name: battery-health
     files:
       - battery-health.json=https://raw.githubusercontent.com/CarlosCuezva/dashboards-Grafana-Teslamate/main/dashboards/battery-health.json
-  - name: browse-charges
-    files:
-      - browse-charges.json=https://raw.githubusercontent.com/jheredianet/Teslamate-CustomGrafanaDashboards/main/dashboards/BrowseCharges.json
   - name: charge-level
     files:
       - charge-level.json=https://raw.githubusercontent.com/adriankumpf/teslamate/master/grafana/dashboards/charge-level.json

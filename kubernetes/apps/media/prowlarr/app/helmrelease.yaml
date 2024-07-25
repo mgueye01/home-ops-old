@@ -106,7 +106,7 @@ spec:
         type: emptyDir
       backup:
         type: nfs
-        server: nas.g-eye.tech
+        server: 192.168.0.18
         path: /volume1/CLOUDNATIVE1/Backups/prowlarr
         globalMounts:
           - path: /config/Backups
