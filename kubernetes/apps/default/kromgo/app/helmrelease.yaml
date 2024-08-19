@@ -36,8 +36,33 @@ spec:
               repository: ghcr.io/kashalls/kromgo
               tag: v0.4.1@sha256:237e6ac3f3bc791343e1ee84122ce9b97abf7eed86cd522d8bf4cba10a041e9f
             env:
+              SERVER_HOST: 0.0.0.0
+              HEALTH_HOST: 0.0.0.0
               PROMETHEUS_URL: http://thanos-query-frontend.monitoring.svc.cluster.local:10902
-              PORT: &port 80
+              PORT: &port 8080
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /-/health
+                    port: &healthPort 8888
+                  initialDelaySeconds: 0
+                  periodSeconds: 5
+                  timeoutSeconds: 1
+                  failureThreshold: 5
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /-/ready
+                    port: *healthPort
+                  initialDelaySeconds: 0
+                  periodSeconds: 5
+                  timeoutSeconds: 1
+                  failureThreshold: 3
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -49,9 +74,10 @@ spec:
                 memory: 64Mi
         pod:
           securityContext:
-            runAsUser: 568
-            runAsGroup: 568
+            runAsUser: 65534
+            runAsGroup: 65534
             runAsNonRoot: true
+            seccompProfile: { type: RuntimeDefault }
           topologySpreadConstraints:
             - maxSkew: 1
               topologyKey: kubernetes.io/hostname
