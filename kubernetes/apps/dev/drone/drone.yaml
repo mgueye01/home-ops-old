@@ -46,7 +46,8 @@ spec:
       DRONE_SERVER_PROXY_PROTO: http
       DRONE_SERVER_PROTO: https
       DRONE_GIT_ALWAYS_AUTH: true
-      DRONE_GITEA_SERVER: https://gitea.${SECRET_DOMAIN}
+      # DRONE_GITEA_SERVER: https://gitea.${SECRET_DOMAIN}
+      DRONE_GITEA_SERVER: http://gitea-http.dev.svc.cluster.local:3000
       DRONE_USER_CREATE: username:context,admin:true
       DRONE_LOGS_TEXT: true
       DRONE_LOGS_PRETTY: true
