@@ -16,4 +16,4 @@ resources:
   - ./miniflux/ks.yaml
   - ./atuin/ks.yaml
   - ./kromgo/ks.yaml
-  - ./flaresolverr/ks.yaml
+  # - ./flaresolverr/ks.yaml
