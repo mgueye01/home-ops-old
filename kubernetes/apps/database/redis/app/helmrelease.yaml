@@ -70,6 +70,6 @@ spec:
       resources:
         requests:
           cpu: 10m
-          memory: 10Mi
-        limits:
           memory: 20Mi
+        limits:
+          memory: 80Mi
