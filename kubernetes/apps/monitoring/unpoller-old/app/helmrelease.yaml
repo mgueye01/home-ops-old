@@ -1,52 +1,50 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+# yaml-language-server: $schema=https://kubernetes-schemas.g-eye.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: unpoller
+  namespace: monitoring
 spec:
-  interval: 30m
+  interval: 15m
   chart:
     spec:
       chart: app-template
-      version: 3.4.0
+      version: 2.6.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
   install:
+    createNamespace: true
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
-  dependsOn:
-    - name: kube-prometheus-stack
-      namespace: monitoring
+  uninstall:
+    keepHistory: false
   values:
     controllers:
-      unpoller:
+      main:
         containers:
-          app:
+          main:
             image:
               repository: ghcr.io/unpoller/unpoller
-              tag: v2.11.2@sha256:73b39c0b3b8fa92aa82a7613d3486253ffbd8c057833b4621402a268159bf2a2
+              tag: v2.11.2
             env:
               TZ: "${TIMEZONE}"
               UP_UNIFI_DEFAULT_ROLE: home-ops
-              UP_UNIFI_DEFAULT_URL: https://192.168.0.1
-              UP_PROMETHEUS_HTTP_LISTEN: 0.0.0.0:80
+              UP_UNIFI_DEFAULT_URL: "https://192.168.0.1"
+              UP_UNIFI_DEFAULT_VERIFY_SSL: false
+              UP_UNIFI_DEFAULT_USER: "${SECRET_UP_USER}"
+              UP_UNIFI_DEFAULT_PASS: "${SECRET_UP_PASSWORD}"
+              UP_UNIFI_DEFAULT_SAVE_SITES: true
+              UP_UNIFI_DEFAULT_SAVE_DPI: false
               UP_INFLUXDB_DISABLE: true
-            envFrom:
-              - secretRef:
-                  name: unpoller-secret
-            probes:
-              liveness:
-                enabled: true
-              readiness:
-                enabled: true
+              UP_PROMETHEUS_DISABLE: false
+              UP_PROMETHEUS_NAMESPACE: "unifipoller"
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -54,26 +52,25 @@ spec:
             resources:
               requests:
                 cpu: 10m
+                memory: 100Mi
               limits:
-                memory: 128Mi
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
-        seccompProfile: { type: RuntimeDefault }
+                memory: 500Mi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
     service:
-      app:
-        controller: unpoller
+      main:
         ports:
           http:
-            port: 80
+            port: 9130
     serviceMonitor:
-      app:
-        serviceName: unpoller
+      main:
+        enabled: true
         endpoints:
           - port: http
             scheme: http
             path: /metrics
             interval: 2m # Unifi API only polls at 2m intervals
-            scrapeTimeout: 10s
+            scrapeTimeout: 5s
