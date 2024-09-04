@@ -130,14 +130,6 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/prometheus
-          - name: thanos
-            orgId: 1
-            folder: Thanos
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/thanos
           - name: unifi
             orgId: 1
             folder: Unifi
@@ -162,7 +154,6 @@ spec:
           - { name: Loki, orgId: 1 }
           - { name: Prometheus, orgId: 1 }
           - { name: TeslaMate, orgId: 1 }
-          - { name: Tempo, orgId: 1 }
         datasources:
           - name: Prometheus
             type: prometheus
@@ -170,7 +161,7 @@ spec:
             access: proxy
             url: http://prometheus-operated.monitoring.svc.cluster.local:9090
             jsonData:
-              prometheusType: Thanos # Prometheus for victoria-metrics
+              timeInterval: 1m
             isDefault: true
           - name: Loki
             type: loki
@@ -201,33 +192,6 @@ spec:
               sslmode: disable
             version: 1
             editable: true
-          # - name: Tempo
-          #   type: tempo
-          #   url: http://tempo.monitoring.svc.cluster.local:3100
-          #   access: proxy
-          #   jsonData:
-          #     tracesToLogsV2:
-          #       datasourceUid: 'Loki'
-          #       tags: ['job', 'instance', 'pod', 'namespace']
-          #       filterByTraceID: true
-          #       filterBySpanID: true
-          #       customQuery: true
-          #     tracesToMetrics:
-          #       datasourceUid: 'Prometheus'
-          #       tags: [{ key: 'service.name', value: 'service' }, { key: 'job' }]
-          #     serviceMap:
-          #       datasourceUid: 'Prometheus'
-          #     nodeGraph:
-          #       enabled: true
-          #     search:
-          #       hide: false
-          #     lokiSearch:
-          #       datasourceUid: 'Loki'
-          #     traceQuery:
-          #       timeShiftEnabled: true
-          #     spanBar:
-          #       type: 'Tag'
-          #       tag: 'http.path'
     dashboards:
       default:
         cloudflared:
@@ -264,6 +228,13 @@ spec:
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
+        volsync:
+          # renovate: depName="VolSync Dashboard"
+          gnetId: 21356
+          revision: 3
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
+            - { name: VAR_REPLICATIONDESTNAME, value: .*-dst }
         cloudnative-pg:
           url: https://raw.githubusercontent.com/cloudnative-pg/charts/main/charts/cloudnative-pg/monitoring/grafana-dashboard.json
           datasource: Prometheus
@@ -342,6 +313,9 @@ spec:
           gnetId: 15308 # Ref: https://grafana.com/grafana/dashboards/15308
           revision: 1
           datasource: Prometheus
+        miniflux:
+          url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
+          datasource: Prometheus
       nginx:
         nginx:
           url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
@@ -355,34 +329,6 @@ spec:
           gnetId: 19105
           revision: 3
           datasource: Prometheus
-      # thanos:
-      #   thanos-bucket-replicate:
-      #     url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/bucket-replicate.json
-      #     datasource: Prometheus
-      #   thanos-compact:
-      #     url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/compact.json
-      #     datasource: Prometheus
-      #   thanos-overview:
-      #     url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/overview.json
-      #     datasource: Prometheus
-      #   thanos-query:
-      #     url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/query.json
-      #     datasource: Prometheus
-      #   thanos-query-frontend:
-      #     url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/query-frontend.json
-      #     datasource: Prometheus
-      #   thanos-receieve:
-      #     url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/receive.json
-      #     datasource: Prometheus
-      #   thanos-rule:
-      #     url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/rule.json
-      #     datasource: Prometheus
-      #   thanos-sidecar:
-      #     url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/sidecar.json
-      #     datasource: Prometheus
-      #   thanos-store:
-      #     url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/store.json
-      #     datasource: Prometheus
       unifi:
         unifi-client-insights:
           gnetId: 11315 # Ref: https://grafana.com/grafana/dashboards/11315
