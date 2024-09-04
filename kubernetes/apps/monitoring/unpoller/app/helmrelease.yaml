@@ -37,8 +37,13 @@ spec:
               TZ: "${TIMEZONE}"
               UP_UNIFI_DEFAULT_ROLE: home-ops
               UP_UNIFI_DEFAULT_URL: https://192.168.0.1
+              UP_UNIFI_DEFAULT_VERIFY_SSL: false
               UP_PROMETHEUS_HTTP_LISTEN: 0.0.0.0:80
               UP_INFLUXDB_DISABLE: true
+              UP_UNIFI_DEFAULT_SAVE_SITES: true
+              UP_UNIFI_DEFAULT_SAVE_DPI: false
+              UP_PROMETHEUS_DISABLE: false
+              UP_PROMETHEUS_NAMESPACE: "unifipoller"
             envFrom:
               - secretRef:
                   name: unpoller-secret
