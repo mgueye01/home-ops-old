@@ -56,12 +56,16 @@ spec:
       serviceMonitor:
         selector:
           k8s-app: kube-apiserver
-    kubeControllerManager: &kubeControllerManager
-      service:
-        selector:
-          k8s-app: kube-controller-manager
+    kubeControllerManager:
+      enabled: true
+      endpoints: &cp
+        - 192.168.10.11
+        - 192.168.10.12
+        - 192.168.10.13
     kubeEtcd:
-      <<: *kubeControllerManager # etcd runs on control plane nodes
+      enabled: true
+      endpoints: *cp # etcd runs on control plane nodes
+
     kubeScheduler:
       service:
         selector:
