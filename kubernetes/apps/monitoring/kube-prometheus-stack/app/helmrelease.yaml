@@ -65,9 +65,11 @@ spec:
     kubeEtcd:
       enabled: true
       endpoints: *cp # etcd runs on control plane nodes
+
     kubeScheduler:
-      enabled: true
-      endpoints: *cp
+      service:
+        selector:
+          k8s-app: kube-scheduler
     kubeProxy:
       enabled: false
     prometheus:
