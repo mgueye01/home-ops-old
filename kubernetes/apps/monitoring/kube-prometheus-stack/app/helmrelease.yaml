@@ -64,12 +64,10 @@ spec:
         - 192.168.10.13
     kubeEtcd:
       enabled: true
-      endpoints: *cp # etcd runs on control plane nodes
-
+      endpoints: *cp  # etcd runs on control plane nodes
     kubeScheduler:
-      service:
-        selector:
-          k8s-app: kube-scheduler
+      enabled: true
+      endpoints: *cp
     kubeProxy:
       enabled: false
     prometheus:
@@ -81,7 +79,7 @@ spec:
         hosts: ["prometheus.g-eye.io"]
         pathType: Prefix
       prometheusSpec:
-        scrapeInterval: 1m # Must match interval in Grafana Helm chart
+        scrapeInterval: 1m  # Must match interval in Grafana Helm chart
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
