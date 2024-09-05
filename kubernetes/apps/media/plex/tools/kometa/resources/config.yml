@@ -123,7 +123,7 @@ radarr:
   token: <<RADARR_API_KEY>>
   add_missing: false
   add_existing: false
-  root_folder_path: /media/movies
+  root_folder_path: /media
   monitor: true
   availability: announced
   quality_profile: Remux/Web 1080p
@@ -138,7 +138,7 @@ sonarr:
   token: <<SONARR_API_KEY>>
   add_missing: false
   add_existing: false
-  root_folder_path: /media/shows
+  root_folder_path: /media
   monitor: all
   quality_profile: Web 1080p
   language_profile: English
