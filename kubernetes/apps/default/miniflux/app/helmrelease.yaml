@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -25,7 +25,7 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      miniflux:
         replicas: 2
         strategy: RollingUpdate
         annotations:
@@ -39,7 +39,7 @@ spec:
               - secretRef:
                   name: miniflux-secret
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/miniflux/miniflux
               tag: 2.2.0-distroless@sha256:497cd57e0dd596b5f7c7f7e6c1fc7efd1bde02d52174c1f43d38122e2b67b748
@@ -97,26 +97,29 @@ spec:
                 matchLabels:
                   app.kubernetes.io/name: *app
     service:
-      main:
+      app:
+        controller: miniflux
         ports:
           http:
             port: *port
     serviceMonitor:
-      main:
-        enabled: true
+      app:
+        serviceName: miniflux
+        endpoints:
+          - port: http
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
     ingress:
-      main:
-        enabled: true
-        className: external
+      app:
         annotations:
           external-dns.alpha.kubernetes.io/target: external.g-eye.io
+        className: external
         hosts:
-          - host: &host "{{ .Release.Name }}.g-eye.io"
+          - host: "{{ .Release.Name }}.g-eye.io"
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
-        tls:
-          - hosts:
-              - *host
