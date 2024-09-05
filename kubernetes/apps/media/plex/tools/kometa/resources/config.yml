@@ -123,10 +123,10 @@ radarr:
   token: <<RADARR_API_KEY>>
   add_missing: false
   add_existing: false
-  root_folder_path: /media/movies
+  root_folder_path: /media
   monitor: true
   availability: announced
-  quality_profile: Remux/Web 1080p
+  quality_profile: Ultra-HD
   tag:
   search: false
   radarr_path:
@@ -138,9 +138,9 @@ sonarr:
   token: <<SONARR_API_KEY>>
   add_missing: false
   add_existing: false
-  root_folder_path: /media/shows
+  root_folder_path: /media
   monitor: all
-  quality_profile: Web 1080p
+  quality_profile: Ultra-HD
   language_profile: English
   series_type: standard
   season_folder: true
