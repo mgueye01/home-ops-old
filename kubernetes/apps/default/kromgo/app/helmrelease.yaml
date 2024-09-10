@@ -38,7 +38,7 @@ spec:
             env:
               SERVER_HOST: 0.0.0.0
               HEALTH_HOST: 0.0.0.0
-              PROMETHEUS_URL: http://thanos-query-frontend.monitoring.svc.cluster.local:10902
+              PROMETHEUS_URL: http://prometheus-operated.monitoring.svc.cluster.local:9090
               PORT: &port 8080
             probes:
               liveness:
