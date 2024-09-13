@@ -313,9 +313,6 @@ spec:
           gnetId: 15308 # Ref: https://grafana.com/grafana/dashboards/15308
           revision: 1
           datasource: Prometheus
-        miniflux:
-          url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
-          datasource: Prometheus
       nginx:
         nginx:
           url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
