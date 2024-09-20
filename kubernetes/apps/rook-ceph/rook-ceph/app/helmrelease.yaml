@@ -34,7 +34,9 @@ spec:
       enableLiveness: true
       serviceMonitor:
         enabled: true
-      kubeletDirPath: /var/lib/k0s/kubelet
+      # kubeletDirPath: /var/lib/k0s/kubelet
+      kubeletDirPath: /var/lib/kubelet
+
       pluginTolerations:
         - effect: "NoExecute"
           operator: "Exists"
