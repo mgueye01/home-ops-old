@@ -10,6 +10,6 @@ resources:
   - ./node-feature-discovery/ks.yaml
   - ./kube-cleanup-operator/ks.yaml
   - ./nfs-subdir-external-provisioner/ks.yaml
-  - ./cilium/ks.yaml
+  # - ./cilium/ks.yaml
   # - ./coredns/ks.yaml
   - ./spegel/ks.yaml
