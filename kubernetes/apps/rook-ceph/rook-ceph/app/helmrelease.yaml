@@ -35,7 +35,7 @@ spec:
       serviceMonitor:
         enabled: true
       # kubeletDirPath: /var/lib/k0s/kubelet
-      kubeletDirPath: /var/lib/kubelet
+      # kubeletDirPath: /var/lib/kubelet
 
       pluginTolerations:
         - effect: "NoExecute"
