@@ -1,0 +1,270 @@
+[hardening_configuration]
+  hardening_enabled = false
+  pids_limit_unspecified_k8s = true
+  pids_limit_k8s = 0
+  pids_limit_unspecified_int = true
+  pids_limit_int = 0
+  pids_limit_unspecified_swarm = true
+  pids_limit_swarm = 0
+  limit_kernel_capabilities = false
+  limit_non_root_containers = false
+  use_strong_tls_ciphers = false
+
+[auth]
+  default_new_user_role = "restrictedcontrol"
+  backend = "managed"
+  samlEnabled = false
+  samlLoginText = ""
+  scimEnabled = false
+  managedPasswordDisabled = false
+  managedPasswordFallbackUser = ""
+  [auth.sessions]
+    lifetime_minutes = 60
+    renewal_threshold_minutes = 20
+    per_user_limit = 10
+    store_token_per_session = false
+  [auth.saml]
+    idpMetadataURL = ""
+    spHost = ""
+    rootCerts = ""
+    tlsSkipVerify = false
+    allowLdapLogins = false
+  [auth.scim]
+    token = ""
+    orgName = ""
+  [auth.samlProxy]
+    proxy_url = ""
+    enabled = false
+    [auth.samlProxy.credentials]
+      [auth.samlProxy.credentials.basic]
+  [auth.external_identity_provider]
+    issuer = ""
+    userServiceId = ""
+    clientId = ""
+    wellKnownConfigUrl = ""
+    caBundle = ""
+    usernameClaim = ""
+    httpProxy = ""
+    httpsProxy = ""
+  [auth.account_lock]
+    enabled = false
+    failureTrigger = 0
+    durationSeconds = 0
+
+[backup_schedule_config]
+  enabled = false
+  path = ""
+  passphrase = ""
+  no_passphrase = false
+  cron_spec = ""
+  include_logs = false
+  backups_limit = 30
+  notification_delay = 7
+
+[etcd_cleanup_schedule_config]
+  cleanup_enabled = false
+  min_ttl_to_keep_seconds = 0
+  cron_expression = ""
+  defrag_enabled = false
+  defrag_pause_seconds = 0
+  defrag_timeout_seconds = 0
+
+[scheduling_configuration]
+  enable_admin_ucp_scheduling = true
+  default_node_orchestrator = "kubernetes"
+
+[tracking_configuration]
+  disable_usageinfo = false
+  disable_tracking = false
+  cluster_label = "default"
+  ops_care = false
+
+[trust_configuration]
+  require_content_trust = false
+  require_signature_from = []
+  allow_repos = []
+
+[log_configuration]
+  level = "INFO"
+
+[audit_log_configuration]
+  level = ""
+  support_bundle_include_audit_logs = false
+
+[license_configuration]
+  auto_refresh = false
+  omit_telemetry = false
+
+[pki]
+  client_ca_bundle = ""
+
+[user_workload_defaults]
+
+[cluster_config]
+  controller_port = 443
+  kube_apiserver_port = 6443
+  swarm_port = 2376
+  node_exporter_port = 9100
+  swarm_strategy = "spread"
+  containerd_root = "/var/lib/containerd"
+  windows_containerd_root = "C:\\\\ProgramData\\\\containerd"
+  shared_sans = ["192.168.10.250"]
+  kv_timeout = 5000
+  kv_snapshot_count = 20000
+  profiling_enabled = false
+  swarm_polling_disabled = false
+  hide_swarm_ui = false
+  image_scan_aggregation_enabled = false
+  image_scan_cvss_version = 3
+  authz_cache_timeout = 0
+  pubkey_auth_cache_enabled = false
+  image_prune_schedule = ""
+  external_service_lb = ""
+  metrics_retention_time = "24h"
+  metrics_scrape_interval = "1m"
+  prometheus_memory_limit = "2Gi"
+  prometheus_memory_request = "1Gi"
+  rethinkdb_cache_size = "1GB"
+  etcd_storage_quota = ""
+  exclude_server_identity_headers = false
+  cloud_provider = ""
+  iscsi_enabled = false
+  iscsiadm_path = ""
+  iscsidb_path = ""
+  storage_expt_enabled = false
+  cni_installer_url = ""
+  pod_cidr = "10.0.0.0/16"
+  calico_ip_auto_method = ""
+  calico_controller_probes_tuning = false
+  calico_controller_liveness_probe_failure_threshold = 0
+  calico_controller_liveness_probe_initial_delay_seconds = -1
+  calico_controller_liveness_probe_period_seconds = 0
+  calico_controller_liveness_probe_success_threshold = 0
+  calico_controller_liveness_probe_timeout_seconds = 0
+  calico_controller_readiness_probe_failure_threshold = 0
+  calico_controller_readiness_probe_initial_delay_seconds = -1
+  calico_controller_readiness_probe_period_seconds = 0
+  calico_controller_readiness_probe_success_threshold = 0
+  calico_controller_readiness_probe_timeout_seconds = 0
+  calico_mtu = "1480"
+  calico_strict_affinity = false
+  calico_vxlan = true
+  vxlan_vni = 10000
+  calico_vxlan_mtu = "1450"
+  calico_vxlan_port = "4789"
+  ipip_mtu = "1480"
+  unmanaged_cni = false
+  disable_seccomp_default = false
+  calico_ebpf_enabled = false
+  kube_default_drop_masq_bits = false
+  kube_proxy_use_config_file = false
+  kube_proxy_mode = "iptables"
+  kube_proxy_no_cleanup_on_start = true
+  kube_api_server_profiling_enabled = true
+  kube_controller_manager_profiling_enabled = true
+  kube_scheduler_profiling_enabled = true
+  kube_scheduler_bind_to_all = false
+  kube_protect_kernel_defaults = false
+  ipvs_exclude_cidrs = ""
+  ipvs_min_sync_period = ""
+  ipvs_scheduler = ""
+  ipvs_strict_arp = false
+  ipvs_sync_period = ""
+  ipvs_tcp_timeout = ""
+  ipvs_tcpfin_timeout = ""
+  ipvs_udp_timeout = ""
+  service_cluster_ip_range = "10.96.0.0/16"
+  nodeport_range = "32768-35535"
+  azure_ip_count = ""
+  secure_overlay = false
+  kms_enabled = false
+  kms_name = ""
+  kms_endpoint = ""
+  kms_cachesize = 0
+  cipher_suites_for_kube_api_server = ""
+  cipher_suites_for_kubelet = ""
+  cipher_suites_for_etcd_server = ""
+  custom_proxy_config_yaml = ""
+  local_volume_collection_mapping = false
+  manager_kube_reserved_resources = "cpu=250m,memory=2Gi,ephemeral-storage=4Gi"
+  worker_kube_reserved_resources = "cpu=50m,memory=300Mi,ephemeral-storage=500Mi"
+  kubelet_max_pods = 110
+  kubelet_pods_per_core = 0
+  nvidia_device_plugin = false
+  nvidia_device_partitioner = true
+  ignore_pod_updates_for_node_selector = false
+  gmsa_allow_non_admins = false
+  cluster_name = ""
+  kubelet_data_root = "/var/lib/kubelet"
+  windows_kubelet_data_root = "C:\\k"
+  pre_logon_message = ""
+  networks_quota_per_collection = 0
+  swarm_only = false
+  cpu_usage_banner_threshold = 20
+  cpu_usage_banner_scrape_interval = "10m"
+  kube_api_server_auditing = false
+  kube_api_server_enable_custom_audit_policy = false
+  kube_api_server_custom_audit_policy_yaml = ""
+  kube_api_server_audit_log_maxage = 30
+  kube_api_server_audit_log_maxbackup = 10
+  kube_api_server_audit_log_maxsize = 10
+  use_flex_volume_driver = false
+  kubelet_event_record_qps = 50
+  kube_manager_terminated_pod_gc_threshold = 12500
+  k8s_always_pull_images_ac_enabled = false
+  kube_api_server_request_timeout = "1m"
+  unauthenticated_http2_dos_mitigation = false
+  disable_http2 = false
+  windows_gmsa = false
+  cadvisor_enabled = false
+  node_local_dns = false
+  calico_kdd = false
+  [cluster_config.ingress_controller]
+    enabled = false
+    ingress_num_replicas = 2
+    ingress_enable_lb = false
+    ingress_preserve_client_ip = false
+
+    [[cluster_config.ingress_controller.ingress_exposed_ports]]
+      name = "http2"
+      port = 80
+      target_port = 80
+      node_port = 33000
+      protocol = ""
+
+    [[cluster_config.ingress_controller.ingress_exposed_ports]]
+      name = "https"
+      port = 443
+      target_port = 443
+      node_port = 33001
+      protocol = ""
+
+    [[cluster_config.ingress_controller.ingress_node_toleration]]
+      key = "com.docker.ucp.manager"
+      value = ""
+      operator = "Exists"
+      effect = "NoSchedule"
+    [cluster_config.ingress_controller.ingress_config_map]
+    [cluster_config.ingress_controller.ingress_tcp_services]
+    [cluster_config.ingress_controller.ingress_udp_services]
+    [cluster_config.ingress_controller.ingress_extra_args]
+      http_port = 80
+      https_port = 443
+      enable_ssl_passthrough = false
+      default_ssl_certificate = ""
+  [cluster_config.policy_enforcement]
+    pod_security_policy = false
+    [cluster_config.policy_enforcement.gatekeeper]
+      enabled = false
+      excluded_namespaces = ["kube-system", "kube-public", "kube-node-lease", "gatekeeper-system", "node-feature-discovery"]
+  [cluster_config.core_dns_lameduck_config]
+    enabled = false
+    duration = "7s"
+  [cluster_config.metallb_config]
+    enabled = true
+
+    [[cluster_config.metallb_config.metallb_ip_addr_pool]]
+      name = "default-pool"
+      external_ip = ["192.168.10.0/32"]
+  [cluster_config.k8s_event_rate_limit]
+    event_rate_limit_ac_enabled = false
